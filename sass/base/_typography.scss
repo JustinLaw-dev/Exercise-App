@@ -1,0 +1,45 @@
+@import url("https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;700&display=swap");
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-family: "Barlow", sans-serif;
+}
+
+.header--primary {
+  font-size: 5rem;
+  font-weight: 400;
+  width: 70%;
+}
+
+.header--form {
+  text-align: center;
+  margin: 0 auto;
+  margin-top: 8rem;
+}
+
+.header--secondary {
+  font-size: 4.5rem;
+  font-weight: 700;
+
+  &--white {
+    color: white;
+    text-align: right;
+  }
+
+  &--login {
+    padding-right: 6rem;
+    padding-top: 2rem;
+  }
+}
+
+.grid {
+  &__heading {
+    color: $color-white;
+    font-size: 3rem;
+    text-align: center;
+    margin-top: 2.5rem;
+  }
+}
