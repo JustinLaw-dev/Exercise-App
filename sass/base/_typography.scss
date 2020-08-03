@@ -35,6 +35,14 @@ body {
   }
 }
 
+.text {
+  &__forgot {
+    margin-top: 3rem;
+    font-size: 2rem;
+    text-align: center;
+  }
+}
+
 .grid {
   &__heading {
     color: $color-white;
