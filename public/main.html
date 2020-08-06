@@ -13,8 +13,33 @@
         <h1 class="grid__heading">LAOSPT Exercise App</h1>
       </div>
       <div class="grid__top--right">${Current Tab}</div>
-      <div class="grid__bottom--left">3</div>
-      <div class="grid__bottom--right">4</div>
+      <div class="grid__bottom--left">
+        <div class="tabs" role="tablist" aria-label="Programming Languages">
+          <button role="tab" aria-selected="false" id="js">
+            Patients
+          </button>
+          <button role="tab" aria-selected="true" id="ruby">
+            Exercises
+          </button>
+          <button role="tab" aria-selected="false" id="php">
+            Account
+          </button>
+          <button class="button" id="btnLogOut">Log Out</button>
+        </div>
+      </div>
+      <div class="grid__bottom--right">
+        <div class="tab__content-wrapper">
+          <div role="tabpanel" aria-labelledby="js">
+            <p>JavaScript is great!</p>
+          </div>
+          <div role="tabpanel" aria-labelledby="ruby" hidden>
+            <p>Ruby is great</p>
+          </div>
+          <div role="tabpanel" aria-labelledby="php" hidden>
+            <p>PHP is great!</p>
+          </div>
+        </div>
+      </div>
     </div>
 
     <!-- The core Firebase JS SDK is always required and must be listed first -->
