@@ -53,6 +53,9 @@ firebase.auth().onAuthStateChanged((firebaseUser) => {
       window.location.href = "http://127.0.0.1:5500/public/main.html";
     }
   } else {
+    if (window.location.href === 'http://127.0.0.1:5500/public/main.html'){
+      window.location.href = "http://127.0.0.1:5500/public/index.html";
+    }
     console.log("not a user/not logged in");
   }
 });
@@ -69,6 +72,11 @@ if (window.location.href === "http://127.0.0.1:5500/public/index.html") {
 //Log out
 if (window.location.href === "http://127.0.0.1:5500/public/main.html") {
   const btnLogOut = document.getElementById("btnLogOut");
+  const tabPanels = document.querySelectorAll('.tabs__panel');
+  const patientsContent = document.getElementById('patientsContent');
+  const exercisesContent = document.getElementById('exercisesContent');
+  const accountContent = document.getElementById('accountContent');
+
   btnLogOut.addEventListener("click", (e) => {
     firebase
       .auth()
@@ -82,8 +90,23 @@ if (window.location.href === "http://127.0.0.1:5500/public/main.html") {
       });
   });
 
-//tabs on main
-  function openTab(event, tabName) {
-    
+  
+  
+  
+//tabs switching
+  function openTab(tabName) {
+      tabPanels.forEach(tabPanel => {
+      tabPanel.classList.remove('active');
+    })
+
+    if(tabName === 'patientsTab'){
+     patientsContent.classList.add('active');
+    } else if (tabName === 'exercisesTab') {
+      exercisesContent.classList.add('active');
+    } else if (tabName === 'accountTab') {
+      accountContent.classList.add('active');
+    }
   }
+  
+  // console.log(tabPan els);
 }

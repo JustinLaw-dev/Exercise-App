@@ -21,13 +21,13 @@
       <!-- Tab buttons -->
       <div class="grid__bottom--left">
         <div class="tabs__menu">
-          <button class="tabs__links" onclick="openTab(event, 'patients')">
+          <button class="tabs__links" onclick="openTab('patientsTab')">
             Patients
           </button>
-          <button class="tabs__links" onclick="openTab(event, 'exercises')">
+          <button class="tabs__links" onclick="openTab('exercisesTab')">
             Exercises
           </button>
-          <button class="tabs__links" onclick="openTab(event, 'account')">
+          <button class="tabs__links" onclick="openTab('accountTab')">
             Account
           </button>
         </div>
@@ -36,13 +36,13 @@
       <!-- Tab Content -->
       <div class="grid__bottom--right">
         <div class="tabs__content">
-          <div class="tabs__panel" id="patients">
+          <div class="tabs__panel active" id="patientsContent">
             <p>Patients page is open!</p>
           </div>
-          <div class="tabs__panel" id="exercises">
+          <div class="tabs__panel" id="exercisesContent">
             <p>Exercises page is open!</p>
           </div>
-          <div class="tabs__panel" id="account">
+          <div class="tabs__panel" id="accountContent">
             <p>Account page is open!</p>
           </div>
         </div>
