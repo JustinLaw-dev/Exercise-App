@@ -1,0 +1,35 @@
+.container--grid {
+  display: grid;
+  width: 100%;
+  height: 100%;
+  grid-template-columns: 0.4fr 1.6fr;
+  grid-template-rows: 0.2fr 1.8fr;
+
+  grid-template-areas: ". ." ". .";
+}
+
+.grid {
+  &__top--left {
+    height: 100%;
+    width: 100%;
+    background: $primary-color;
+  }
+
+  &__top--right {
+    width: 100%;
+    background: $primary-color--light;
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__bottom--left {
+    height: 100%;
+    background: $color-white;
+  }
+
+  &__bottom--right {
+    height: 100%;
+    background: $gradient-main-background;
+  }
+}

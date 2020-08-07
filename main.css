@@ -1,0 +1,221 @@
+@import url("https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;700&display=swap");
+.margin--top-med {
+  margin-top: 3rem;
+}
+
+.margin--top-small {
+  margin-top: 1rem;
+}
+
+html {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: inherit;
+          box-sizing: inherit;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-family: "Barlow", sans-serif;
+}
+
+.header--primary {
+  font-size: 5rem;
+  font-weight: 400;
+  width: 70%;
+}
+
+.header--form {
+  text-align: center;
+  margin: 0 auto;
+  margin-top: 8rem;
+}
+
+.header--secondary {
+  font-size: 4.5rem;
+  font-weight: 700;
+}
+
+.header--secondary--white {
+  color: white;
+  text-align: right;
+}
+
+.header--secondary--login {
+  padding-right: 6rem;
+  padding-top: 2rem;
+}
+
+.text__forgot {
+  margin-top: 3rem;
+  font-size: 2rem;
+  text-align: center;
+}
+
+.grid__heading {
+  color: #ffffff;
+  font-size: 3rem;
+  text-align: center;
+  margin-top: 2.5rem;
+}
+
+.button {
+  border-radius: 3rem;
+  padding: 1rem 4rem;
+  width: 40%;
+  -webkit-box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.4);
+          box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.4);
+}
+
+.button--login {
+  color: #03396c;
+  border: 1px solid lightblue;
+  background-color: lightblue;
+  margin: 3rem auto;
+  font-size: 2rem;
+}
+
+.button--signup {
+  border: 1px solid #03396c;
+  color: white;
+  background-color: #03396c;
+  margin: 0 auto;
+  font-size: 2rem;
+}
+
+.button--logout {
+  width: 10%;
+  height: 5rem;
+}
+
+.label {
+  font-size: 2.5rem;
+  margin-top: 2rem;
+}
+
+.input {
+  font-size: 2rem;
+  padding: 1rem;
+}
+
+.tabs__menu {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.tabs__content {
+  width: 138rem;
+  height: 78rem;
+  background: #FFFFFF;
+  -webkit-box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+          box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  margin: 0 auto;
+  margin-top: 3rem;
+}
+
+.tabs__links {
+  width: 50%;
+}
+
+.container--form {
+  margin: 0 auto;
+  margin-top: 10rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  width: 25vw;
+  height: 25%;
+}
+
+.container--grid {
+  display: -ms-grid;
+  display: grid;
+  width: 100%;
+  height: 100%;
+  -ms-grid-columns: 0.4fr 1.6fr;
+      grid-template-columns: 0.4fr 1.6fr;
+  -ms-grid-rows: 0.2fr 1.8fr;
+      grid-template-rows: 0.2fr 1.8fr;
+      grid-template-areas: ". ." ". .";
+}
+
+.grid__top--left {
+  height: 100%;
+  width: 100%;
+  background: #03396c;
+}
+
+.grid__top--right {
+  width: 100%;
+  background: #005b96;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.grid__bottom--left {
+  height: 100%;
+  background: #ffffff;
+}
+
+.grid__bottom--right {
+  height: 100%;
+  background: -webkit-gradient(linear, right top, left top, from(#6abcf8), color-stop(50%, rgba(67, 211, 220, 0.47)));
+  background: linear-gradient(270deg, #6abcf8 0%, rgba(67, 211, 220, 0.47) 50%);
+}
+
+.container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
+.container--left {
+  width: 40vw;
+  height: 100vh;
+  background: -webkit-gradient(linear, left top, left bottom, from(#6abcf8), to(rgba(67, 211, 220, 0.47)));
+  background: linear-gradient(180deg, #6abcf8 0%, rgba(67, 211, 220, 0.47) 100%);
+  -webkit-box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+          box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.container--right {
+  width: 60vw;
+  height: 100vh;
+}
+/*# sourceMappingURL=main.css.map */
