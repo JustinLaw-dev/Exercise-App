@@ -21,6 +21,10 @@ html {
           box-sizing: inherit;
 }
 
+h2 {
+  font-size: 3rem;
+}
+
 html {
   font-size: 62.5%;
 }
@@ -47,13 +51,19 @@ body {
 }
 
 .header--secondary--white {
-  color: white;
+  color: #ffffff;
   text-align: right;
 }
 
 .header--secondary--login {
   padding-right: 6rem;
   padding-top: 2rem;
+}
+
+.text__forgot {
+  margin-top: 3rem;
+  font-size: 2rem;
+  text-align: center;
 }
 
 .grid__heading {
@@ -87,9 +97,14 @@ body {
   font-size: 2rem;
 }
 
+.button--logout {
+  width: 10%;
+  height: 5rem;
+}
+
 .label {
   font-size: 2.5rem;
-  margin-top: 4rem;
+  margin-top: 2rem;
 }
 
 .input {
@@ -97,9 +112,62 @@ body {
   padding: 1rem;
 }
 
+.tabs__menu {
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.tabs__content {
+  width: 138rem;
+  height: 78rem;
+  background: #ffffff;
+  -webkit-box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+          box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  margin: 0 auto;
+  margin-top: 3rem;
+}
+
+.tabs__links {
+  width: 100%;
+  height: 5rem;
+}
+
+.tabs__panel {
+  display: none;
+}
+
+.active {
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+  font-size: 5rem;
+}
+
+.tabs__searchbar {
+  width: 394px;
+  height: 50px;
+  background: #FFFFFF;
+  border: 3px solid #B4B4B4;
+  -webkit-box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+          box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  font-size: 2.5rem;
+}
+
 .container--form {
   margin: 0 auto;
-  margin-top: 15rem;
+  margin-top: 10rem;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -135,6 +203,15 @@ body {
 .grid__top--right {
   width: 100%;
   background: #005b96;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .grid__bottom--left {

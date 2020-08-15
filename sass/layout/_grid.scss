@@ -18,6 +18,10 @@
   &__top--right {
     width: 100%;
     background: $primary-color--light;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
 
   &__bottom--left {

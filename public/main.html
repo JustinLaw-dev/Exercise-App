@@ -7,14 +7,55 @@
   </head>
 
   <body>
-    <!-- begins on patient tab -->
+    <!-- Begins on patient tab -->
     <div class="container--grid">
       <div class="grid__top--left">
         <h1 class="grid__heading">LAOSPT Exercise App</h1>
       </div>
-      <div class="grid__top--right">${Current Tab}</div>
-      <div class="grid__bottom--left">3</div>
-      <div class="grid__bottom--right">4</div>
+
+      <div class="grid__top--right">
+        <h2 class="header--secondary--white">Patients</h2>
+        <button class="button button--logout" id="btnLogOut">Log Out</button>
+      </div>
+
+      <!-- Tab buttons -->
+      <div class="grid__bottom--left">
+        <div class="tabs__menu">
+          <button class="tabs__links" onclick="openTab('patientsTab')">
+            Patients
+          </button>
+          <button class="tabs__links" onclick="openTab('exercisesTab')">
+            Exercises
+          </button>
+          <button class="tabs__links" onclick="openTab('accountTab')">
+            Account
+          </button>
+        </div>
+      </div>
+
+      <!-- Tab Content -->
+      <div class="grid__bottom--right">
+        <div class="tabs__content">
+          <div class="tabs__panel active" id="patientsContent">
+            <div class="">
+              <input
+                class="tabs__searchbar"
+                type="text"
+                name="patientSearchbar"
+                id="patientSearchbar"
+                placeholder="Search Patient by Name"
+              />
+            </div>
+            <div></div>
+          </div>
+          <div class="tabs__panel" id="exercisesContent">
+            <p>Exercises page is open!</p>
+          </div>
+          <div class="tabs__panel" id="accountContent">
+            <p>Account page is open!</p>
+          </div>
+        </div>
+      </div>
     </div>
 
     <!-- The core Firebase JS SDK is always required and must be listed first -->

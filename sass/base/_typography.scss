@@ -25,13 +25,22 @@ body {
   font-weight: 700;
 
   &--white {
-    color: white;
+    color: $color-white;
     text-align: right;
   }
 
   &--login {
     padding-right: 6rem;
     padding-top: 2rem;
+  }
+}
+
+
+.text {
+  &__forgot {
+    margin-top: 3rem;
+    font-size: 2rem;
+    text-align: center;
   }
 }
 
