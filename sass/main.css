@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;700&display=swap");
 .margin--top-med {
   margin-top: 3rem;
 }
@@ -9,7 +9,7 @@
 
 html {
   -webkit-box-sizing: border-box;
-  box-sizing: border-box;
+          box-sizing: border-box;
 }
 
 *,
@@ -18,7 +18,7 @@ html {
   margin: 0;
   padding: 0;
   -webkit-box-sizing: inherit;
-  box-sizing: inherit;
+          box-sizing: inherit;
 }
 
 h2 {
@@ -73,12 +73,16 @@ body {
   margin-top: 2.5rem;
 }
 
+.button--add-text {
+  font-size: 2.5rem;
+}
+
 .button {
   border-radius: 3rem;
   padding: 1rem 4rem;
   width: 40%;
   -webkit-box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.4);
-  box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.4);
+          box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.4);
 }
 
 .button--login {
@@ -100,6 +104,28 @@ body {
 .button--logout {
   width: 10%;
   height: 5rem;
+  cursor: pointer;
+}
+
+.button--add {
+  width: 18rem;
+  height: 5rem;
+  border: 3px solid #b4b4b4;
+  -webkit-box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+          box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  font-size: 2.5rem;
+  margin: 2rem 2rem 0 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-flex: row;
+      -ms-flex: row;
+          flex: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
 }
 
 .label {
@@ -119,25 +145,24 @@ body {
   display: flex;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
-  -ms-flex-direction: column;
-  flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
   -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
-.tabs__content {
+.tabs__wrapper {
   width: 138rem;
   height: 78rem;
-
   background: #ffffff;
   -webkit-box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+          box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   margin: 0 auto;
-  margin-top: 4rem;
+  margin-top: 3rem;
 }
 
 .tabs__links {
@@ -153,16 +178,56 @@ body {
   display: inline-block;
   width: 100%;
   height: 100%;
+  font-size: 5rem;
 }
 
-.tabs__searchbar {
-  width: 394px;
-  height: 50px;
-  background: #ffffff;
+.searchbar__top {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-flex: row;
+      -ms-flex: row;
+          flex: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.searchbar__wrapper {
+  width: 40rem;
+  height: 5rem;
   border: 3px solid #b4b4b4;
   -webkit-box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+          box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   font-size: 2.5rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-flex: row;
+      -ms-flex: row;
+          flex: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.searchbar__wrapper-1 {
+  margin: 2rem 0 0 2rem;
+}
+
+.searchbar--patient {
+  border: none;
+  font-size: 2rem;
+  width: 30rem;
+  padding-left: 1rem;
+}
+
+.searchbar--icon {
+  margin-left: 6rem;
 }
 
 .container--form {
@@ -173,11 +238,11 @@ body {
   display: flex;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
-  -ms-flex-direction: column;
-  flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
   -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   width: 25vw;
   height: 25%;
 }
@@ -188,10 +253,10 @@ body {
   width: 100%;
   height: 100%;
   -ms-grid-columns: 0.4fr 1.6fr;
-  grid-template-columns: 0.4fr 1.6fr;
+      grid-template-columns: 0.4fr 1.6fr;
   -ms-grid-rows: 0.2fr 1.8fr;
-  grid-template-rows: 0.2fr 1.8fr;
-  grid-template-areas: '. .' '. .';
+      grid-template-rows: 0.2fr 1.8fr;
+      grid-template-areas: ". ." ". .";
 }
 
 .grid__top--left {
@@ -207,11 +272,11 @@ body {
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: justify;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
   -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .grid__bottom--left {
@@ -221,13 +286,7 @@ body {
 
 .grid__bottom--right {
   height: 100%;
-  background: -webkit-gradient(
-    linear,
-    right top,
-    left top,
-    from(#6abcf8),
-    color-stop(50%, rgba(67, 211, 220, 0.47))
-  );
+  background: -webkit-gradient(linear, right top, left top, from(#6abcf8), color-stop(50%, rgba(67, 211, 220, 0.47)));
   background: linear-gradient(270deg, #6abcf8 0%, rgba(67, 211, 220, 0.47) 50%);
 }
 
@@ -237,27 +296,17 @@ body {
   display: flex;
   -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
-  -ms-flex-direction: row;
-  flex-direction: row;
+      -ms-flex-direction: row;
+          flex-direction: row;
 }
 
 .container--left {
   width: 40vw;
   height: 100vh;
-  background: -webkit-gradient(
-    linear,
-    left top,
-    left bottom,
-    from(#6abcf8),
-    to(rgba(67, 211, 220, 0.47))
-  );
-  background: linear-gradient(
-    180deg,
-    #6abcf8 0%,
-    rgba(67, 211, 220, 0.47) 100%
-  );
+  background: -webkit-gradient(linear, left top, left bottom, from(#6abcf8), to(rgba(67, 211, 220, 0.47)));
+  background: linear-gradient(180deg, #6abcf8 0%, rgba(67, 211, 220, 0.47) 100%);
   -webkit-box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+          box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
 .container--right {

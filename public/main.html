@@ -39,18 +39,26 @@
 
       <!-- Tab Content -->
       <div class="grid__bottom--right">
-        <div class="tabs__content">
+        <div class="tabs__wrapper">
           <div class="tabs__panel active" id="patientsContent">
-            <div class="">
-              <input
-                class="tabs__searchbar"
-                type="text"
-                name="patientSearchbar"
-                id="patientSearchbar"
-                placeholder="Search Patient by Name"
-              />
+            <div class="searchbar__top">
+              <div class="searchbar__wrapper searchbar__wrapper-1">
+                <input
+                  class="searchbar--patient"
+                  type="text"
+                  name="patientSearchbar"
+                  id="patientSearchbar"
+                  placeholder="Search Patient by Name"
+                />
+                <i class="fas fa-search searchbar--icon"></i>
+              </div>
+              <div class="button--add">
+                <i class="fas fa-plus"></i>
+                <p class="button--add-text">
+                  Add Patient
+                </p>
+              </div>
             </div>
-            <div></div>
           </div>
           <div class="tabs__panel" id="exercisesContent">
             <p>Exercises page is open!</p>
