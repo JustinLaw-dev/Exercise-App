@@ -18,7 +18,7 @@ function login() {
   const btnLogin = document.getElementById('btnLogin');
   const btnSignUp = document.getElementById('btnSignUp');
 
-  //login event
+  //Login event
   btnLogin.addEventListener('click', (e) => {
     //get email and pass
     //TODO: Check for real email address
@@ -75,6 +75,9 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
   const btnLogOut = document.getElementById('btnLogOut');
   const tabButtons = document.querySelectorAll('.tabs__links');
   const tabPanels = document.querySelectorAll('.tabs__panel');
+  const patientsButton = document.getElementById('patientsButton');
+  const exercisesButton = document.getElementById('exercisesButton');
+  const accountButton = document.getElementById('accountButton');
   const patientsContent = document.getElementById('patientsContent');
   const exercisesContent = document.getElementById('exercisesContent');
   const accountContent = document.getElementById('accountContent');
@@ -97,13 +100,22 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
     tabPanels.forEach((tabPanel) => {
       tabPanel.classList.remove('active');
     });
-
+    tabButtons.forEach((tabButton) => {
+      tabButton.style.background = 'none';
+      tabButton.style.color = 'black';
+    });
     if (tabName === 'patientsTab') {
       patientsContent.classList.add('active');
+      patientsButton.style.background = '#a9dbff';
+      patientsButton.style.color = '#ffffff';
     } else if (tabName === 'exercisesTab') {
       exercisesContent.classList.add('active');
+      exercisesButton.style.background = '#a9dbff';
+      exercisesButton.style.color = '#ffffff';
     } else if (tabName === 'accountTab') {
       accountContent.classList.add('active');
+      accountButton.style.background = '#a9dbff';
+      accountButton.style.color = '#ffffff';
     }
   }
 

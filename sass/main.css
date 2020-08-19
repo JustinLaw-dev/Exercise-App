@@ -29,7 +29,6 @@ button {
   padding: 0;
   border: none;
   color: inherit;
-  background-color: transparent;
   /* show a hand cursor on hover; some argue that we
   should keep the default arrow cursor for buttons */
   cursor: pointer;
@@ -182,7 +181,12 @@ body {
   height: 8rem;
   font-size: 3rem;
   cursor: pointer;
-  text-align: center;
+  text-align: start;
+  padding-left: 6rem;
+}
+
+.tabs__links i {
+  margin-right: 3rem;
 }
 
 .tabs__panel {

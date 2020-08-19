@@ -22,7 +22,12 @@
     height: 8rem;
     font-size: 3rem;
     cursor: pointer;
-    text-align: center;
+    text-align: start;
+    padding-left: 6rem;
+
+    & i {
+      margin-right: 3rem;
+    }
   }
 
   //initial display is none
