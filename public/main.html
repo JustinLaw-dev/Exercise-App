@@ -25,13 +25,25 @@
       <!-- Tab buttons -->
       <div class="grid__bottom--left">
         <div class="tabs__menu">
-          <button class="tabs__links" onclick="openTab('patientsTab')">
+          <button
+            class="tabs__links"
+            id="patientsButton"
+            onclick="openTab('patientsTab')"
+          >
             Patients
           </button>
-          <button class="tabs__links" onclick="openTab('exercisesTab')">
+          <button
+            class="tabs__links"
+            id="exercisesButton"
+            onclick="openTab('exercisesTab')"
+          >
             Exercises
           </button>
-          <button class="tabs__links" onclick="openTab('accountTab')">
+          <button
+            class="tabs__links"
+            id="accountButton"
+            onclick="openTab('accountTab')"
+          >
             Account
           </button>
         </div>
@@ -61,6 +73,7 @@
             </div>
             <div class="list__wrapper">
               <ul class="list__patients">
+                <li>Patient Name</li>
                 <li>Patient Name</li>
               </ul>
             </div>

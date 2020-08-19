@@ -17,8 +17,12 @@
   }
 
   &__links {
+    background: none;
     width: 100%;
-    height: 5rem;
+    height: 8rem;
+    font-size: 3rem;
+    cursor: pointer;
+    text-align: center;
   }
 
   //initial display is none
