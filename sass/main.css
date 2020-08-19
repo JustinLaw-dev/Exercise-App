@@ -230,6 +230,21 @@ body {
   margin-left: 6rem;
 }
 
+.list__wrapper {
+  width: 95%;
+  margin: 2rem auto;
+}
+
+.list__patients {
+  font-size: 3rem;
+  list-style: none;
+}
+
+.list__patients li {
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #dcdcdc;
+}
+
 .container--form {
   margin: 0 auto;
   margin-top: 10rem;
