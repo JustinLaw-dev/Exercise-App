@@ -12,6 +12,11 @@
       margin-top: 2rem;
       padding-bottom: 1rem;
       border-bottom: 1px solid #dcdcdc;
+
+      & i {
+        float: right;
+        margin-right: 2rem;
+      }
     }
   }
 }
