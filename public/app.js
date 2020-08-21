@@ -1,13 +1,4 @@
-const firebaseConfig = {
-  apiKey: "AIzaSyA55DpRmm4DNgT8w_EJnLAzGmBC0qg0RB4",
-  authDomain: "los-alamitos-pt-exercise-app.firebaseapp.com",
-  databaseURL: "https://los-alamitos-pt-exercise-app.firebaseio.com",
-  projectId: "los-alamitos-pt-exercise-app",
-  storageBucket: "los-alamitos-pt-exercise-app.appspot.com",
-  messagingSenderId: "587818075107",
-  appId: "1:587818075107:web:782b5b32806bd55ad0d6d6",
-  measurementId: "G-J3TZX37KTF",
-};
+
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 
