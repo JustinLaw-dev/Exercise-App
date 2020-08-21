@@ -13,3 +13,12 @@ html {
 h2 {
   font-size: 3rem;
 }
+
+button {
+  padding: 0;
+  border: none;
+  color: inherit;
+  /* show a hand cursor on hover; some argue that we
+  should keep the default arrow cursor for buttons */
+  cursor: pointer;
+}

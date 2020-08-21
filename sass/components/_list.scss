@@ -1,0 +1,22 @@
+.list {
+  &__wrapper {
+    width: 95%;
+    margin: 2rem auto;
+  }
+
+  &__patients {
+    font-size: 3rem;
+    list-style: none;
+
+    li {
+      margin-top: 2rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid #dcdcdc;
+
+      & i {
+        float: right;
+        margin-right: 2rem;
+      }
+    }
+  }
+}

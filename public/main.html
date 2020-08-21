@@ -3,7 +3,12 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="../sass/main.css" />
-    <title>Exercise App</title>
+    <script
+      src="https://kit.fontawesome.com/1b93ecf5f2.js"
+      crossorigin="anonymous"
+    ></script>
+    <title>LAOSPT Exercise App</title>
+    <link rel="shortcut icon" href="./img/favicon.png" type="image/x-icon" />
   </head>
 
   <body>
@@ -21,32 +26,64 @@
       <!-- Tab buttons -->
       <div class="grid__bottom--left">
         <div class="tabs__menu">
-          <button class="tabs__links" onclick="openTab('patientsTab')">
-            Patients
+          <button
+            class="tabs__links"
+            id="patientsButton"
+            onclick="openTab('patientsTab')"
+          >
+            <i class="fas fa-user-friends"></i>Patients
           </button>
-          <button class="tabs__links" onclick="openTab('exercisesTab')">
-            Exercises
+          <button
+            class="tabs__links"
+            id="exercisesButton"
+            onclick="openTab('exercisesTab')"
+          >
+            <i class="fas fa-dumbbell"></i>Exercises
           </button>
-          <button class="tabs__links" onclick="openTab('accountTab')">
-            Account
+          <button
+            class="tabs__links"
+            id="accountButton"
+            onclick="openTab('accountTab')"
+          >
+            <i class="fas fa-cog"></i> Account
           </button>
         </div>
       </div>
 
       <!-- Tab Content -->
       <div class="grid__bottom--right">
-        <div class="tabs__content">
+        <div class="tabs__wrapper">
           <div class="tabs__panel active" id="patientsContent">
-            <div class="">
-              <input
-                class="tabs__searchbar"
-                type="text"
-                name="patientSearchbar"
-                id="patientSearchbar"
-                placeholder="Search Patient by Name"
-              />
+            <div class="searchbar__top">
+              <div class="searchbar__wrapper searchbar__wrapper-1">
+                <input
+                  class="searchbar--patient"
+                  type="text"
+                  name="patientSearchbar"
+                  id="patientSearchbar"
+                  placeholder="Search Patient by Name"
+                />
+                <i class="fas fa-search searchbar--icon"></i>
+              </div>
+              <div class="button--add">
+                <i class="fas fa-plus"></i>
+                <p class="button--add-text">
+                  Add Patient
+                </p>
+              </div>
             </div>
-            <div></div>
+            <div class="list__wrapper">
+              <ul class="list__patients">
+                <li>
+                  Patient Name
+                </li>
+                <li>
+                  David Ipsum
+                  <i class="fas fa-trash-alt"></i>
+                  <i class="fas fa-edit"></i>
+                </li>
+              </ul>
+            </div>
           </div>
           <div class="tabs__panel" id="exercisesContent">
             <p>Exercises page is open!</p>
@@ -54,10 +91,66 @@
           <div class="tabs__panel" id="accountContent">
             <p>Account page is open!</p>
           </div>
+
+          <div class="modal--outer">
+            <div class="modal--inner">
+              <form action="" class="form__addPatient">
+                <label class="label" for="firstName">First Name</label>
+                <input
+                  class="input"
+                  placeholder="Email"
+                  type="text"
+                  name="firstName"
+                  id="firstName"
+                  required
+                />
+                <label class="label" for="lastName">Last Name</label>
+                <input
+                  class="input"
+                  placeholder="Email"
+                  type="text"
+                  name="lastName"
+                  id="lastName"
+                  required
+                />
+                <label class="label" for="month">Month</label>
+                <input
+                  class="input"
+                  placeholder="MM"
+                  type="number"
+                  name="month"
+                  id="month"
+                  min="1"
+                  max="12"
+                />
+                <label class="label" for="day">Day</label>
+                <input
+                  class="input"
+                  placeholder="DD"
+                  type="number"
+                  name="day"
+                  id="day"
+                  min="1"
+                  max="31"
+                />
+                <label class="label" for="year">Year</label>
+                <input
+                  class="input"
+                  placeholder="YYYY"
+                  type="number"
+                  name="year"
+                  id="year"
+                  min="1900"
+                  max="2020"
+                />
+              </form>
+            </div>
+          </div>
         </div>
       </div>
     </div>
 
+    <!-- Add Patient Modal -->
     <!-- The core Firebase JS SDK is always required and must be listed first -->
     <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-auth.js"></script>
