@@ -81,6 +81,11 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
   const patientsContent = document.getElementById('patientsContent');
   const exercisesContent = document.getElementById('exercisesContent');
   const accountContent = document.getElementById('accountContent');
+  const btnAddPatient = document.getElementById('btnAddPatient');
+  const patientExit = document.getElementById('patientExit');
+
+  const modalOuter = document.querySelector('.modal--outer');
+  const modalInner = document.querySelector('.modal--inner');
 
   btnLogOut.addEventListener('click', (e) => {
     firebase
@@ -118,6 +123,18 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
       accountButton.style.color = '#ffffff';
     }
   }
+  btnAddPatient.addEventListener('click', enterModal);
+  patientExit.addEventListener('click', exitModal);
+  modalOuter.addEventListener('click', exitModal);
 
-  // console.log(tabPan els);
+  function enterModal() {
+    modalOuter.style.display = 'block';
+    modalInner.style.display = 'block';
+  }
+
+  function exitModal() {
+    // console.log(event.currentTarget);
+    modalOuter.style.display = 'none';
+    modalInner.style.display = 'none';
+  }
 }

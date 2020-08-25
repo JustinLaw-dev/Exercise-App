@@ -1,8 +1,19 @@
 .button {
-  border-radius: 3rem;
-  padding: 1rem 4rem;
-  width: 40%;
-  box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.4);
+  cursor: pointer;
+
+  &__round {
+    border-radius: 3rem;
+    padding: 1rem 4rem;
+    width: 40%;
+    box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.4);
+  }
+
+  &__square {
+    width: 18rem;
+    height: 5rem;
+    border: 3px solid #b4b4b4;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  }
 
   &--login {
     color: $primary-color;
@@ -23,11 +34,9 @@
   &--logout {
     width: 10%;
     height: 5rem;
-    cursor: pointer;
   }
 
-  &--add {
-    cursor: pointer;
+  &__add {
     width: 18rem;
     height: 5rem;
     border: 3px solid #b4b4b4;
@@ -39,5 +48,11 @@
     flex: row;
     align-items: center;
     justify-content: space-around;
+  }
+
+  &__submit {
+    font-size: 2rem;
+    margin: 0 auto;
+    margin-top: 3rem;
   }
 }

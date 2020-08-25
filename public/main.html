@@ -65,9 +65,9 @@
                 />
                 <i class="fas fa-search searchbar--icon"></i>
               </div>
-              <div class="button--add">
+              <div class="button button__add" id="btnAddPatient">
                 <i class="fas fa-plus"></i>
-                <p class="button--add-text">
+                <p class="button__add-text">
                   Add Patient
                 </p>
               </div>
@@ -92,59 +92,61 @@
             <p>Account page is open!</p>
           </div>
 
-          <div class="modal--outer">
-            <div class="modal--inner">
-              <form action="" class="form__addPatient">
-                <label class="label" for="firstName">First Name</label>
-                <input
-                  class="input"
-                  placeholder="Email"
-                  type="text"
-                  name="firstName"
-                  id="firstName"
-                  required
-                />
-                <label class="label" for="lastName">Last Name</label>
-                <input
-                  class="input"
-                  placeholder="Email"
-                  type="text"
-                  name="lastName"
-                  id="lastName"
-                  required
-                />
-                <label class="label" for="month">Month</label>
-                <input
-                  class="input"
-                  placeholder="MM"
-                  type="number"
-                  name="month"
-                  id="month"
-                  min="1"
-                  max="12"
-                />
-                <label class="label" for="day">Day</label>
-                <input
-                  class="input"
-                  placeholder="DD"
-                  type="number"
-                  name="day"
-                  id="day"
-                  min="1"
-                  max="31"
-                />
-                <label class="label" for="year">Year</label>
-                <input
-                  class="input"
-                  placeholder="YYYY"
-                  type="number"
-                  name="year"
-                  id="year"
-                  min="1900"
-                  max="2020"
-                />
-              </form>
-            </div>
+          <div class="modal--outer"></div>
+          <div class="modal--inner">
+            <i class="modal__exit fas fa-times" id="patientExit"></i>
+            <form action="" class="form__addPatient">
+              <h3 class="header--form">Add Patient</h3>
+              <label class="label" for="firstName">First Name</label>
+              <input
+                class="input"
+                placeholder="Email"
+                type="text"
+                name="firstName"
+                id="firstName"
+                required
+              />
+              <label class="label" for="lastName">Last Name</label>
+              <input
+                class="input"
+                placeholder="Email"
+                type="text"
+                name="lastName"
+                id="lastName"
+                required
+              />
+              <label class="label" for="month">Month</label>
+              <input
+                class="input"
+                placeholder="MM"
+                type="number"
+                name="month"
+                id="month"
+                min="1"
+                max="12"
+              />
+              <label class="label" for="day">Day</label>
+              <input
+                class="input"
+                placeholder="DD"
+                type="number"
+                name="day"
+                id="day"
+                min="1"
+                max="31"
+              />
+              <label class="label" for="year">Year</label>
+              <input
+                class="input"
+                placeholder="YYYY"
+                type="number"
+                name="year"
+                id="year"
+                min="1900"
+                max="2020"
+              />
+              <button class="button__square button__submit">Add Patient</button>
+            </form>
           </div>
         </div>
       </div>
