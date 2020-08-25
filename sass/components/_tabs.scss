@@ -25,6 +25,11 @@
     text-align: start;
     padding-left: 6rem;
 
+    &:first-child {
+      background: #a9dbff;
+      color: #ffffff;
+    }
+
     & i {
       margin-right: 3rem;
     }
