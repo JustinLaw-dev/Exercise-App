@@ -10,6 +10,7 @@ const firebaseConfig = {
 };
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
+const db = firebase.firestore();
 
 //Get elements
 function login() {
@@ -82,10 +83,17 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
   const exercisesContent = document.getElementById('exercisesContent');
   const accountContent = document.getElementById('accountContent');
   const btnAddPatient = document.getElementById('btnAddPatient');
+  const btnSubmitPatient = document.getElementById('btnSubmitPatient');
   const patientExit = document.getElementById('patientExit');
 
   const modalOuter = document.querySelector('.modal--outer');
   const modalInner = document.querySelector('.modal--inner');
+
+  const firstNameForm = document.querySelector('#firstNameForm');
+  const lastNameForm = document.querySelector('#lastNameForm');
+  const dayForm = document.querySelector('#dayForm');
+  const monthForm = document.querySelector('#monthForm');
+  const yearForm = document.querySelector('#yearForm');
 
   btnLogOut.addEventListener('click', (e) => {
     firebase
@@ -126,6 +134,7 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
   btnAddPatient.addEventListener('click', enterModal);
   patientExit.addEventListener('click', exitModal);
   modalOuter.addEventListener('click', exitModal);
+  btnSubmitPatient.addEventListener('click', submitPatientForm);
 
   function enterModal() {
     modalOuter.style.display = 'block';
@@ -136,5 +145,27 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
     // console.log(event.currentTarget);
     modalOuter.style.display = 'none';
     modalInner.style.display = 'none';
+  }
+
+  //Add Patient to collection
+  // Add a new document in collection "cities"
+
+  function submitPatientForm(e) {
+    e.preventDefault();
+
+    db.collection('Patients')
+      .add({
+        firstName: firstNameForm.value,
+        lastName: lastNameForm.value,
+        DOB: `${monthForm.value}/${dayForm.value}/${yearForm.value}`,
+      })
+      .then(function () {
+        console.log('Document successfully written!');
+      })
+      .catch(function (error) {
+        console.error('Error writing document: ', error);
+      });
+
+    exitModal();
   }
 }

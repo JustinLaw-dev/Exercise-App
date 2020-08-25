@@ -95,7 +95,7 @@
           <div class="modal--outer"></div>
           <div class="modal--inner">
             <i class="modal__exit fas fa-times" id="patientExit"></i>
-            <form action="" class="form__addPatient">
+            <form class="form__addPatient">
               <h3 class="header--form">Add Patient</h3>
               <label class="label" for="firstName">First Name</label>
               <input
@@ -103,7 +103,7 @@
                 placeholder="Email"
                 type="text"
                 name="firstName"
-                id="firstName"
+                id="firstNameForm"
                 required
               />
               <label class="label" for="lastName">Last Name</label>
@@ -112,7 +112,7 @@
                 placeholder="Email"
                 type="text"
                 name="lastName"
-                id="lastName"
+                id="lastNameForm"
                 required
               />
               <label class="label" for="month">Month</label>
@@ -121,7 +121,7 @@
                 placeholder="MM"
                 type="number"
                 name="month"
-                id="month"
+                id="monthForm"
                 min="1"
                 max="12"
               />
@@ -131,7 +131,7 @@
                 placeholder="DD"
                 type="number"
                 name="day"
-                id="day"
+                id="dayForm"
                 min="1"
                 max="31"
               />
@@ -141,11 +141,16 @@
                 placeholder="YYYY"
                 type="number"
                 name="year"
-                id="year"
+                id="yearForm"
                 min="1900"
                 max="2020"
               />
-              <button class="button__square button__submit">Add Patient</button>
+              <button
+                class="button__square button__submit"
+                id="btnSubmitPatient"
+              >
+                Add Patient
+              </button>
             </form>
           </div>
         </div>
@@ -161,6 +166,6 @@
             https://firebase.google.com/docs/web/setup#available-libraries -->
     <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-analytics.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-firestore.js"></script>
-    <script src="app.js" defer></script>
+    <script src="app.js"></script>
   </body>
 </html>
