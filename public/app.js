@@ -89,6 +89,7 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
   const modalOuter = document.querySelector('.modal--outer');
   const modalInner = document.querySelector('.modal--inner');
 
+  const addPatientForm = document.querySelector('.form__addPatient');
   const firstNameForm = document.querySelector('#firstNameForm');
   const lastNameForm = document.querySelector('#lastNameForm');
   const dayForm = document.querySelector('#dayForm');
@@ -145,6 +146,7 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
     // console.log(event.currentTarget);
     modalOuter.style.display = 'none';
     modalInner.style.display = 'none';
+    addPatientForm.reset();
   }
 
   //Add Patient to collection
