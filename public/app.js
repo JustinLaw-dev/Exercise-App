@@ -1,4 +1,3 @@
-//Remember to comment out on commit, until gitignore is figured out
 
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
