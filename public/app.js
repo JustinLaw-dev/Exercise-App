@@ -1,13 +1,3 @@
-const firebaseConfig = {
-  apiKey: 'AIzaSyA55DpRmm4DNgT8w_EJnLAzGmBC0qg0RB4',
-  authDomain: 'los-alamitos-pt-exercise-app.firebaseapp.com',
-  databaseURL: 'https://los-alamitos-pt-exercise-app.firebaseio.com',
-  projectId: 'los-alamitos-pt-exercise-app',
-  storageBucket: 'los-alamitos-pt-exercise-app.appspot.com',
-  messagingSenderId: '587818075107',
-  appId: '1:587818075107:web:782b5b32806bd55ad0d6d6',
-  measurementId: 'G-J3TZX37KTF',
-};
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
@@ -71,7 +61,6 @@ if (window.location.href === 'http://127.0.0.1:5500/public/index.html') {
 //
 /////
 
-//Log out
 if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
   const btnLogOut = document.getElementById('btnLogOut');
   const tabButtons = document.querySelectorAll('.tabs__links');
@@ -96,6 +85,7 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
   const monthForm = document.querySelector('#monthForm');
   const yearForm = document.querySelector('#yearForm');
 
+  //Logout event
   btnLogOut.addEventListener('click', (e) => {
     firebase
       .auth()
@@ -109,7 +99,7 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
       });
   });
 
-  //tabs switching
+  //Tab switching functionality
   function openTab(tabName) {
     tabPanels.forEach((tabPanel) => {
       tabPanel.classList.remove('active');
