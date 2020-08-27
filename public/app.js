@@ -1,3 +1,14 @@
+const firebaseConfig = {
+  apiKey: 'AIzaSyA55DpRmm4DNgT8w_EJnLAzGmBC0qg0RB4',
+  authDomain: 'los-alamitos-pt-exercise-app.firebaseapp.com',
+  databaseURL: 'https://los-alamitos-pt-exercise-app.firebaseio.com',
+  projectId: 'los-alamitos-pt-exercise-app',
+  storageBucket: 'los-alamitos-pt-exercise-app.appspot.com',
+  messagingSenderId: '587818075107',
+  appId: '1:587818075107:web:782b5b32806bd55ad0d6d6',
+  measurementId: 'G-J3TZX37KTF',
+};
+
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
@@ -74,6 +85,8 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
   const btnAddPatient = document.getElementById('btnAddPatient');
   const btnSubmitPatient = document.getElementById('btnSubmitPatient');
   const patientExit = document.getElementById('patientExit');
+
+  const patientList = document.getElementById('patientList');
 
   const modalOuter = document.querySelector('.modal--outer');
   const modalInner = document.querySelector('.modal--inner');
@@ -160,4 +173,31 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
 
     exitModal();
   }
+
+  // Create patient and render to list
+  function renderPatientList(doc) {
+    let li = document.createElement('li');
+    let name = document.createElement('p');
+
+    li.setAttribute('data-id', doc.id);
+    name.textContent = `${doc.data().firstName} ${doc.data().lastName}`;
+
+    li.appendChild(name);
+
+    patientList.appendChild(li);
+  }
+
+  db.collection('Patients')
+    .get()
+    .then((snapshot) => {
+      snapshot.docs.forEach((doc) => {
+        renderPatientList(doc);
+        // let json = doc.data();
+        // console.log('Document data:', json);
+        // console.log('Document keys:', Object.keys(json));
+        // Object.keys(json).forEach((name) => {
+        //   console.log(name, json[name]);
+        // });
+      });
+    });
 }
