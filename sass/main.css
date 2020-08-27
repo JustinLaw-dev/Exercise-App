@@ -58,6 +58,7 @@ body {
 }
 
 .header--form {
+  font-size: 4rem;
   text-align: center;
   margin: 0 auto;
   margin-top: 8rem;
@@ -91,20 +92,32 @@ body {
   margin-top: 2.5rem;
 }
 
-.button--add-text {
+.button__add-text {
   font-size: 2.5rem;
 }
 
 .button {
+  cursor: pointer;
+}
+
+.button__round {
   border-radius: 3rem;
   padding: 1rem 4rem;
   width: 40%;
   -webkit-box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.4);
           box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.4);
+}
+
+.button__square {
+  width: 18rem;
+  height: 5rem;
+  border: 3px solid #b4b4b4;
+  -webkit-box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+          box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
-  -webkit-transition: all .2s;
-  transition: all .2s;
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
 }
 
 .button:hover {
@@ -140,11 +153,9 @@ body {
 .button--logout {
   width: 10%;
   height: 5rem;
-  cursor: pointer;
 }
 
-.button--add {
-  cursor: pointer;
+.button__add {
   width: 18rem;
   height: 5rem;
   border: 3px solid #b4b4b4;
@@ -165,6 +176,12 @@ body {
       justify-content: space-around;
 }
 
+.button__submit {
+  font-size: 2rem;
+  margin: 0 auto;
+  margin-top: 3rem;
+}
+
 .label {
   font-size: 2.5rem;
   margin-top: 2rem;
@@ -173,6 +190,20 @@ body {
 .input {
   font-size: 2rem;
   padding: 1rem;
+}
+
+.form__addPatient {
+  width: 30%;
+  margin: 0 auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
 }
 
 .tabs__menu {
@@ -283,6 +314,7 @@ body {
 
 .list__wrapper {
   width: 95%;
+  height: auto;
   margin: 2rem auto;
 }
 
@@ -300,6 +332,49 @@ body {
 .list__patients li i {
   float: right;
   margin-right: 2rem;
+  cursor: pointer;
+}
+
+.modal--outer {
+  display: none;
+  /* Hidden by default */
+  position: fixed;
+  /* Stay in place */
+  z-index: 1000;
+  /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%;
+  /* Full width */
+  height: 100%;
+  /* Full height */
+  overflow: auto;
+  /* Enable scroll if needed */
+  background-color: rgba(0, 0, 0, 0.4);
+  /* Black w/ opacity */
+}
+
+.modal--inner {
+  display: none;
+  position: absolute;
+  top: 6%;
+  left: 20%;
+  z-index: 2000;
+  width: 120rem;
+  height: 78rem;
+  background: #ffffff;
+  -webkit-box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+          box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  margin: 0 auto;
+  margin-top: 7rem;
+}
+
+.modal__exit {
+  position: absolute;
+  font-size: 3rem;
+  top: 3rem;
+  right: 7rem;
+  cursor: pointer;
 }
 
 .container--form {
