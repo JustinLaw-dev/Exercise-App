@@ -177,12 +177,16 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
   // Create patient and render to list
   function renderPatientList(doc) {
     let li = document.createElement('li');
-    let name = document.createElement('p');
+    let editIcon = document.createElement('i');
+    let deleteIcon = document.createElement('i');
 
     li.setAttribute('data-id', doc.id);
-    name.textContent = `${doc.data().firstName} ${doc.data().lastName}`;
+    li.textContent = `${doc.data().firstName} ${doc.data().lastName}`;
+    editIcon.setAttribute('class', 'fas fa-edit');
+    deleteIcon.setAttribute('class', 'fas fa-trash-alt');
 
-    li.appendChild(name);
+    li.appendChild(deleteIcon);
+    li.appendChild(editIcon);
 
     patientList.appendChild(li);
   }
@@ -192,12 +196,8 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
     .then((snapshot) => {
       snapshot.docs.forEach((doc) => {
         renderPatientList(doc);
-        // let json = doc.data();
-        // console.log('Document data:', json);
-        // console.log('Document keys:', Object.keys(json));
-        // Object.keys(json).forEach((name) => {
-        //   console.log(name, json[name]);
-        // });
       });
     });
+
+  //Create read for exercises only when clicked on!
 }

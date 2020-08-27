@@ -314,6 +314,7 @@ body {
 
 .list__wrapper {
   width: 95%;
+  height: auto;
   margin: 2rem auto;
 }
 
@@ -331,6 +332,7 @@ body {
 .list__patients li i {
   float: right;
   margin-right: 2rem;
+  cursor: pointer;
 }
 
 .modal--outer {
