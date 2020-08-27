@@ -35,6 +35,7 @@ function login() {
     const promise = auth.signInWithEmailAndPassword(email, pass);
     promise.catch((e) => {
       errorWrapper.style.display = "block";
+
       errorMsg.textContent = e.message;
       }
     );  

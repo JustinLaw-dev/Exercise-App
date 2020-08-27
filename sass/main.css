@@ -479,7 +479,15 @@ body {
   border: 3px solid #FF0000;
 }
 
-.container__error--text {
+.container__error--icon {
+  display: inline-block;
   font-size: 2rem;
+  padding-left: 1rem;
+}
+
+.container__error--text {
+  display: inline-block;
+  font-size: 2rem;
+  padding-left: 1rem;
 }
 /*# sourceMappingURL=main.css.map */
