@@ -10,7 +10,7 @@
 
   <body>
     <div class="container">
-      <div class="container--left">
+      <div class="container__left">
         <h2
           class="header--secondary header--secondary--white header--secondary--login"
         >
@@ -18,13 +18,15 @@
         </h2>
       </div>
 
-      <div class="container--right">
-        <h1 class="header--primary">
-          Los Alamitos Orthopaedic and Sports Physical Therapy Exercises
+      <div class="container__right">
+        <h1 class="header--primary margin--top-big margin--btm--big">
+          LAOSPT Exercise App
         </h1>
 
+        <div class="container__error"><p class="container__error--text"></p></div>
+
         <form>
-          <div class="container--form">
+          <div class="container__form">
             <label class="label" for="email">Email</label>
             <input
               class="input"
@@ -49,14 +51,14 @@
 
             <button
               type="button"
-              class="button__round button--login"
+              class="button button__round button--login"
               id="btnLogin"
             >
               Log In
             </button>
             <button
               type="button"
-              class="button__round button--signup"
+              class="button button__round button--signup"
               id="btnSignUp"
             >
               Sign Up

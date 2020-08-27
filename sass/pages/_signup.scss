@@ -1,16 +1,32 @@
 .container {
   display: flex;
   flex-direction: row;
-}
 
-.container--left {
-  width: 30vw;
-  height: 100vh;
-  background: $gradient-primary;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-}
+  &__left {
+    width: 30vw;
+    height: 100vh;
+    background: $gradient-primary;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 
-.container--right {
-  width: 70vw;
-  height: 100vh;
+  }
+
+  &__right {
+    width: 70vw;
+    height: 100vh;
+
+  }
+
+  &__error {
+    display: none;
+    margin: 0 auto;
+    width: 25vw;
+    height: auto;
+    padding: 1rem 0;
+    background-color: #DD6565;
+    border: 3px solid #FF0000;
+
+    &--text {
+    font-size: 2rem;
+    }
+  }
 }

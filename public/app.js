@@ -20,6 +20,9 @@ function login() {
   const btnLogin = document.getElementById('btnLogin');
   const btnSignUp = document.getElementById('btnSignUp');
 
+  const errorWrapper = document.querySelector('.container__error');
+  const errorMsg = document.querySelector('.container__error--text');
+  
   //Login event
   btnLogin.addEventListener('click', (e) => {
     //get email and pass
@@ -30,7 +33,11 @@ function login() {
 
     //Sign in
     const promise = auth.signInWithEmailAndPassword(email, pass);
-    promise.catch((e) => console.log(e.message));
+    promise.catch((e) => {
+      errorWrapper.style.display = "block";
+      errorMsg.textContent = e.message;
+      }
+    );  
   });
 
   //sign up event
@@ -43,7 +50,10 @@ function login() {
 
     //Sign in
     const promise = auth.createUserWithEmailAndPassword(email, pass);
-    promise.catch((e) => console.log(e.message));
+    promise.catch((e) => {
+      errorWrapper.style.display = "block";
+      errorMsg.textContent = e.message;
+      });
   });
 }
 
@@ -58,7 +68,7 @@ firebase.auth().onAuthStateChanged((firebaseUser) => {
     if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
       window.location.href = 'http://127.0.0.1:5500/public/index.html';
     }
-    console.log('not a user/not logged in');
+    console.log('Not a user/user not logged in');
   }
 });
 
@@ -74,17 +84,21 @@ if (window.location.href === 'http://127.0.0.1:5500/public/index.html') {
 
 if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
   const btnLogOut = document.getElementById('btnLogOut');
+  
   const tabButtons = document.querySelectorAll('.tabs__links');
   const tabPanels = document.querySelectorAll('.tabs__panel');
+
   const patientsButton = document.getElementById('patientsButton');
   const exercisesButton = document.getElementById('exercisesButton');
   const accountButton = document.getElementById('accountButton');
+
   const patientsContent = document.getElementById('patientsContent');
   const exercisesContent = document.getElementById('exercisesContent');
   const accountContent = document.getElementById('accountContent');
+
   const btnAddPatient = document.getElementById('btnAddPatient');
   const btnSubmitPatient = document.getElementById('btnSubmitPatient');
-  const patientExit = document.getElementById('patientExit');
+  const modalExit = document.querySelector('.modal__exit');
 
   const patientList = document.getElementById('patientList');
 
@@ -136,7 +150,7 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
     }
   }
   btnAddPatient.addEventListener('click', enterModal);
-  patientExit.addEventListener('click', exitModal);
+  modalExit.addEventListener('click', exitModal);
   modalOuter.addEventListener('click', exitModal);
   btnSubmitPatient.addEventListener('click', submitPatientForm);
 

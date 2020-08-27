@@ -1,10 +1,18 @@
 @import url("https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;700&display=swap");
+.margin--top-big {
+  margin-top: 6rem;
+}
+
 .margin--top-med {
   margin-top: 3rem;
 }
 
 .margin--top-small {
   margin-top: 1rem;
+}
+
+.margin--btm--big {
+  margin-bottom: 6rem;
 }
 
 html {
@@ -54,7 +62,8 @@ body {
 .header--primary {
   font-size: 5rem;
   font-weight: 400;
-  width: 70%;
+  width: 100%;
+  text-align: center;
 }
 
 .header--form {
@@ -377,9 +386,8 @@ body {
   cursor: pointer;
 }
 
-.container--form {
+.container__form {
   margin: 0 auto;
-  margin-top: 10rem;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -447,7 +455,7 @@ body {
           flex-direction: row;
 }
 
-.container--left {
+.container__left {
   width: 30vw;
   height: 100vh;
   background: -webkit-gradient(linear, left top, left bottom, from(#6abcf8), to(rgba(67, 211, 220, 0.47)));
@@ -456,8 +464,22 @@ body {
           box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
-.container--right {
+.container__right {
   width: 70vw;
   height: 100vh;
+}
+
+.container__error {
+  display: none;
+  margin: 0 auto;
+  width: 25vw;
+  height: auto;
+  padding: 1rem 0;
+  background-color: #DD6565;
+  border: 3px solid #FF0000;
+}
+
+.container__error--text {
+  font-size: 2rem;
 }
 /*# sourceMappingURL=main.css.map */
