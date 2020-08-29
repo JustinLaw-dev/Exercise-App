@@ -309,7 +309,7 @@ body {
   margin: 2rem 0 0 2rem;
 }
 
-.searchbar--patient {
+.searchbar--patient, .searchbar--exercise {
   border: none;
   font-size: 2rem;
   width: 30rem;
@@ -342,6 +342,10 @@ body {
   float: right;
   margin-right: 2rem;
   cursor: pointer;
+}
+
+.list__exercises {
+  list-style: none;
 }
 
 .modal--outer {

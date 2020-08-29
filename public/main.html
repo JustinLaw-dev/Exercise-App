@@ -53,6 +53,7 @@
       <!-- Tab Content -->
       <div class="grid__bottom--right">
         <div class="tabs__wrapper">
+          <!-- Patient Tab -->
           <div class="tabs__panel active" id="patientsContent">
             <div class="searchbar__top">
               <div class="searchbar__wrapper searchbar__wrapper-1">
@@ -75,12 +76,6 @@
                 <li>Patient Name</li>
               </ul>
             </div>
-          </div>
-          <div class="tabs__panel" id="exercisesContent">
-            <p>Exercises page is open!</p>
-          </div>
-          <div class="tabs__panel" id="accountContent">
-            <p>Account page is open!</p>
           </div>
 
           <div class="modal--outer"></div>
@@ -144,6 +139,38 @@
               </button>
             </form>
           </div>
+
+          <!-- Exercise Tab -->
+          <div class="tabs__panel" id="exercisesContent">
+            <div class="searchbar__top">
+              <div class="searchbar__wrapper searchbar__wrapper-1">
+                <input
+                  class="searchbar--exercise"
+                  type="text"
+                  name="exerciseSearchbar"
+                  id="exerciseSearchbar"
+                  placeholder="Search by exercise"
+                />
+                <i class="fas fa-search searchbar--icon"></i>
+              </div>
+              <div class="button button__add" id="btnAddExercise">
+                <i class="fas fa-plus"></i>
+                <p class="button__add-text">Add Exercise</p>
+              </div>
+            </div>
+            <div class="list__wrapper">
+              <ul class="list__exercises" id="patientList">
+                <li>Exercises</li>
+              </ul>
+          </div>
+
+          <!-- Account Tab -->
+          <div class="tabs__panel" id="accountContent">
+            <p>Account page is open!</p>
+          </div>
+
+          
+          
         </div>
       </div>
     </div>

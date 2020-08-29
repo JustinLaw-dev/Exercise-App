@@ -22,7 +22,8 @@
     }
   }
 
-  &--patient {
+  &--patient,
+  &--exercise {
     border: none;
     font-size: 2rem;
     width: 30rem;
