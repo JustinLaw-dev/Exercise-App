@@ -475,8 +475,9 @@ body {
   width: 25vw;
   height: auto;
   padding: 1rem 0;
-  background-color: #DD6565;
-  border: 3px solid #FF0000;
+  background-color: #dd6565;
+  color: #ffffff;
+  border: 3px solid #ff0000;
 }
 
 .container__error--icon {

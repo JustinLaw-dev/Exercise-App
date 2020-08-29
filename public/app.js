@@ -15,15 +15,19 @@ const db = firebase.firestore();
 
 //Get elements
 function login() {
+  const form = document.getElementById('signInForm');
+
   const textEmail = document.getElementById('email');
   const textPassword = document.getElementById('password');
+
   const btnLogin = document.getElementById('btnLogin');
   const btnSignUp = document.getElementById('btnSignUp');
 
   const errorWrapper = document.querySelector('.container__error');
   const errorMsg = document.querySelector('.container__error--text');
-  
+
   //Login event
+
   btnLogin.addEventListener('click', (e) => {
     //get email and pass
     //TODO: Check for real email address
@@ -34,11 +38,10 @@ function login() {
     //Sign in
     const promise = auth.signInWithEmailAndPassword(email, pass);
     promise.catch((e) => {
-      errorWrapper.style.display = "block";
+      errorWrapper.style.display = 'block';
 
       errorMsg.textContent = e.message;
-      }
-    );  
+    });
   });
 
   //sign up event
@@ -52,9 +55,24 @@ function login() {
     //Sign in
     const promise = auth.createUserWithEmailAndPassword(email, pass);
     promise.catch((e) => {
-      errorWrapper.style.display = "block";
+      errorWrapper.style.display = 'block';
       errorMsg.textContent = e.message;
+    });
+  });
+
+  form.addEventListener('keypress', function (e) {
+    if (e.key === 'Enter') {
+      const email = textEmail.value;
+      const pass = textPassword.value;
+      const auth = firebase.auth();
+
+      const promise = auth.signInWithEmailAndPassword(email, pass);
+      promise.catch((e) => {
+        errorWrapper.style.display = 'block';
+
+        errorMsg.textContent = e.message;
       });
+    }
   });
 }
 
@@ -85,7 +103,7 @@ if (window.location.href === 'http://127.0.0.1:5500/public/index.html') {
 
 if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
   const btnLogOut = document.getElementById('btnLogOut');
-  
+
   const tabButtons = document.querySelectorAll('.tabs__links');
   const tabPanels = document.querySelectorAll('.tabs__panel');
 
