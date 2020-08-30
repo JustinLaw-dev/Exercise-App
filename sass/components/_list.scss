@@ -1,8 +1,9 @@
 .list {
   &__wrapper {
     width: 95%;
-    height: auto;
+    height: 85%;
     margin: 2rem auto;
+    overflow-y: scroll;
   }
 
   &__patients {

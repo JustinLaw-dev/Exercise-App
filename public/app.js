@@ -186,8 +186,6 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
   }
 
   //Add Patient to collection
-  // Add a new document in collection "cities"
-
   function submitPatientForm(e) {
     e.preventDefault();
 
@@ -197,8 +195,29 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
         lastName: lastNameForm.value,
         DOB: `${monthForm.value}/${dayForm.value}/${yearForm.value}`,
       })
-      .then(function () {
+      //Write the new patient into list after successful write to collection.
+      .then((docRef) => {
         console.log('Document successfully written!');
+
+        let newDoc = db.collection('Patients').doc(docRef.id);
+        newDoc.get().then(function (doc) {
+          if (doc.exists) {
+            let li = document.createElement('li');
+            let editIcon = document.createElement('i');
+            let deleteIcon = document.createElement('i');
+
+            li.setAttribute('data-id', doc.id);
+
+            li.textContent = `${doc.data().lastName}, ${doc.data().firstName}`;
+            editIcon.setAttribute('class', 'fas fa-edit');
+            deleteIcon.setAttribute('class', 'fas fa-trash-alt');
+
+            li.appendChild(deleteIcon);
+            li.appendChild(editIcon);
+
+            patientList.appendChild(li);
+          }
+        });
       })
       .catch(function (error) {
         console.error('Error writing document: ', error);
@@ -214,7 +233,7 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
     let deleteIcon = document.createElement('i');
 
     li.setAttribute('data-id', doc.id);
-    li.textContent = `${doc.data().firstName} ${doc.data().lastName}`;
+    li.textContent = `${doc.data().lastName}, ${doc.data().firstName}`;
     editIcon.setAttribute('class', 'fas fa-edit');
     deleteIcon.setAttribute('class', 'fas fa-trash-alt');
 
@@ -223,6 +242,8 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
 
     patientList.appendChild(li);
   }
+
+  function updatePatientList() {}
 
   db.collection('Patients')
     .get()
