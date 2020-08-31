@@ -120,6 +120,7 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
   const modalExit = document.querySelector('.modal__exit');
 
   const patientList = document.getElementById('patientList');
+  let delPatientIcon;
 
   const modalOuter = document.querySelector('.modal--outer');
   const modalInner = document.querySelector('.modal--inner');
@@ -243,15 +244,25 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
     patientList.appendChild(li);
   }
 
-  function updatePatientList() {}
+  function deletePatient(event) {
+    console.log(event.currentTarget.parentNode.getAttribute('data-id'));
+  }
 
   db.collection('Patients')
     .get()
     .then((snapshot) => {
       snapshot.docs.forEach((doc) => {
         renderPatientList(doc);
+        //Adds query selector to trash icons after patient list is finished rendering
+        delPatientIcon = document.querySelectorAll('.fa-trash-alt');
+        // console.log(delPatientIcon.length);
+        delPatientIcon.forEach((icon) => {
+          icon.addEventListener('click', deletePatient);
+        });
       });
     });
+
+  //Down here so it grabs icons after patient render
 
   //Create read for exercises only when clicked on!
 }

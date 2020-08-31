@@ -322,21 +322,31 @@ body {
 }
 
 .list__wrapper {
-  width: 95%;
+  width: 97%;
   height: 85%;
   margin: 2rem auto;
   overflow-y: scroll;
 }
 
 .list__patients {
-  font-size: 3rem;
+  font-size: 2.5rem;
   list-style: none;
 }
 
 .list__patients li {
+  margin: 0 auto;
   margin-top: 2rem;
+  width: 95%;
   padding-bottom: 1rem;
   border-bottom: 1px solid #dcdcdc;
+}
+
+.list__patients li:not(:first-child) {
+  margin: 0 auto;
+  margin-top: 2rem;
+  width: 93%;
+  padding-left: 1rem;
+  font-size: 2.3rem;
 }
 
 .list__patients li i {
