@@ -78,8 +78,9 @@
             </div>
           </div>
 
-          <div class="modal--outer"></div>
-          <div class="modal--inner">
+    <!-- Add Patient Modal -->
+          <div class="modal__outer modal__outer--patient"></div>
+          <div class="modal__inner modal__inner--patient">
             <i class="modal__exit fas fa-times"></i>
             <form class="form__addPatient">
               <h3 class="header--form">Add Patient</h3>
@@ -140,6 +141,14 @@
             </form>
           </div>
 
+          <div class="modal__outer" id="modalOuterSmall"></div>
+          <div class="modal__inner--small">
+            <p class="modal__text" id="delPatient"></p>
+            <button class="button__square" id="yesPatientDel">Yes</button>
+            <button class="button__square" id="noPatientDel">No</button>
+          </div>
+
+
           <!-- Exercise Tab -->
           <div class="tabs__panel" id="exercisesContent">
             <div class="searchbar__top">
@@ -179,7 +188,6 @@
       </div>
     </div>
 
-    <!-- Add Patient Modal -->
     <!-- The core Firebase JS SDK is always required and must be listed first -->
     <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-auth.js"></script>

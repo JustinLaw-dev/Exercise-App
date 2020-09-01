@@ -79,7 +79,7 @@ function login() {
 //Add real time listener, checks to see if user exists
 firebase.auth().onAuthStateChanged((firebaseUser) => {
   if (firebaseUser) {
-    console.log('logged in');
+    console.log('Logged in');
     if (window.location.href === 'http://127.0.0.1:5500/public/index.html') {
       window.location.href = 'http://127.0.0.1:5500/public/main.html';
     }
@@ -87,12 +87,11 @@ firebase.auth().onAuthStateChanged((firebaseUser) => {
     if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
       window.location.href = 'http://127.0.0.1:5500/public/index.html';
     }
-    console.log('Not a user/user not logged in');
+    console.log('Not a user/ User not logged in');
   }
 });
 
 if (window.location.href === 'http://127.0.0.1:5500/public/index.html') {
-  console.log('correct page');
   login();
 }
 
@@ -121,9 +120,15 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
 
   const patientList = document.getElementById('patientList');
   let delPatientIcon;
+  const delPatientText = document.getElementById('delPatient');
+  const yesPatientDel = document.getElementById('yesPatientDel');
+  const noPatientDel = document.getElementById('noPatientDel');
 
-  const modalOuter = document.querySelector('.modal--outer');
-  const modalInner = document.querySelector('.modal--inner');
+  const modalOuterPatient = document.querySelector('.modal__outer--patient');
+  const modalInnerPatient = document.querySelector('.modal__inner--patient');
+
+  const modalPatientDeleteOuter = document.getElementById('modalOuterSmall');
+  const modalPatientDelete = document.querySelector('.modal__inner--small');
 
   const addPatientForm = document.querySelector('.form__addPatient');
   const firstNameForm = document.querySelector('#firstNameForm');
@@ -169,20 +174,21 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
       accountButton.style.color = '#ffffff';
     }
   }
-  btnAddPatient.addEventListener('click', enterModal);
-  modalExit.addEventListener('click', exitModal);
-  modalOuter.addEventListener('click', exitModal);
+
+  //Add Patient Modal
+  btnAddPatient.addEventListener('click', enterModalPatient);
+  modalExit.addEventListener('click', exitModalPatient);
+  modalOuterPatient.addEventListener('click', exitModalPatient);
   btnSubmitPatient.addEventListener('click', submitPatientForm);
 
-  function enterModal() {
-    modalOuter.style.display = 'block';
-    modalInner.style.display = 'block';
+  function enterModalPatient() {
+    modalOuterPatient.style.display = 'block';
+    modalInnerPatient.style.display = 'block';
   }
 
-  function exitModal() {
-    // console.log(event.currentTarget);
-    modalOuter.style.display = 'none';
-    modalInner.style.display = 'none';
+  function exitModalPatient() {
+    modalOuterPatient.style.display = 'none';
+    modalInnerPatient.style.display = 'none';
     addPatientForm.reset();
   }
 
@@ -224,7 +230,7 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
         console.error('Error writing document: ', error);
       });
 
-    exitModal();
+    exitModalPatient();
   }
 
   // Create patient and render to list
@@ -244,8 +250,29 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
     patientList.appendChild(li);
   }
 
+  function enterDeleteModal() {
+    modalPatientDeleteOuter.style.display = 'block';
+    modalPatientDelete.style.display = 'block';
+  }
+
+  function exitDeleteModal() {
+    modalPatientDeleteOuter.style.display = 'none';
+    modalPatientDelete.style.display = 'none';
+  }
+
   function deletePatient(event) {
-    console.log(event.currentTarget.parentNode.getAttribute('data-id'));
+    let listItem = event.currentTarget.parentNode;
+    let id = event.currentTarget.parentNode.getAttribute('data-id');
+    console.log(listItem);
+    console.log(id);
+    let name = event.currentTarget.parentNode.textContent;
+    // //Open Modal
+    enterDeleteModal();
+    // //Display "Are you sure you want to remove xxxx, xxx?" Delete Cancel
+    delPatientText.textContent = `Are you sure you want to delete ${name}?`;
+    //Delete Patient if yes, if no remove exit modal.
+    setTimeout(exitDeleteModal, 2000);
+    //Display Patient Deleted!
   }
 
   db.collection('Patients')
