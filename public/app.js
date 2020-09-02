@@ -266,13 +266,30 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
     console.log(listItem);
     console.log(id);
     let name = event.currentTarget.parentNode.textContent;
-    // //Open Modal
+    // //Open Modal -- applied once on function click to fix repeating previous deletes, before logging newest delete.
     enterDeleteModal();
+    yesPatientDel.addEventListener(
+      'click',
+      function () {
+        db.collection('Patients')
+          .doc(id)
+          .delete()
+          .then(function () {
+            console.log('Document successfully deleted!');
+          })
+          .catch(function (error) {
+            console.error('Error removing document: ', error);
+          });
+        patientList.removeChild(listItem);
+        exitDeleteModal();
+      },
+      { once: true }
+    );
+    noPatientDel.addEventListener('click', exitDeleteModal);
     // //Display "Are you sure you want to remove xxxx, xxx?" Delete Cancel
     delPatientText.textContent = `Are you sure you want to delete ${name}?`;
+
     //Delete Patient if yes, if no remove exit modal.
-    setTimeout(exitDeleteModal, 2000);
-    //Display Patient Deleted!
   }
 
   db.collection('Patients')
@@ -280,16 +297,13 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
     .then((snapshot) => {
       snapshot.docs.forEach((doc) => {
         renderPatientList(doc);
-        //Adds query selector to trash icons after patient list is finished rendering
+        //Adds query selector and event listener after patient list is finished rendering
         delPatientIcon = document.querySelectorAll('.fa-trash-alt');
-        // console.log(delPatientIcon.length);
         delPatientIcon.forEach((icon) => {
           icon.addEventListener('click', deletePatient);
         });
       });
     });
-
-  //Down here so it grabs icons after patient render
 
   //Create read for exercises only when clicked on!
 }
