@@ -268,6 +268,11 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
     let name = event.currentTarget.parentNode.textContent;
     // //Open Modal -- applied once on function click to fix repeating previous deletes, before logging newest delete.
     enterDeleteModal();
+    
+    // //Display "Are you sure you want to remove xxxx, xxx?" Delete Cancel
+    delPatientText.textContent = `Are you sure you want to delete ${name}?`;
+
+    //Delete on "Yes"
     yesPatientDel.addEventListener(
       'click',
       function () {
@@ -285,13 +290,11 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
       },
       { once: true }
     );
+    //Exit Modal on "No"
     noPatientDel.addEventListener('click', exitDeleteModal);
-    // //Display "Are you sure you want to remove xxxx, xxx?" Delete Cancel
-    delPatientText.textContent = `Are you sure you want to delete ${name}?`;
-
-    //Delete Patient if yes, if no remove exit modal.
   }
 
+  //Load Patient
   db.collection('Patients')
     .get()
     .then((snapshot) => {
