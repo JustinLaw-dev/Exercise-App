@@ -316,6 +316,7 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
     // Use traditional 'for loops' for IE 11
     if (exercisesContent.classList.contains('active')) {
       console.log('This tab is activated!');
+      exerciseLoadOb.disconnect();
     }
 
     //  else if (mutation.type === 'attributes') {
@@ -331,5 +332,4 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
   exerciseLoadOb.observe(exercisesContent, obConfig);
 
   // Later, you can stop observing
-  exerciseLoadOb.disconnect();
 }
