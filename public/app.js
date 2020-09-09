@@ -305,5 +305,31 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
       });
     });
 
-  //Create read for exercises only when clicked on!
+  //Observer for INITAL RENDER of exercises when exercises tab is active.
+
+  // Options for the exercise content observer
+  const obConfig = { attributes: true };
+
+  //CURRENTLY PRINTS TWICE
+  // Callback function to execute when mutations are observed
+  const callback = function (mutationsList, observer) {
+    // Use traditional 'for loops' for IE 11
+    if (exercisesContent.classList.contains('active')) {
+      console.log('This tab is activated!');
+    }
+
+    //  else if (mutation.type === 'attributes') {
+    //   console.log(
+    //     'The ' + mutation.attributeName + ' attribute was modified.'
+    // );
+  };
+
+  // Create an observer instance linked to the callback function
+  const exerciseLoadOb = new MutationObserver(callback);
+
+  // Start observing the target node for configured mutations
+  exerciseLoadOb.observe(exercisesContent, obConfig);
+
+  // Later, you can stop observing
+  exerciseLoadOb.disconnect();
 }
