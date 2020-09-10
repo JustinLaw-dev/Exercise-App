@@ -268,7 +268,7 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
     let name = event.currentTarget.parentNode.textContent;
     // //Open Modal -- applied once on function click to fix repeating previous deletes, before logging newest delete.
     enterDeleteModal();
-    
+
     // //Display "Are you sure you want to remove xxxx, xxx?" Delete Cancel
     delPatientText.textContent = `Are you sure you want to delete ${name}?`;
 
@@ -294,31 +294,31 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
     noPatientDel.addEventListener('click', exitDeleteModal);
   }
 
-  //Load Patient
-  db.collection('Patients')
-    .get()
-    .then((snapshot) => {
-      snapshot.docs.forEach((doc) => {
-        renderPatientList(doc);
-        //Adds query selector and event listener after patient list is finished rendering
-        delPatientIcon = document.querySelectorAll('.fa-trash-alt');
-        delPatientIcon.forEach((icon) => {
-          icon.addEventListener('click', deletePatient);
-        });
-      });
-    });
+  ////////Load Patient
+  // db.collection('Patients')
+  //   .get()
+  //   .then((snapshot) => {
+  //     snapshot.docs.forEach((doc) => {
+  //       renderPatientList(doc);
+  //       //Adds query selector and event listener after patient list is finished rendering
+  //       delPatientIcon = document.querySelectorAll('.fa-trash-alt');
+  //       delPatientIcon.forEach((icon) => {
+  //         icon.addEventListener('click', deletePatient);
+  //       });
+  //     });
+  //   });
+  //////////
 
-  //Observer for INITAL RENDER of exercises when exercises tab is active.
-
+  ////Observer for INITAL RENDER of exercises when exercises tab is active.
   // Options for the exercise content observer
   const obConfig = { attributes: true };
 
   //CURRENTLY PRINTS TWICE
   // Callback function to execute when mutations are observed
   const callback = function (mutationsList, observer) {
-    // Use traditional 'for loops' for IE 11
     if (exercisesContent.classList.contains('active')) {
       console.log('This tab is activated!');
+      //Stop observing
       exerciseLoadOb.disconnect();
     }
 
@@ -333,6 +333,4 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
 
   // Start observing the target node for configured mutations
   exerciseLoadOb.observe(exercisesContent, obConfig);
-
-  // Later, you can stop observing
 }
