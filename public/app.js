@@ -103,6 +103,7 @@ if (window.location.href === 'http://127.0.0.1:5500/public/index.html') {
 if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
   const btnLogOut = document.getElementById('btnLogOut');
 
+  const mainHeading = document.getElementById('mainHeading');
   const tabButtons = document.querySelectorAll('.tabs__links');
   const tabPanels = document.querySelectorAll('.tabs__panel');
 
@@ -164,14 +165,17 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
       patientsContent.classList.add('active');
       patientsButton.style.background = '#a9dbff';
       patientsButton.style.color = '#ffffff';
+      mainHeading.textContent = 'Patients';
     } else if (tabName === 'exercisesTab') {
       exercisesContent.classList.add('active');
       exercisesButton.style.background = '#a9dbff';
       exercisesButton.style.color = '#ffffff';
+      mainHeading.textContent = 'Exercises';
     } else if (tabName === 'accountTab') {
       accountContent.classList.add('active');
       accountButton.style.background = '#a9dbff';
       accountButton.style.color = '#ffffff';
+      mainHeading.textContent = 'Account';
     }
   }
 
