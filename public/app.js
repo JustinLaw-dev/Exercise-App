@@ -79,9 +79,14 @@ function login() {
 //Add real time listener, checks to see if user exists
 firebase.auth().onAuthStateChanged((firebaseUser) => {
   if (firebaseUser) {
+    let user = firebase.auth().currentUser;
     console.log('Logged in');
+
     if (window.location.href === 'http://127.0.0.1:5500/public/index.html') {
       window.location.href = 'http://127.0.0.1:5500/public/main.html';
+    } else if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
+        const userWelcome = document.getElementById('userWelcome');
+        userWelcome.textContent = `Welcome ${user.email}`;
     }
   } else {
     if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
@@ -102,7 +107,7 @@ if (window.location.href === 'http://127.0.0.1:5500/public/index.html') {
 
 if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
   const btnLogOut = document.getElementById('btnLogOut');
-
+  
   const mainHeading = document.getElementById('mainHeading');
   const tabButtons = document.querySelectorAll('.tabs__links');
   const tabPanels = document.querySelectorAll('.tabs__panel');
@@ -151,6 +156,7 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
         console.log(error);
       });
   });
+
 
   //Tab switching functionality
   function openTab(tabName) {

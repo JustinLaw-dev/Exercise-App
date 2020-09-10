@@ -49,6 +49,10 @@ body {
   &__heading {
     color: $color-white;
     font-size: 2.2rem;
+
+    &--main {
+      margin-left: 8%;
+    }
   }
 }
 

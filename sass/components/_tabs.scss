@@ -1,6 +1,17 @@
 .tabs {
+  
+  &__img {
+    width: 20rem;
+    height: 20rem;
+    margin: 0 auto;
+  }
+
+  &__userWelcome {
+    font-size: 2rem;
+  }
+
   &__menu {
-    height: 100%;
+    height: 70%;
     display: flex;
     flex-direction: column;
     justify-content: center;
