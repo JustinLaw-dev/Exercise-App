@@ -16,4 +16,19 @@
     flex-direction: column;
     flex-wrap: wrap;
   }
+
+  &__addExercise {
+    width: 30%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+  }
+
+  &__header {
+    font-size: 4rem;
+    text-align: center;
+    margin: 0 auto;
+    margin-top: 8rem;
+  }
 }
