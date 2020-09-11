@@ -84,9 +84,11 @@ firebase.auth().onAuthStateChanged((firebaseUser) => {
 
     if (window.location.href === 'http://127.0.0.1:5500/public/index.html') {
       window.location.href = 'http://127.0.0.1:5500/public/main.html';
-    } else if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
-        const userWelcome = document.getElementById('userWelcome');
-        userWelcome.textContent = `Welcome ${user.email}`;
+    } else if (
+      window.location.href === 'http://127.0.0.1:5500/public/main.html'
+    ) {
+      const userWelcome = document.getElementById('userWelcome');
+      userWelcome.textContent = `Welcome ${user.email}`;
     }
   } else {
     if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
@@ -107,7 +109,7 @@ if (window.location.href === 'http://127.0.0.1:5500/public/index.html') {
 
 if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
   const btnLogOut = document.getElementById('btnLogOut');
-  
+
   const mainHeading = document.getElementById('mainHeading');
   const tabButtons = document.querySelectorAll('.tabs__links');
   const tabPanels = document.querySelectorAll('.tabs__panel');
@@ -122,7 +124,7 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
 
   const btnAddPatient = document.getElementById('btnAddPatient');
   const btnSubmitPatient = document.getElementById('btnSubmitPatient');
-  const modalExit = document.querySelector('.modal__exit');
+  const modalExit = document.querySelectorAll('.modal__exit');
 
   const patientList = document.getElementById('patientList');
   let delPatientIcon;
@@ -143,6 +145,9 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
   const monthForm = document.querySelector('#monthForm');
   const yearForm = document.querySelector('#yearForm');
 
+  const btnAddExercise = document.getElementById('btnAddExercise');
+  const modalInnerExercise = document.querySelector('.modal__inner--exercise');
+  const addExerciseForm = document.querySelector('.form__addExercise');
   //Logout event
   btnLogOut.addEventListener('click', (e) => {
     firebase
@@ -156,7 +161,6 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
         console.log(error);
       });
   });
-
 
   //Tab switching functionality
   function openTab(tabName) {
@@ -187,8 +191,10 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
 
   //Add Patient Modal
   btnAddPatient.addEventListener('click', enterModalPatient);
-  modalExit.addEventListener('click', exitModalPatient);
-  modalOuterPatient.addEventListener('click', exitModalPatient);
+  modalExit.forEach((exit) => {
+    exit.addEventListener('click', exitModal);
+  });
+  modalOuterPatient.addEventListener('click', exitModal);
   btnSubmitPatient.addEventListener('click', submitPatientForm);
 
   function enterModalPatient() {
@@ -196,10 +202,13 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
     modalInnerPatient.style.display = 'block';
   }
 
-  function exitModalPatient() {
+  function exitModal() {
     modalOuterPatient.style.display = 'none';
     modalInnerPatient.style.display = 'none';
     addPatientForm.reset();
+
+    modalInnerExercise.style.display = 'none';
+    addExerciseForm.reset();
   }
 
   //Add Patient to collection
@@ -240,7 +249,7 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
         console.error('Error writing document: ', error);
       });
 
-    exitModalPatient();
+    exitModal();
   }
 
   // Create patient and render to list
@@ -343,4 +352,11 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
 
   // Start observing the target node for configured mutations
   exerciseLoadOb.observe(exercisesContent, obConfig);
+
+  function enterModalExercise() {
+    modalOuterPatient.style.display = 'block';
+    modalInnerExercise.style.display = 'block';
+  }
+
+  btnAddExercise.addEventListener('click', enterModalExercise);
 }
