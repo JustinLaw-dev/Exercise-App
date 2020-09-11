@@ -27,7 +27,7 @@
       <div class="grid__bottom--left">
         <div class="tabs__userInfo">
           <img class="tabs__img" src="./img/favicon.png" alt="Los Alamitos PT">
-          <p class="tabs__userWelcome" id="userWelcome">Welcome, </p>
+          <p class="tabs__userWelcome" id="userWelcome"></p>
         </div>
         <div class="tabs__menu">
           <button
@@ -86,8 +86,8 @@
           <div class="modal__outer modal__outer--patient"></div>
           <div class="modal__inner modal__inner--patient">
             <i class="modal__exit fas fa-times"></i>
-            <form class="form__addPatient">
-              <h3 class="header--form">Add Patient</h3>
+            <form class="form__addExercise">
+              <h3 class="form__header">Add Patient</h3>
               <label class="label" for="firstName">First Name</label>
               <input
                 class="input"
@@ -166,11 +166,45 @@
                 />
                 <i class="fas fa-search searchbar--icon"></i>
               </div>
+
               <div class="button button__add" id="btnAddExercise">
                 <i class="fas fa-plus"></i>
                 <p class="button__add-text">Add Exercise</p>
               </div>
             </div>
+
+            <div class="modal__inner modal__inner--exercise">
+              <i class="modal__exit fas fa-times"></i>
+              <form class="form__addPatient">
+                <h3 class="form__header">Add Exercise</h3>
+                <label class="label" for="firstName">First Name</label>
+                <input
+                  class="input"
+                  placeholder="First Name"
+                  type="text"
+                  name="firstName"
+                  id="firstNameForm"
+                  required
+                />
+                <label class="label" for="lastName">Last Name</label>
+                <input
+                  class="input"
+                  placeholder="Last Name"
+                  type="text"
+                  name="lastName"
+                  id="lastNameForm"
+                  required
+                />
+                <label class="label" for="month">Month</label>
+          
+                <button
+                  class="button__square button__submit"
+                  id="btnSubmitPatient">
+                  Add Patient
+                </button>
+              </form>
+            </div>
+
             <div class="list__wrapper">
               <h2 class="list__header">Exercises</h2>
               <ul class="list__exercises" id="patientList">
