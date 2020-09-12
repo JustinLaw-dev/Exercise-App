@@ -1,17 +1,19 @@
 .tabs {
-  
   &__img {
+    display: block;
     width: 20rem;
     height: 20rem;
-    margin: 0 auto;
+    margin: 2rem auto;
   }
 
   &__userWelcome {
-    font-size: 2rem;
+    font-size: 1.6rem;
+    text-align: center;
   }
 
   &__menu {
-    height: 70%;
+    margin: 0;
+    height: 30%;
     display: flex;
     flex-direction: column;
     justify-content: center;
