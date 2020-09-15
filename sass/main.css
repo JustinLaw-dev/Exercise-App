@@ -55,7 +55,8 @@ html {
   font-size: 62.5%;
 }
 
-body {
+body,
+textarea {
   font-family: 'Barlow', sans-serif;
 }
 
@@ -187,31 +188,23 @@ body {
 }
 
 .label {
-  font-size: 2.5rem;
+  font-size: 2.2rem;
   margin-top: 2rem;
 }
 
 .input {
   font-size: 2rem;
+  margin-top: 0.5rem;
   padding: 1rem;
 }
 
-.form__addPatient {
-  width: 30%;
-  margin: 0 auto;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
+.input--textarea {
+  font-size: 1.8rem;
+  resize: none;
 }
 
-.form__addExercise {
-  width: 30%;
+.form__addPatient, .form__addExercise {
+  width: 40%;
   margin: 0 auto;
   display: -webkit-box;
   display: -ms-flexbox;

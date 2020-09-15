@@ -1,24 +1,23 @@
 .label {
-  font-size: 2.5rem;
+  font-size: 2.2rem;
   margin-top: 2rem;
 }
 
 .input {
   font-size: 2rem;
+  margin-top: 0.5rem;
   padding: 1rem;
+
+  &--textarea {
+    font-size: 1.8rem;
+    resize: none;
+  }
 }
 
 .form {
-  &__addPatient {
-    width: 30%;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-  }
-
+  &__addPatient,
   &__addExercise {
-    width: 30%;
+    width: 40%;
     margin: 0 auto;
     display: flex;
     flex-direction: column;

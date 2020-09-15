@@ -177,30 +177,28 @@
               <i class="modal__exit fas fa-times"></i>
               <form class="form__addPatient">
                 <h3 class="form__header">Add Exercise</h3>
-                <label class="label" for="firstName">First Name</label>
+                <label class="label" for="exerciseName">Exercise Name</label>
                 <input
                   class="input"
-                  placeholder="First Name"
+                  placeholder="Exercise Name"
                   type="text"
-                  name="firstName"
-                  id="firstNameForm"
+                  name="exerciseName"
+                  id="exerciseNameForm"
                   required
                 />
-                <label class="label" for="lastName">Last Name</label>
-                <input
-                  class="input"
-                  placeholder="Last Name"
-                  type="text"
-                  name="lastName"
-                  id="lastNameForm"
-                  required
-                />
-                <label class="label" for="month">Month</label>
+                <label class="label" for="instructions">Instructions</label>
+                <textarea  class="input input--textarea"
+                placeholder="Write Instructions Here"
+                name="instructions"
+                id="instructionsForm"
+                required
+                rows="10"></textarea>
+                <label class="label" for="">Upload Image</label>
           
                 <button
                   class="button__square button__submit"
-                  id="btnSubmitPatient">
-                  Add Patient
+                  id="btnSubmitExercise">
+                  Add Exercise
                 </button>
               </form>
             </div>
