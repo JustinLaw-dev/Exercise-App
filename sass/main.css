@@ -530,6 +530,8 @@ textarea {
 .grid__bottom--left {
   height: 100%;
   background: #ffffff;
+  -webkit-box-shadow: 7px 0px 11px -2px rgba(0, 0, 0, 0.56);
+  box-shadow: 7px 0px 11px -2px rgba(0, 0, 0, 0.56);
 }
 
 .grid__bottom--right {
