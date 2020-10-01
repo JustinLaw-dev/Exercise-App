@@ -585,13 +585,13 @@ button {
 
 .container__error--icon {
   display: inline-block;
-  font-size: 2rem;
+  font-size: 1.6rem;
   padding-left: 1rem;
 }
 
 .container__error--text {
   display: inline-block;
-  font-size: 2rem;
+  font-size: 1.6rem;
   padding-left: 1rem;
 }
 /*# sourceMappingURL=main.css.map */
