@@ -519,8 +519,6 @@ button {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  -webkit-box-shadow: 0px 7px 11px -2px rgba(0, 0, 0, 0.56);
-  box-shadow: 0px 7px 11px -2px rgba(0, 0, 0, 0.56);
 }
 
 .grid__top--right {
@@ -535,8 +533,6 @@ button {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  -webkit-box-shadow: 0px 7px 11px -2px rgba(0, 0, 0, 0.56);
-  box-shadow: 0px 7px 11px -2px rgba(0, 0, 0, 0.56);
 }
 
 .grid__bottom--left {
