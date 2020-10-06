@@ -338,12 +338,12 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
   // Options for the exercise content observer
   const obConfig = { attributes: true };
 
-  //CURRENTLY PRINTS TWICE
+  //Should log only once, therefore 
   // Callback function to execute when mutations are observed
   const callback = function (mutationsList, observer) {
     if (exercisesContent.classList.contains('active')) {
       console.log('This tab is activated!');
-      //Stop observing
+      //Stop observing after tab is clicked for the first time
       exerciseLoadOb.disconnect();
     }
 
@@ -359,10 +359,10 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
   // Start observing the target node for configured mutations
   exerciseLoadOb.observe(exercisesContent, obConfig);
 
-  function enterModalExercise() {
+  function enterModalAddExercise() {
     modalOuterPatient.style.display = 'block';
     modalInnerExercise.style.display = 'block';
   }
 
-  btnAddExercise.addEventListener('click', enterModalExercise);
+  btnAddExercise.addEventListener('click', enterModalAddExercise);
 }
