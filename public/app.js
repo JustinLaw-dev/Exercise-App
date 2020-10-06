@@ -111,12 +111,12 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
   const btnLogOut = document.getElementById('btnLogOut');
 
   const mainHeading = document.getElementById('mainHeading');
-  const tabButtons = document.querySelectorAll('.tabs__links');
+  const tabLinks = document.querySelectorAll('.tabs__links');
   const tabPanels = document.querySelectorAll('.tabs__panel');
 
-  const patientsButton = document.getElementById('patientsButton');
-  const exercisesButton = document.getElementById('exercisesButton');
-  const accountButton = document.getElementById('accountButton');
+  const patientsLink = document.getElementById('patientsLink');
+  const exercisesLink = document.getElementById('exercisesLink');
+  const accountLink = document.getElementById('accountLink');
 
   const patientsContent = document.getElementById('patientsContent');
   const exercisesContent = document.getElementById('exercisesContent');
@@ -167,25 +167,29 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
     tabPanels.forEach((tabPanel) => {
       tabPanel.classList.remove('active');
     });
-    tabButtons.forEach((tabButton) => {
-      tabButton.style.background = 'none';
-      tabButton.style.color = 'black';
+    tabLinks.forEach((tabLink) => {
+      tabLink.style.background = 'none';
+      tabLink.style.color = 'black';
     });
-    if (tabName === 'patientsTab') {
-      patientsContent.classList.add('active');
-      patientsButton.style.background = '#a9dbff';
-      patientsButton.style.color = '#ffffff';
-      mainHeading.textContent = 'Patients';
-    } else if (tabName === 'exercisesTab') {
-      exercisesContent.classList.add('active');
-      exercisesButton.style.background = '#a9dbff';
-      exercisesButton.style.color = '#ffffff';
-      mainHeading.textContent = 'Exercises';
-    } else if (tabName === 'accountTab') {
-      accountContent.classList.add('active');
-      accountButton.style.background = '#a9dbff';
-      accountButton.style.color = '#ffffff';
-      mainHeading.textContent = 'Account';
+    switch(tabName){
+      case 'patientsTab':
+        patientsContent.classList.add('active');
+        patientsLink.style.background = '#a9dbff';
+        patientsLink.style.color = '#ffffff';
+        mainHeading.textContent = 'Patients';
+        break;
+      case 'exercisesTab':
+        exercisesContent.classList.add('active');
+        exercisesLink.style.background = '#a9dbff';
+        exercisesLink.style.color = '#ffffff';
+        mainHeading.textContent = 'Exercises';
+        break;
+      case 'accountTab': 
+        accountContent.classList.add('active');
+        accountLink.style.background = '#a9dbff';
+        accountLink.style.color = '#ffffff';
+        mainHeading.textContent = 'Account';
+        break;
     }
   }
 
