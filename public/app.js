@@ -168,28 +168,25 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
       tabPanel.classList.remove('active');
     });
     tabLinks.forEach((tabLink) => {
-      patientsLink.style.borderLeft = 'none';
+      tabLink.style.borderRight = 'none';
       tabLink.style.background = 'none';
       tabLink.style.color = 'black';
     });
     switch(tabName){
       case 'patientsTab':
         //test
-        patientsLink.style.borderLeft = '1rem solid #03396c'
-        // patientsContent.classList.add('active');
-        // patientsLink.style.background = '#bcbcbc';
-        // mainHeading.textContent = 'Patients';
+        patientsLink.style.borderRight = '1rem solid #03396c'
+        patientsContent.classList.add('active');
+        mainHeading.textContent = 'Patients';
         break;
       case 'exercisesTab':
+        exercisesLink.style.borderRight = '1rem solid #03396c'
         exercisesContent.classList.add('active');
-        exercisesLink.style.background = '#a9dbff';
-        exercisesLink.style.color = '#ffffff';
         mainHeading.textContent = 'Exercises';
         break;
       case 'accountTab': 
+        accountLink.style.borderRight = '1rem solid #03396c'
         accountContent.classList.add('active');
-        accountLink.style.background = '#a9dbff';
-        accountLink.style.color = '#ffffff';
         mainHeading.textContent = 'Account';
         break;
     }

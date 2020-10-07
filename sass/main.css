@@ -284,8 +284,7 @@ button {
 }
 
 .tabs__links:first-child {
-  background: #a9dbff;
-  color: #ffffff;
+  border-right: 1rem solid #03396c;
 }
 
 .tabs__links i {
