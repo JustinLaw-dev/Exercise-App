@@ -519,11 +519,14 @@ button {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  -webkit-box-shadow: 7px 0px 11px -2px rgba(0, 0, 0, 0.56);
+  box-shadow: 7px 0px 11px -2px rgba(0, 0, 0, 0.56);
 }
 
 .grid__top--right {
   width: 100%;
-  background: #005b96;
+  background: -webkit-gradient(linear, right top, left top, from(#6abcf8), color-stop(50%, rgba(67, 211, 220, 0.47)));
+  background: linear-gradient(270deg, #6abcf8 0%, rgba(67, 211, 220, 0.47) 50%);
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;

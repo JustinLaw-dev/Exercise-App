@@ -17,20 +17,20 @@
     justify-content: center;
     align-items: center;
 
+    
+    -webkit-box-shadow: 7px 0px 11px -2px rgba(0,0,0,0.56);
+    -moz-box-shadow: 7px 0px 11px -2px rgba(0,0,0,0.56);
+    box-shadow: 7px 0px 11px -2px rgba(0,0,0,0.56);
+
   }
 
   &__top--right {
     width: 100%;
-    background: $primary-color--light;
+    background: $gradient-main-background;
 
     display: flex;
     justify-content: space-between;
     align-items: center;   
-
-    
-    // -webkit-box-shadow: 0px 7px 0px 0px rgba(0,0,0,0.56);
-    // -moz-box-shadow: 0px 7px 0px -2px rgba(0,0,0,0.56);
-    // box-shadow: 0px 7px 0px -2px rgba(0,0,0,0.56);
   }
 
   &__bottom--left {
