@@ -20,7 +20,6 @@
 
       <div class="grid__top--right">
         <h2 class="header--secondary--white grid__heading--main" id="mainHeading">Patients</h2>
-        <button class="button button--logout" id="btnLogOut">Log Out</button>
       </div>
 
       <!-- Tab buttons -->
@@ -29,13 +28,14 @@
           <img class="tabs__img" src="./img/favicon.png" alt="Los Alamitos PT">
           <p class="tabs__userWelcome" id="userWelcome"></p>
         </div>
+
         <div class="tabs__menu">
           <button
             class="tabs__links"
             id="patientsLink"
             onclick="openTab('patientsTab')"
-          >
-            <i class="fas fa-user-friends"></i>Patients
+            >
+          <i class="fas fa-user-friends"></i>Patients
           </button>
           <button
             class="tabs__links"
@@ -52,6 +52,8 @@
             <i class="fas fa-cog"></i> Account
           </button>
         </div>
+        
+        <button class="button button--logout" id="btnLogOut">Log Out</button>
       </div>
 
       <!-- Tab Content -->
