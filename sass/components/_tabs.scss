@@ -40,7 +40,8 @@
     padding-left: 3rem;
 
     &:first-child {
-      border-right: 1rem solid $primary-color;
+      background-color:$primary-color;
+      color: $color-white;
     }
 
     & i {
