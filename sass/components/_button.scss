@@ -46,13 +46,17 @@
   }
 
   &--logout {
-    background-color: $primary-color--light;
+    background-color: $primary-color--light; 
     color: $color-white;
     width: auto;
     height: auto;
-    padding: 2rem 5rem;
+    padding: 2rem 4rem;
     border-radius: 5px;
     margin-top: 10rem;
+
+    &-icon {
+      margin-right: 1.2rem;
+    }
   }
 
   &__add {
