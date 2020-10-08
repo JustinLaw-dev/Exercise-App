@@ -46,6 +46,8 @@
   }
 
   &--logout {
+    background-color: $primary-color--light;
+    color: $color-white;
     width: auto;
     height: auto;
     padding: 2rem 5rem;
