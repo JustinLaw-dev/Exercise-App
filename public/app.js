@@ -258,7 +258,7 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
     exitModal();
   }
 
-  // Create patient and render to list
+  // Grab Patient data and render as list item
   function renderPatientList(doc) {
     let li = document.createElement('li');
     let editIcon = document.createElement('i');
@@ -343,6 +343,7 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
   const callback = function (mutationsList, observer) {
     if (exercisesContent.classList.contains('active')) {
       console.log('This tab is activated!');
+
       //Stop observing after tab is clicked for the first time
       exerciseLoadOb.disconnect();
     }
@@ -365,4 +366,6 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
   }
 
   btnAddExercise.addEventListener('click', enterModalAddExercise);
+  
+//File reader - preview image before sending form
 }
