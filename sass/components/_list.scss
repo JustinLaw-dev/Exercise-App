@@ -7,6 +7,9 @@
   }
 
   &__header {
+    margin-left: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #dcdcdc;
   }
 
   &__patients {
@@ -46,7 +49,7 @@
     justify-content: flex-start;
 
     &__item {
-      width: 20%;
+      width: 26rem;
       font-size: 2rem;
       height: 24rem;
       margin: 2rem;
