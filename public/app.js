@@ -13,7 +13,6 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
 
-//Get elements
 function login() {
   const form = document.getElementById('signInForm');
 
@@ -25,8 +24,6 @@ function login() {
 
   const errorWrapper = document.querySelector('.container__error');
   const errorMsg = document.querySelector('.container__error--text');
-
-  //Login event
 
   btnLogin.addEventListener('click', (e) => {
     //get email and pass
@@ -78,6 +75,7 @@ function login() {
 
 //Add real time listener, checks to see if user exists
 firebase.auth().onAuthStateChanged((firebaseUser) => {
+  //Log in valid, redirect to main.html and render welcome message
   if (firebaseUser) {
     let user = firebase.auth().currentUser;
     console.log('Logged in');
@@ -90,18 +88,19 @@ firebase.auth().onAuthStateChanged((firebaseUser) => {
       const userWelcome = document.getElementById('userWelcome');
       userWelcome.textContent = `Welcome ${user.email}`;
     }
-  } else {
+  }
+  //Log in invalid, redirect to index.html
+  else {
     if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
       window.location.href = 'http://127.0.0.1:5500/public/index.html';
     }
-    console.log('Not a user/ User not logged in');
+    console.log('You are not a user/ User is not logged in');
   }
 });
 
 if (window.location.href === 'http://127.0.0.1:5500/public/index.html') {
   login();
 }
-
 /////
 // Main Page scripts
 //
@@ -150,13 +149,14 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
   const addExerciseForm = document.querySelector('.form__addExercise');
   const addExerciseImage = document.getElementById('addExerciseImage');
   const addExerciseFile = document.getElementById('addExerciseFile');
+
   //Logout event
   btnLogOut.addEventListener('click', (e) => {
     firebase
       .auth()
       .signOut()
       .then(function () {
-        console.log('Signed out succesfully');
+        window.alert('Log Out Successful!');
         window.location.href = 'index.html';
       })
       .catch(function (error) {
