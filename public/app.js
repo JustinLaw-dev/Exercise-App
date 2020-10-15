@@ -149,6 +149,7 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
   const addExerciseForm = document.querySelector('.form__addExercise');
   const addExerciseImage = document.getElementById('addExerciseImage');
   const addExerciseFile = document.getElementById('addExerciseFile');
+  const btnSubmitExercise = document.getElementById('btnSubmitExercise');
 
   //Logout event
   btnLogOut.addEventListener('click', (e) => {
@@ -385,45 +386,46 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
 
     //TODO SUBMIT EXERCISE FORM
 
-    // function submitExerciseForm(e) {
-    //   e.preventDefault();
+    function submitExerciseForm(e) {
+      e.preventDefault();
+      console.log('form submitted');
+      //   db.collection('Exercises')
+      //     .add({
+      //       name: firstNameForm.value,
+      //       instructions: lastNameForm.value,
+      //       image: `${monthForm.value}/${dayForm.value}/${yearForm.value}`,
+      //     })
+      //     //Write the new patient into list after successful write to collection.
+      //     .then((docRef) => {
+      //       console.log('Document successfully written!');
 
-    //   db.collection('Exercises')
-    //     .add({
-    //       name: firstNameForm.value,
-    //       instructions: lastNameForm.value,
-    //       image: `${monthForm.value}/${dayForm.value}/${yearForm.value}`,
-    //     })
-    //     //Write the new patient into list after successful write to collection.
-    //     .then((docRef) => {
-    //       console.log('Document successfully written!');
+      //       let newDoc = db.collection('Patients').doc(docRef.id);
+      //       newDoc.get().then(function (doc) {
+      //         if (doc.exists) {
+      //           let li = document.createElement('li');
+      //           let editIcon = document.createElement('i');
+      //           let deleteIcon = document.createElement('i');
 
-    //       let newDoc = db.collection('Patients').doc(docRef.id);
-    //       newDoc.get().then(function (doc) {
-    //         if (doc.exists) {
-    //           let li = document.createElement('li');
-    //           let editIcon = document.createElement('i');
-    //           let deleteIcon = document.createElement('i');
+      //           li.setAttribute('data-id', doc.id);
 
-    //           li.setAttribute('data-id', doc.id);
+      //           li.textContent = `${doc.data().lastName}, ${doc.data().firstName}`;
+      //           editIcon.setAttribute('class', 'fas fa-edit');
+      //           deleteIcon.setAttribute('class', 'fas fa-trash-alt');
 
-    //           li.textContent = `${doc.data().lastName}, ${doc.data().firstName}`;
-    //           editIcon.setAttribute('class', 'fas fa-edit');
-    //           deleteIcon.setAttribute('class', 'fas fa-trash-alt');
+      //           li.appendChild(deleteIcon);
+      //           li.appendChild(editIcon);
 
-    //           li.appendChild(deleteIcon);
-    //           li.appendChild(editIcon);
+      //           patientList.appendChild(li);
+      //         }
+      //       });
+      //     })
+      //     .catch(function (error) {
+      //       console.error('Error writing document: ', error);
+      //     });
 
-    //           patientList.appendChild(li);
-    //         }
-    //       });
-    //     })
-    //     .catch(function (error) {
-    //       console.error('Error writing document: ', error);
-    //     });
-
-    //   exitModal();
-    // }
+      //   exitModal();
+    }
+    btnSubmitExercise.addEventListener('click', submitExerciseForm);
   }
 
   btnAddExercise.addEventListener('click', enterModalAddExercise);
