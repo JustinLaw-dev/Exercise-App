@@ -57,6 +57,7 @@
       text-align: center;
       cursor: pointer;
 
+      //1st one of every row of 4.. (1, 5, 9, etc)
       &:nth-child(4n + 1) {
         margin-left: 4rem;
       }
