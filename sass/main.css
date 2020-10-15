@@ -422,10 +422,14 @@ button {
   width: 26rem;
   font-size: 2rem;
   height: 24rem;
-  margin: 2rem;
+  margin: 3rem;
   background: lightblue;
   text-align: center;
   cursor: pointer;
+}
+
+.list__exercises__item:nth-child(4n + 1) {
+  margin-left: 4rem;
 }
 
 .list__exercises__item i {

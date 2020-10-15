@@ -52,11 +52,14 @@
       width: 26rem;
       font-size: 2rem;
       height: 24rem;
-      margin: 2rem;
+      margin: 3rem;
       background: lightblue;
       text-align: center;
       cursor: pointer;
 
+      &:nth-child(4n + 1) {
+        margin-left: 4rem;
+      }
       & i {
         margin-left: 1rem;
       }

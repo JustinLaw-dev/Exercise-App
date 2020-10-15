@@ -382,48 +382,49 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
       // read the image file as a data URL.
       reader.readAsDataURL(this.files[0]);
     };
+
+    //TODO SUBMIT EXERCISE FORM
+
+    // function submitExerciseForm(e) {
+    //   e.preventDefault();
+
+    //   db.collection('Exercises')
+    //     .add({
+    //       name: firstNameForm.value,
+    //       instructions: lastNameForm.value,
+    //       image: `${monthForm.value}/${dayForm.value}/${yearForm.value}`,
+    //     })
+    //     //Write the new patient into list after successful write to collection.
+    //     .then((docRef) => {
+    //       console.log('Document successfully written!');
+
+    //       let newDoc = db.collection('Patients').doc(docRef.id);
+    //       newDoc.get().then(function (doc) {
+    //         if (doc.exists) {
+    //           let li = document.createElement('li');
+    //           let editIcon = document.createElement('i');
+    //           let deleteIcon = document.createElement('i');
+
+    //           li.setAttribute('data-id', doc.id);
+
+    //           li.textContent = `${doc.data().lastName}, ${doc.data().firstName}`;
+    //           editIcon.setAttribute('class', 'fas fa-edit');
+    //           deleteIcon.setAttribute('class', 'fas fa-trash-alt');
+
+    //           li.appendChild(deleteIcon);
+    //           li.appendChild(editIcon);
+
+    //           patientList.appendChild(li);
+    //         }
+    //       });
+    //     })
+    //     .catch(function (error) {
+    //       console.error('Error writing document: ', error);
+    //     });
+
+    //   exitModal();
+    // }
   }
 
   btnAddExercise.addEventListener('click', enterModalAddExercise);
-
-  //TODO SUBMIT EXERCISE FORM
-  // function submitPatientForm(e) {
-  //   e.preventDefault();
-
-  //   db.collection('Patients')
-  //     .add({
-  //       firstName: firstNameForm.value,
-  //       lastName: lastNameForm.value,
-  //       DOB: `${monthForm.value}/${dayForm.value}/${yearForm.value}`,
-  //     })
-  //     //Write the new patient into list after successful write to collection.
-  //     .then((docRef) => {
-  //       console.log('Document successfully written!');
-
-  //       let newDoc = db.collection('Patients').doc(docRef.id);
-  //       newDoc.get().then(function (doc) {
-  //         if (doc.exists) {
-  //           let li = document.createElement('li');
-  //           let editIcon = document.createElement('i');
-  //           let deleteIcon = document.createElement('i');
-
-  //           li.setAttribute('data-id', doc.id);
-
-  //           li.textContent = `${doc.data().lastName}, ${doc.data().firstName}`;
-  //           editIcon.setAttribute('class', 'fas fa-edit');
-  //           deleteIcon.setAttribute('class', 'fas fa-trash-alt');
-
-  //           li.appendChild(deleteIcon);
-  //           li.appendChild(editIcon);
-
-  //           patientList.appendChild(li);
-  //         }
-  //       });
-  //     })
-  //     .catch(function (error) {
-  //       console.error('Error writing document: ', error);
-  //     });
-
-  //   exitModal();
-  // }
 }
