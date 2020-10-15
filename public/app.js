@@ -149,6 +149,7 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
   const modalInnerExercise = document.querySelector('.modal__inner--exercise');
   const addExerciseForm = document.querySelector('.form__addExercise');
   const addExerciseImage = document.getElementById('addExerciseImage');
+  const addExerciseFile = document.getElementById('addExerciseFile');
   //Logout event
   btnLogOut.addEventListener('click', (e) => {
     firebase
@@ -218,6 +219,7 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
     //Exit and reset exercise form
     modalInnerExercise.style.display = 'none';
     addExerciseForm.reset();
+    addExerciseImage.src = '';
   }
 
   //Add Patient to collection
@@ -366,9 +368,10 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
   function enterModalAddExercise() {
     modalOuterPatient.style.display = 'block';
     modalInnerExercise.style.display = 'block';
+    addExerciseFile.value = '';
 
     //File reader - preview image before sending form
-    document.getElementById('addExerciseFile').onchange = function () {
+    addExerciseFile.onchange = function () {
       var reader = new FileReader();
 
       reader.onload = function (e) {
