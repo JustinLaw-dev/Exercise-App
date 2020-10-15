@@ -148,6 +148,7 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
   const btnAddExercise = document.getElementById('btnAddExercise');
   const modalInnerExercise = document.querySelector('.modal__inner--exercise');
   const addExerciseForm = document.querySelector('.form__addExercise');
+  const addExerciseImage = document.getElementById('addExerciseImage');
   //Logout event
   btnLogOut.addEventListener('click', (e) => {
     firebase
@@ -172,7 +173,7 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
       tabLink.style.background = 'none';
       tabLink.style.color = 'black';
     });
-    switch(tabName){
+    switch (tabName) {
       case 'patientsTab':
         //test
         patientsContent.classList.add('active');
@@ -186,11 +187,11 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
         exercisesLink.style.color = '#ffffff';
         mainHeading.textContent = 'Exercises';
         break;
-      case 'accountTab': 
-      accountContent.classList.add('active');
-      accountLink.style.background = '#03396c';
-      accountLink.style.color = '#ffffff';
-      mainHeading.textContent = 'Account';
+      case 'accountTab':
+        accountContent.classList.add('active');
+        accountLink.style.background = '#03396c';
+        accountLink.style.color = '#ffffff';
+        mainHeading.textContent = 'Account';
         break;
     }
   }
@@ -209,10 +210,12 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
   }
 
   function exitModal() {
+    //Exit and reset patient form
     modalOuterPatient.style.display = 'none';
     modalInnerPatient.style.display = 'none';
     addPatientForm.reset();
 
+    //Exit and reset exercise form
     modalInnerExercise.style.display = 'none';
     addExerciseForm.reset();
   }
@@ -338,7 +341,7 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
   // Options for the exercise content observer
   const obConfig = { attributes: true };
 
-  //Should log only once, therefore 
+  //Should log only once, therefore
   // Callback function to execute when mutations are observed
   const callback = function (mutationsList, observer) {
     if (exercisesContent.classList.contains('active')) {
@@ -363,9 +366,61 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
   function enterModalAddExercise() {
     modalOuterPatient.style.display = 'block';
     modalInnerExercise.style.display = 'block';
+
+    //File reader - preview image before sending form
+    document.getElementById('addExerciseFile').onchange = function () {
+      var reader = new FileReader();
+
+      reader.onload = function (e) {
+        // get loaded data and render thumbnail.
+        addExerciseImage.src = e.target.result;
+      };
+
+      // read the image file as a data URL.
+      reader.readAsDataURL(this.files[0]);
+    };
   }
 
   btnAddExercise.addEventListener('click', enterModalAddExercise);
-  
-//File reader - preview image before sending form
+
+  //TODO SUBMIT EXERCISE FORM
+  // function submitPatientForm(e) {
+  //   e.preventDefault();
+
+  //   db.collection('Patients')
+  //     .add({
+  //       firstName: firstNameForm.value,
+  //       lastName: lastNameForm.value,
+  //       DOB: `${monthForm.value}/${dayForm.value}/${yearForm.value}`,
+  //     })
+  //     //Write the new patient into list after successful write to collection.
+  //     .then((docRef) => {
+  //       console.log('Document successfully written!');
+
+  //       let newDoc = db.collection('Patients').doc(docRef.id);
+  //       newDoc.get().then(function (doc) {
+  //         if (doc.exists) {
+  //           let li = document.createElement('li');
+  //           let editIcon = document.createElement('i');
+  //           let deleteIcon = document.createElement('i');
+
+  //           li.setAttribute('data-id', doc.id);
+
+  //           li.textContent = `${doc.data().lastName}, ${doc.data().firstName}`;
+  //           editIcon.setAttribute('class', 'fas fa-edit');
+  //           deleteIcon.setAttribute('class', 'fas fa-trash-alt');
+
+  //           li.appendChild(deleteIcon);
+  //           li.appendChild(editIcon);
+
+  //           patientList.appendChild(li);
+  //         }
+  //       });
+  //     })
+  //     .catch(function (error) {
+  //       console.error('Error writing document: ', error);
+  //     });
+
+  //   exitModal();
+  // }
 }
