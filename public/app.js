@@ -395,7 +395,7 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
       //       instructions: lastNameForm.value,
       //       image: `${monthForm.value}/${dayForm.value}/${yearForm.value}`,
       //     })
-      //     //Write the new patient into list after successful write to collection.
+      //     //Store the image into firestore, retrieve URL, then store THAT URL into the image location of exercise DB.
       //     .then((docRef) => {
       //       console.log('Document successfully written!');
 
