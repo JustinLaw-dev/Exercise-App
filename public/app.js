@@ -373,16 +373,16 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
     modalInnerExercise.style.display = 'block';
     addExerciseFile.value = '';
 
-    //File reader - preview image before sending form
+    //File reader - Preview image before sending form
     addExerciseFile.onchange = function () {
       var reader = new FileReader();
 
       reader.onload = function (e) {
-        // get loaded data and render thumbnail.
+        //Get loaded data, render thumbnail.
         addExerciseImage.src = e.target.result;
       };
 
-      // read the image file as a data URL.
+      //Read Image file as data URL
       reader.readAsDataURL(this.files[0]);
     };
 
