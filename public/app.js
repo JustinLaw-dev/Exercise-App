@@ -391,12 +391,13 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
     function submitExerciseForm(e) {
       e.preventDefault();
       console.log('form submitted');
+      console.log(exerciseNameInput.value, instructionsInput.value);
       //Store the image into firestore, retrieve URL, then store THAT URL into the image location of exercise DB.
 
       //   db.collection('Exercises')
       //     .add({
-      //       name: firstNameForm.value,
-      //       instructions: lastNameForm.value,
+      //       name: exerciseNameInput.value
+      //       instructions: instructionsInput.value,
       //       image: `${monthForm.value}/${dayForm.value}/${yearForm.value}`,
       //     })
 
