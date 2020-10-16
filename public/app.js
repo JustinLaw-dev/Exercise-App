@@ -147,6 +147,8 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
   const btnAddExercise = document.getElementById('btnAddExercise');
   const modalInnerExercise = document.querySelector('.modal__inner--exercise');
   const addExerciseForm = document.querySelector('.form__addExercise');
+  const exerciseNameInput = document.getElementById('exerciseNameInput');
+  const instructionsInput = document.getElementById('instructionsInput')
   const addExerciseImage = document.getElementById('addExerciseImage');
   const addExerciseFile = document.getElementById('addExerciseFile');
   const btnSubmitExercise = document.getElementById('btnSubmitExercise');
@@ -389,13 +391,15 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
     function submitExerciseForm(e) {
       e.preventDefault();
       console.log('form submitted');
+      //Store the image into firestore, retrieve URL, then store THAT URL into the image location of exercise DB.
+
       //   db.collection('Exercises')
       //     .add({
       //       name: firstNameForm.value,
       //       instructions: lastNameForm.value,
       //       image: `${monthForm.value}/${dayForm.value}/${yearForm.value}`,
       //     })
-      //     //Store the image into firestore, retrieve URL, then store THAT URL into the image location of exercise DB.
+
       //     .then((docRef) => {
       //       console.log('Document successfully written!');
 
