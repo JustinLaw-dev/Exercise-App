@@ -148,7 +148,7 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
   const modalInnerExercise = document.querySelector('.modal__inner--exercise');
   const addExerciseForm = document.querySelector('.form__addExercise');
   const exerciseNameInput = document.getElementById('exerciseNameInput');
-  const instructionsInput = document.getElementById('instructionsInput')
+  const instructionsInput = document.getElementById('instructionsInput');
   const addExerciseImage = document.getElementById('addExerciseImage');
   const addExerciseFile = document.getElementById('addExerciseFile');
   const btnSubmitExercise = document.getElementById('btnSubmitExercise');
@@ -375,7 +375,7 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
 
     //File reader - Preview image before sending form
     addExerciseFile.onchange = function () {
-      var reader = new FileReader();
+      let reader = new FileReader();
 
       reader.onload = function (e) {
         //Get loaded data, render thumbnail.
@@ -390,9 +390,27 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
 
     function submitExerciseForm(e) {
       e.preventDefault();
-      console.log('form submitted');
       console.log(exerciseNameInput.value, instructionsInput.value);
       //Store the image into firestore, retrieve URL, then store THAT URL into the image location of exercise DB.
+      let storageRef = firebase.storage().ref();
+
+      // Create a reference to 'exerciseName.jpg'
+      let uploadRef = storageRef.child(`${exerciseNameInput.value}.jpg`);
+
+      // Create a reference to 'exercises/exercisesname.jpg'
+      let uploadImagesRef = storageRef.child(
+        `exercises/${exerciseNameInput.value}.jpg`
+      );
+
+      // While the file names are the same, the references point to different files
+      uploadRef.name === [exerciseNameInput.value].name; // true
+      uploadImagesRef.fullPath === [exerciseNameInput.value].fullPath; // false
+
+      //upload image to storage
+      let file = addExerciseFile.files[0];
+      uploadImagesRef.put(file).then(function (snapshot) {
+        console.log('Uploaded a blob or file!');
+      });
 
       //   db.collection('Exercises')
       //     .add({
@@ -428,7 +446,8 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
       //       console.error('Error writing document: ', error);
       //     });
 
-      //   exitModal();
+      exitModal();
+      console.log('form submitted');
     }
     btnSubmitExercise.addEventListener('click', submitExerciseForm);
   }
