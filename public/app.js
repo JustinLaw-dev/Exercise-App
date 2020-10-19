@@ -390,7 +390,7 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
 
     function submitExerciseForm(e) {
       e.preventDefault();
-      console.log(exerciseNameInput.value, instructionsInput.value);
+
       //Store the image into firestore, retrieve URL, then store THAT URL into the image location of exercise DB.
       let storageRef = firebase.storage().ref();
 
@@ -399,7 +399,7 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
 
       // Create a reference to 'exercises/exercisesname.jpg'
       let uploadImagesRef = storageRef.child(
-        `exercises/${exerciseNameInput.value}.jpg`
+        `test/${exerciseNameInput.value}.jpg`
       );
 
       // While the file names are the same, the references point to different files
@@ -408,45 +408,56 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
 
       //upload image to storage
       let file = addExerciseFile.files[0];
+
       uploadImagesRef.put(file).then(function (snapshot) {
-        console.log('Uploaded a blob or file!');
+        console.log('Uploaded image!');
+
+        //After uploading, grab image url to put in firestore
+        uploadImagesRef.getDownloadURL().then(function (url) {
+          let uploadURL = url;
+          console.log(
+            exerciseNameInput.value,
+            instructionsInput.value,
+            uploadURL
+          );
+
+          // db.collection('testrcises').add({
+          //   name: exerciseNameInput.value,
+          //   instructions: instructionsInput.value,
+          //   image: uploadURL,
+          // });
+          //     .then((docRef) => {
+          //       console.log('Document successfully written!');
+
+          //       let newDoc = db.collection('Patients').doc(docRef.id);
+          //       newDoc.get().then(function (doc) {
+          //         if (doc.exists) {
+          //           let li = document.createElement('li');
+          //           let editIcon = document.createElement('i');
+          //           let deleteIcon = document.createElement('i');
+
+          //           li.setAttribute('data-id', doc.id);
+
+          //           li.textContent = `${doc.data().lastName}, ${doc.data().firstName}`;
+          //           editIcon.setAttribute('class', 'fas fa-edit');
+          //           deleteIcon.setAttribute('class', 'fas fa-trash-alt');
+
+          //           li.appendChild(deleteIcon);
+          //           li.appendChild(editIcon);
+
+          //           patientList.appendChild(li);
+          //         }
+          //       });
+          //     })
+          //     .catch(function (error) {
+          //       console.error('Error writing document: ', error);
+          //     });
+        });
       });
 
-      //   db.collection('Exercises')
-      //     .add({
-      //       name: exerciseNameInput.value
-      //       instructions: instructionsInput.value,
-      //       image: `${monthForm.value}/${dayForm.value}/${yearForm.value}`,
-      //     })
+      //
 
-      //     .then((docRef) => {
-      //       console.log('Document successfully written!');
-
-      //       let newDoc = db.collection('Patients').doc(docRef.id);
-      //       newDoc.get().then(function (doc) {
-      //         if (doc.exists) {
-      //           let li = document.createElement('li');
-      //           let editIcon = document.createElement('i');
-      //           let deleteIcon = document.createElement('i');
-
-      //           li.setAttribute('data-id', doc.id);
-
-      //           li.textContent = `${doc.data().lastName}, ${doc.data().firstName}`;
-      //           editIcon.setAttribute('class', 'fas fa-edit');
-      //           deleteIcon.setAttribute('class', 'fas fa-trash-alt');
-
-      //           li.appendChild(deleteIcon);
-      //           li.appendChild(editIcon);
-
-      //           patientList.appendChild(li);
-      //         }
-      //       });
-      //     })
-      //     .catch(function (error) {
-      //       console.error('Error writing document: ', error);
-      //     });
-
-      exitModal();
+      // exitModal();
       console.log('form submitted');
     }
     btnSubmitExercise.addEventListener('click', submitExerciseForm);
