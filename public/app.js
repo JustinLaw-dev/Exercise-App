@@ -386,8 +386,6 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
       reader.readAsDataURL(this.files[0]);
     };
 
-    //TODO SUBMIT EXERCISE FORM
-
     function submitExerciseForm(e) {
       e.preventDefault();
 
