@@ -419,7 +419,7 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
             uploadURL
           );
 
-          db.collection('testrcises').add({
+          db.collection('testrcises').doc(`${exerciseNameInput.value}`).set({
             name: exerciseNameInput.value,
             instructions: instructionsInput.value,
             image: uploadURL,
