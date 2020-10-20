@@ -419,37 +419,37 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
             uploadURL
           );
 
-          // db.collection('testrcises').add({
-          //   name: exerciseNameInput.value,
-          //   instructions: instructionsInput.value,
-          //   image: uploadURL,
-          // });
-          //     .then((docRef) => {
-          //       console.log('Document successfully written!');
+          db.collection('testrcises').add({
+            name: exerciseNameInput.value,
+            instructions: instructionsInput.value,
+            image: uploadURL,
+          })
+              // .then((docRef) => {
+              //   console.log('Document successfully written!');
 
-          //       let newDoc = db.collection('Patients').doc(docRef.id);
-          //       newDoc.get().then(function (doc) {
-          //         if (doc.exists) {
-          //           let li = document.createElement('li');
-          //           let editIcon = document.createElement('i');
-          //           let deleteIcon = document.createElement('i');
+              //   let newDoc = db.collection('Exercises').doc(docRef.id);
+              //   newDoc.get().then(function (doc) {
+              //     if (doc.exists) {
+              //       let li = document.createElement('li');
+              //       let editIcon = document.createElement('i');
+              //       let deleteIcon = document.createElement('i');
 
-          //           li.setAttribute('data-id', doc.id);
+              //       li.setAttribute('data-id', doc.id);
 
-          //           li.textContent = `${doc.data().lastName}, ${doc.data().firstName}`;
-          //           editIcon.setAttribute('class', 'fas fa-edit');
-          //           deleteIcon.setAttribute('class', 'fas fa-trash-alt');
+              //       li.textContent = `${doc.data().lastName}, ${doc.data().firstName}`;
+              //       editIcon.setAttribute('class', 'fas fa-edit');
+              //       deleteIcon.setAttribute('class', 'fas fa-trash-alt');
 
-          //           li.appendChild(deleteIcon);
-          //           li.appendChild(editIcon);
+              //       li.appendChild(deleteIcon);
+              //       li.appendChild(editIcon);
 
-          //           patientList.appendChild(li);
-          //         }
-          //       });
-          //     })
-          //     .catch(function (error) {
-          //       console.error('Error writing document: ', error);
-          //     });
+              //       patientList.appendChild(li);
+              //     }
+              //   });
+              // })
+              // .catch(function (error) {
+              //   console.error('Error writing document: ', error);
+              // });
         });
       });
 
