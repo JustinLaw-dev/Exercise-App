@@ -233,6 +233,10 @@ button {
       flex-wrap: wrap;
 }
 
+.form__addExercise--image[src=""] {
+  display: none;
+}
+
 .form__header {
   font-size: 4rem;
   text-align: center;

@@ -24,6 +24,12 @@
     flex-wrap: wrap;
   }
 
+  &__addExercise {
+    &--image[src=""] {
+      display: none;
+    }
+  }
+
   &__header {
     font-size: 4rem;
     text-align: center;
