@@ -98,7 +98,8 @@ textarea {
   margin-left: 8%;
 }
 
-button {
+button,
+.tabs__userWelcome {
   font-family: 'Montserrat';
 }
 
@@ -246,9 +247,9 @@ button {
 
 .tabs__img {
   display: block;
-  width: 20rem;
-  height: 20rem;
-  margin: 2rem auto;
+  width: 15rem;
+  height: 15rem;
+  margin: 3rem auto;
 }
 
 .tabs__userWelcome {
@@ -289,10 +290,10 @@ button {
   background: none;
   width: 100%;
   height: 6rem;
-  font-size: 2rem;
+  font-size: 1.6rem;
   cursor: pointer;
   text-align: start;
-  padding-left: 3rem;
+  padding-left: 2rem;
 }
 
 .tabs__links:first-child {
@@ -522,8 +523,8 @@ button {
   display: grid;
   width: 100%;
   height: 100%;
-  -ms-grid-columns: 0.3fr 1.7fr;
-      grid-template-columns: 0.3fr 1.7fr;
+  -ms-grid-columns: 0.24fr 1.76fr;
+      grid-template-columns: 0.24fr 1.76fr;
   -ms-grid-rows: 0.15fr 1.85fr;
       grid-template-rows: 0.15fr 1.85fr;
       grid-template-areas: '. .' '. .';
