@@ -1,9 +1,9 @@
 .tabs {
   &__img {
     display: block;
-    width: 20rem;
-    height: 20rem;
-    margin: 2rem auto;
+    width: 15rem;
+    height: 15rem;
+    margin: 3rem auto;
   }
 
   &__userWelcome {
@@ -34,13 +34,13 @@
     background: none;
     width: 100%;
     height: 6rem;
-    font-size: 2rem;
+    font-size: 1.6rem;
     cursor: pointer;
     text-align: start;
-    padding-left: 3rem;
+    padding-left: 2rem;
 
     &:first-child {
-      background-color:$primary-color;
+      background-color: $primary-color;
       color: $color-white;
     }
 
