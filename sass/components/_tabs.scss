@@ -39,7 +39,8 @@
     text-align: start;
     padding-left: 2rem;
 
-    &:first-child {
+    &:first-child,
+    &:hover {
       background-color: $primary-color;
       color: $color-white;
     }
@@ -47,6 +48,7 @@
     & i {
       margin-right: 3rem;
     }
+    
   }
 
   //initial display is none

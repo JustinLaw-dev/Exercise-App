@@ -91,7 +91,7 @@ textarea {
 
 .grid__heading {
   color: #ffffff;
-  font-size: 2.2rem;
+  font-size: 2rem;
 }
 
 .grid__heading--main {
@@ -296,7 +296,7 @@ button,
   padding-left: 2rem;
 }
 
-.tabs__links:first-child {
+.tabs__links:first-child, .tabs__links:hover {
   background-color: #03396c;
   color: #ffffff;
 }
