@@ -286,7 +286,7 @@ button,
   margin-top: 3rem;
 }
 
-.tabs__links {
+.tabs__link {
   background: none;
   width: 100%;
   height: 6rem;
@@ -296,13 +296,13 @@ button,
   padding-left: 2rem;
 }
 
-.tabs__links:first-child, .tabs__links:hover {
-  background-color: #03396c;
-  color: #ffffff;
+.tabs__link i {
+  margin-right: 3rem;
 }
 
-.tabs__links i {
-  margin-right: 3rem;
+.tabs__link--active {
+  background-color: #03396c !important;
+  color: #ffffff !important;
 }
 
 .tabs__panel {
