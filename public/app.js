@@ -110,7 +110,7 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
   const btnLogOut = document.getElementById('btnLogOut');
 
   const mainHeading = document.getElementById('mainHeading');
-  const tabLinks = document.querySelectorAll('.tabs__links');
+  const tabLinks = document.querySelectorAll('.tabs__link');
   const tabPanels = document.querySelectorAll('.tabs__panel');
 
   const patientsLink = document.getElementById('patientsLink');
@@ -176,29 +176,38 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
       tabLink.style.borderRight = 'none';
       tabLink.style.background = 'none';
       tabLink.style.color = 'black';
+      tabLink.classList.remove('tabs__link--active');
     });
     switch (tabName) {
       case 'patientsTab':
         //test
         patientsContent.classList.add('active');
-        patientsLink.style.background = '#03396c';
-        patientsLink.style.color = '#ffffff';
+        patientsLink.classList.add('tabs__link--active');
         mainHeading.textContent = 'Patients';
         break;
       case 'exercisesTab':
         exercisesContent.classList.add('active');
-        exercisesLink.style.background = '#03396c';
-        exercisesLink.style.color = '#ffffff';
+        exercisesLink.classList.add('tabs__link--active');
         mainHeading.textContent = 'Exercises';
         break;
       case 'accountTab':
         accountContent.classList.add('active');
-        accountLink.style.background = '#03396c';
-        accountLink.style.color = '#ffffff';
+        accountLink.classList.add('tabs__link--active');
         mainHeading.textContent = 'Account';
         break;
     }
   }
+
+  tabLinks.forEach((tabLink) => {
+    tabLink.addEventListener('mouseover', function (e) {
+      e.currentTarget.style.background = '#03396c';
+      e.currentTarget.style.color = '#ffffff';
+    });
+    tabLink.addEventListener('mouseout', function (e) {
+      e.currentTarget.style.background = '#ffffff';
+      e.currentTarget.style.color = 'black';
+    });
+  });
 
   //Add Patient Modal
   btnAddPatient.addEventListener('click', enterModalPatient);
@@ -423,33 +432,33 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
             name: exerciseNameInput.value,
             instructions: instructionsInput.value,
             image: uploadURL,
-          })
-              // .then((docRef) => {
-              //   console.log('Document successfully written!');
+          });
+          // .then((docRef) => {
+          //   console.log('Document successfully written!');
 
-              //   let newDoc = db.collection('Exercises').doc(docRef.id);
-              //   newDoc.get().then(function (doc) {
-              //     if (doc.exists) {
-              //       let li = document.createElement('li');
-              //       let editIcon = document.createElement('i');
-              //       let deleteIcon = document.createElement('i');
+          //   let newDoc = db.collection('Exercises').doc(docRef.id);
+          //   newDoc.get().then(function (doc) {
+          //     if (doc.exists) {
+          //       let li = document.createElement('li');
+          //       let editIcon = document.createElement('i');
+          //       let deleteIcon = document.createElement('i');
 
-              //       li.setAttribute('data-id', doc.id);
+          //       li.setAttribute('data-id', doc.id);
 
-              //       li.textContent = `${doc.data().lastName}, ${doc.data().firstName}`;
-              //       editIcon.setAttribute('class', 'fas fa-edit');
-              //       deleteIcon.setAttribute('class', 'fas fa-trash-alt');
+          //       li.textContent = `${doc.data().lastName}, ${doc.data().firstName}`;
+          //       editIcon.setAttribute('class', 'fas fa-edit');
+          //       deleteIcon.setAttribute('class', 'fas fa-trash-alt');
 
-              //       li.appendChild(deleteIcon);
-              //       li.appendChild(editIcon);
+          //       li.appendChild(deleteIcon);
+          //       li.appendChild(editIcon);
 
-              //       patientList.appendChild(li);
-              //     }
-              //   });
-              // })
-              // .catch(function (error) {
-              //   console.error('Error writing document: ', error);
-              // });
+          //       patientList.appendChild(li);
+          //     }
+          //   });
+          // })
+          // .catch(function (error) {
+          //   console.error('Error writing document: ', error);
+          // });
         });
       });
 
