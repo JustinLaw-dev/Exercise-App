@@ -220,6 +220,21 @@ button,
   resize: none;
 }
 
+.imageTest {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  width: 100%;
+  height: auto;
+}
+
 .form__addPatient, .form__addExercise {
   width: 40%;
   margin: 0 auto;
@@ -234,15 +249,20 @@ button,
       flex-wrap: wrap;
 }
 
-.form__addExercise--image[src=""] {
+.form__addExercise--image[src=''] {
   display: none;
+}
+
+.form__addExercise--image {
+  width: 18rem;
+  height: auto;
 }
 
 .form__header {
   font-size: 4rem;
   text-align: center;
   margin: 0 auto;
-  margin-top: 8rem;
+  margin-top: 6rem;
 }
 
 .tabs__img {
@@ -277,8 +297,8 @@ button,
 }
 
 .tabs__wrapper {
-  width: 138rem;
-  height: 78rem;
+  width: 72vw;
+  height: 80vh;
   background: #ffffff;
   -webkit-box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
           box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -464,15 +484,14 @@ button,
   display: none;
   position: absolute;
   top: 6%;
-  left: 20%;
+  left: 25%;
   z-index: 2000;
-  width: 120rem;
-  height: 78rem;
+  width: 100rem;
+  height: 88vh;
   background: #ffffff;
   -webkit-box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
           box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   margin: 0 auto;
-  margin-top: 7rem;
 }
 
 .modal__inner--small {
@@ -531,8 +550,9 @@ button,
 }
 
 .grid__top--left {
-  height: 100%;
   width: 100%;
+  padding: 1.5rem;
+  height: auto;
   background: #005b96;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -549,6 +569,7 @@ button,
 
 .grid__top--right {
   width: 100%;
+  height: auto;
   background: -webkit-gradient(linear, right top, left top, from(#6abcf8), color-stop(50%, rgba(67, 211, 220, 0.47)));
   background: linear-gradient(270deg, #6abcf8 0%, rgba(67, 211, 220, 0.47) 50%);
   display: -webkit-box;
