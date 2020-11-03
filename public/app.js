@@ -464,7 +464,8 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
 
       //
 
-      setTimeout(exitModal, 5000);
+      setTimeout(exitModal, 500);
+      alert('upload complete!');
     }
     btnSubmitExercise.addEventListener('click', submitExerciseForm);
   }
