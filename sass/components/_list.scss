@@ -49,6 +49,7 @@
     justify-content: flex-start;
 
     &__item {
+      display: inline-block;
       width: 26rem;
       font-size: 2rem;
       height: 24rem;

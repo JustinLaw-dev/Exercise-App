@@ -381,7 +381,6 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
     modalOuterPatient.style.display = 'block';
     modalInnerExercise.style.display = 'block';
     addExerciseFile.value = '';
-
     //File reader - Preview image before sending form
     addExerciseFile.onchange = function () {
       let reader = new FileReader();
@@ -471,4 +470,31 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
   }
 
   btnAddExercise.addEventListener('click', enterModalAddExercise);
+
+  //Exercise search function
+  let exerciseSearchbar = document.querySelector('#exerciseSearchbar');
+
+  function exerciseSearch() {
+    let searchInput = exerciseSearchbar.value;
+    let searchInputLower = searchInput.toString().toLowerCase();
+    console.log(searchInputLower);
+    let exerciseItems = document.querySelectorAll('.list__exercises__item');
+
+    exerciseItems.forEach((item) => {
+      let itemLower = item.textContent.toLowerCase();
+      let itemLowerStr = itemLower.toString();
+
+      if (itemLowerStr.includes(searchInputLower)) {
+        item.style.display = 'inline-block';
+      } else {
+        item.style.display = 'none';
+      }
+    });
+  }
+
+  exerciseSearchbar.addEventListener('keypress', function (e) {
+    if (e.key === 'Enter') {
+      exerciseSearch();
+    } else return;
+  });
 }

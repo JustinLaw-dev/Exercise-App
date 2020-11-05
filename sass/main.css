@@ -444,6 +444,7 @@ button,
 }
 
 .list__exercises__item {
+  display: inline-block;
   width: 26rem;
   font-size: 2rem;
   height: 24rem;
