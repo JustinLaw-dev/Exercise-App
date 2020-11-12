@@ -472,7 +472,8 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
   btnAddExercise.addEventListener('click', enterModalAddExercise);
 
   //Exercise search function
-  let exerciseSearchbar = document.querySelector('#exerciseSearchbar');
+  const exerciseSearchbar = document.querySelector('#exerciseSearchbar');
+  const exerciseSearchIcon = document.getElementById('exerciseSearchIcon');
 
   function exerciseSearch() {
     let searchInput = exerciseSearchbar.value;
@@ -497,4 +498,14 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
       exerciseSearch();
     } else return;
   });
+
+  exerciseSearchIcon.addEventListener('click', exerciseSearch);
+
+
+  // TODO
+  // click on exercises, information modal
+  // click on add exercise, where does it go? model for adding to patient list of exercises, or shopping cart style checkout 
+  //print functionh for either current exercise list or patient exercise list
+      // for patient, can list their name at the top
+      // figure out what print format looks like.
 }
