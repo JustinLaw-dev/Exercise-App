@@ -446,10 +446,10 @@ button,
 .list__exercises__item {
   display: inline-block;
   width: 26rem;
-  font-size: 2rem;
+  font-size: 1.6rem;
   height: 24rem;
   margin: 3rem;
-  background: lightblue;
+  background: #a9dbff;
   text-align: center;
   cursor: pointer;
 }
@@ -460,6 +460,12 @@ button,
 
 .list__exercises__item i {
   margin-left: 1rem;
+}
+
+.list__exercises__img {
+  width: 100%;
+  border: 5px #a9dbff solid;
+  height: 20rem;
 }
 
 .modal__outer {
