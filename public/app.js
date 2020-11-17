@@ -502,8 +502,19 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
   exerciseSearchIcon.addEventListener('click', exerciseSearch);
 
 
+  // View exercise
+  // https://stackoverflow.com/questions/34896106/attach-event-to-dynamic-elements-in-javascript
+
+  document.body.addEventListener('click',function(e){
+    if(e.target.classList.contains('list__exercises__item') || e.target.classList.contains('list__exercises__img')){
+      console.log(e.target);
+    }
+    // if(e.currentTarget && e.currentTarget.classList.contains('list__exercises__item')){
+    //   console.log('This is a list item');
+    //  }
+ });
+
   // TODO
-  // click on exercises, information modal
   // click on add exercise, where does it go? model for adding to patient list of exercises, or shopping cart style checkout 
   //print functionh for either current exercise list or patient exercise list
       // for patient, can list their name at the top
