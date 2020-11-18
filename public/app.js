@@ -153,6 +153,10 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
   const addExerciseFile = document.getElementById('addExerciseFile');
   const btnSubmitExercise = document.getElementById('btnSubmitExercise');
 
+  const modalInnerExerciseView = document.querySelector('.modal__inner--ExerciseView');
+  const headingExerciseView = document.querySelector('.heading--exerciseView');
+
+
   //Logout event
   btnLogOut.addEventListener('click', (e) => {
     firebase
@@ -230,6 +234,7 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
 
     //Exit and reset exercise form
     modalInnerExercise.style.display = 'none';
+    modalInnerExerciseView.style.display = 'none';
     addExerciseForm.reset();
     addExerciseImage.src = '';
   }
@@ -336,7 +341,7 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
     noPatientDel.addEventListener('click', exitDeleteModal);
   }
 
-  ////////Load Patient
+  ////////Load Patient IMPORTANT
   // db.collection('Patients')
   //   .get()
   //   .then((snapshot) => {
@@ -355,7 +360,6 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
   // Options for the exercise content observer
   const obConfig = { attributes: true };
 
-  //Should log only once, therefore
   // Callback function to execute when mutations are observed
   const callback = function (mutationsList, observer) {
     if (exercisesContent.classList.contains('active')) {
@@ -377,6 +381,7 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
   // Start observing the target node for configured mutations
   exerciseLoadOb.observe(exercisesContent, obConfig);
 
+  //Add Exercise Modal
   function enterModalAddExercise() {
     modalOuterPatient.style.display = 'block';
     modalInnerExercise.style.display = 'block';
@@ -504,10 +509,15 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
 
   // View exercise
   // https://stackoverflow.com/questions/34896106/attach-event-to-dynamic-elements-in-javascript
-
+  //TODO Find way to always grab  use tag name? -> parent Node
+ 
   document.body.addEventListener('click',function(e){
     if(e.target.classList.contains('exerciseClick')){
       console.log("This is a list item!");
+      modalOuterPatient.style.display = 'block';
+      modalInnerExerciseView.style.display = 'block';
+      headingExerciseView = e.currentTarget.textContent;
+      
     }
     // if(e.currentTarget && e.currentTarget.classList.contains('list__exercises__item')){
     //   console.log('This is a list item');
