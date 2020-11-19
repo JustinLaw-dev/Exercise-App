@@ -157,6 +157,10 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
     '.modal__inner--ExerciseView'
   );
   const headingExerciseView = document.getElementById('heading--exerciseView');
+  const exerciseViewImg = document.getElementById('exerciseViewImg');
+  const exerciseViewText = document.querySelector(
+    '.modal__inner--exerciseView-text'
+  );
 
   //Logout event
   btnLogOut.addEventListener('click', (e) => {
@@ -519,8 +523,14 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
       let nodeName = e.target.nodeName;
       if (nodeName === 'IMG') {
         headingExerciseView.textContent = target.parentNode.textContent;
+        exerciseViewImg.src = target.src;
+        //prettier-ignore
+        exerciseViewText.textContent = target.getAttribute('data-desc');
       } else if (nodeName === 'LI') {
         headingExerciseView.textContent = target.textContent;
+        exerciseViewImg.src = target.children[0].src;
+        //prettier-ignore
+        exerciseViewText.textContent = target.children[0].getAttribute('data-desc');
       }
     }
   });
