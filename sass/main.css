@@ -465,7 +465,6 @@ button,
   font-size: 1.6rem;
   height: 24rem;
   margin: 3rem;
-  background: #a9dbff;
   text-align: center;
   cursor: pointer;
 }
@@ -480,8 +479,11 @@ button,
 
 .list__exercises__img {
   width: 100%;
-  border: 5px #a9dbff solid;
+  border-radius: 3px;
+  -webkit-box-shadow: 2px 3px 5px 0px rgba(50, 50, 50, 0.75);
+  box-shadow: 2px 3px 5px 0px rgba(50, 50, 50, 0.75);
   height: 20rem;
+  margin-bottom: 1rem;
 }
 
 .modal__outer {
