@@ -528,6 +528,13 @@ button,
   text-align: center;
 }
 
+.modal__header {
+  font-size: 4rem;
+  text-align: center;
+  margin: 0 auto;
+  margin-top: 6rem;
+}
+
 .container__form {
   margin: 0 auto;
   display: -webkit-box;
