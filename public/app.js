@@ -153,9 +153,10 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
   const addExerciseFile = document.getElementById('addExerciseFile');
   const btnSubmitExercise = document.getElementById('btnSubmitExercise');
 
-  const modalInnerExerciseView = document.querySelector('.modal__inner--ExerciseView');
-  const headingExerciseView = document.querySelector('.heading--exerciseView');
-
+  const modalInnerExerciseView = document.querySelector(
+    '.modal__inner--ExerciseView'
+  );
+  const headingExerciseView = document.getElementById('heading--exerciseView');
 
   //Logout event
   btnLogOut.addEventListener('click', (e) => {
@@ -506,27 +507,27 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
 
   exerciseSearchIcon.addEventListener('click', exerciseSearch);
 
-
   // View exercise
   // https://stackoverflow.com/questions/34896106/attach-event-to-dynamic-elements-in-javascript
-  //TODO Find way to always grab  use tag name? -> parent Node
- 
-  document.body.addEventListener('click',function(e){
-    if(e.target.classList.contains('exerciseClick')){
-      console.log("This is a list item!");
+  //Image is placed on top of div background. This lists a way to always use the LI text content.
+
+  document.body.addEventListener('click', function (e) {
+    if (e.target.classList.contains('exerciseClick')) {
       modalOuterPatient.style.display = 'block';
       modalInnerExerciseView.style.display = 'block';
-      headingExerciseView = e.currentTarget.textContent;
-      
+      let target = e.target;
+      let nodeName = e.target.nodeName;
+      if (nodeName === 'IMG') {
+        headingExerciseView.textContent = target.parentNode.textContent;
+      } else if (nodeName === 'LI') {
+        headingExerciseView.textContent = target.textContent;
+      }
     }
-    // if(e.currentTarget && e.currentTarget.classList.contains('list__exercises__item')){
-    //   console.log('This is a list item');
-    //  }
- });
+  });
 
   // TODO
-  // click on add exercise, where does it go? model for adding to patient list of exercises, or shopping cart style checkout 
+  // click on add exercise, where does it go? model for adding to patient list of exercises, or shopping cart style checkout
   //print functionh for either current exercise list or patient exercise list
-      // for patient, can list their name at the top
-      // figure out what print format looks like.
+  // for patient, can list their name at the top
+  // figure out what print format looks like.
 }
