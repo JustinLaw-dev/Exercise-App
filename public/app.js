@@ -1,4 +1,15 @@
 //API key
+var firebaseConfig = {
+  apiKey: "AIzaSyA55DpRmm4DNgT8w_EJnLAzGmBC0qg0RB4",
+  authDomain: "los-alamitos-pt-exercise-app.firebaseapp.com",
+  databaseURL: "https://los-alamitos-pt-exercise-app.firebaseio.com",
+  projectId: "los-alamitos-pt-exercise-app",
+  storageBucket: "los-alamitos-pt-exercise-app.appspot.com",
+  messagingSenderId: "587818075107",
+  appId: "1:587818075107:web:782b5b32806bd55ad0d6d6",
+  measurementId: "G-J3TZX37KTF"
+};
+
 
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
@@ -152,6 +163,9 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
   const exerciseViewText = document.querySelector(
     '.modal__inner--exerciseView-text'
   );
+  
+  //display selected exercises
+  let selectedExercises = [];
 
   //Logout event
   btnLogOut.addEventListener('click', (e) => {
@@ -200,7 +214,7 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
 
   tabLinks.forEach((tabLink) => {
     tabLink.addEventListener('mouseover', function (e) {
-      e.currentTarget.style.background = '#03396c';
+      e.currentTarget.style.background = 'rgba(0, 57, 107, 0.8)';
       e.currentTarget.style.color = '#ffffff';
     });
     tabLink.addEventListener('mouseout', function (e) {
@@ -338,18 +352,18 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
   }
 
   ////////Load Patient IMPORTANT
-  // db.collection('Patients')
-  //   .get()
-  //   .then((snapshot) => {
-  //     snapshot.docs.forEach((doc) => {
-  //       renderPatientList(doc);
-  //       //Adds query selector and event listener after patient list is finished rendering
-  //       delPatientIcon = document.querySelectorAll('.fa-trash-alt');
-  //       delPatientIcon.forEach((icon) => {
-  //         icon.addEventListener('click', deletePatient);
-  //       });
-  //     });
-  //   });
+  db.collection('Patients')
+    .get()
+    .then((snapshot) => {
+      snapshot.docs.forEach((doc) => {
+        renderPatientList(doc);
+        //Adds query selector and event listener after patient list is finished rendering
+        delPatientIcon = document.querySelectorAll('.fa-trash-alt');
+        delPatientIcon.forEach((icon) => {
+          icon.addEventListener('click', deletePatient);
+        });
+      });
+    });
   //////////
 
   ////Observer for INITAL RENDER of exercises when exercises tab is active.
@@ -527,7 +541,7 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
   });
 
   // TODO
-  // click on add exercise, where does it go? model for adding to patient list of exercises, or shopping cart style checkout
+  // click on add exercise icon by exercise name where does it go? model for adding to patient list of exercises, or shopping cart style checkout
   //print functionh for either current exercise list or patient exercise list
   // for patient, can list their name at the top
   // figure out what print format looks like.
