@@ -27,10 +27,14 @@
     width: 100%;
     height: auto;
     background: $gradient-main-background;
-
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+
+    &-Container {
+      width: 87vw;
+      height: 90%;
+      margin: 5px auto;
+      background-color:$color-white;
+    }
   }
 
   &__bottom--left {
