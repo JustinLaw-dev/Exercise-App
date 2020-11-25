@@ -214,8 +214,8 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
 
   tabLinks.forEach((tabLink) => {
     tabLink.addEventListener('mouseover', function (e) {
-      e.currentTarget.style.background = 'rgba(0, 57, 107, 0.8)';
-      e.currentTarget.style.color = '#ffffff';
+      e.currentTarget.style.background = '#a9dbff';
+      e.currentTarget.style.color = '#03396c';
     });
     tabLink.addEventListener('mouseout', function (e) {
       e.currentTarget.style.background = '#ffffff';

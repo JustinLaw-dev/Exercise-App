@@ -96,7 +96,7 @@ textarea {
 }
 
 .grid--main {
-  margin-left: 2rem !important;
+  margin-left: 2rem;
   font-size: 2rem;
 }
 
@@ -342,8 +342,8 @@ button,
 }
 
 .tabs__link--active {
-  background-color: rgba(0, 57, 107, 0.8) !important;
-  color: #ffffff !important;
+  background-color: #a9dbff !important;
+  color: #03396c !important;
 }
 
 .tabs__panel {
