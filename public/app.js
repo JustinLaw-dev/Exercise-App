@@ -1,4 +1,5 @@
-const firebaseConfig = {
+//API key
+var firebaseConfig = {
   apiKey: 'AIzaSyA55DpRmm4DNgT8w_EJnLAzGmBC0qg0RB4',
   authDomain: 'los-alamitos-pt-exercise-app.firebaseapp.com',
   databaseURL: 'https://los-alamitos-pt-exercise-app.firebaseio.com',
@@ -163,6 +164,9 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
     '.modal__inner--exerciseView-text'
   );
 
+  //display selected exercises
+  let selectedExercises = [];
+
   //Logout event
   btnLogOut.addEventListener('click', (e) => {
     firebase
@@ -210,8 +214,8 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
 
   tabLinks.forEach((tabLink) => {
     tabLink.addEventListener('mouseover', function (e) {
-      e.currentTarget.style.background = '#03396c';
-      e.currentTarget.style.color = '#ffffff';
+      e.currentTarget.style.background = '#a9dbff';
+      e.currentTarget.style.color = '#03396c';
     });
     tabLink.addEventListener('mouseout', function (e) {
       e.currentTarget.style.background = '#ffffff';
@@ -597,7 +601,7 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
     printButton.style.opacity = 1;
   });
   // TODO
-  // click on add exercise, where does it go? model for adding to patient list of exercises, or shopping cart style checkout
+  // click on add exercise icon by exercise name where does it go? model for adding to patient list of exercises, or shopping cart style checkout
   //print functionh for either current exercise list or patient exercise list
   // for patient, can list their name at the top
   // figure out what print format looks like.

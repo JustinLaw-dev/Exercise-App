@@ -43,11 +43,11 @@ textarea {
 .grid {
   &__heading {
     color: $color-white;
-    font-size: 2rem;
+  }
 
     &--main {
-      margin-left: 8%;
-    }
+      margin-left: 2rem;
+      font-size: 2rem;
   }
 }
 
@@ -57,7 +57,7 @@ button,
 }
 
 .button__add-text {
-  font-size: 2.5rem;
+  font-size: 2.3rem;
 }
 
 .modal__inner--exerciseView {

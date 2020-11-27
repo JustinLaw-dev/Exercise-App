@@ -22,30 +22,34 @@
   }
 
   &__wrapper {
-    width: 72vw; //138rem/1920
-    height: 80vh;
+    width: 87vw; //138rem/1920
+    height: 92vh;
     background: #ffffff;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     margin: 0 auto;
-    margin-top: 3rem;
+    border-radius: 5px;
   }
 
   &__link {
     background: none;
-    width: 100%;
-    height: 6rem;
+    width: 95%;
+    height: 5rem;
     font-size: 1.6rem;
     cursor: pointer;
     text-align: start;
     padding-left: 2rem;
+    border-radius: 5px;
+    margin: 0.2rem .25rem;
 
     & i {
       margin-right: 3rem;
     }
 
     &--active {
-      background-color: $primary-color !important;
-      color: $color-white !important;
+      background-color: $secondary-color !important;
+      color: $primary-color !important;
+      // background-color: rgba(0, 57, 107, 0.8) !important;
+      // color: $color-white !important;
     }
   }
 

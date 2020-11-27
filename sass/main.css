@@ -26,8 +26,8 @@ html {
 *::after {
   margin: 0;
   padding: 0;
-  -webkit-box-sizing: inherit;
-          box-sizing: inherit;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   outline: none;
 }
 
@@ -36,6 +36,8 @@ html {
 }
 
 h2 {
+  padding: 0;
+  margin: 0;
   font-size: 3rem;
 }
 
@@ -91,11 +93,11 @@ textarea {
 
 .grid__heading {
   color: #ffffff;
-  font-size: 2rem;
 }
 
-.grid__heading--main {
-  margin-left: 8%;
+.grid--main {
+  margin-left: 2rem;
+  font-size: 2rem;
 }
 
 button,
@@ -104,7 +106,7 @@ button,
 }
 
 .button__add-text {
-  font-size: 2.5rem;
+  font-size: 2.3rem;
 }
 
 .modal__inner--exerciseView-heading {
@@ -189,9 +191,10 @@ button,
   width: 18rem;
   height: 5rem;
   border: 3px solid #b4b4b4;
+  border-radius: 5px;
   -webkit-box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
           box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  font-size: 2.5rem;
+  font-size: 2rem;
   margin: 2rem 2rem 0 0;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -313,23 +316,25 @@ button,
 }
 
 .tabs__wrapper {
-  width: 72vw;
-  height: 80vh;
+  width: 87vw;
+  height: 92vh;
   background: #ffffff;
   -webkit-box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
           box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   margin: 0 auto;
-  margin-top: 3rem;
+  border-radius: 5px;
 }
 
 .tabs__link {
   background: none;
-  width: 100%;
-  height: 6rem;
+  width: 95%;
+  height: 5rem;
   font-size: 1.6rem;
   cursor: pointer;
   text-align: start;
   padding-left: 2rem;
+  border-radius: 5px;
+  margin: 0.2rem .25rem;
 }
 
 .tabs__link i {
@@ -337,8 +342,8 @@ button,
 }
 
 .tabs__link--active {
-  background-color: #03396c !important;
-  color: #ffffff !important;
+  background-color: #a9dbff !important;
+  color: #03396c !important;
 }
 
 .tabs__panel {
@@ -371,6 +376,7 @@ button,
   width: 30rem;
   height: 5rem;
   border: 3px solid #b4b4b4;
+  border-radius: 30px;
   -webkit-box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
           box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   font-size: 2.5rem;
@@ -386,7 +392,8 @@ button,
 }
 
 .searchbar__wrapper-1 {
-  margin: 2rem 0 0 2rem;
+  margin-left: 2rem;
+  padding-left: 1rem;
 }
 
 .searchbar--patient, .searchbar--exercise {
@@ -622,12 +629,13 @@ button,
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+}
+
+.grid__top--right-Container {
+  width: 87vw;
+  height: 90%;
+  margin: 5px auto;
+  background-color: #ffffff;
 }
 
 .grid__bottom--left {
