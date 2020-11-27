@@ -27,7 +27,7 @@ function login() {
 
   btnLogin.addEventListener('click', (e) => {
     //get email and pass
-    //TODO: Check for real email address
+    //TODO: Regex for domain address
     const email = textEmail.value;
     const pass = textPassword.value;
     const auth = firebase.auth();
@@ -79,7 +79,8 @@ firebase.auth().onAuthStateChanged((firebaseUser) => {
   if (firebaseUser) {
     let user = firebase.auth().currentUser;
     console.log('Logged in');
-
+    //Sub this link below in, for live version
+    //https://los-alamitos-pt-exercise-app.web.app/
     if (window.location.href === 'http://127.0.0.1:5500/public/index.html') {
       window.location.href = 'http://127.0.0.1:5500/public/main.html';
     } else if (
@@ -192,17 +193,17 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
         //test
         patientsContent.classList.add('active');
         patientsLink.classList.add('tabs__link--active');
-        mainHeading.textContent = 'Patients';
+        // mainHeading.textContent = 'Patients';
         break;
       case 'exercisesTab':
         exercisesContent.classList.add('active');
         exercisesLink.classList.add('tabs__link--active');
-        mainHeading.textContent = 'Exercises';
+        // mainHeading.textContent = 'Exercises';
         break;
       case 'accountTab':
         accountContent.classList.add('active');
         accountLink.classList.add('tabs__link--active');
-        mainHeading.textContent = 'Account';
+        // mainHeading.textContent = 'Account';
         break;
     }
   }
@@ -290,10 +291,11 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
     let li = document.createElement('li');
     let editIcon = document.createElement('i');
     let deleteIcon = document.createElement('i');
+    li.classList.add('patientLI');
 
     li.setAttribute('data-id', doc.id);
     li.textContent = `${doc.data().lastName}, ${doc.data().firstName}`;
-    editIcon.setAttribute('class', 'fas fa-edit');
+    // editIcon.setAttribute('class', 'fas fa-edit');
     deleteIcon.setAttribute('class', 'fas fa-trash-alt');
 
     li.appendChild(deleteIcon);
@@ -347,18 +349,30 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
   }
 
   ////////Load Patient IMPORTANT
-  // db.collection('Patients')
-  //   .get()
-  //   .then((snapshot) => {
-  //     snapshot.docs.forEach((doc) => {
-  //       renderPatientList(doc);
-  //       //Adds query selector and event listener after patient list is finished rendering
-  //       delPatientIcon = document.querySelectorAll('.fa-trash-alt');
-  //       delPatientIcon.forEach((icon) => {
-  //         icon.addEventListener('click', deletePatient);
-  //       });
-  //     });
-  //   });
+  db.collection('Patients')
+    .get()
+    .then((snapshot) => {
+      snapshot.docs.forEach((doc) => {
+        renderPatientList(doc);
+        //Adds query selector and event listener after patient list is finished rendering
+        delPatientIcon = document.querySelectorAll('.fa-trash-alt');
+        delPatientIcon.forEach((icon) => {
+          icon.addEventListener('click', deletePatient);
+        });
+      });
+    });
+
+  function sortList() {
+    var LIs = patientList.childNodes;
+    var list = [];
+    for (var i = 0; i < LIs.length; ++i) {
+      var LI = LIs[i];
+      list.push(LI.innerText || LI.textContent);
+    }
+  }
+
+  sortList();
+
   //////////
 
   ////Observer for INITAL RENDER of exercises when exercises tab is active.
@@ -503,6 +517,34 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
     });
   }
 
+  function patientSearch() {
+    let searchInput = patientSearchbar.value;
+    let searchInputLower = searchInput.toString().toLowerCase();
+    console.log(searchInputLower);
+    let patients = document.querySelectorAll('.list__patients li');
+
+    patients.forEach((item) => {
+      let itemLower = item.textContent.toLowerCase();
+      let itemLowerStr = itemLower.toString();
+
+      if (itemLowerStr.includes(searchInputLower)) {
+        item.style.display = 'inline-block';
+      } else {
+        item.style.display = 'none';
+      }
+    });
+  }
+
+  patientSearchbar.addEventListener('keypress', function (e) {
+    if (e.key === 'Enter') {
+      patientSearch();
+    } else return;
+  });
+
+  document
+    .querySelector('.searchbar__wrapper i')
+    .addEventListener('click', patientSearch);
+
   exerciseSearchbar.addEventListener('keypress', function (e) {
     if (e.key === 'Enter') {
       exerciseSearch();
@@ -535,6 +577,25 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
     }
   });
 
+  const printButton = document.querySelector('.button__print');
+  printButton.addEventListener('click', function () {
+    let width = modalInnerExerciseView.style.width;
+    let height = modalInnerExerciseView.style.height;
+
+    modalInnerExerciseView.style.width = '100vw';
+    modalInnerExerciseView.style.height = '100vh';
+    modalInnerExerciseView.style.top = 0;
+    modalInnerExerciseView.style.left = 0;
+    printButton.style.opacity = 0;
+
+    window.print();
+
+    modalInnerExerciseView.style.width = width;
+    modalInnerExerciseView.style.height = height;
+    modalInnerExerciseView.style.top = '6%';
+    modalInnerExerciseView.style.left = '25%';
+    printButton.style.opacity = 1;
+  });
   // TODO
   // click on add exercise, where does it go? model for adding to patient list of exercises, or shopping cart style checkout
   //print functionh for either current exercise list or patient exercise list
