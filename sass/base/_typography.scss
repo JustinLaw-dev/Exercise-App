@@ -8,6 +8,7 @@ html {
 body,
 textarea {
   font-family: 'Barlow', sans-serif;
+  color: $color-black;
 }
 
 .header--primary {
@@ -42,12 +43,15 @@ textarea {
 
 .grid {
   &__heading {
-    color: $color-white;
-  }
+    color: $primary-color;
+    font-size: 1.7rem;
+    padding-left: 1rem;
 
     &--main {
-      margin-left: 2rem;
       font-size: 2rem;
+      color: $color-gray-500;
+      font-weight: 700;
+    }
   }
 }
 
