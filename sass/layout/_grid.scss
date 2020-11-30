@@ -11,29 +11,32 @@
 .grid {
   &__top--left {
     width: 100%;
-    padding: 1.5rem;
+    padding: 1rem;
     height: auto;
-    background: $primary-color--light;
+    background: $color-white;
     display: flex;
     justify-content: center;
+    z-index: 2000;
     align-items: center;
 
-    -webkit-box-shadow: 7px 0px 11px -2px rgba(0, 0, 0, 0.56);
-    -moz-box-shadow: 7px 0px 11px -2px rgba(0, 0, 0, 0.56);
-    box-shadow: 7px 0px 11px -2px rgba(0, 0, 0, 0.56);
+    // -webkit-box-shadow: 7px 0px 11px -2px rgba(0, 0, 0, 0.56);
+    // -moz-box-shadow: 7px 0px 11px -2px rgba(0, 0, 0, 0.56);
+    // box-shadow: 7px 0px 11px -2px rgba(0, 0, 0, 0.56);
   }
 
   &__top--right {
     width: 100%;
     height: auto;
-    background: $gradient-main-background;
-    display: flex;
+    background: $primary-color--light;
 
     &-Container {
       width: 87vw;
-      height: 90%;
-      margin: 5px auto;
-      background-color:$color-white;
+      height: 100%;
+
+      display: flex;
+      align-items: center;
+      padding-left: 3rem;
+      // background-color:$color-white;
     }
   }
 
