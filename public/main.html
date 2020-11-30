@@ -15,21 +15,24 @@
     <!-- Begins on patient tab -->
     <div class="container--grid">
       <div class="grid__top--left">
-        <h1 class="grid__heading">LAOSPT Exercise App</h1>
+        <div class="tabs__img-Container">
+          <img class="tabs__img" src="./img/favicon.png" alt="Los Alamitos PT">
+        </div>
+        <h1 class="grid__heading">Los Alamitos PT</h1>
       </div>
 
       <div class="grid__top--right">
         <div class="grid__top--right-Container">
-        <h2 class="header--secondary grid__heading--main" id="mainHeading">Patients</h2>
+        <!-- <h2 class="grid__heading--main" id="mainHeading">Patients</h2> -->
+        <div class="tabs__userInfo">
+          <p class="tabs__userWelcome" id="userWelcome"></p>
+        </div>
         </div>
       </div>
 
       <!-- Tab buttons -->
       <div class="grid__bottom--left">
-        <div class="tabs__userInfo">
-          <img class="tabs__img" src="./img/favicon.png" alt="Los Alamitos PT">
-          <p class="tabs__userWelcome" id="userWelcome"></p>
-        </div>
+        
 
         <div class="tabs__menu">
           <button
@@ -54,7 +57,7 @@
             <i class="fas fa-cog"></i> Account
           </button>
           
-        <button class="button button--logout" id="btnLogOut"><i class="fas fa-sign-out-alt button--logout-icon"></i>Log Out</button>
+          <button class="button button--logout" id="btnLogOut"><i class="fas fa-sign-out-alt button--logout-icon"></i>Log Out</button>
         </div>
         
       </div>
@@ -83,7 +86,6 @@
 
             <div class="list__wrapper">
               <ul class="list__patients" id="patientList">
-                <li>Patient Name</li>
               </ul>
             </div>
           </div>
@@ -153,9 +155,12 @@
 
           <div class="modal__outer" id="modalOuterSmall"></div>
           <div class="modal__inner--small">
-            <p class="modal__text" id="delPatient"></p>
-            <button class="button__square" id="yesPatientDel">Yes</button>
-            <button class="button__square" id="noPatientDel">No</button>
+            <h4 class="modal__delete--heading">Delete Patient</h4>
+            <p class="modal__delete--text" id="delPatient"></p>
+            <div class="button__delete--background">
+              <button class="button__delete--secondary" id="noPatientDel">Cancel</button>
+              <button class="button__delete--primary" id="yesPatientDel">Delete</button>
+            </div>
           </div>
 
 
@@ -213,7 +218,6 @@
             </div>
 
             <div class="list__wrapper">
-              <h2 class="list__header">Exercises</h2>
               <ul class="list__exercises" id="exerciseList">
                 <li class="list__exercises__item exerciseClick"><img src="/Exercises/9090 Doorway - 1.JPG" alt="" class="list__exercises__img exerciseClick" data-desc="Stand facing a corner with your elbows bent at 90 degrees up at shoulder level.">9090 Doorway - 1<i class="fas fa-plus"></i></li>
 
