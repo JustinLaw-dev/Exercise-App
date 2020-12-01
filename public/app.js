@@ -144,9 +144,7 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
   const addPatientForm = document.querySelector('.form__addPatient');
   const firstNameForm = document.querySelector('#firstNameForm');
   const lastNameForm = document.querySelector('#lastNameForm');
-  const dayForm = document.querySelector('#dayForm');
-  const monthForm = document.querySelector('#monthForm');
-  const yearForm = document.querySelector('#yearForm');
+  const emailForm = document.querySelector('#emailForm');
 
   const btnAddExercise = document.getElementById('btnAddExercise');
   const modalInnerExercise = document.querySelector('.modal__inner--exercise');
@@ -259,7 +257,7 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
       .add({
         firstName: firstNameForm.value,
         lastName: lastNameForm.value,
-        DOB: `${monthForm.value}/${dayForm.value}/${yearForm.value}`,
+        Email: emailForm.value,
       })
       //Write the new patient into list after successful write to collection.
       .then((docRef) => {
@@ -326,7 +324,7 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
     // img.setAttribute('src', doc.image);
     img.classList.add('list__exercises__img', 'exerciseClick');
     // editIcon.setAttribute('class', 'fas fa-edit');
-    addIcon.setAttribute('class', 'fas fa-plus');
+    addIcon.setAttribute('class', 'fas fa-plus exercise-plus');
 
     li.textContent += doc.data().name;
     li.appendChild(img);
@@ -659,6 +657,14 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
     modalInnerExerciseView.style.left = '25%';
     printButton.style.opacity = 1;
   });
+
+  const addExercisesIcon = document.querySelectorAll('.exercise-plus');
+  addExercisesIcon.forEach(icon => {
+    icon.addEventListener('click',function(e){
+      target = e.currentTarget;
+      console.log(target);
+    })
+  })
   // TODO
   // click on add exercise icon by exercise name where does it go? model for adding to patient list of exercises, or shopping cart style checkout
   //print functionh for either current exercise list or patient exercise list
