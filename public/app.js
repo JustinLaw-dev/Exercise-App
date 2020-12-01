@@ -111,7 +111,7 @@ if (window.location.href === 'http://127.0.0.1:5500/public/index.html') {
 if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
   const btnLogOut = document.getElementById('btnLogOut');
 
-  const mainHeading = document.getElementById('mainHeading');
+  // const mainHeading = document.getElementById('mainHeading');
   const tabLinks = document.querySelectorAll('.tabs__link');
   const tabPanels = document.querySelectorAll('.tabs__panel');
 
@@ -138,6 +138,8 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
 
   const modalPatientDeleteOuter = document.getElementById('modalOuterSmall');
   const modalPatientDelete = document.querySelector('.modal__inner--small');
+
+  const exerciseList = document.getElementById('exerciseList');
 
   const addPatientForm = document.querySelector('.form__addPatient');
   const firstNameForm = document.querySelector('#firstNameForm');
@@ -197,17 +199,17 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
         //test
         patientsContent.classList.add('active');
         patientsLink.classList.add('tabs__link--active');
-        // mainHeading.textContent = 'Patients';
+        mainHeading.textContent = 'Patients';
         break;
       case 'exercisesTab':
         exercisesContent.classList.add('active');
         exercisesLink.classList.add('tabs__link--active');
-        // mainHeading.textContent = 'Exercises';
+        mainHeading.textContent = 'Exercises';
         break;
       case 'accountTab':
         accountContent.classList.add('active');
         accountLink.classList.add('tabs__link--active');
-        // mainHeading.textContent = 'Account';
+        mainHeading.textContent = 'Account';
         break;
     }
   }
@@ -303,9 +305,34 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
     deleteIcon.setAttribute('class', 'fas fa-trash-alt');
 
     li.appendChild(deleteIcon);
-    li.appendChild(editIcon);
+    // li.appendChild(editIcon);
 
     patientList.appendChild(li);
+  }
+  // Prototype for image creation
+  //  <li class="list__exercises__item exerciseClick">
+  //   <img src="/Exercises/9090 Doorway - 1.JPG" alt="" class="list__exercises__img exerciseClick" data-desc="Stand facing a corner">9090 Doorway - 1<i class="fas fa-plus"></i>
+  //   </li>
+  function renderExerciseList(doc) {
+    let li = document.createElement('li');
+    let img = document.createElement('img');
+    let addIcon = document.createElement('i');
+
+    li.classList.add('list__exercises__item', 'exerciseClick');
+    li.setAttribute('data-id', doc.id);
+    //Breaking Point
+
+    img.setAttribute('src', doc.data().image);
+    // img.setAttribute('src', doc.image);
+    img.classList.add('list__exercises__img', 'exerciseClick');
+    // editIcon.setAttribute('class', 'fas fa-edit');
+    addIcon.setAttribute('class', 'fas fa-plus');
+
+    li.textContent += doc.data().name;
+    li.appendChild(img);
+    li.appendChild(addIcon);
+
+    exerciseList.appendChild(li);
   }
 
   function enterDeleteModal() {
@@ -328,7 +355,7 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
     enterDeleteModal();
 
     // //Display "Are you sure you want to remove xxxx, xxx?" Delete Cancel
-    delPatientText.textContent = `Are you sure you want to delete ${name}?`;
+    delPatientText.textContent = `Are you sure you want to delete ${name}? If deleted, the patient will be removed and cannot be retrieved.`;
 
     //Delete on "Yes"
     yesPatientDel.addEventListener(
@@ -366,18 +393,20 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
       });
     });
 
-  function sortList() {
-    var LIs = patientList.childNodes;
-    var list = [];
-    for (var i = 0; i < LIs.length; ++i) {
-      var LI = LIs[i];
-      list.push(LI.innerText || LI.textContent);
-    }
-  }
-
-  sortList();
-
   //////////
+
+  let firstExercises = db.collection('testrcises').limit(3);
+
+  firstExercises.get().then((snapshot) => {
+    snapshot.docs.forEach((doc) => {
+      renderExerciseList(doc);
+      //Adds query selector and event listener after patient list is finished rendering
+      delPatientIcon = document.querySelectorAll('.fa-trash-alt');
+      delPatientIcon.forEach((icon) => {
+        icon.addEventListener('click', deletePatient);
+      });
+    });
+  });
 
   ////Observer for INITAL RENDER of exercises when exercises tab is active.
   // Options for the exercise content observer
@@ -387,6 +416,7 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
   const callback = function (mutationsList, observer) {
     if (exercisesContent.classList.contains('active')) {
       console.log('This tab is activated!');
+      renderExerciseList();
 
       //Stop observing after tab is clicked for the first time
       exerciseLoadOb.disconnect();
