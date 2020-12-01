@@ -19,10 +19,10 @@
     margin: 0 auto;
     width: 25vw;
     height: auto;
-    padding: 1rem 0;
+    padding: 1.5rem 1rem;
     background-color: #dd6565;
     color: $color-white;
-    border: 3px solid #ff0000;
+    border-radius: 5px;
 
     &--icon {
       display: inline-block;
