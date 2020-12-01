@@ -65,7 +65,7 @@
       background-color: $color-gray-100;
       width: 100%;
       display: flex;
-      justify-content: end;
+      justify-content: flex-end;
       padding: 1.5rem;
       border-radius: 0 0 5px 5px;
     }
@@ -120,4 +120,9 @@
     margin-top: 3rem;
     text-align: center;
   }
+}
+
+.exercise-plus {
+  color: red;
+  padding: 1rem;
 }
