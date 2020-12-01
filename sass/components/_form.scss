@@ -1,5 +1,5 @@
 .label {
-  font-size: 2.2rem;
+  font-size: 1.8rem;
   margin-top: 2rem;
 }
 
@@ -11,6 +11,16 @@
   &--textarea {
     font-size: 1.8rem;
     resize: none;
+  }
+}
+
+input{
+  border: 1px solid $color-gray-700;
+  border-radius: 5px;
+
+  &:focus {
+    border: 2px solid $primary-color--light;
+    border-radius: 5px;
   }
 }
 
