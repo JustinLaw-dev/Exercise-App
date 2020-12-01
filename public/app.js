@@ -314,10 +314,12 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
   function renderExerciseList(doc) {
     let li = document.createElement('li');
     let img = document.createElement('img');
+    let p = document.createElement('p');
     let addIcon = document.createElement('i');
 
     li.classList.add('list__exercises__item', 'exerciseClick');
     li.setAttribute('data-id', doc.id);
+    p.textContent = doc.data().name;
     //Breaking Point
 
     img.setAttribute('src', doc.data().image);
@@ -326,8 +328,9 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
     // editIcon.setAttribute('class', 'fas fa-edit');
     addIcon.setAttribute('class', 'fas fa-plus exercise-plus');
 
-    li.textContent += doc.data().name;
+   
     li.appendChild(img);
+    li.appendChild(p);
     li.appendChild(addIcon);
 
     exerciseList.appendChild(li);
@@ -658,6 +661,7 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
     printButton.style.opacity = 1;
   });
 
+  //doesnt work
   const addExercisesIcon = document.querySelectorAll('.exercise-plus');
   addExercisesIcon.forEach(icon => {
     icon.addEventListener('click',function(e){
@@ -669,5 +673,4 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
   // click on add exercise icon by exercise name where does it go? model for adding to patient list of exercises, or shopping cart style checkout
   //print functionh for either current exercise list or patient exercise list
   // for patient, can list their name at the top
-  // figure out what print format looks like.
 }
