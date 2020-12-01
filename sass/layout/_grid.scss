@@ -3,7 +3,7 @@
   width: 100%;
   height: 100%;
   grid-template-columns: 0.24fr 1.76fr;
-  grid-template-rows: 0.15fr 1.85fr;
+  grid-template-rows: 0.13fr 1.88fr;
 
   grid-template-areas: '. .' '. .';
 }
@@ -28,6 +28,7 @@
     width: 100%;
     height: auto;
     background: $primary-color--light;
+    box-shadow: 4px 14px 18px -8px rgba(0, 0, 0, 0.49);
 
     &-Container {
       width: 87vw;
