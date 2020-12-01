@@ -534,10 +534,6 @@ input:focus {
   margin-left: 4rem;
 }
 
-.list__exercises__item i {
-  margin-left: 1rem;
-}
-
 .list__exercises__img {
   width: 100%;
   border-radius: 3px;
@@ -552,7 +548,7 @@ input:focus {
   /* Hidden by default */
   position: fixed;
   /* Stay in place */
-  z-index: 1000;
+  z-index: 1900;
   /* Sit on top */
   left: 0;
   top: 0;
@@ -680,7 +676,7 @@ input:focus {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  z-index: 1000;
+  z-index: 1500;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
