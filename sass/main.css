@@ -593,6 +593,11 @@ button,
   margin-top: 4rem;
 }
 
+.modal__inner--exerciseView-image {
+  width: 40rem;
+  height: auto;
+}
+
 .modal__exit {
   position: absolute;
   font-size: 3rem;
@@ -641,8 +646,8 @@ button,
   height: 100%;
   -ms-grid-columns: 0.24fr 1.76fr;
       grid-template-columns: 0.24fr 1.76fr;
-  -ms-grid-rows: 0.15fr 1.85fr;
-      grid-template-rows: 0.15fr 1.85fr;
+  -ms-grid-rows: 0.13fr 1.88fr;
+      grid-template-rows: 0.13fr 1.88fr;
       grid-template-areas: '. .' '. .';
 }
 
@@ -667,6 +672,8 @@ button,
   width: 100%;
   height: auto;
   background: #005b96;
+  -webkit-box-shadow: 4px 14px 18px -8px rgba(0, 0, 0, 0.49);
+          box-shadow: 4px 14px 18px -8px rgba(0, 0, 0, 0.49);
 }
 
 .grid__top--right-Container {
