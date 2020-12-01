@@ -119,6 +119,7 @@ button,
 
 .modal__inner--exerciseView-text {
   font-size: 2rem;
+  width: 50rem;
 }
 
 .button {
@@ -199,7 +200,7 @@ button,
   display: flex;
   -webkit-box-pack: end;
       -ms-flex-pack: end;
-          justify-content: end;
+          justify-content: flex-end;
   padding: 1.5rem;
   border-radius: 0 0 5px 5px;
 }
@@ -260,8 +261,13 @@ button,
   text-align: center;
 }
 
+.exercise-plus {
+  color: red;
+  padding: 1rem;
+}
+
 .label {
-  font-size: 2.2rem;
+  font-size: 1.8rem;
   margin-top: 2rem;
 }
 
@@ -274,6 +280,16 @@ button,
 .input--textarea {
   font-size: 1.8rem;
   resize: none;
+}
+
+input {
+  border: 1px solid #646464;
+  border-radius: 5px;
+}
+
+input:focus {
+  border: 2px solid #005b96;
+  border-radius: 5px;
 }
 
 .imageTest {
@@ -329,6 +345,7 @@ button,
 }
 
 .tabs__userWelcome {
+  color: #ffffff;
   font-size: 1.6rem;
   text-align: center;
 }
@@ -558,6 +575,7 @@ button,
   width: 100rem;
   height: 88vh;
   background: #ffffff;
+  border-radius: 5px;
   -webkit-box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
           box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   margin: 0 auto;
@@ -662,7 +680,7 @@ button,
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  z-index: 2000;
+  z-index: 1000;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -682,10 +700,13 @@ button,
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  padding-left: 3rem;
+  padding-right: 3rem;
 }
 
 .grid__bottom--left {
@@ -730,10 +751,10 @@ button,
   margin: 0 auto;
   width: 25vw;
   height: auto;
-  padding: 1rem 0;
+  padding: 1.5rem 1rem;
   background-color: #dd6565;
   color: #ffffff;
-  border: 3px solid #ff0000;
+  border-radius: 5px;
 }
 
 .container__error--icon {
