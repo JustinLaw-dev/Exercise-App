@@ -199,17 +199,17 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
         //test
         patientsContent.classList.add('active');
         patientsLink.classList.add('tabs__link--active');
-        mainHeading.textContent = 'Patients';
+        // mainHeading.textContent = 'Patients';
         break;
       case 'exercisesTab':
         exercisesContent.classList.add('active');
         exercisesLink.classList.add('tabs__link--active');
-        mainHeading.textContent = 'Exercises';
+        // mainHeading.textContent = 'Exercises';
         break;
       case 'accountTab':
         accountContent.classList.add('active');
         accountLink.classList.add('tabs__link--active');
-        mainHeading.textContent = 'Account';
+        // mainHeading.textContent = 'Account';
         break;
     }
   }
@@ -395,19 +395,6 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
 
   //////////
 
-  let firstExercises = db.collection('testrcises').limit(3);
-
-  firstExercises.get().then((snapshot) => {
-    snapshot.docs.forEach((doc) => {
-      renderExerciseList(doc);
-      //Adds query selector and event listener after patient list is finished rendering
-      delPatientIcon = document.querySelectorAll('.fa-trash-alt');
-      delPatientIcon.forEach((icon) => {
-        icon.addEventListener('click', deletePatient);
-      });
-    });
-  });
-
   ////Observer for INITAL RENDER of exercises when exercises tab is active.
   // Options for the exercise content observer
   const obConfig = { attributes: true };
@@ -416,8 +403,19 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
   const callback = function (mutationsList, observer) {
     if (exercisesContent.classList.contains('active')) {
       console.log('This tab is activated!');
-      renderExerciseList();
 
+      let firstExercises = db.collection('testrcises').limit(3);
+
+      firstExercises.get().then((snapshot) => {
+        snapshot.docs.forEach((doc) => {
+          renderExerciseList(doc);
+          //Adds query selector and event listener after patient list is finished rendering
+          // delPatientIcon = document.querySelectorAll('.fa-trash-alt');
+          // delPatientIcon.forEach((icon) => {
+          //   icon.addEventListener('click', deletePatient);
+          // });
+        });
+      });
       //Stop observing after tab is clicked for the first time
       exerciseLoadOb.disconnect();
     }
@@ -597,16 +595,47 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
       modalInnerExerciseView.style.display = 'block';
       let target = e.target;
       let nodeName = e.target.nodeName;
+      let dataID;
       if (nodeName === 'IMG') {
         headingExerciseView.textContent = target.parentNode.textContent;
         exerciseViewImg.src = target.src;
+
+        dataID = target.parentNode.getAttribute('data-id');
+        db.collection('testrcises')
+          .where('name', '==', dataID)
+          .get()
+          .then(function (querySnapshot) {
+            querySnapshot.forEach(function (doc) {
+              // doc.data() is never undefined for query doc snapshots
+              console.log(doc.data().instructions);
+              exerciseViewText.textContent = doc.data().instructions;
+            });
+          })
+          .catch(function (error) {
+            console.log('Error getting documents: ', error);
+          });
         //prettier-ignore
         exerciseViewText.textContent = target.getAttribute('data-desc');
       } else if (nodeName === 'LI') {
+        console.log(target);
         headingExerciseView.textContent = target.textContent;
         exerciseViewImg.src = target.children[0].src;
+        dataID = target.getAttribute('data-id');
+        db.collection('testrcises')
+          .where('name', '==', dataID)
+          .get()
+          .then(function (querySnapshot) {
+            querySnapshot.forEach(function (doc) {
+              // doc.data() is never undefined for query doc snapshots
+              console.log(doc.data().instructions);
+              exerciseViewText.textContent = doc.data().instructions;
+            });
+          })
         //prettier-ignore
-        exerciseViewText.textContent = target.children[0].getAttribute('data-desc');
+        // db.collection('testrcises').where()
+        // exerciseViewText.textContent = target.children[0].getAttribute(
+        //   'data-desc'
+        // );
       }
     }
   });
