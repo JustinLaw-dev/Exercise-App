@@ -29,10 +29,16 @@
 
   &--patient,
   &--exercise {
-    border: none;
+    border: 2px solid #b4b4b4;
+    border-radius: 30px;
     font-size: 1.8rem;
     width: 30rem;
     padding-left: 1rem;
+
+    &:focus {
+      border: 2px solid $primary-color--light;
+      border-radius: 30px;
+    }
   }
 
   &--icon {
