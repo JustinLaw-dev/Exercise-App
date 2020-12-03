@@ -164,6 +164,8 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
     '.modal__inner--exerciseView-text'
   );
 
+  const listAddedExercises = document.getElementById('listAddedExercises');
+
   //display selected exercises
   let selectedExercises = [];
 
@@ -397,7 +399,34 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
     });
 
   function addExerciseToList(e) {
-    console.log(e.currentTarget);
+    target = e.currentTarget;
+    parent = target.parentNode;
+
+
+    let name = parent.getAttribute('data-id');
+    let imageSrc = parent.firstChild.src;
+    // ul = listaddedExercise
+    console.table(name, imageSrc);
+
+{/* <li class="list__addedExercises--item">
+                    <img src="https://picsum.photos/200/140" alt="">
+                    <p class="list__addedExercises--text">Exercise 1</p>
+                  </li> */}
+
+    let li = document.createElement('li');
+    li.classList.add('list__addedExercises--item');
+    
+    let img = document.createElement('img');
+    img.classList.add('list__addedExercises--image');
+    img.src = imageSrc;
+
+    let p = document.createElement('p');
+    p.classList.add('list__addedExercises--text');
+    p.textContent = name;
+    
+    li.appendChild(img);
+    li.appendChild(p);
+    listAddedExercises.appendChild(li);
   }
 
   // Observer to initialize render of exercises when exercises tab is Clicked for the first time.
@@ -420,11 +449,6 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
           addIcons.forEach((icon) => {
             icon.addEventListener('click', addExerciseToList);
           });
-          //Adds query selector and event listener after patient list is finished rendering
-          // delPatientIcon = document.querySelectorAll('.fa-trash-alt');
-          // delPatientIcon.forEach((icon) => {
-          //   icon.addEventListener('click', deletePatient);
-          // });
         });
       });
       //Stop observing after tab is clicked for the first time
