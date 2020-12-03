@@ -483,7 +483,7 @@ input:focus {
 }
 
 .list__wrapper--exercise {
-  width: 97%;
+  width: 82%;
   height: 75%;
   margin: 2rem auto;
   overflow-y: scroll;
@@ -492,8 +492,8 @@ input:focus {
 .list__wrapper--addedExercises {
   border: 2px solid #dcdcdc;
   border-radius: 1rem;
-  width: 85%;
-  height: 10rem;
+  width: 20%;
+  height: 60vh;
 }
 
 .list__header {
@@ -523,6 +523,20 @@ input:focus {
   float: right;
   margin-right: 2rem;
   cursor: pointer;
+}
+
+.list__flex {
+  height: auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
 }
 
 .list__exercises {
@@ -570,14 +584,30 @@ input:focus {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: horizontal;
+  -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   height: 100%;
   list-style: none;
-  overflow-x: scroll;
+  overflow-Y: scroll;
   scrollbar-width: thin;
+}
+
+.list__addedExercises--item {
+  margin: 1rem;
+}
+
+.list__addedExercises--image {
+  width: 20rem;
+  height: 14rem;
+}
+
+.list__addedExercises--text {
+  font-size: 1.6rem;
 }
 
 .modal__outer {

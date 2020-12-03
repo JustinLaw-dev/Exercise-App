@@ -6,7 +6,7 @@
     overflow-y: scroll;
 
     &--exercise {
-      width: 97%;
+      width: 82%;
       height: 75%;
       margin: 2rem auto;
       overflow-y: scroll;
@@ -15,8 +15,8 @@
     &--addedExercises {
       border: 2px solid $color-gray-500;
       border-radius: 1rem;
-      width: 85%;
-      height: 10rem;
+      width: 20%;
+      height: 60vh;
     }
   }
 
@@ -58,6 +58,13 @@
     }
   }
 
+  &__flex {
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+  }
+
   &__exercises {
     width: 100%;
     font-size: 2.5rem;
@@ -97,13 +104,24 @@
 
   &__addedExercises {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+    align-items: center;
     height: 100%;
     list-style: none;
-    overflow-x: scroll;
+    overflow-Y: scroll;
     scrollbar-width: thin;
 
     &--item {
+      margin: 1rem;
+    }
+
+    &--image {
+      width: 20rem;
+      height: 14rem;
+    }
+
+    &--text {
+      font-size: 1.6rem;
     }
   }
 }
