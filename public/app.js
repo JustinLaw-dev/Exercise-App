@@ -315,6 +315,7 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
     let li = document.createElement('li');
     let img = document.createElement('img');
     let p = document.createElement('p');
+    let button = document.createElement('button');
     let addIcon = document.createElement('i');
 
     li.classList.add('list__exercises__item', 'exerciseClick');
@@ -326,12 +327,13 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
     // img.setAttribute('src', doc.image);
     img.classList.add('list__exercises__img', 'exerciseClick');
     // editIcon.setAttribute('class', 'fas fa-edit');
-    addIcon.setAttribute('class', 'fas fa-plus exercise-plus');
+    addIcon.setAttribute('class', 'fas fa-plus');
+    button.setAttribute('class', 'exercise-plus');
 
-   
     li.appendChild(img);
     li.appendChild(p);
-    li.appendChild(addIcon);
+    button.appendChild(addIcon);
+    li.appendChild(button);
 
     exerciseList.appendChild(li);
   }
@@ -380,7 +382,7 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
     noPatientDel.addEventListener('click', exitDeleteModal);
   }
 
-  ////////Load Patient IMPORTANT
+  //Initialize Patient List on startup
   db.collection('Patients')
     .get()
     .then((snapshot) => {
@@ -394,9 +396,11 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
       });
     });
 
-  //////////
+  function addExerciseToList(e) {
+    console.log(e.currentTarget);
+  }
 
-  ////Observer for INITAL RENDER of exercises when exercises tab is active.
+  // Observer to initialize render of exercises when exercises tab is Clicked for the first time.
   // Options for the exercise content observer
   const obConfig = { attributes: true };
 
@@ -410,6 +414,12 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
       firstExercises.get().then((snapshot) => {
         snapshot.docs.forEach((doc) => {
           renderExerciseList(doc);
+          //doesnt work
+          const addIcons = document.querySelectorAll('.exercise-plus');
+
+          addIcons.forEach((icon) => {
+            icon.addEventListener('click', addExerciseToList);
+          });
           //Adds query selector and event listener after patient list is finished rendering
           // delPatientIcon = document.querySelectorAll('.fa-trash-alt');
           // delPatientIcon.forEach((icon) => {
@@ -661,14 +671,6 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
     printButton.style.opacity = 1;
   });
 
-  //doesnt work
-  const addExercisesIcon = document.querySelectorAll('.exercise-plus');
-  addExercisesIcon.forEach(icon => {
-    icon.addEventListener('click',function(e){
-      target = e.currentTarget;
-      console.log(target);
-    })
-  })
   // TODO
   // click on add exercise icon by exercise name where does it go? model for adding to patient list of exercises, or shopping cart style checkout
   //print functionh for either current exercise list or patient exercise list
