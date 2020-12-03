@@ -97,7 +97,7 @@
     // margin: 2rem 2rem 0 0;
 
     display: flex;
-    flex: row;
+    flex-direction: row;
     align-items: center;
     justify-content: space-around;
 
@@ -123,6 +123,7 @@
 }
 
 .exercise-plus {
-  color: red;
+  background-color: $color-white;
+  color: black;
   padding: 1rem;
 }
