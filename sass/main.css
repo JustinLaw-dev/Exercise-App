@@ -230,9 +230,10 @@ button,
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-flex: row;
-      -ms-flex: row;
-          flex: row;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -262,7 +263,8 @@ button,
 }
 
 .exercise-plus {
-  color: red;
+  background-color: #ffffff;
+  color: black;
   padding: 1rem;
 }
 
@@ -442,9 +444,10 @@ input:focus {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-flex: row;
-      -ms-flex: row;
-          flex: row;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -477,6 +480,20 @@ input:focus {
   height: 85%;
   margin: 2rem auto;
   overflow-y: scroll;
+}
+
+.list__wrapper--exercise {
+  width: 97%;
+  height: 75%;
+  margin: 2rem auto;
+  overflow-y: scroll;
+}
+
+.list__wrapper--addedExercises {
+  border: 2px solid #dcdcdc;
+  border-radius: 1rem;
+  width: 85%;
+  height: 10rem;
 }
 
 .list__header {
@@ -547,6 +564,20 @@ input:focus {
   box-shadow: 2px 3px 5px 0px rgba(50, 50, 50, 0.75);
   height: 20rem;
   margin-bottom: 1rem;
+}
+
+.list__addedExercises {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  height: 100%;
+  list-style: none;
+  overflow-x: scroll;
+  scrollbar-width: thin;
 }
 
 .modal__outer {

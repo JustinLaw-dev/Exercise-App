@@ -4,6 +4,20 @@
     height: 85%;
     margin: 2rem auto;
     overflow-y: scroll;
+
+    &--exercise {
+      width: 97%;
+      height: 75%;
+      margin: 2rem auto;
+      overflow-y: scroll;
+    }
+
+    &--addedExercises {
+      border: 2px solid $color-gray-500;
+      border-radius: 1rem;
+      width: 85%;
+      height: 10rem;
+    }
   }
 
   &__header {
@@ -78,6 +92,18 @@
       box-shadow: 2px 3px 5px 0px rgba(50, 50, 50, 0.75);
       height: 20rem;
       margin-bottom: 1rem;
+    }
+  }
+
+  &__addedExercises {
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+    list-style: none;
+    overflow-x: scroll;
+    scrollbar-width: thin;
+
+    &--item {
     }
   }
 }
