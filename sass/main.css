@@ -593,12 +593,26 @@ input:focus {
           align-items: center;
   height: 100%;
   list-style: none;
-  overflow-Y: scroll;
+  overflow-y: scroll;
   scrollbar-width: thin;
 }
 
 .list__addedExercises--item {
   margin: 1rem;
+}
+
+.list__addedExercises--details {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  background-color: #ffffff;
 }
 
 .list__addedExercises--image {
@@ -608,6 +622,10 @@ input:focus {
 
 .list__addedExercises--text {
   font-size: 1.6rem;
+}
+
+.list__removeExercise--icon {
+  background: #ffffff;
 }
 
 .modal__outer {

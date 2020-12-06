@@ -166,9 +166,6 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
 
   const listAddedExercises = document.getElementById('listAddedExercises');
 
-  //display selected exercises
-  let selectedExercises = [];
-
   //Logout event
   btnLogOut.addEventListener('click', (e) => {
     firebase
@@ -309,10 +306,7 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
 
     patientList.appendChild(li);
   }
-  // Prototype for image creation
-  //  <li class="list__exercises__item exerciseClick">
-  //   <img src="/Exercises/9090 Doorway - 1.JPG" alt="" class="list__exercises__img exerciseClick" data-desc="Stand facing a corner">9090 Doorway - 1<i class="fas fa-plus"></i>
-  //   </li>
+
   function renderExerciseList(doc) {
     let li = document.createElement('li');
     let img = document.createElement('img');
@@ -402,20 +396,14 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
     target = e.currentTarget;
     parent = target.parentNode;
 
-
     let name = parent.getAttribute('data-id');
     let imageSrc = parent.firstChild.src;
     // ul = listaddedExercise
     console.table(name, imageSrc);
 
-{/* <li class="list__addedExercises--item">
-                    <img src="https://picsum.photos/200/140" alt="">
-                    <p class="list__addedExercises--text">Exercise 1</p>
-                  </li> */}
-
     let li = document.createElement('li');
     li.classList.add('list__addedExercises--item');
-    
+
     let img = document.createElement('img');
     img.classList.add('list__addedExercises--image');
     img.src = imageSrc;
@@ -423,11 +411,26 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
     let p = document.createElement('p');
     p.classList.add('list__addedExercises--text');
     p.textContent = name;
-    
+
+    let div = document.createElement('div');
+    div.classList.add('list__addedExercises--details');
+
+    let btn = document.createElement('button');
+    btn.classList.add('list__removeExercise--icon');
+
+    let icon = document.createElement('i');
+    icon.setAttribute('class', 'fas fa-times list__removeExercise--iconX');
+    btn.appendChild(icon);
+
+    div.appendChild(p);
+    div.appendChild(btn);
+
     li.appendChild(img);
-    li.appendChild(p);
+    li.appendChild(div);
+
     listAddedExercises.appendChild(li);
   }
+  //
 
   // Observer to initialize render of exercises when exercises tab is Clicked for the first time.
   // Options for the exercise content observer
@@ -623,9 +626,20 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
   // View exercise
   // https://stackoverflow.com/questions/34896106/attach-event-to-dynamic-elements-in-javascript
   //Image is placed on top of div background. This lists a way to always use the LI text content.
+  //WIP
+  //https://stackoverflow.com/questions/23504528/dynamically-remove-items-from-list-javascript
 
   document.body.addEventListener('click', function (e) {
-    if (e.target.classList.contains('exerciseClick')) {
+    if (
+      // e.target.classList.contains('list__removeExercise--icon') ||
+      e.target.classList.contains('list__removeExercise--iconX')
+    ) {
+      iconParent = e.target.parentNode;
+      let detailDiv = iconParent.parentNode;
+      let li = detailDiv.parentNode;
+
+      listAddedExercises.removeChild(li);
+    } else if (e.target.classList.contains('exerciseClick')) {
       modalOuterPatient.style.display = 'block';
       modalInnerExerciseView.style.display = 'block';
       let target = e.target;
@@ -674,6 +688,13 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
       }
     }
   });
+
+  //WIP Work in Progress
+  // document
+  // listAddedExercises.addEventListener('click', function (e) {
+  //   target = e.currentTarget.children[0];
+  //   console.log(target.children[1]);
+  // });
 
   const printButton = document.querySelector('.button__print');
   printButton.addEventListener('click', function () {

@@ -108,11 +108,18 @@
     align-items: center;
     height: 100%;
     list-style: none;
-    overflow-Y: scroll;
+    overflow-y: scroll;
     scrollbar-width: thin;
 
     &--item {
       margin: 1rem;
+    }
+
+    &--details {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      background-color: $color-white;
     }
 
     &--image {
@@ -123,5 +130,9 @@
     &--text {
       font-size: 1.6rem;
     }
+  }
+
+  &__removeExercise--icon {
+    background: $color-white;
   }
 }
