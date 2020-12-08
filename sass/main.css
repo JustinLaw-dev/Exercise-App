@@ -21,6 +21,13 @@ html {
           box-sizing: border-box;
 }
 
+@media print {
+  html,
+  body {
+    height: auto;
+  }
+}
+
 *,
 *::before,
 *::after {
@@ -31,7 +38,8 @@ html {
   outline: none;
 }
 
-*:focus, *:hover {
+*:focus,
+*:hover {
   outline: none;
 }
 
@@ -119,7 +127,6 @@ button,
 
 .modal__inner--exerciseView-text {
   font-size: 2rem;
-  width: 50rem;
 }
 
 .button {
@@ -483,17 +490,22 @@ input:focus {
 }
 
 .list__wrapper--exercise {
-  width: 82%;
-  height: 75%;
-  margin: 2rem auto;
+  width: 70%;
+  height: 100%;
   overflow-y: scroll;
+  scrollbar-width: thin;
+  border: 2px solid #dcdcdc;
+  border-radius: 1rem;
 }
 
 .list__wrapper--addedExercises {
+  height: 100%;
   border: 2px solid #dcdcdc;
   border-radius: 1rem;
   width: 20%;
-  height: 60vh;
+  padding-top: 2rem;
+  overflow-y: scroll;
+  scrollbar-width: thin;
 }
 
 .list__header {
@@ -526,7 +538,7 @@ input:focus {
 }
 
 .list__flex {
-  height: auto;
+  height: 85%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -537,10 +549,15 @@ input:focus {
   -webkit-box-align: start;
       -ms-flex-align: start;
           align-items: flex-start;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  margin-top: 4rem;
 }
 
 .list__exercises {
   width: 100%;
+  height: 100%;
   font-size: 2.5rem;
   list-style: none;
   display: -webkit-box;
@@ -593,8 +610,6 @@ input:focus {
           align-items: center;
   height: 100%;
   list-style: none;
-  overflow-y: scroll;
-  scrollbar-width: thin;
 }
 
 .list__addedExercises--item {
@@ -618,6 +633,7 @@ input:focus {
 .list__addedExercises--image {
   width: 20rem;
   height: 14rem;
+  border-radius: 5px;
 }
 
 .list__addedExercises--text {
@@ -626,6 +642,11 @@ input:focus {
 
 .list__removeExercise--icon {
   background: #ffffff;
+}
+
+.list__button--printAddedExercises {
+  padding: 1rem;
+  border-radius: 5px;
 }
 
 .modal__outer {
@@ -695,6 +716,14 @@ input:focus {
 .modal__inner--exerciseView-image {
   width: 40rem;
   height: auto;
+}
+
+.modal__inner--exerciseView-details {
+  width: 40rem;
+}
+
+.modal__inner--exerciseView-text {
+  width: 100%;
 }
 
 .modal__exit {

@@ -2,18 +2,26 @@ html {
   box-sizing: border-box;
 }
 
+html,
+body {
+  @media print {
+    height: auto;
+  }
+}
+
 *,
 *::before,
 *::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  outline:none;
+  outline: none;
 }
 
 //disables chrome outline on button/input focus
-*:focus, *:hover {
-  outline:none;
+*:focus,
+*:hover {
+  outline: none;
 }
 
 h2 {
@@ -29,9 +37,8 @@ button {
   /* show a hand cursor on hover; some argue that we
   should keep the default arrow cursor for buttons */
   cursor: pointer;
-  
+
   &:focus {
     border: none;
   }
-  }
-
+}
