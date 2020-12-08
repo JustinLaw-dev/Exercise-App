@@ -356,7 +356,7 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
     // //Display "Are you sure you want to remove xxxx, xxx?" Delete Cancel
     delPatientText.textContent = `Are you sure you want to delete ${name}? If deleted, the patient will be removed and cannot be retrieved.`;
 
-    //Delete on "Yes"
+    //Confirm delete
     yesPatientDel.addEventListener(
       'click',
       function () {
@@ -696,28 +696,42 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
   //   console.log(target.children[1]);
   // });
 
-  const printButton = document.querySelector('.button__print');
-  printButton.addEventListener('click', function () {
-    let width = modalInnerExerciseView.style.width;
-    let height = modalInnerExerciseView.style.height;
+  // const printButton = document.querySelector('.button__print');
+  // printButton.addEventListener('click', function () {
+  //   let width = modalInnerExerciseView.style.width;
+  //   let height = modalInnerExerciseView.style.height;
 
-    modalInnerExerciseView.style.width = '100vw';
-    modalInnerExerciseView.style.height = '100vh';
-    modalInnerExerciseView.style.top = 0;
-    modalInnerExerciseView.style.left = 0;
-    printButton.style.opacity = 0;
+  //   modalInnerExerciseView.style.width = '100vw';
+  //   modalInnerExerciseView.style.height = '100vh';
+  //   modalInnerExerciseView.style.top = 0;
+  //   modalInnerExerciseView.style.left = 0;
+  //   printButton.style.opacity = 0;
 
-    window.print();
+  //   // window.print();
 
-    modalInnerExerciseView.style.width = width;
-    modalInnerExerciseView.style.height = height;
-    modalInnerExerciseView.style.top = '6%';
-    modalInnerExerciseView.style.left = '25%';
-    printButton.style.opacity = 1;
-  });
+  //   // modalInnerExerciseView.style.width = width;
+  //   // modalInnerExerciseView.style.height = height;
+  //   // modalInnerExerciseView.style.top = '6%';
+  //   // modalInnerExerciseView.style.left = '25%';
+  //   // printButton.style.opacity = 1;
+  //   // modalExit.style.opacity = 1;
+  // });
 
+  const btnPrintList = document.getElementById('printAddedExercises');
+
+  btnPrintList.addEventListener('click', printExercises);
+
+  function printExercises() {
+    //Grab all current LIs within list of added exercises
+    list = listAddedExercises.getElementsByTagName('li');
+    for (let i = 0; i < list.length; i++) {
+      let img = list[i].children[0];
+      let exerciseID = list[i].children[1].children[0].textContent;
+      console.log(img, exerciseID);
+    }
+    //Table the elements of each li
+  }
   // TODO
-  // click on add exercise icon by exercise name where does it go? model for adding to patient list of exercises, or shopping cart style checkout
   //print functionh for either current exercise list or patient exercise list
   // for patient, can list their name at the top
 }
