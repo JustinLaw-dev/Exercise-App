@@ -3,6 +3,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="../sass/main.css" />
+    <link rel="stylesheet" media="print" href="./print.css"/>
     <script
       src="https://kit.fontawesome.com/1b93ecf5f2.js"
       crossorigin="anonymous"
@@ -49,13 +50,13 @@
           >
             <i class="fas fa-dumbbell"></i>Exercises
           </button>
-          <button
+          <!-- <button
             class="tabs__link"
             id="accountLink"
             onclick="openTab('accountTab')"
           >
             <i class="fas fa-cog"></i> Account
-          </button>
+          </button> -->
           
           <button class="button button--logout" id="btnLogOut"><i class="fas fa-sign-out-alt button--logout-icon"></i>Log Out</button>
         </div>
@@ -195,6 +196,8 @@
               </form>
             </div>
 
+            <button class="list__button--printAddedExercises" id="printAddedExercises">Print Exercises</button>
+
             <div class="list__flex">
               <div class="list__wrapper--addedExercises">
                 <ul class="list__addedExercises" id="listAddedExercises">
@@ -229,10 +232,10 @@
 
             <div class="modal__inner modal__inner--exerciseView">
               <i class="modal__exit fas fa-times"></i>
-              <h3 class="modal__header" id="heading--exerciseView">Add Exercise</h3>
+              <h3 class="modal__header" id="heading--exerciseView"></h3>
               <div class="modal__inner--exerciseView-ItemContainer">
                 <img src="" class="modal__inner--exerciseView-image" id ="exerciseViewImg" alt="">
-                <div>
+                <div class="modal__inner--exerciseView-details">
                   <h4 class="modal__inner--exerciseView-heading">Instructions</h4>
                   <p class="modal__inner--exerciseView-text"></p>
                 </div>
@@ -247,9 +250,9 @@
          </div>
         
           <!-- Account Tab -->
-          <div class="tabs__panel" id="accountContent">
+          <!-- <div class="tabs__panel" id="accountContent">
             <h1>Account page is open!</h1>
-          </div>
+          </div> -->
       </div>
     </div>
 
