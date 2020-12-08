@@ -164,6 +164,7 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
     '.modal__inner--exerciseView-text'
   );
 
+  const wrapperAddedExercises = document.querySelector('.list__wrapper--addedExercises');
   const listAddedExercises = document.getElementById('listAddedExercises');
 
   //Logout event
@@ -721,13 +722,56 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
 
   btnPrintList.addEventListener('click', printExercises);
 
+  function openPrintModal(){
+    //Base values - must edit when there is a change to styling.
+    let baseWidth = '97%';
+    let baseHeight = '85%';
+    wrapperAddedExercises.style.width = '100vw';
+    wrapperAddedExercises.style.height = '100vh';
+    //Expand width to of wrapper to cover everything
+      // var opened = window.open("");
+      // opened.document.write("<html><head><title>MyTitle</title></head><body>test</body></html>");
+  }
+
+  function generatePrintItems(exerciseID, img, instructions){
+    // let li = document.createElement('li');
+    // let image = document.createElement('img');
+    // let p = document.createElement('p');
+
+    
+    console.log(exerciseID, img, instructions);
+
+  }
+
   function printExercises() {
     //Grab all current LIs within list of added exercises
     list = listAddedExercises.getElementsByTagName('li');
     for (let i = 0; i < list.length; i++) {
       let img = list[i].children[0];
       let exerciseID = list[i].children[1].children[0].textContent;
-      console.log(img, exerciseID);
+      var exerciseRef = db.collection("testrcises").doc(`${exerciseID}`);
+      let instructions;
+
+      exerciseRef.get().then(function(doc) {
+          if (doc.exists) {
+             instructions = doc.data().instructions;
+             modal
+             generatePrintItems(exerciseID, img, instructions);
+            
+            //  openPrintModal();
+          } else {
+              // doc.data() will be undefined in this case
+              console.log("No such document!");
+          }
+      }).catch(function(error) {
+          console.log("Error getting document:", error);
+      });
+    
+    //Open Modal 
+    // 
+    // Image
+    //
+      // console.log(img, exerciseID);
     }
     //Table the elements of each li
   }

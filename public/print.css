@@ -72,4 +72,18 @@ body {
   
        &-details {
        }
-    } */
+    /* } */
+
+
+    /* <div class="list__flex">
+              <div class="list__wrapper--addedExercises">
+                <ul class="list__addedExercises" id="listAddedExercises">
+                  <li class="list__addedExercises--item">
+                    <img class="list__addedExercises--image"src="https://picsum.photos/200/140" alt="">
+                    <div class="list__addedExercises--details">
+                      <p class="list__addedExercises--text">Exercise 1</p>
+                      <button class="list__removeExercise--icon"><i class="fas fa-times list__removeExercise--iconX"></i></button>
+                    </div>
+                  </li>
+                </ul>
+              </div> */

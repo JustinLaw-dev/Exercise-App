@@ -726,6 +726,12 @@ input:focus {
   width: 100%;
 }
 
+.modal__inner--print {
+  z-index: 21000;
+  width: 100vw;
+  min-height: 100vh;
+}
+
 .modal__exit {
   position: absolute;
   font-size: 3rem;
