@@ -148,4 +148,30 @@
     padding: 1rem;
     border-radius: 5px;
   }
+
+  &__print {
+    &--item {
+    }
+
+    &--row {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: flex-start;
+      border: 1px solid black;
+    }
+
+    &--heading {
+      font-size: 3rem;
+    }
+
+    &--img {
+      width: 20%;
+    }
+
+    &--instructions {
+      font-size: 1.6rem;
+      width: 45%;
+    }
+  }
 }
