@@ -719,6 +719,7 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
   // });
 
   const btnPrintList = document.getElementById('printAddedExercises');
+  const printModal = document.querySelector('.modal__inner--print');
 
   btnPrintList.addEventListener('click', printExercises);
 
@@ -726,9 +727,13 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
     //Base values - must edit when there is a change to styling.
     let baseWidth = '97%';
     let baseHeight = '85%';
-    wrapperAddedExercises.style.width = '100vw';
-    wrapperAddedExercises.style.height = '100vh';
-    //Expand width to of wrapper to cover everything
+
+    //Open modal
+    printModal.style.display = 'block';
+    //Expand width modal to cover everything
+    
+
+      // Alternative to open formatted HTML in new tab
       // var opened = window.open("");
       // opened.document.write("<html><head><title>MyTitle</title></head><body>test</body></html>");
   }
@@ -755,10 +760,11 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
       exerciseRef.get().then(function(doc) {
           if (doc.exists) {
              instructions = doc.data().instructions;
-             modal
+             openPrintModal();
+
+             //Fill modal with list items
              generatePrintItems(exerciseID, img, instructions);
-            
-            //  openPrintModal();
+             
           } else {
               // doc.data() will be undefined in this case
               console.log("No such document!");
