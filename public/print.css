@@ -23,10 +23,21 @@ body {
   page-break-after: auto;
 }
 
+.list__print--img {
+  width: 40%;
+}
+
+.list__print--instructions {
+  font-size: 1.2rem;
+      width: 45%;
+}
+
+
+/*
 .modal__header {
   font-size: 2.2rem;
   text-align: left;
-  /* margin-top: 6rem; */
+   margin-top: 6rem; 
 }
 
 #exerciseViewImg {
@@ -52,7 +63,7 @@ body {
   font-size: 1.6rem;
   line-height: 1.5;
 }
-
+*/
 /* &--small {
     }
   
