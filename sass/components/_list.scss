@@ -8,9 +8,8 @@
     &--exercise {
       width: 70%;
       height: 100%;
-      // margin: ;
-      overflow-y: scroll;
-      scrollbar-width: thin;
+      // overflow-y: scroll;
+      // scrollbar-width: thin;
       border: 2px solid $color-gray-500;
       border-radius: 1rem;
     }
@@ -65,7 +64,7 @@
   }
 
   &__flex {
-    height: 85%;
+    height: 76%;
     display: flex;
     flex-direction: row;
     align-items: flex-start;
@@ -94,7 +93,7 @@
       cursor: pointer;
 
       //1st one of every row of 4.. (1, 5, 9, etc)
-      &:nth-child(4n + 1) {
+      &:nth-child(5n + 1) {
         margin-left: 4rem;
       }
     }

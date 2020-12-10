@@ -492,8 +492,6 @@ input:focus {
 .list__wrapper--exercise {
   width: 70%;
   height: 100%;
-  overflow-y: scroll;
-  scrollbar-width: thin;
   border: 2px solid #dcdcdc;
   border-radius: 1rem;
 }
@@ -538,7 +536,7 @@ input:focus {
 }
 
 .list__flex {
-  height: 85%;
+  height: 76%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -584,7 +582,7 @@ input:focus {
   cursor: pointer;
 }
 
-.list__exercises__item:nth-child(4n + 1) {
+.list__exercises__item:nth-child(5n + 1) {
   margin-left: 4rem;
 }
 
