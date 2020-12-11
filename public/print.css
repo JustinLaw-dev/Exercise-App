@@ -23,15 +23,18 @@ body {
   page-break-after: auto;
 }
 
+.list__print {
+  width: 90%;
+}
+
 .list__print--img {
   width: 40%;
 }
 
 .list__print--instructions {
   font-size: 1.2rem;
-      width: 45%;
+  width: 45%;
 }
-
 
 /*
 .modal__header {
@@ -85,8 +88,7 @@ body {
        }
     /* } */
 
-
-    /* <div class="list__flex">
+/* <div class="list__flex">
               <div class="list__wrapper--addedExercises">
                 <ul class="list__addedExercises" id="listAddedExercises">
                   <li class="list__addedExercises--item">
