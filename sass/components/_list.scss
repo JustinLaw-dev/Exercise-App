@@ -65,7 +65,7 @@
   }
 
   &__flex {
-    height: 85%;
+    height: 76%;
     display: flex;
     flex-direction: row;
     align-items: flex-start;
@@ -174,7 +174,8 @@
     }
 
     &--img {
-      width: 20%;
+      width: 25rem;
+      height: 15rem;
     }
 
     &--instructions {

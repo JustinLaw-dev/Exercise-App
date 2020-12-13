@@ -26,10 +26,17 @@ body {
 
 .list__print {
   width: 90%;
+  gap: 2rem;
+}
+
+.list__print--row {
+  margin: 2rem 0;
+  padding-bottom: 6rem;
 }
 
 .list__print--img {
   width: 40%;
+  height: 100%;
 }
 
 .list__print--instructions {
