@@ -168,6 +168,7 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
     '.list__wrapper--addedExercises'
   );
   const listAddedExercises = document.getElementById('listAddedExercises');
+  const printList = document.getElementById('printList');
 
   //Logout event
   btnLogOut.addEventListener('click', (e) => {
@@ -533,6 +534,8 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
           // .then((docRef) => {
           //   console.log('Document successfully written!');
 
+          ////Function to immediately write a copy of exercise into list
+
           //   let newDoc = db.collection('Exercises').doc(docRef.id);
           //   newDoc.get().then(function (doc) {
           //     if (doc.exists) {
@@ -694,7 +697,7 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
   });
 
   //WIP Work in Progress
-  // document
+  // Print single exercise, needed still?
   // listAddedExercises.addEventListener('click', function (e) {
   //   target = e.currentTarget.children[0];
   //   console.log(target.children[1]);
@@ -741,11 +744,39 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
   }
 
   function generatePrintItems(exerciseID, img, instructions) {
-    // let li = document.createElement('li');
-    // let image = document.createElement('img');
-    // let p = document.createElement('p');
+    let li = document.createElement('li');
+    let heading = document.createElement('h3');
+    let div = document.createElement('div');
+    let image = document.createElement('img');
+    let p = document.createElement('p');
 
-    console.log(exerciseID, img, instructions);
+    heading.classList.add('list__print--heading');
+    div.classList.add('list__print--row');
+    image.classList.add('list__print--img');
+    p.classList.add('list__print--instructions');
+
+    heading.textContent = exerciseID;
+    image.src = `${img.src}`;
+    image.alt = `${exerciseID}`;
+
+    db.collection('testrcises')
+      .where('instructions', '==', instructions)
+      .get()
+      .then(function (querySnapshot) {
+        querySnapshot.forEach(function (doc) {
+          p.textContent = doc.data().instructions;
+        });
+      })
+      .catch(function (error) {
+        console.log('Error getting documents: ', error);
+      });
+
+    div.appendChild(image);
+    div.appendChild(p);
+    li.appendChild(heading);
+    li.appendChild(div);
+    printList.appendChild(li);
+    // console.log(exerciseID, img, instructions);
   }
 
   function printExercises() {
