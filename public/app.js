@@ -164,8 +164,11 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
     '.modal__inner--exerciseView-text'
   );
 
-  //display selected exercises
-  let selectedExercises = [];
+  const wrapperAddedExercises = document.querySelector(
+    '.list__wrapper--addedExercises'
+  );
+  const listAddedExercises = document.getElementById('listAddedExercises');
+  const printList = document.getElementById('printList');
 
   //Logout event
   btnLogOut.addEventListener('click', (e) => {
@@ -307,10 +310,7 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
 
     patientList.appendChild(li);
   }
-  // Prototype for image creation
-  //  <li class="list__exercises__item exerciseClick">
-  //   <img src="/Exercises/9090 Doorway - 1.JPG" alt="" class="list__exercises__img exerciseClick" data-desc="Stand facing a corner">9090 Doorway - 1<i class="fas fa-plus"></i>
-  //   </li>
+
   function renderExerciseList(doc) {
     let li = document.createElement('li');
     let img = document.createElement('img');
@@ -360,7 +360,7 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
     // //Display "Are you sure you want to remove xxxx, xxx?" Delete Cancel
     delPatientText.textContent = `Are you sure you want to delete ${name}? If deleted, the patient will be removed and cannot be retrieved.`;
 
-    //Delete on "Yes"
+    //Confirm delete
     yesPatientDel.addEventListener(
       'click',
       function () {
@@ -384,6 +384,7 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
 
   //Initialize Patient List on startup
   db.collection('Patients')
+    .orderBy('lastName', 'asc')
     .get()
     .then((snapshot) => {
       snapshot.docs.forEach((doc) => {
@@ -397,8 +398,44 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
     });
 
   function addExerciseToList(e) {
-    console.log(e.currentTarget);
+    target = e.currentTarget;
+    parent = target.parentNode;
+
+    let name = parent.getAttribute('data-id');
+    let imageSrc = parent.firstChild.src;
+    // ul = listaddedExercise
+    console.table(name, imageSrc);
+
+    let li = document.createElement('li');
+    li.classList.add('list__addedExercises--item');
+
+    let img = document.createElement('img');
+    img.classList.add('list__addedExercises--image');
+    img.src = imageSrc;
+
+    let p = document.createElement('p');
+    p.classList.add('list__addedExercises--text');
+    p.textContent = name;
+
+    let div = document.createElement('div');
+    div.classList.add('list__addedExercises--details');
+
+    let btn = document.createElement('button');
+    btn.classList.add('list__removeExercise--icon');
+
+    let icon = document.createElement('i');
+    icon.setAttribute('class', 'fas fa-times list__removeExercise--iconX');
+    btn.appendChild(icon);
+
+    div.appendChild(p);
+    div.appendChild(btn);
+
+    li.appendChild(img);
+    li.appendChild(div);
+
+    listAddedExercises.appendChild(li);
   }
+  //
 
   // Observer to initialize render of exercises when exercises tab is Clicked for the first time.
   // Options for the exercise content observer
@@ -420,11 +457,6 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
           addIcons.forEach((icon) => {
             icon.addEventListener('click', addExerciseToList);
           });
-          //Adds query selector and event listener after patient list is finished rendering
-          // delPatientIcon = document.querySelectorAll('.fa-trash-alt');
-          // delPatientIcon.forEach((icon) => {
-          //   icon.addEventListener('click', deletePatient);
-          // });
         });
       });
       //Stop observing after tab is clicked for the first time
@@ -501,6 +533,8 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
           });
           // .then((docRef) => {
           //   console.log('Document successfully written!');
+
+          ////Function to immediately write a copy of exercise into list
 
           //   let newDoc = db.collection('Exercises').doc(docRef.id);
           //   newDoc.get().then(function (doc) {
@@ -599,9 +633,20 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
   // View exercise
   // https://stackoverflow.com/questions/34896106/attach-event-to-dynamic-elements-in-javascript
   //Image is placed on top of div background. This lists a way to always use the LI text content.
+  //WIP
+  //https://stackoverflow.com/questions/23504528/dynamically-remove-items-from-list-javascript
 
   document.body.addEventListener('click', function (e) {
-    if (e.target.classList.contains('exerciseClick')) {
+    if (
+      // e.target.classList.contains('list__removeExercise--icon') ||
+      e.target.classList.contains('list__removeExercise--iconX')
+    ) {
+      iconParent = e.target.parentNode;
+      let detailDiv = iconParent.parentNode;
+      let li = detailDiv.parentNode;
+
+      listAddedExercises.removeChild(li);
+    } else if (e.target.classList.contains('exerciseClick')) {
       modalOuterPatient.style.display = 'block';
       modalInnerExerciseView.style.display = 'block';
       let target = e.target;
@@ -651,28 +696,125 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
     }
   });
 
-  const printButton = document.querySelector('.button__print');
-  printButton.addEventListener('click', function () {
-    let width = modalInnerExerciseView.style.width;
-    let height = modalInnerExerciseView.style.height;
+  //WIP Work in Progress
+  // Print single exercise, needed still?
+  // listAddedExercises.addEventListener('click', function (e) {
+  //   target = e.currentTarget.children[0];
+  //   console.log(target.children[1]);
+  // });
 
-    modalInnerExerciseView.style.width = '100vw';
-    modalInnerExerciseView.style.height = '100vh';
-    modalInnerExerciseView.style.top = 0;
-    modalInnerExerciseView.style.left = 0;
-    printButton.style.opacity = 0;
+  // const printButton = document.querySelector('.button__print');
+  // printButton.addEventListener('click', function () {
+  //   let width = modalInnerExerciseView.style.width;
+  //   let height = modalInnerExerciseView.style.height;
 
-    window.print();
+  //   modalInnerExerciseView.style.width = '100vw';
+  //   modalInnerExerciseView.style.height = '100vh';
+  //   modalInnerExerciseView.style.top = 0;
+  //   modalInnerExerciseView.style.left = 0;
+  //   printButton.style.opacity = 0;
 
-    modalInnerExerciseView.style.width = width;
-    modalInnerExerciseView.style.height = height;
-    modalInnerExerciseView.style.top = '6%';
-    modalInnerExerciseView.style.left = '25%';
-    printButton.style.opacity = 1;
-  });
+  //   // window.print();
 
+  //   // modalInnerExerciseView.style.width = width;
+  //   // modalInnerExerciseView.style.height = height;
+  //   // modalInnerExerciseView.style.top = '6%';
+  //   // modalInnerExerciseView.style.left = '25%';
+  //   // printButton.style.opacity = 1;
+  //   // modalExit.style.opacity = 1;
+  // });
+
+  const btnPrintList = document.getElementById('printAddedExercises');
+  const printModal = document.querySelector('.modal__inner--print');
+
+  btnPrintList.addEventListener('click', printExercises);
+
+  function openPrintModal() {
+    //Base values - must edit when there is a change to styling.
+    let baseWidth = '97%';
+    let baseHeight = '85%';
+
+    //Open modal
+    printModal.style.display = 'block';
+    //Expand width modal to cover everything
+
+    // Alternative to open formatted HTML in new tab
+    // var opened = window.open("");
+    // opened.document.write("<html><head><title>MyTitle</title></head><body>test</body></html>");
+  }
+
+  function generatePrintItems(exerciseID, img, instructions) {
+    let li = document.createElement('li');
+    let heading = document.createElement('h3');
+    let div = document.createElement('div');
+    let image = document.createElement('img');
+    let p = document.createElement('p');
+
+    heading.classList.add('list__print--heading');
+    div.classList.add('list__print--row');
+    image.classList.add('list__print--img');
+    p.classList.add('list__print--instructions');
+
+    heading.textContent = exerciseID;
+    image.src = `${img.src}`;
+    image.alt = `${exerciseID}`;
+
+    db.collection('testrcises')
+      .where('instructions', '==', instructions)
+      .get()
+      .then(function (querySnapshot) {
+        querySnapshot.forEach(function (doc) {
+          p.textContent = doc.data().instructions;
+        });
+      })
+      .catch(function (error) {
+        console.log('Error getting documents: ', error);
+      });
+
+    div.appendChild(image);
+    div.appendChild(p);
+    li.appendChild(heading);
+    li.appendChild(div);
+    printList.appendChild(li);
+    // console.log(exerciseID, img, instructions);
+  }
+
+  function printExercises() {
+    //Grab all current LIs within list of added exercises
+    list = listAddedExercises.getElementsByTagName('li');
+    for (let i = 0; i < list.length; i++) {
+      let img = list[i].children[0];
+      let exerciseID = list[i].children[1].children[0].textContent;
+      var exerciseRef = db.collection('testrcises').doc(`${exerciseID}`);
+      let instructions;
+
+      exerciseRef
+        .get()
+        .then(function (doc) {
+          if (doc.exists) {
+            instructions = doc.data().instructions;
+            openPrintModal();
+
+            //Fill modal with list items
+            generatePrintItems(exerciseID, img, instructions);
+          } else {
+            // doc.data() will be undefined in this case
+            console.log('No such document!');
+          }
+        })
+        .catch(function (error) {
+          console.log('Error getting document:', error);
+        });
+
+      //Open Modal
+      //
+      // Image
+      //
+      // console.log(img, exerciseID);
+    }
+    //Table the elements of each li
+  }
   // TODO
-  // click on add exercise icon by exercise name where does it go? model for adding to patient list of exercises, or shopping cart style checkout
   //print functionh for either current exercise list or patient exercise list
   // for patient, can list their name at the top
 }

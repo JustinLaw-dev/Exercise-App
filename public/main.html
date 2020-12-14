@@ -3,6 +3,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="../sass/main.css" />
+    <link rel="stylesheet" media="print" href="./print.css"/>
     <script
       src="https://kit.fontawesome.com/1b93ecf5f2.js"
       crossorigin="anonymous"
@@ -49,13 +50,13 @@
           >
             <i class="fas fa-dumbbell"></i>Exercises
           </button>
-          <button
+          <!-- <button
             class="tabs__link"
             id="accountLink"
             onclick="openTab('accountTab')"
           >
             <i class="fas fa-cog"></i> Account
-          </button>
+          </button> -->
           
           <button class="button button--logout" id="btnLogOut"><i class="fas fa-sign-out-alt button--logout-icon"></i>Log Out</button>
         </div>
@@ -195,60 +196,69 @@
               </form>
             </div>
 
-            <div class="list__wrapper--addedExercises">
-              <ul class="list__addedExercises">
-                <li class="list__addedExercises--item">
-                  <img src="https://picsum.photos/100/70" alt="">
-                  <p>Exercise 1</p>
-                  
-                </li>
-                <li class="list__addedExercises--item">2222</li>
-                <li class="list__addedExercises--item">3333</li>
-              </ul>
-            </div>
+            <button class="list__button--printAddedExercises" id="printAddedExercises">Print Exercises</button>
 
-            <div class="list__wrapper--exercise">
-              <ul class="list__exercises" id="exerciseList">
-                <!-- <li class="list__exercises__item exerciseClick"><img src="/Exercises/9090 Doorway - 1.JPG" alt="" class="list__exercises__img exerciseClick" data-desc="Stand facing a corner with your elbows bent at 90 degrees up at shoulder level.">9090 Doorway - 1<i class="fas fa-plus"></i></li> -->
+            <div class="list__flex">
+              <div class="list__wrapper--addedExercises">
+                <ul class="list__addedExercises" id="listAddedExercises">
+                  <!-- <li class="list__addedExercises--item">
+                    <img class="list__addedExercises--image"src="https://picsum.photos/200/140" alt="">
+                    <div class="list__addedExercises--details">
+                      <p class="list__addedExercises--text">Exercise 1</p>
+                      <button class="list__removeExercise--icon"><i class="fas fa-times list__removeExercise--iconX"></i></button>
+                    </div>
+                  </li> -->
+                </ul>
+              </div>
 
-                <!-- <li class="list__exercises__item exerciseClick"><img src="/Exercises/AA Eccentric Shoulder Flexion - 1.JPG" alt="" class="list__exercises__img exerciseClick" data-desc="Move Shoulder">AA Eccentric Shoulder Flexion - 1<i class="fas fa-plus"></i></li> -->
-                <!-- 
-                <li class="list__exercises__item"><img src="/Exercises/Arm Marching 1.JPG" alt="" class="list__exercises__img" data-desc="">Arm Marching<i class="fas fa-plus"></i></li>
-          
-                <li class="list__exercises__item"><img src="/Exercises/Backward Overhead 1.JPG" alt="" class="list__exercises__img" data-desc="">Backward Overhead 1<i class="fas fa-plus"></i></li>
-                <li class="list__exercises__item"><img src="/Exercises/Bent Over Rows.JPG" alt="" class="list__exercises__img" data-desc="">Bent Over Rows<i class="fas fa-plus"></i></li>
-                <li class="list__exercises__item"><img src="/Exercises/Bilateral Arm Marching - 3.JPG" alt="" class="list__exercises__img" data-desc="">Bilateral Arm Marching<i class="fas fa-plus"></i></li>
-                <li class="list__exercises__item"><img src="/Exercises/Body blade position - b (throwing).JPG" alt="" class="list__exercises__img" data-desc="">Body blade position - b (throwing)<i class="fas fa-plus"></i></li>
-                <li class="list__exercises__item"><img src="/Exercises/Body Blade Position 3 Movement.JPG" alt="" class="list__exercises__img" data-desc="">Body Blade Position 3 Movement<i class="fas fa-plus"></i></li>
-                <li class="list__exercises__item"><img src="/Exercises/Body blade Position 4 External Rotation.JPG" alt="" class="list__exercises__img" data-desc="">Body blade Position 4 External Rotation<i class="fas fa-plus"></i></li>
-                <li class="list__exercises__item"><img src="/Exercises/Body blade Position 4 Internal Rotation.JPG" alt="" class="list__exercises__img" data-desc="">Body blade Position 4 Internal Rotation<i class="fas fa-plus"></i></li> -->
-              </ul>
+              <div class="list__wrapper--exercise">
+                <ul class="list__exercises" id="exerciseList">
+                  <!-- <li class="list__exercises__item exerciseClick"><img src="/Exercises/9090 Doorway - 1.JPG" alt="" class="list__exercises__img exerciseClick" data-desc="Stand facing a corner with your elbows bent at 90 degrees up at shoulder level.">9090 Doorway - 1<i class="fas fa-plus"></i></li> -->
+                  <!-- <li class="list__exercises__item exerciseClick"><img src="/Exercises/AA Eccentric Shoulder Flexion - 1.JPG" alt="" class="list__exercises__img exerciseClick" data-desc="Move Shoulder">AA Eccentric Shoulder Flexion - 1<i class="fas fa-plus"></i></li> -->
+                </ul>
+              </div>
             </div>
-          
 
             <div class="modal__inner modal__inner--exerciseView">
               <i class="modal__exit fas fa-times"></i>
-              <h3 class="modal__header" id="heading--exerciseView">Add Exercise</h3>
+              <h3 class="modal__header" id="heading--exerciseView"></h3>
               <div class="modal__inner--exerciseView-ItemContainer">
                 <img src="" class="modal__inner--exerciseView-image" id ="exerciseViewImg" alt="">
-                <div>
+                <div class="modal__inner--exerciseView-details">
                   <h4 class="modal__inner--exerciseView-heading">Instructions</h4>
                   <p class="modal__inner--exerciseView-text"></p>
                 </div>
               </div>
+              
+              <!-- Print within exercise view -->
               <button
                 class="button__square button__print"
                 id="">
                 Print
               </button>
             </div>
+
+            <div class="modal__inner modal__inner--print">
+              <!-- back arrow here -->
+              <ul class="list__print" id="printList">
+                <!-- <li>
+                  <h3 class="list__print--heading">Exercise 1</h3>
+                  <div class="list__print--row">
+                    <img class="list__print--img" src="https://picsum.photos/200/140" alt="Exercise 1">
+                    <p class="list__print--instructions">Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae quaerat magnam praesentium labore, quas pariatur aut assumenda veritatis fugiat porro? Eum illo, officia praesentium iusto necessitatibus repellendus optio asperiores aspernatur.
+                    Ipsam voluptatum provident accusamus pariatur porro aut dolor perspiciatis sint necessitatibus maxime sunt a dolore fugit tempora temporibus ducimus eos animi est quidem, error impedit rerum sed dolorem deleniti! Unde.
+                    Repellendus dolor voluptatum modi? Fugit incidunt ducimus repellat.</p>
+                  </div>
+                </li> -->
+              </ul>
+            </div>
             <!-- end of exercise tab -->
          </div>
         
           <!-- Account Tab -->
-          <div class="tabs__panel" id="accountContent">
+          <!-- <div class="tabs__panel" id="accountContent">
             <h1>Account page is open!</h1>
-          </div>
+          </div> -->
       </div>
     </div>
 

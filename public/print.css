@@ -1,0 +1,110 @@
+html,
+body {
+  height: auto;
+  margin: 0;
+  padding: 0;
+}
+
+.grid__top--left,
+.grid__top--right,
+.grid__bottom--left,
+.modal__exit,
+.fas,
+.fa-times,
+.modal__exit::before,
+.fas::before,
+.fa-times::before {
+  display: none;
+}
+
+.modal__inner {
+  width: 100%;
+  min-height: 100%;
+  height: auto;
+  page-break-after: auto;
+}
+
+.list__print {
+  width: 90%;
+  gap: 2rem;
+}
+
+.list__print--row {
+  margin: 2rem 0;
+  padding-bottom: 6rem;
+}
+
+.list__print--img {
+  width: 40%;
+  height: 100%;
+}
+
+.list__print--instructions {
+  font-size: 1.2rem;
+  width: 45%;
+}
+
+/*
+.modal__header {
+  font-size: 2.2rem;
+  text-align: left;
+   margin-top: 6rem; 
+}
+
+#exerciseViewImg {
+  width: 30rem;
+  height: auto;
+  margin-right: 0.2cm;
+  border: 1px solid black;
+}
+
+.modal__inner--exerciseView-ItemContainer {
+  margin-top: 0.5cm;
+}
+
+.modal__inner--exerciseView-heading {
+  font-size: 2rem;
+}
+
+.modal__inner--exerciseView-details {
+  width: 50%;
+}
+
+.modal__inner--exerciseView-text {
+  font-size: 1.6rem;
+  line-height: 1.5;
+}
+*/
+/* &--small {
+    }
+  
+    &--exerciseView {
+      &-ItemContainer {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        margin-top: 4rem;
+      }
+  
+      &-image {
+        width: 40rem;
+        height: auto;
+      }
+  
+       &-details {
+       }
+    /* } */
+
+/* <div class="list__flex">
+              <div class="list__wrapper--addedExercises">
+                <ul class="list__addedExercises" id="listAddedExercises">
+                  <li class="list__addedExercises--item">
+                    <img class="list__addedExercises--image"src="https://picsum.photos/200/140" alt="">
+                    <div class="list__addedExercises--details">
+                      <p class="list__addedExercises--text">Exercise 1</p>
+                      <button class="list__removeExercise--icon"><i class="fas fa-times list__removeExercise--iconX"></i></button>
+                    </div>
+                  </li>
+                </ul>
+              </div> */
