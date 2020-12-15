@@ -164,8 +164,13 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
     '.modal__inner--exerciseView-text'
   );
 
-  const wrapperAddedExercises = document.querySelector('.list__wrapper--addedExercises');
+  const wrapperAddedExercises = document.querySelector(
+    '.list__wrapper--addedExercises'
+  );
   const listAddedExercises = document.getElementById('listAddedExercises');
+
+  const exercisePrevPage = document.getElementById('exercisePrevPage');
+  const exerciseNextPage = document.getElementById('exerciseNextPage');
 
   //Logout event
   btnLogOut.addEventListener('click', (e) => {
@@ -318,12 +323,9 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
     li.classList.add('list__exercises__item', 'exerciseClick');
     li.setAttribute('data-id', doc.id);
     p.textContent = doc.data().name;
-    //Breaking Point
 
     img.setAttribute('src', doc.data().image);
-    // img.setAttribute('src', doc.image);
     img.classList.add('list__exercises__img', 'exerciseClick');
-    // editIcon.setAttribute('class', 'fas fa-edit');
     addIcon.setAttribute('class', 'fas fa-plus');
     button.setAttribute('class', 'exercise-plus');
 
@@ -333,6 +335,14 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
     li.appendChild(button);
 
     exerciseList.appendChild(li);
+  }
+
+  function clearPatientList() {
+    patientList.innerHTML = '';
+  }
+
+  function clearExerciseList() {
+    exerciseList.innerHTML = '';
   }
 
   function enterDeleteModal() {
@@ -379,8 +389,15 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
     noPatientDel.addEventListener('click', exitDeleteModal);
   }
 
-  //Initialize Patient List on startup
-  db.collection('Patients')
+  let patientPageSize = 3;
+  let firstVisiblePatient;
+  let lastVisiblePatient;
+  const patientRef = db.collection('Patients');
+
+  ///Initialize Patient List on startup
+  patientRef
+    .orderBy('lastName', 'asc')
+    .limit(patientPageSize)
     .get()
     .then((snapshot) => {
       snapshot.docs.forEach((doc) => {
@@ -391,7 +408,66 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
           icon.addEventListener('click', deletePatient);
         });
       });
+      firstVisiblePatient = snapshot.docs[0].data().lastName;
+      lastVisiblePatient = snapshot.docs[snapshot.docs.length - 1].data()
+        .lastName;
+      console.log('last Name =', lastVisiblePatient);
     });
+
+  function nextPatientPage() {
+    console.log('next pt page');
+    //clear patient list
+    clearPatientList();
+    patientRef
+      .orderBy('lastName', 'asc')
+      .limit(patientPageSize)
+      .startAfter(lastVisiblePatient)
+      .get()
+      .then((snapshot) => {
+        snapshot.docs.forEach((doc) => {
+          renderPatientList(doc);
+          //Adds query selector and event listener after patient list is finished rendering
+          delPatientIcon = document.querySelectorAll('.fa-trash-alt');
+          delPatientIcon.forEach((icon) => {
+            icon.addEventListener('click', deletePatient);
+          });
+        });
+        firstVisiblePatient = snapshot.docs[0].data().lastName;
+        lastVisiblePatient = snapshot.docs[snapshot.docs.length - 1].data()
+          .lastName;
+        console.log('last Name =', lastVisiblePatient);
+      });
+  }
+
+  function prevPatientPage() {
+    console.log('prev pt page');
+    //clear patient list
+    clearPatientList();
+    patientRef
+      .orderBy('lastName', 'asc')
+      .endBefore(firstVisiblePatient)
+      .limitToLast(patientPageSize)
+      .get()
+      .then((snapshot) => {
+        snapshot.docs.forEach((doc) => {
+          renderPatientList(doc);
+          //Adds query selector and event listener after patient list is finished rendering
+          delPatientIcon = document.querySelectorAll('.fa-trash-alt');
+          delPatientIcon.forEach((icon) => {
+            icon.addEventListener('click', deletePatient);
+          });
+        });
+        firstVisiblePatient = snapshot.docs[0].data().lastName;
+        lastVisiblePatient = snapshot.docs[snapshot.docs.length - 1].data()
+          .lastName;
+        console.log('last Name =', lastVisiblePatient);
+      });
+  }
+  const patientNext = document.getElementById('patientNextPage');
+  const patientPrev = document.getElementById('patientPrevPage');
+
+  patientNext.addEventListener('click', nextPatientPage);
+  patientPrev.addEventListener('click', prevPatientPage);
 
   function addExerciseToList(e) {
     target = e.currentTarget;
@@ -437,28 +513,41 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
   // Options for the exercise content observer
   const obConfig = { attributes: true };
 
+  let exercisePageSize = 3;
+  let exerciseRef = db.collection('testrcises');
+  let firstVisibleExercise;
+  let lastVisibleExercise;
   // Callback function to execute when mutations are observed
   const callback = function (mutationsList, observer) {
     if (exercisesContent.classList.contains('active')) {
       console.log('This tab is activated!');
-
-      let firstExercises = db.collection('testrcises').limit(3);
-
-      firstExercises.get().then((snapshot) => {
-        snapshot.docs.forEach((doc) => {
-          renderExerciseList(doc);
-          //doesnt work
-          const addIcons = document.querySelectorAll('.exercise-plus');
-
-          addIcons.forEach((icon) => {
-            icon.addEventListener('click', addExerciseToList);
+      exerciseRef
+        .limit(exercisePageSize)
+        .get()
+        .then((snapshot) => {
+          snapshot.docs.forEach((doc) => {
+            renderExerciseList(doc);
+            //doesnt work
+            const addIcons = document.querySelectorAll('.exercise-plus');
+            addIcons.forEach((icon) => {
+              icon.addEventListener('click', addExerciseToList);
+            });
           });
+          firstVisibleExercise = snapshot.docs[0].data().name;
+          lastVisibleExercise = snapshot.docs[snapshot.docs.length - 1].data()
+            .name;
+          console.log('first exercise =', firstVisibleExercise);
+          console.log('last exercise =', lastVisibleExercise);
+
+          // return {
+          //   firstVisibleExercise,
+          //   lastVisibleExercise,
+          // };
         });
-      });
       //Stop observing after tab is clicked for the first time
       exerciseLoadOb.disconnect();
     }
-
+    //optional else if condition
     //  else if (mutation.type === 'attributes') {
     //   console.log(
     //     'The ' + mutation.attributeName + ' attribute was modified.'
@@ -470,6 +559,64 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
 
   // Start observing the target node for configured mutations
   exerciseLoadOb.observe(exercisesContent, obConfig);
+
+  function nextExercisePage() {
+    //clear patient list
+    clearExerciseList();
+    exerciseRef
+      .orderBy('name', 'asc')
+      .limit(exercisePageSize)
+      .startAfter(lastVisibleExercise)
+      .get()
+      .then((snapshot) => {
+        snapshot.docs.forEach((doc) => {
+          renderExerciseList(doc);
+          //doesnt work
+          const addIcons = document.querySelectorAll('.exercise-plus');
+          addIcons.forEach((icon) => {
+            icon.addEventListener('click', addExerciseToList);
+          });
+        });
+        firstVisibleExercise = snapshot.docs[0].data().name;
+        console.log('first exercise =', firstVisibleExercise);
+        lastVisibleExercise = snapshot.docs[snapshot.docs.length - 1].data()
+          .name;
+        console.log('last exercise =', lastVisibleExercise);
+      });
+  }
+
+  //After page 3, not querying correctly. goes back to page 1
+  function prevExercisePage() {
+    console.log('previous exercise page');
+    //clear patient list
+    clearExerciseList();
+    exerciseRef
+      .orderBy('name', 'asc')
+      .endBefore(firstVisibleExercise)
+      .limitToLast(exercisePageSize)
+      .get()
+      .then((snapshot) => {
+        snapshot.docs.forEach((doc) => {
+          renderExerciseList(doc);
+          //doesnt work
+          const addIcons = document.querySelectorAll('.exercise-plus');
+          addIcons.forEach((icon) => {
+            icon.addEventListener('click', addExerciseToList);
+          });
+        });
+        firstVisibleExercise = snapshot.docs[0].data().name;
+        console.log('first exercise =', firstVisibleExercise);
+        lastVisibleExercise = snapshot.docs[snapshot.docs.length - 1].data()
+          .name;
+        console.log('last exercise =', lastVisibleExercise);
+      });
+  }
+
+  const exerciseNext = document.getElementById('exerciseNextPage');
+  const exercisePrev = document.getElementById('exercisePrevPage');
+
+  exerciseNext.addEventListener('click', nextExercisePage);
+  exercisePrev.addEventListener('click', prevExercisePage);
 
   //Add Exercise Modal
   function enterModalAddExercise() {
@@ -527,6 +674,7 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
             instructions: instructionsInput.value,
             image: uploadURL,
           });
+          //Renders exercise to list immediately after addition
           // .then((docRef) => {
           //   console.log('Document successfully written!');
 
@@ -723,7 +871,7 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
 
   btnPrintList.addEventListener('click', printExercises);
 
-  function openPrintModal(){
+  function openPrintModal() {
     //Base values - must edit when there is a change to styling.
     let baseWidth = '97%';
     let baseHeight = '85%';
@@ -731,21 +879,18 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
     //Open modal
     printModal.style.display = 'block';
     //Expand width modal to cover everything
-    
 
-      // Alternative to open formatted HTML in new tab
-      // var opened = window.open("");
-      // opened.document.write("<html><head><title>MyTitle</title></head><body>test</body></html>");
+    // Alternative to open formatted HTML in new tab
+    // var opened = window.open("");
+    // opened.document.write("<html><head><title>MyTitle</title></head><body>test</body></html>");
   }
 
-  function generatePrintItems(exerciseID, img, instructions){
+  function generatePrintItems(exerciseID, img, instructions) {
     // let li = document.createElement('li');
     // let image = document.createElement('img');
     // let p = document.createElement('p');
 
-    
     console.log(exerciseID, img, instructions);
-
   }
 
   function printExercises() {
@@ -754,29 +899,31 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
     for (let i = 0; i < list.length; i++) {
       let img = list[i].children[0];
       let exerciseID = list[i].children[1].children[0].textContent;
-      var exerciseRef = db.collection("testrcises").doc(`${exerciseID}`);
+      var exerciseRef = db.collection('testrcises').doc(`${exerciseID}`);
       let instructions;
 
-      exerciseRef.get().then(function(doc) {
+      exerciseRef
+        .get()
+        .then(function (doc) {
           if (doc.exists) {
-             instructions = doc.data().instructions;
-             openPrintModal();
+            instructions = doc.data().instructions;
+            openPrintModal();
 
-             //Fill modal with list items
-             generatePrintItems(exerciseID, img, instructions);
-             
+            //Fill modal with list items
+            generatePrintItems(exerciseID, img, instructions);
           } else {
-              // doc.data() will be undefined in this case
-              console.log("No such document!");
+            // doc.data() will be undefined in this case
+            console.log('No such document!');
           }
-      }).catch(function(error) {
-          console.log("Error getting document:", error);
-      });
-    
-    //Open Modal 
-    // 
-    // Image
-    //
+        })
+        .catch(function (error) {
+          console.log('Error getting document:', error);
+        });
+
+      //Open Modal
+      //
+      // Image
+      //
       // console.log(img, exerciseID);
     }
     //Table the elements of each li
