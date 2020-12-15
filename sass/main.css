@@ -344,11 +344,6 @@ input {
   border-radius: 5px;
 }
 
-input:focus {
-  border: 2px solid #005b96;
-  border-radius: 5px;
-}
-
 .imageTest {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -512,17 +507,17 @@ input:focus {
   padding-left: 1rem;
 }
 
+.searchbar__wrapper:focus-within {
+  border: 2px solid #005b96;
+  border-radius: 30px;
+}
+
 .searchbar--patient, .searchbar--exercise {
   border: 2px solid #b4b4b4;
   border-radius: 30px;
   font-size: 1.8rem;
   width: 30rem;
   padding-left: 1rem;
-}
-
-.searchbar--patient:focus, .searchbar--exercise:focus {
-  border: 2px solid #005b96;
-  border-radius: 30px;
 }
 
 .searchbar--icon {
