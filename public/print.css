@@ -9,6 +9,8 @@ body {
 .grid__top--right,
 .grid__bottom--left,
 .modal__exit,
+.list__exercises,
+.list__print--back,
 .fas,
 .fa-times,
 .modal__exit::before,
@@ -22,6 +24,7 @@ body {
   min-height: 100%;
   height: auto;
   page-break-after: auto;
+  box-shadow: none;
 }
 
 .list__print {
