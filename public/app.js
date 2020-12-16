@@ -568,6 +568,7 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
           lastVisibleExercise = snapshot.docs[snapshot.docs.length - 1].data()
             .name;
           exercisePrev.disabled = true;
+          // dont thinik needed
           // console.log('absolute first exercise = ', absoluteFirstExercise);
           // console.log('first exercise =', firstVisibleExercise);
           // console.log('last exercise =', lastVisibleExercise);
@@ -941,8 +942,12 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
     // opened.document.write("<html><head><title>MyTitle</title></head><body>test</body></html>");
   }
 
-  function generatePrintItems(exerciseID, img, instructions) {
+  function closePrintModal() {
+    printModal.style.display = 'none';
+    printList.innerHTML = '';
+  }
 
+  function generatePrintItems(exerciseID, img, instructions) {
     let li = document.createElement('li');
     let heading = document.createElement('h3');
     let div = document.createElement('div');
@@ -1004,16 +1009,9 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
         .catch(function (error) {
           console.log('Error getting document:', error);
         });
-
-      //Open Modal
-      //
-      // Image
-      //
-      // console.log(img, exerciseID);
     }
-    //Table the elements of each li
   }
-  // TODO
-  //print functionh for either current exercise list or patient exercise list
-  // for patient, can list their name at the top
+
+  const printBack = document.getElementById('printBack');
+  printBack.addEventListener('click', closePrintModal);
 }
