@@ -117,6 +117,17 @@
     height: 100%;
     list-style: none;
 
+    &--button-print {
+      padding: 1rem;
+      border-radius: 5px;
+      position: relative;
+      top: 3rem;
+      left: 6rem;
+      background-color: $primary-color--light;
+      color: $color-white;
+      border-radius: 5px;
+    }
+
     &--item {
       margin: 1rem;
     }
@@ -143,11 +154,6 @@
     background: $color-white;
   }
 
-  &__button--printAddedExercises {
-    padding: 1rem;
-    border-radius: 5px;
-  }
-
   &__print {
     width: 70%;
     margin: 0 auto;
@@ -155,6 +161,14 @@
     display: flex;
     flex-direction: column;
     gap: 3rem;
+
+    &--back {
+      position: absolute;
+      top: 2rem;
+      left: 2rem;
+      background-color: $color-white;
+      font-size: 2rem;
+    }
 
     &--item {
     }
