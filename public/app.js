@@ -170,6 +170,9 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
   const listAddedExercises = document.getElementById('listAddedExercises');
   const printList = document.getElementById('printList');
 
+  const exercisePrevPage = document.getElementById('exercisePrevPage');
+  const exerciseNextPage = document.getElementById('exerciseNextPage');
+
   //Logout event
   btnLogOut.addEventListener('click', (e) => {
     firebase
@@ -321,12 +324,9 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
     li.classList.add('list__exercises__item', 'exerciseClick');
     li.setAttribute('data-id', doc.id);
     p.textContent = doc.data().name;
-    //Breaking Point
 
     img.setAttribute('src', doc.data().image);
-    // img.setAttribute('src', doc.image);
     img.classList.add('list__exercises__img', 'exerciseClick');
-    // editIcon.setAttribute('class', 'fas fa-edit');
     addIcon.setAttribute('class', 'fas fa-plus');
     button.setAttribute('class', 'exercise-plus');
 
@@ -336,6 +336,14 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
     li.appendChild(button);
 
     exerciseList.appendChild(li);
+  }
+
+  function clearPatientList() {
+    patientList.innerHTML = '';
+  }
+
+  function clearExerciseList() {
+    exerciseList.innerHTML = '';
   }
 
   function enterDeleteModal() {
@@ -382,9 +390,17 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
     noPatientDel.addEventListener('click', exitDeleteModal);
   }
 
-  //Initialize Patient List on startup
-  db.collection('Patients')
+  let patientPageSize = 3;
+  let firstVisiblePatient;
+  let lastVisiblePatient;
+  let absolutePatient;
+  const patientRef = db.collection('Patients');
+
+  ///Initialize Patient List on startup
+  patientRef
     .orderBy('lastName', 'asc')
+    .limit(patientPageSize)
+
     .get()
     .then((snapshot) => {
       snapshot.docs.forEach((doc) => {
@@ -395,7 +411,91 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
           icon.addEventListener('click', deletePatient);
         });
       });
+      absoluteFirstPatient = `${snapshot.docs[0].data().lastName}, ${
+        snapshot.docs[0].data().firstName
+      }`;
+      firstVisiblePatient = snapshot.docs[0].data().lastName;
+      lastVisiblePatient = snapshot.docs[snapshot.docs.length - 1].data()
+        .lastName;
+      console.log('abs = ', absoluteFirstPatient);
+      patientPrev.disabled = true;
     });
+
+  function nextPatientPage() {
+    console.log('next pt page');
+    //clear patient list
+    patientRef
+      .orderBy('lastName', 'asc')
+      .limit(patientPageSize)
+      .startAfter(lastVisiblePatient)
+      .get()
+      .then((snapshot) => {
+        //Disable next button on last page,
+        //case for when length of list matches page size
+        //TODO -- query for pageSize + 1, display pageSize # of items only.
+        // if length of query list < pageSize + 1, disable fwd button
+        if (snapshot.docs.length == 0) {
+          patientNext.disabled = true;
+          return;
+        } else {
+          clearPatientList();
+          snapshot.docs.forEach((doc) => {
+            renderPatientList(doc);
+            //Adds query selector and event listener after patient list is finished rendering
+            delPatientIcon = document.querySelectorAll('.fa-trash-alt');
+            delPatientIcon.forEach((icon) => {
+              icon.addEventListener('click', deletePatient);
+            });
+          });
+          firstVisiblePatient = snapshot.docs[0].data().lastName;
+          // }
+          lastVisiblePatient = snapshot.docs[snapshot.docs.length - 1].data()
+            .lastName;
+          patientPrev.disabled = false;
+          //disable if query render list is any less than maximum page # allowed.
+          if (snapshot.docs.length < patientPageSize) {
+            patientNext.disabled = true;
+          } else return;
+        }
+      })
+      .catch((error) => {});
+  }
+
+  function prevPatientPage() {
+    console.log('prev pt page');
+    //clear patient list
+    clearPatientList();
+    patientRef
+      .orderBy('lastName', 'asc')
+      .endBefore(firstVisiblePatient)
+      .limitToLast(patientPageSize)
+      .get()
+      .then((snapshot) => {
+        snapshot.docs.forEach((doc) => {
+          renderPatientList(doc);
+          //Adds query selector and event listener after patient list is finished rendering
+          delPatientIcon = document.querySelectorAll('.fa-trash-alt');
+          delPatientIcon.forEach((icon) => {
+            icon.addEventListener('click', deletePatient);
+          });
+        });
+        firstVisiblePatient = snapshot.docs[0].data().lastName;
+        lastVisiblePatient = snapshot.docs[snapshot.docs.length - 1].data()
+          .lastName;
+        console.log('last Name =', lastVisiblePatient);
+
+        patientNext.disabled = false;
+        //prettier-ignore
+        if (absoluteFirstPatient == patientList.children[0].textContent) {
+          patientPrev.disabled = true;
+        } else patientPrev.disabled = false;
+      });
+  }
+  const patientNext = document.getElementById('patientNextPage');
+  const patientPrev = document.getElementById('patientPrevPage');
+
+  patientNext.addEventListener('click', nextPatientPage);
+  patientPrev.addEventListener('click', prevPatientPage);
 
   function addExerciseToList(e) {
     target = e.currentTarget;
@@ -441,28 +541,46 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
   // Options for the exercise content observer
   const obConfig = { attributes: true };
 
+  let exercisePageSize = 3;
+  let exerciseRef = db.collection('testrcises');
+  let firstVisibleExercise;
+  let lastVisibleExercise;
+  let absoluteFirstExercise;
+
   // Callback function to execute when mutations are observed
   const callback = function (mutationsList, observer) {
     if (exercisesContent.classList.contains('active')) {
       console.log('This tab is activated!');
-
-      let firstExercises = db.collection('testrcises').limit(3);
-
-      firstExercises.get().then((snapshot) => {
-        snapshot.docs.forEach((doc) => {
-          renderExerciseList(doc);
-          //doesnt work
-          const addIcons = document.querySelectorAll('.exercise-plus');
-
-          addIcons.forEach((icon) => {
-            icon.addEventListener('click', addExerciseToList);
+      exerciseRef
+        .limit(exercisePageSize)
+        .get()
+        .then((snapshot) => {
+          snapshot.docs.forEach((doc) => {
+            renderExerciseList(doc);
+            //doesnt work
+            const addIcons = document.querySelectorAll('.exercise-plus');
+            addIcons.forEach((icon) => {
+              icon.addEventListener('click', addExerciseToList);
+            });
           });
+          absoluteFirstExercise = snapshot.docs[0].data().name;
+          firstVisibleExercise = snapshot.docs[0].data().name;
+          lastVisibleExercise = snapshot.docs[snapshot.docs.length - 1].data()
+            .name;
+          exercisePrev.disabled = true;
+          // console.log('absolute first exercise = ', absoluteFirstExercise);
+          // console.log('first exercise =', firstVisibleExercise);
+          // console.log('last exercise =', lastVisibleExercise);
+
+          // return {
+          //   firstVisibleExercise,
+          //   lastVisibleExercise,
+          // };
         });
-      });
       //Stop observing after tab is clicked for the first time
       exerciseLoadOb.disconnect();
     }
-
+    //optional else if condition
     //  else if (mutation.type === 'attributes') {
     //   console.log(
     //     'The ' + mutation.attributeName + ' attribute was modified.'
@@ -474,6 +592,85 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
 
   // Start observing the target node for configured mutations
   exerciseLoadOb.observe(exercisesContent, obConfig);
+
+  function nextExercisePage() {
+    exerciseRef
+      .orderBy('name', 'asc')
+      .limit(exercisePageSize)
+      .startAfter(lastVisibleExercise)
+      .get()
+      .then((snapshot) => {
+        //Disable next button on last page,
+        //case for when length of list matches page size
+        if (snapshot.docs.length == 0) {
+          exerciseNext.disabled = true;
+          return;
+        } else {
+          clearExerciseList();
+          snapshot.docs.forEach((doc) => {
+            renderExerciseList(doc);
+            //doesnt work
+            const addIcons = document.querySelectorAll('.exercise-plus');
+            addIcons.forEach((icon) => {
+              icon.addEventListener('click', addExerciseToList);
+            });
+          });
+          firstVisibleExercise = snapshot.docs[0].data().name;
+          // console.log('first exercise =', firstVisibleExercise);
+          lastVisibleExercise = snapshot.docs[snapshot.docs.length - 1].data()
+            .name;
+          // console.log('last exercise =', lastVisibleExercise);
+          console.log('absolute first exercise = ', absoluteFirstExercise);
+          exercisePrev.disabled = false;
+          if (snapshot.docs.length < exercisePageSize) {
+            // console.log('disable exercise next');
+            exerciseNext.disabled = true;
+          } else return;
+        }
+      });
+  }
+
+  //After page 3, not querying correctly. goes back to page 1
+  function prevExercisePage() {
+    console.log('previous exercise page');
+    //clear patient list
+    clearExerciseList();
+    exerciseRef
+      .orderBy('name', 'asc')
+      .endBefore(firstVisibleExercise)
+      .limitToLast(exercisePageSize)
+      .get()
+      .then((snapshot) => {
+        snapshot.docs.forEach((doc) => {
+          renderExerciseList(doc);
+          //doesnt work
+          const addIcons = document.querySelectorAll('.exercise-plus');
+          addIcons.forEach((icon) => {
+            icon.addEventListener('click', addExerciseToList);
+          });
+        });
+        firstVisibleExercise = snapshot.docs[0].data().name;
+        // console.log('first exercise =', firstVisibleExercise);
+        lastVisibleExercise = snapshot.docs[snapshot.docs.length - 1].data()
+          .name;
+        // console.log('last exercise =', lastVisibleExercise);
+        exerciseNext.disabled = false;
+        //prettier-ignore
+        if (absoluteFirstExercise === exerciseList.children[0].getAttribute('data-id')        ) {
+          exercisePrev.disabled = true;
+        } else exercisePrev.disabled = false;
+      });
+  }
+
+  // function checkFirstExercise() {
+
+  // }
+
+  const exerciseNext = document.getElementById('exerciseNextPage');
+  const exercisePrev = document.getElementById('exercisePrevPage');
+
+  exerciseNext.addEventListener('click', nextExercisePage);
+  exercisePrev.addEventListener('click', prevExercisePage);
 
   //Add Exercise Modal
   function enterModalAddExercise() {
@@ -531,6 +728,7 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
             instructions: instructionsInput.value,
             image: uploadURL,
           });
+          //Renders exercise to list immediately after addition
           // .then((docRef) => {
           //   console.log('Document successfully written!');
 
@@ -744,6 +942,7 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
   }
 
   function generatePrintItems(exerciseID, img, instructions) {
+
     let li = document.createElement('li');
     let heading = document.createElement('h3');
     let div = document.createElement('div');

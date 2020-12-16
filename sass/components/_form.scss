@@ -18,10 +18,10 @@ input{
   border: 1px solid $color-gray-700;
   border-radius: 5px;
 
-  &:focus {
-    border: 2px solid $primary-color--light;
-    border-radius: 5px;
-  }
+  // &:focus {
+  //   border: 2px solid $primary-color--light;
+  //   border-radius: 5px;
+  // }
 }
 
 .imageTest {
