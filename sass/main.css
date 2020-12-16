@@ -353,6 +353,10 @@ input {
   border-radius: 5px;
 }
 
+input[type='file'] {
+  border: none;
+}
+
 .imageTest {
   display: -webkit-box;
   display: -ms-flexbox;
