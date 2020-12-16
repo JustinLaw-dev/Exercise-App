@@ -779,18 +779,20 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
     let searchInput = exerciseSearchbar.value;
     let searchInputLower = searchInput.toString().toLowerCase();
     console.log(searchInputLower);
-    let exerciseItems = document.querySelectorAll('.list__exercises__item');
 
-    exerciseItems.forEach((item) => {
-      let itemLower = item.textContent.toLowerCase();
-      let itemLowerStr = itemLower.toString();
+    // const patientRef = db.collection('Patients');
+    // let exerciseItems = document.querySelectorAll('.list__exercises__item');
 
-      if (itemLowerStr.includes(searchInputLower)) {
-        item.style.display = 'inline-block';
-      } else {
-        item.style.display = 'none';
-      }
-    });
+    // exerciseItems.forEach((item) => {
+    //   let itemLower = item.textContent.toLowerCase();
+    //   let itemLowerStr = itemLower.toString();
+
+    //   if (itemLowerStr.includes(searchInputLower)) {
+    //     item.style.display = 'inline-block';
+    //   } else {
+    //     item.style.display = 'none';
+    //   }
+    // });
   }
 
   function patientSearch() {
