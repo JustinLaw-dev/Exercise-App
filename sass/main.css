@@ -301,10 +301,18 @@ button,
   color: #03396c;
 }
 
+.button__pagination--left:disabled {
+  color: #dcdcdc;
+}
+
 .button__pagination--right {
   font-size: 2rem;
   background-color: #ffffff;
   color: #03396c;
+}
+
+.button__pagination--right:disabled {
+  color: #dcdcdc;
 }
 
 .exercise-plus {
@@ -313,7 +321,7 @@ button,
   padding: 1rem;
 }
 
-#patientList {
+#patientListWrapper {
   position: relative;
 }
 
@@ -486,10 +494,10 @@ input {
 .searchbar__wrapper {
   width: 30rem;
   height: 5rem;
-  border: 3px solid #b4b4b4;
+  border: 2px solid #b4b4b4;
   border-radius: 30px;
-  -webkit-box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-          box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  -webkit-box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
+          box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
   font-size: 2.5rem;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -508,13 +516,12 @@ input {
 }
 
 .searchbar__wrapper:focus-within {
-  border: 2px solid #005b96;
+  border: 3px solid #005b96;
   border-radius: 30px;
 }
 
 .searchbar--patient, .searchbar--exercise {
-  border: 2px solid #b4b4b4;
-  border-radius: 30px;
+  border: none;
   font-size: 1.8rem;
   width: 30rem;
   padding-left: 1rem;

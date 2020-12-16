@@ -145,12 +145,20 @@
       font-size: 2rem;
       background-color: $color-white;
       color: $primary-color;
+
+      &:disabled {
+        color: $color-gray-500;
+      }
     }
 
     &--right {
       font-size: 2rem;
       background-color: $color-white;
       color: $primary-color;
+
+      &:disabled {
+        color: $color-gray-500;
+      }
     }
   }
 }
@@ -161,7 +169,7 @@
   padding: 1rem;
 }
 
-#patientList {
+#patientListWrapper {
   position: relative;
 }
 
