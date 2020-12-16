@@ -697,6 +697,20 @@ input {
   border-radius: 5px;
 }
 
+.list__print {
+  width: 70%;
+  margin: 0 auto;
+  list-style: none;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 3rem;
+}
+
 .list__print--row {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -711,7 +725,8 @@ input {
   -webkit-box-align: start;
       -ms-flex-align: start;
           align-items: flex-start;
-  border: 1px solid black;
+  border-bottom: 1px solid black;
+  padding-bottom: 4rem;
 }
 
 .list__print--heading {
@@ -719,12 +734,14 @@ input {
 }
 
 .list__print--img {
-  width: 20%;
+  width: 25rem;
+  height: 15rem;
 }
 
 .list__print--instructions {
   font-size: 1.6rem;
   width: 45%;
+  line-height: 1.5;
 }
 
 .modal__outer {
