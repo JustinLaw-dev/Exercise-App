@@ -273,17 +273,17 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
         newDoc.get().then(function (doc) {
           if (doc.exists) {
             let li = document.createElement('li');
-            let editIcon = document.createElement('i');
+            // let editIcon = document.createElement('i');
             let deleteIcon = document.createElement('i');
 
             li.setAttribute('data-id', doc.id);
 
             li.textContent = `${doc.data().lastName}, ${doc.data().firstName}`;
-            editIcon.setAttribute('class', 'fas fa-edit');
+            // editIcon.setAttribute('class', 'fas fa-edit');
             deleteIcon.setAttribute('class', 'fas fa-trash-alt');
 
             li.appendChild(deleteIcon);
-            li.appendChild(editIcon);
+            // li.appendChild(editIcon);
 
             patientList.appendChild(li);
           }
@@ -390,7 +390,7 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
     noPatientDel.addEventListener('click', exitDeleteModal);
   }
 
-  let patientPageSize = 3;
+  let patientPageSize = 1;
   let firstVisiblePatient;
   let lastVisiblePatient;
   let absolutePatient;
@@ -417,7 +417,7 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
       firstVisiblePatient = snapshot.docs[0].data().lastName;
       lastVisiblePatient = snapshot.docs[snapshot.docs.length - 1].data()
         .lastName;
-      console.log('abs = ', absoluteFirstPatient);
+      // console.log('abs = ', absoluteFirstPatient);
       patientPrev.disabled = true;
     });
 
@@ -541,7 +541,7 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
   // Options for the exercise content observer
   const obConfig = { attributes: true };
 
-  let exercisePageSize = 3;
+  let exercisePageSize = 8;
   let exerciseRef = db.collection('testrcises');
   let firstVisibleExercise;
   let lastVisibleExercise;
