@@ -27,9 +27,17 @@ body {
   box-shadow: none;
 }
 
+li {
+  height: 33.333%;
+}
+
 .list__print {
   width: 90%;
-  gap: 2rem;
+  gap: 3rem;
+}
+
+.list__print--heading {
+  font-size: 2rem;
 }
 
 .list__print--row {
@@ -38,8 +46,8 @@ body {
 }
 
 .list__print--img {
-  width: 40%;
-  height: 100%;
+  width: 20rem;
+  height: 17rem;
 }
 
 .list__print--instructions {
