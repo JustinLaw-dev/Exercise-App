@@ -108,7 +108,7 @@ textarea {
 
 .grid__heading--main {
   font-size: 2rem;
-  color: #dcdcdc;
+  color: #b4b4b4;
   font-weight: 700;
 }
 
@@ -127,6 +127,10 @@ button,
 
 .modal__inner--exerciseView-text {
   font-size: 2rem;
+}
+
+input {
+  font-family: Montserrat;
 }
 
 .button {
@@ -276,7 +280,7 @@ button,
 
 .button__pagination--wrapper {
   background-color: #ffffff;
-  border: 1px solid #dcdcdc;
+  border: 1px solid #b4b4b4;
   width: 7.5rem;
   height: 4rem;
   border-radius: 5px;
@@ -303,7 +307,7 @@ button,
 }
 
 .button__pagination--left:disabled {
-  color: #dcdcdc;
+  color: #b4b4b4;
 }
 
 .button__pagination--right {
@@ -313,7 +317,7 @@ button,
 }
 
 .button__pagination--right:disabled {
-  color: #dcdcdc;
+  color: #b4b4b4;
 }
 
 .exercise-plus {
@@ -384,6 +388,10 @@ input[type='file'] {
           flex-direction: column;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
+}
+
+.form__addPatient input, .form__addExercise input {
+  font-size: 1.6rem;
 }
 
 .form__addExercise--image[src=''] {
@@ -503,7 +511,7 @@ input[type='file'] {
   border-radius: 30px;
   -webkit-box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
           box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
-  font-size: 2.5rem;
+  font-size: 2rem;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -527,7 +535,7 @@ input[type='file'] {
 
 .searchbar--patient, .searchbar--exercise {
   border: none;
-  font-size: 1.8rem;
+  font-size: 1.6rem;
   width: 30rem;
   padding-left: 1rem;
 }
@@ -535,6 +543,7 @@ input[type='file'] {
 .searchbar--icon {
   margin-right: 2rem;
   cursor: pointer;
+  color: #646464;
 }
 
 .list__wrapper {
@@ -547,13 +556,13 @@ input[type='file'] {
 .list__wrapper--exercise {
   width: 70%;
   height: 100%;
-  border: 2px solid #dcdcdc;
+  border: 2px solid #b4b4b4;
   border-radius: 1rem;
 }
 
 .list__wrapper--addedExercises {
   height: 100%;
-  border: 2px solid #dcdcdc;
+  border: 2px solid #b4b4b4;
   border-radius: 1rem;
   width: 20%;
   padding-top: 2rem;
@@ -629,15 +638,15 @@ input[type='file'] {
 
 .list__exercises__item {
   display: inline-block;
-  width: 26rem;
+  width: 23rem;
   font-size: 1.6rem;
-  height: 24rem;
-  margin: 3rem;
+  height: 23rem;
+  margin: 2rem;
   text-align: center;
   cursor: pointer;
 }
 
-.list__exercises__item:nth-child(5n + 1) {
+.list__exercises__item:nth-child(4n + 1) {
   margin-left: 4rem;
 }
 
@@ -646,7 +655,7 @@ input[type='file'] {
   border-radius: 3px;
   -webkit-box-shadow: 2px 3px 5px 0px rgba(50, 50, 50, 0.75);
   box-shadow: 2px 3px 5px 0px rgba(50, 50, 50, 0.75);
-  height: 20rem;
+  height: 18rem;
   margin-bottom: 1rem;
 }
 
@@ -702,6 +711,8 @@ input[type='file'] {
 
 .list__addedExercises--text {
   font-size: 1.6rem;
+  width: 20rem;
+  height: auto;
 }
 
 .list__removeExercise--icon {

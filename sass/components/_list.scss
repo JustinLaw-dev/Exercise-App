@@ -84,16 +84,16 @@
 
     &__item {
       display: inline-block;
-      width: 26rem;
+      width: 23rem;
       font-size: 1.6rem;
-      height: 24rem;
-      margin: 3rem;
+      height: 23rem;
+      margin: 2rem;
       // background: $secondary-color;
       text-align: center;
       cursor: pointer;
 
       //1st one of every row of 4.. (1, 5, 9, etc)
-      &:nth-child(5n + 1) {
+      &:nth-child(4n + 1) {
         margin-left: 4rem;
       }
     }
@@ -105,7 +105,7 @@
       -webkit-box-shadow: 2px 3px 5px 0px rgba(50, 50, 50, 0.75);
       -moz-box-shadow: 2px 3px 5px 0px rgba(50, 50, 50, 0.75);
       box-shadow: 2px 3px 5px 0px rgba(50, 50, 50, 0.75);
-      height: 20rem;
+      height: 18rem;
       margin-bottom: 1rem;
     }
   }
@@ -147,6 +147,8 @@
 
     &--text {
       font-size: 1.6rem;
+      width: 20rem;
+      height: auto;
     }
   }
 
