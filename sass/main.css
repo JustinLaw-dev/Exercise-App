@@ -118,7 +118,8 @@ button,
 }
 
 .button__add-text {
-  font-size: 2.3rem;
+  font-family: 'Montserrat';
+  font-size: 1.8rem;
 }
 
 .modal__inner--exerciseView-heading {
@@ -135,6 +136,8 @@ input {
 
 .button {
   cursor: pointer;
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
 }
 
 .button__round {
@@ -232,13 +235,12 @@ input {
 }
 
 .button__add {
-  width: 18rem;
+  width: 17rem;
   height: 5rem;
-  background-color: #ffffff;
-  color: rgba(33, 75, 115, 0.897);
-  border: 2px solid rgba(33, 75, 115, 0.897);
+  background-color: #005b96;
+  color: #ffffff;
   border-radius: 5px;
-  font-size: 2rem;
+  font-size: 1.6rem;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -249,8 +251,11 @@ input {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  -webkit-transition: all 0.1s;
+  transition: all 0.1s;
 }
 
 .button__add:hover {
@@ -258,6 +263,7 @@ input {
           transform: none;
   -webkit-box-shadow: none;
           box-shadow: none;
+  opacity: 0.8;
 }
 
 .button__submit {
@@ -334,6 +340,15 @@ input {
   position: absolute;
   bottom: 2rem;
   right: 3rem;
+}
+
+#printAddedExercises {
+  -webkit-transition: all 0.1s;
+  transition: all 0.1s;
+}
+
+#printAddedExercises:hover {
+  opacity: 0.8;
 }
 
 .label {
