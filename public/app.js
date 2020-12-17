@@ -550,14 +550,13 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
   // Callback function to execute when mutations are observed
   const callback = function (mutationsList, observer) {
     if (exercisesContent.classList.contains('active')) {
-      console.log('This tab is activated!');
+      // console.log('This tab is activated!');
       exerciseRef
         .limit(exercisePageSize)
         .get()
         .then((snapshot) => {
           snapshot.docs.forEach((doc) => {
             renderExerciseList(doc);
-            //doesnt work
             const addIcons = document.querySelectorAll('.exercise-plus');
             addIcons.forEach((icon) => {
               icon.addEventListener('click', addExerciseToList);
@@ -777,40 +776,100 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
 
   function exerciseSearch() {
     let searchInput = exerciseSearchbar.value;
-    let searchInputLower = searchInput.toString().toLowerCase();
-    console.log(searchInputLower);
+    // let searchInputLower = searchInput.toString().toLowerCase();
+    // console.log(searchInputLower);
+    let query = exerciseRef.where('name', '==', `${searchInput}`);
 
-    // const patientRef = db.collection('Patients');
-    // let exerciseItems = document.querySelectorAll('.list__exercises__item');
-
-    // exerciseItems.forEach((item) => {
-    //   let itemLower = item.textContent.toLowerCase();
-    //   let itemLowerStr = itemLower.toString();
-
-    //   if (itemLowerStr.includes(searchInputLower)) {
-    //     item.style.display = 'inline-block';
-    //   } else {
-    //     item.style.display = 'none';
-    //   }
-    // });
+    if (searchInput == '' || searchInput == null) {
+      clearExerciseList();
+      exerciseRef
+        .limit(exercisePageSize)
+        .get()
+        .then((snapshot) => {
+          snapshot.docs.forEach((doc) => {
+            renderExerciseList(doc);
+            const addIcons = document.querySelectorAll('.exercise-plus');
+            addIcons.forEach((icon) => {
+              icon.addEventListener('click', addExerciseToList);
+            });
+          });
+          absoluteFirstExercise = snapshot.docs[0].data().name;
+          firstVisibleExercise = snapshot.docs[0].data().name;
+          lastVisibleExercise = snapshot.docs[snapshot.docs.length - 1].data()
+            .name;
+          exercisePrev.disabled = true;
+          exerciseNext.disabled = false;
+        });
+    } else {
+      query
+        .limit(exercisePageSize)
+        .get()
+        .then(function (querySnapshot) {
+          clearExerciseList();
+          querySnapshot.forEach(function (doc) {
+            renderExerciseList(doc);
+            const addIcons = document.querySelectorAll('.exercise-plus');
+            addIcons.forEach((icon) => {
+              icon.addEventListener('click', addExerciseToList);
+            });
+          });
+        })
+        .catch((error) => {
+          console.log(error);
+          // exerciseList.textContent =
+          // 'No item found, please try searching with different terms.';
+        });
+    }
   }
 
   function patientSearch() {
     let searchInput = patientSearchbar.value;
-    let searchInputLower = searchInput.toString().toLowerCase();
-    console.log(searchInputLower);
-    let patients = document.querySelectorAll('.list__patients li');
+    // let searchInputLower = searchInput.toString().toLowerCase();
+    // console.log(searchInputLower);
+    let query = patientRef.where('lastName', '==', `${searchInput}`);
 
-    patients.forEach((item) => {
-      let itemLower = item.textContent.toLowerCase();
-      let itemLowerStr = itemLower.toString();
-
-      if (itemLowerStr.includes(searchInputLower)) {
-        item.style.display = 'inline-block';
-      } else {
-        item.style.display = 'none';
-      }
-    });
+    if (searchInput == '' || searchInput == null) {
+      clearPatientList();
+      patientRef
+        .limit(patientPageSize)
+        .get()
+        .then((snapshot) => {
+          snapshot.docs.forEach((doc) => {
+            renderPatientList(doc);
+            //Adds query selector and event listener after patient list is finished rendering
+            delPatientIcon = document.querySelectorAll('.fa-trash-alt');
+            delPatientIcon.forEach((icon) => {
+              icon.addEventListener('click', deletePatient);
+            });
+          });
+          absoluteFirstPatient = snapshot.docs[0].data().name;
+          firstVisiblePatient = snapshot.docs[0].data().name;
+          lastVisiblePatient = snapshot.docs[snapshot.docs.length - 1].data()
+            .name;
+          patientPrev.disabled = true;
+          patientNext.disabled = false;
+        });
+    } else {
+      query
+        .limit(patientPageSize)
+        .get()
+        .then(function (querySnapshot) {
+          clearPatientList();
+          querySnapshot.forEach(function (doc) {
+            renderPatientList(doc);
+            //Adds query selector and event listener after patient list is finished rendering
+            delPatientIcon = document.querySelectorAll('.fa-trash-alt');
+            delPatientIcon.forEach((icon) => {
+              icon.addEventListener('click', deletePatient);
+            });
+          });
+        })
+        .catch((error) => {
+          console.log(error);
+          // exerciseList.textContent =
+          // 'No item found, please try searching with different terms.';
+        });
+    }
   }
 
   patientSearchbar.addEventListener('keypress', function (e) {
@@ -887,18 +946,14 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
               console.log(doc.data().instructions);
               exerciseViewText.textContent = doc.data().instructions;
             });
-          })
-        //prettier-ignore
-        // db.collection('testrcises').where()
-        // exerciseViewText.textContent = target.children[0].getAttribute(
-        //   'data-desc'
-        // );
+          });
       }
     }
   });
 
-  //WIP Work in Progress
+  //WIP Work in Progress TODO
   // Print single exercise, needed still?
+
   // listAddedExercises.addEventListener('click', function (e) {
   //   target = e.currentTarget.children[0];
   //   console.log(target.children[1]);
@@ -991,7 +1046,7 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
     for (let i = 0; i < list.length; i++) {
       let img = list[i].children[0];
       let exerciseID = list[i].children[1].children[0].textContent;
-      var exerciseRef = db.collection('testrcises').doc(`${exerciseID}`);
+      let exerciseRef = db.collection('testrcises').doc(`${exerciseID}`);
       let instructions;
 
       exerciseRef
