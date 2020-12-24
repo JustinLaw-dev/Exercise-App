@@ -1,6 +1,6 @@
 .button {
   cursor: pointer;
-  transition: all 0.2s;
+  transition: all 0.1s;
 
   &__round {
     border-radius: 3rem;
@@ -21,13 +21,13 @@
   }
 
   &:hover {
-    transform: translateY(-1.5px);
-    box-shadow: 2px 5px 5px rgba(0, 0, 0, 0.4);
+    transform: translateY(-0.5px);
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.4);
   }
 
   &:active {
     transform: translateY(0);
-    box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.4);
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
   }
 
   &--login {
