@@ -3,25 +3,29 @@
   margin-top: 2rem;
 }
 
+input {
+  border: 1px solid $color-gray-700;
+  border-radius: 5px;
+
+  &:focus {
+    border: 2px solid $color-focus;
+    box-shadow: 0 0 5px rgba(81, 203, 238, 1);
+    border-radius: 5px;
+  }
+}
+
 .input {
   font-size: 2rem;
   margin-top: 0.5rem;
   padding: 1rem;
 
+  &__signUp {
+  }
+
   &--textarea {
     font-size: 1.8rem;
     resize: none;
   }
-}
-
-input {
-  border: 1px solid $color-gray-700;
-  border-radius: 5px;
-
-  // &:focus {
-  //   border: 2px solid $primary-color--light;
-  //   border-radius: 5px;
-  // }
 }
 
 input[type='file'] {
