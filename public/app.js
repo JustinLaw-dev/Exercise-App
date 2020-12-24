@@ -14,393 +14,401 @@ var firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
 
-function login() {
-  const form = document.getElementById('signInForm');
-
-  const textEmail = document.getElementById('email');
-  const textPassword = document.getElementById('password');
-
-  const btnLogin = document.getElementById('btnLogin');
-  const btnSignUp = document.getElementById('btnSignUp');
-
-  const errorWrapper = document.querySelector('.container__error');
-  const errorMsg = document.querySelector('.container__error--text');
-
-  btnLogin.addEventListener('click', (e) => {
-    //get email and pass
-    //TODO: Regex for domain address
-    const email = textEmail.value;
-    const pass = textPassword.value;
-    const auth = firebase.auth();
-
-    //Sign in
-    const promise = auth.signInWithEmailAndPassword(email, pass);
-    promise.catch((e) => {
-      errorWrapper.style.display = 'block';
-
-      errorMsg.textContent = e.message;
-    });
-  });
-
-  //sign up event
-  btnSignUp.addEventListener('click', (e) => {
-    //get email and pass
-    //TODO: Check for real email address
-    const email = textEmail.value;
-    const pass = textPassword.value;
-    const auth = firebase.auth();
-
-    //Sign in
-    const promise = auth.createUserWithEmailAndPassword(email, pass);
-    promise.catch((e) => {
-      errorWrapper.style.display = 'block';
-      errorMsg.textContent = e.message;
-    });
-  });
-
-  form.addEventListener('keypress', function (e) {
-    if (e.key === 'Enter') {
-      const email = textEmail.value;
-      const pass = textPassword.value;
-      const auth = firebase.auth();
-
-      const promise = auth.signInWithEmailAndPassword(email, pass);
-      promise.catch((e) => {
-        errorWrapper.style.display = 'block';
-
-        errorMsg.textContent = e.message;
-      });
-    }
-  });
-}
+// let link = 'https://los-alamitos-pt-exercise-app.web.app/';
+// let linkIndex = 'https://los-alamitos-pt-exercise-app.web.app/index.html';
+// let linkMain = 'https://los-alamitos-pt-exercise-app.web.app/main.html';
+let linkIndex = 'http://127.0.0.1:5500/public/index.html';
+let linkMain = 'http://127.0.0.1:5500/public/main.html';
 
 //Add real time listener, checks to see if user exists
 firebase.auth().onAuthStateChanged((firebaseUser) => {
-  //Log in valid, redirect to main.html and render welcome message
+  //When user is logged in, redirect to main.html and render welcome message
   if (firebaseUser) {
     let user = firebase.auth().currentUser;
     console.log('Logged in');
-    //Sub this link below in, for live version
-    //https://los-alamitos-pt-exercise-app.web.app/
-    if (window.location.href === 'http://127.0.0.1:5500/public/index.html') {
-      window.location.href = 'http://127.0.0.1:5500/public/main.html';
-    } else if (
-      window.location.href === 'http://127.0.0.1:5500/public/main.html'
-    ) {
+
+    if (window.location.href === /*link ||*/ linkIndex) {
+      window.location.href = linkMain;
+    } else if (window.location.href === linkMain) {
       const userWelcome = document.getElementById('userWelcome');
       userWelcome.textContent = `Welcome ${user.email}`;
+      return;
     }
   }
   //Log in invalid, redirect to index.html
   else {
-    if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
-      window.location.href = 'http://127.0.0.1:5500/public/index.html';
-    }
+    window.location.href = linkIndex;
+
     console.log('You are not a user/ User is not logged in');
   }
 });
 
-if (window.location.href === 'http://127.0.0.1:5500/public/index.html') {
-  login();
-}
 /////
 // Main Page scripts
 //
 /////
 
-if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
-  const btnLogOut = document.getElementById('btnLogOut');
+const btnLogOut = document.getElementById('btnLogOut');
 
-  // const mainHeading = document.getElementById('mainHeading');
-  const tabLinks = document.querySelectorAll('.tabs__link');
-  const tabPanels = document.querySelectorAll('.tabs__panel');
+// const mainHeading = document.getElementById('mainHeading');
+const tabLinks = document.querySelectorAll('.tabs__link');
+const tabPanels = document.querySelectorAll('.tabs__panel');
 
-  const patientsLink = document.getElementById('patientsLink');
-  const exercisesLink = document.getElementById('exercisesLink');
-  const accountLink = document.getElementById('accountLink');
+const patientsLink = document.getElementById('patientsLink');
+const exercisesLink = document.getElementById('exercisesLink');
+const accountLink = document.getElementById('accountLink');
 
-  const patientsContent = document.getElementById('patientsContent');
-  const exercisesContent = document.getElementById('exercisesContent');
-  const accountContent = document.getElementById('accountContent');
+const patientsContent = document.getElementById('patientsContent');
+const exercisesContent = document.getElementById('exercisesContent');
+const accountContent = document.getElementById('accountContent');
 
-  const btnAddPatient = document.getElementById('btnAddPatient');
-  const btnSubmitPatient = document.getElementById('btnSubmitPatient');
-  const modalExit = document.querySelectorAll('.modal__exit');
+const btnAddPatient = document.getElementById('btnAddPatient');
+const btnSubmitPatient = document.getElementById('btnSubmitPatient');
+const modalExit = document.querySelectorAll('.modal__exit');
 
-  const patientList = document.getElementById('patientList');
-  let delPatientIcon;
-  const delPatientText = document.getElementById('delPatient');
-  const yesPatientDel = document.getElementById('yesPatientDel');
-  const noPatientDel = document.getElementById('noPatientDel');
+const patientList = document.getElementById('patientList');
+let delPatientIcon;
+const delPatientText = document.getElementById('delPatient');
+const yesPatientDel = document.getElementById('yesPatientDel');
+const noPatientDel = document.getElementById('noPatientDel');
 
-  const modalOuterPatient = document.querySelector('.modal__outer--patient');
-  const modalInnerPatient = document.querySelector('.modal__inner--patient');
+const modalOuterPatient = document.querySelector('.modal__outer--patient');
+const modalInnerPatient = document.querySelector('.modal__inner--patient');
 
-  const modalPatientDeleteOuter = document.getElementById('modalOuterSmall');
-  const modalPatientDelete = document.querySelector('.modal__inner--small');
+const modalPatientDeleteOuter = document.getElementById('modalOuterSmall');
+const modalPatientDelete = document.querySelector('.modal__inner--small');
 
-  const exerciseList = document.getElementById('exerciseList');
+const exerciseList = document.getElementById('exerciseList');
 
-  const addPatientForm = document.querySelector('.form__addPatient');
-  const firstNameForm = document.querySelector('#firstNameForm');
-  const lastNameForm = document.querySelector('#lastNameForm');
-  const emailForm = document.querySelector('#emailForm');
+const addPatientForm = document.querySelector('.form__addPatient');
+const firstNameForm = document.querySelector('#firstNameForm');
+const lastNameForm = document.querySelector('#lastNameForm');
+const emailForm = document.querySelector('#emailForm');
 
-  const btnAddExercise = document.getElementById('btnAddExercise');
-  const modalInnerExercise = document.querySelector('.modal__inner--exercise');
-  const addExerciseForm = document.querySelector('.form__addExercise');
-  const exerciseNameInput = document.getElementById('exerciseNameInput');
-  const instructionsInput = document.getElementById('instructionsInput');
-  const addExerciseImage = document.getElementById('addExerciseImage');
-  const addExerciseFile = document.getElementById('addExerciseFile');
-  const btnSubmitExercise = document.getElementById('btnSubmitExercise');
+const btnAddExercise = document.getElementById('btnAddExercise');
+const modalInnerExercise = document.querySelector('.modal__inner--exercise');
+const addExerciseForm = document.querySelector('.form__addExercise');
+const exerciseNameInput = document.getElementById('exerciseNameInput');
+const instructionsInput = document.getElementById('instructionsInput');
+const addExerciseImage = document.getElementById('addExerciseImage');
+const addExerciseFile = document.getElementById('addExerciseFile');
+const btnSubmitExercise = document.getElementById('btnSubmitExercise');
 
-  const modalInnerExerciseView = document.querySelector(
-    '.modal__inner--ExerciseView'
-  );
-  const headingExerciseView = document.getElementById('heading--exerciseView');
-  const exerciseViewImg = document.getElementById('exerciseViewImg');
-  const exerciseViewText = document.querySelector(
-    '.modal__inner--exerciseView-text'
-  );
+const modalInnerExerciseView = document.querySelector(
+  '.modal__inner--ExerciseView'
+);
+const headingExerciseView = document.getElementById('heading--exerciseView');
+const exerciseViewImg = document.getElementById('exerciseViewImg');
+const exerciseViewText = document.querySelector(
+  '.modal__inner--exerciseView-text'
+);
 
-  const wrapperAddedExercises = document.querySelector(
-    '.list__wrapper--addedExercises'
-  );
-  const listAddedExercises = document.getElementById('listAddedExercises');
-  const printList = document.getElementById('printList');
+const wrapperAddedExercises = document.querySelector(
+  '.list__wrapper--addedExercises'
+);
+const listAddedExercises = document.getElementById('listAddedExercises');
+const printList = document.getElementById('printList');
 
-  const exercisePrevPage = document.getElementById('exercisePrevPage');
-  const exerciseNextPage = document.getElementById('exerciseNextPage');
+const exercisePrevPage = document.getElementById('exercisePrevPage');
+const exerciseNextPage = document.getElementById('exerciseNextPage');
 
-  //Logout event
-  btnLogOut.addEventListener('click', (e) => {
-    firebase
-      .auth()
-      .signOut()
-      .then(function () {
-        window.alert('Log Out Successful!');
-        window.location.href = 'index.html';
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
+//Logout event
+btnLogOut.addEventListener('click', (e) => {
+  firebase
+    .auth()
+    .signOut()
+    .then(function () {
+      window.alert('Log Out Successful!');
+      window.location.href =
+        'https://los-alamitos-pt-exercise-app.web.app/index.html';
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+});
+
+//Tab switching functionality
+function openTab(tabName) {
+  tabPanels.forEach((tabPanel) => {
+    tabPanel.classList.remove('active');
   });
-
-  //Tab switching functionality
-  function openTab(tabName) {
-    tabPanels.forEach((tabPanel) => {
-      tabPanel.classList.remove('active');
-    });
-    tabLinks.forEach((tabLink) => {
-      tabLink.style.borderRight = 'none';
-      tabLink.style.background = 'none';
-      tabLink.style.color = 'black';
-      tabLink.classList.remove('tabs__link--active');
-    });
-    switch (tabName) {
-      case 'patientsTab':
-        //test
-        patientsContent.classList.add('active');
-        patientsLink.classList.add('tabs__link--active');
-        // mainHeading.textContent = 'Patients';
-        break;
-      case 'exercisesTab':
-        exercisesContent.classList.add('active');
-        exercisesLink.classList.add('tabs__link--active');
-        // mainHeading.textContent = 'Exercises';
-        break;
-      case 'accountTab':
-        accountContent.classList.add('active');
-        accountLink.classList.add('tabs__link--active');
-        // mainHeading.textContent = 'Account';
-        break;
-    }
-  }
-
   tabLinks.forEach((tabLink) => {
-    tabLink.addEventListener('mouseover', function (e) {
-      e.currentTarget.style.background = '#a9dbff';
-      e.currentTarget.style.color = '#03396c';
-    });
-    tabLink.addEventListener('mouseout', function (e) {
-      e.currentTarget.style.background = '#ffffff';
-      e.currentTarget.style.color = 'black';
-    });
+    tabLink.style.borderRight = 'none';
+    tabLink.style.background = 'none';
+    tabLink.style.color = 'black';
+    tabLink.classList.remove('tabs__link--active');
   });
+  switch (tabName) {
+    case 'patientsTab':
+      //test
+      patientsContent.classList.add('active');
+      patientsLink.classList.add('tabs__link--active');
+      // mainHeading.textContent = 'Patients';
+      break;
+    case 'exercisesTab':
+      exercisesContent.classList.add('active');
+      exercisesLink.classList.add('tabs__link--active');
+      // mainHeading.textContent = 'Exercises';
+      break;
+    case 'accountTab':
+      accountContent.classList.add('active');
+      accountLink.classList.add('tabs__link--active');
+      // mainHeading.textContent = 'Account';
+      break;
+  }
+}
 
-  //Add Patient Modal
-  btnAddPatient.addEventListener('click', enterModalPatient);
-  modalExit.forEach((exit) => {
-    exit.addEventListener('click', exitModal);
+tabLinks.forEach((tabLink) => {
+  tabLink.addEventListener('mouseover', function (e) {
+    e.currentTarget.style.background = '#a9dbff';
+    e.currentTarget.style.color = '#03396c';
   });
-  modalOuterPatient.addEventListener('click', exitModal);
-  btnSubmitPatient.addEventListener('click', submitPatientForm);
+  tabLink.addEventListener('mouseout', function (e) {
+    e.currentTarget.style.background = '#ffffff';
+    e.currentTarget.style.color = 'black';
+  });
+});
 
-  function enterModalPatient() {
-    modalOuterPatient.style.display = 'block';
-    modalInnerPatient.style.display = 'block';
-  }
+//Add Patient Modal
+btnAddPatient.addEventListener('click', enterModalPatient);
+modalExit.forEach((exit) => {
+  exit.addEventListener('click', exitModal);
+});
+modalOuterPatient.addEventListener('click', exitModal);
+btnSubmitPatient.addEventListener('click', submitPatientForm);
 
-  function exitModal() {
-    //Exit and reset patient form
-    modalOuterPatient.style.display = 'none';
-    modalInnerPatient.style.display = 'none';
-    addPatientForm.reset();
+function enterModalPatient() {
+  modalOuterPatient.style.display = 'block';
+  modalInnerPatient.style.display = 'block';
+}
 
-    //Exit and reset exercise form
-    modalInnerExercise.style.display = 'none';
-    modalInnerExerciseView.style.display = 'none';
-    addExerciseForm.reset();
-    addExerciseImage.src = '';
-  }
+function exitModal() {
+  //Exit and reset patient form
+  modalOuterPatient.style.display = 'none';
+  modalInnerPatient.style.display = 'none';
+  addPatientForm.reset();
 
-  //Add Patient to collection
-  function submitPatientForm(e) {
-    e.preventDefault();
+  //Exit and reset exercise form
+  modalInnerExercise.style.display = 'none';
+  modalInnerExerciseView.style.display = 'none';
+  addExerciseForm.reset();
+  addExerciseImage.src = '';
+}
 
-    db.collection('Patients')
-      .add({
-        firstName: firstNameForm.value,
-        lastName: lastNameForm.value,
-        Email: emailForm.value,
-      })
-      //Write the new patient into list after successful write to collection.
-      .then((docRef) => {
-        console.log('Document successfully written!');
+//Add Patient to collection
+function submitPatientForm(e) {
+  e.preventDefault();
 
-        let newDoc = db.collection('Patients').doc(docRef.id);
-        newDoc.get().then(function (doc) {
-          if (doc.exists) {
-            let li = document.createElement('li');
-            // let editIcon = document.createElement('i');
-            let deleteIcon = document.createElement('i');
+  db.collection('Patients')
+    .add({
+      firstName: firstNameForm.value,
+      lastName: lastNameForm.value,
+      Email: emailForm.value,
+    })
+    //Write the new patient into list after successful write to collection.
+    .then((docRef) => {
+      console.log('Document successfully written!');
 
-            li.setAttribute('data-id', doc.id);
+      let newDoc = db.collection('Patients').doc(docRef.id);
+      newDoc.get().then(function (doc) {
+        if (doc.exists) {
+          let li = document.createElement('li');
+          // let editIcon = document.createElement('i');
+          let deleteIcon = document.createElement('i');
 
-            li.textContent = `${doc.data().lastName}, ${doc.data().firstName}`;
-            // editIcon.setAttribute('class', 'fas fa-edit');
-            deleteIcon.setAttribute('class', 'fas fa-trash-alt');
+          li.setAttribute('data-id', doc.id);
 
-            li.appendChild(deleteIcon);
-            // li.appendChild(editIcon);
+          li.textContent = `${doc.data().lastName}, ${doc.data().firstName}`;
+          // editIcon.setAttribute('class', 'fas fa-edit');
+          deleteIcon.setAttribute('class', 'fas fa-trash-alt');
 
-            patientList.appendChild(li);
-          }
-        });
-      })
-      .catch(function (error) {
-        console.error('Error writing document: ', error);
+          li.appendChild(deleteIcon);
+          // li.appendChild(editIcon);
+
+          patientList.appendChild(li);
+        }
       });
+    })
+    .catch(function (error) {
+      console.error('Error writing document: ', error);
+    });
 
-    exitModal();
-  }
+  exitModal();
+}
 
-  // Grab Patient data and render as list item
-  function renderPatientList(doc) {
-    let li = document.createElement('li');
-    let editIcon = document.createElement('i');
-    let deleteIcon = document.createElement('i');
-    li.classList.add('patientLI');
+// Grab Patient data and render as list item
+function renderPatientList(doc) {
+  let li = document.createElement('li');
+  let editIcon = document.createElement('i');
+  let deleteIcon = document.createElement('i');
+  li.classList.add('patientLI');
 
-    li.setAttribute('data-id', doc.id);
-    li.textContent = `${doc.data().lastName}, ${doc.data().firstName}`;
-    // editIcon.setAttribute('class', 'fas fa-edit');
-    deleteIcon.setAttribute('class', 'fas fa-trash-alt');
+  li.setAttribute('data-id', doc.id);
+  li.textContent = `${doc.data().lastName}, ${doc.data().firstName}`;
+  // editIcon.setAttribute('class', 'fas fa-edit');
+  deleteIcon.setAttribute('class', 'fas fa-trash-alt');
 
-    li.appendChild(deleteIcon);
-    // li.appendChild(editIcon);
+  li.appendChild(deleteIcon);
+  // li.appendChild(editIcon);
 
-    patientList.appendChild(li);
-  }
+  patientList.appendChild(li);
+}
 
-  function renderExerciseList(doc) {
-    let li = document.createElement('li');
-    let img = document.createElement('img');
-    let p = document.createElement('p');
-    let button = document.createElement('button');
-    let addIcon = document.createElement('i');
+function renderExerciseList(doc) {
+  let li = document.createElement('li');
+  let img = document.createElement('img');
+  let p = document.createElement('p');
+  let button = document.createElement('button');
+  let addIcon = document.createElement('i');
 
-    li.classList.add('list__exercises__item', 'exerciseClick');
-    li.setAttribute('data-id', doc.id);
-    p.textContent = doc.data().name;
+  li.classList.add('list__exercises__item', 'exerciseClick');
+  li.setAttribute('data-id', doc.id);
+  p.textContent = doc.data().name;
 
-    img.setAttribute('src', doc.data().image);
-    img.classList.add('list__exercises__img', 'exerciseClick');
-    addIcon.setAttribute('class', 'fas fa-plus');
-    button.setAttribute('class', 'exercise-plus');
+  img.setAttribute('src', doc.data().image);
+  img.classList.add('list__exercises__img', 'exerciseClick');
+  addIcon.setAttribute('class', 'fas fa-plus');
+  button.setAttribute('class', 'exercise-plus');
 
-    li.appendChild(img);
-    li.appendChild(p);
-    button.appendChild(addIcon);
-    li.appendChild(button);
+  li.appendChild(img);
+  li.appendChild(p);
+  button.appendChild(addIcon);
+  li.appendChild(button);
 
-    exerciseList.appendChild(li);
-  }
+  exerciseList.appendChild(li);
+}
 
-  function clearPatientList() {
-    patientList.innerHTML = '';
-  }
+function clearPatientList() {
+  patientList.innerHTML = '';
+}
 
-  function clearExerciseList() {
-    exerciseList.innerHTML = '';
-  }
+function clearExerciseList() {
+  exerciseList.innerHTML = '';
+}
 
-  function enterDeleteModal() {
-    modalPatientDeleteOuter.style.display = 'block';
-    modalPatientDelete.style.display = 'block';
-  }
+function enterDeleteModal() {
+  modalPatientDeleteOuter.style.display = 'block';
+  modalPatientDelete.style.display = 'block';
+}
 
-  function exitDeleteModal() {
-    modalPatientDeleteOuter.style.display = 'none';
-    modalPatientDelete.style.display = 'none';
-  }
+function exitDeleteModal() {
+  modalPatientDeleteOuter.style.display = 'none';
+  modalPatientDelete.style.display = 'none';
+}
 
-  function deletePatient(event) {
-    let listItem = event.currentTarget.parentNode;
-    let id = event.currentTarget.parentNode.getAttribute('data-id');
-    console.log(listItem);
-    console.log(id);
-    let name = event.currentTarget.parentNode.textContent;
-    // //Open Modal -- applied once on function click to fix repeating previous deletes, before logging newest delete.
-    enterDeleteModal();
+function deletePatient(event) {
+  let listItem = event.currentTarget.parentNode;
+  let id = event.currentTarget.parentNode.getAttribute('data-id');
+  console.log(listItem);
+  console.log(id);
+  let name = event.currentTarget.parentNode.textContent;
+  // //Open Modal -- applied once on function click to fix repeating previous deletes, before logging newest delete.
+  enterDeleteModal();
 
-    // //Display "Are you sure you want to remove xxxx, xxx?" Delete Cancel
-    delPatientText.textContent = `Are you sure you want to delete ${name}? If deleted, the patient will be removed and cannot be retrieved.`;
+  // //Display "Are you sure you want to remove xxxx, xxx?" Delete Cancel
+  delPatientText.textContent = `Are you sure you want to delete ${name}? If deleted, the patient will be removed and cannot be retrieved.`;
 
-    //Confirm delete
-    yesPatientDel.addEventListener(
-      'click',
-      function () {
-        db.collection('Patients')
-          .doc(id)
-          .delete()
-          .then(function () {
-            console.log('Document successfully deleted!');
-          })
-          .catch(function (error) {
-            console.error('Error removing document: ', error);
-          });
-        patientList.removeChild(listItem);
-        exitDeleteModal();
-      },
-      { once: true }
-    );
-    //Exit Modal on "No"
-    noPatientDel.addEventListener('click', exitDeleteModal);
-  }
+  //Confirm delete
+  yesPatientDel.addEventListener(
+    'click',
+    function () {
+      db.collection('Patients')
+        .doc(id)
+        .delete()
+        .then(function () {
+          console.log('Document successfully deleted!');
+        })
+        .catch(function (error) {
+          console.error('Error removing document: ', error);
+        });
+      patientList.removeChild(listItem);
+      exitDeleteModal();
+    },
+    { once: true }
+  );
+  //Exit Modal on "No"
+  noPatientDel.addEventListener('click', exitDeleteModal);
+}
 
-  let patientPageSize = 1;
-  let firstVisiblePatient;
-  let lastVisiblePatient;
-  let absolutePatient;
-  const patientRef = db.collection('Patients');
+let patientPageSize = 9;
+let firstVisiblePatient;
+let lastVisiblePatient;
+let absolutePatient;
+const patientRef = db.collection('Patients');
 
-  ///Initialize Patient List on startup
+///Initialize Patient List on startup
+patientRef
+  .orderBy('lastName', 'asc')
+  .limit(patientPageSize)
+
+  .get()
+  .then((snapshot) => {
+    snapshot.docs.forEach((doc) => {
+      renderPatientList(doc);
+      //Adds query selector and event listener after patient list is finished rendering
+      delPatientIcon = document.querySelectorAll('.fa-trash-alt');
+      delPatientIcon.forEach((icon) => {
+        icon.addEventListener('click', deletePatient);
+      });
+    });
+    absoluteFirstPatient = `${snapshot.docs[0].data().lastName}, ${
+      snapshot.docs[0].data().firstName
+    }`;
+    firstVisiblePatient = snapshot.docs[0].data().lastName;
+    lastVisiblePatient = snapshot.docs[snapshot.docs.length - 1].data()
+      .lastName;
+    // console.log('abs = ', absoluteFirstPatient);
+    patientPrev.disabled = true;
+  });
+
+function nextPatientPage() {
+  console.log('next pt page');
+  //clear patient list
   patientRef
     .orderBy('lastName', 'asc')
     .limit(patientPageSize)
+    .startAfter(lastVisiblePatient)
+    .get()
+    .then((snapshot) => {
+      //Disable next button on last page,
+      //case for when length of list matches page size
+      //TODO -- query for pageSize + 1, display pageSize # of items only.
+      // if length of query list < pageSize + 1, disable fwd button
+      if (snapshot.docs.length == 0) {
+        patientNext.disabled = true;
+        return;
+      } else {
+        clearPatientList();
+        snapshot.docs.forEach((doc) => {
+          renderPatientList(doc);
+          //Adds query selector and event listener after patient list is finished rendering
+          delPatientIcon = document.querySelectorAll('.fa-trash-alt');
+          delPatientIcon.forEach((icon) => {
+            icon.addEventListener('click', deletePatient);
+          });
+        });
+        firstVisiblePatient = snapshot.docs[0].data().lastName;
+        // }
+        lastVisiblePatient = snapshot.docs[snapshot.docs.length - 1].data()
+          .lastName;
+        patientPrev.disabled = false;
+        //disable if query render list is any less than maximum page # allowed.
+        if (snapshot.docs.length < patientPageSize) {
+          patientNext.disabled = true;
+        } else return;
+      }
+    })
+    .catch((error) => {});
+}
 
+function prevPatientPage() {
+  console.log('prev pt page');
+  //clear patient list
+  clearPatientList();
+  patientRef
+    .orderBy('lastName', 'asc')
+    .endBefore(firstVisiblePatient)
+    .limitToLast(patientPageSize)
     .get()
     .then((snapshot) => {
       snapshot.docs.forEach((doc) => {
@@ -411,236 +419,134 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
           icon.addEventListener('click', deletePatient);
         });
       });
-      absoluteFirstPatient = `${snapshot.docs[0].data().lastName}, ${
-        snapshot.docs[0].data().firstName
-      }`;
       firstVisiblePatient = snapshot.docs[0].data().lastName;
       lastVisiblePatient = snapshot.docs[snapshot.docs.length - 1].data()
         .lastName;
-      // console.log('abs = ', absoluteFirstPatient);
-      patientPrev.disabled = true;
+      console.log('last Name =', lastVisiblePatient);
+
+      patientNext.disabled = false;
+      //prettier-ignore
+      if (absoluteFirstPatient == patientList.children[0].textContent) {
+          patientPrev.disabled = true;
+        } else patientPrev.disabled = false;
     });
+}
+const patientNext = document.getElementById('patientNextPage');
+const patientPrev = document.getElementById('patientPrevPage');
 
-  function nextPatientPage() {
-    console.log('next pt page');
-    //clear patient list
-    patientRef
-      .orderBy('lastName', 'asc')
-      .limit(patientPageSize)
-      .startAfter(lastVisiblePatient)
-      .get()
-      .then((snapshot) => {
-        //Disable next button on last page,
-        //case for when length of list matches page size
-        //TODO -- query for pageSize + 1, display pageSize # of items only.
-        // if length of query list < pageSize + 1, disable fwd button
-        if (snapshot.docs.length == 0) {
-          patientNext.disabled = true;
-          return;
-        } else {
-          clearPatientList();
-          snapshot.docs.forEach((doc) => {
-            renderPatientList(doc);
-            //Adds query selector and event listener after patient list is finished rendering
-            delPatientIcon = document.querySelectorAll('.fa-trash-alt');
-            delPatientIcon.forEach((icon) => {
-              icon.addEventListener('click', deletePatient);
-            });
-          });
-          firstVisiblePatient = snapshot.docs[0].data().lastName;
-          // }
-          lastVisiblePatient = snapshot.docs[snapshot.docs.length - 1].data()
-            .lastName;
-          patientPrev.disabled = false;
-          //disable if query render list is any less than maximum page # allowed.
-          if (snapshot.docs.length < patientPageSize) {
-            patientNext.disabled = true;
-          } else return;
-        }
-      })
-      .catch((error) => {});
-  }
+patientNext.addEventListener('click', nextPatientPage);
+patientPrev.addEventListener('click', prevPatientPage);
 
-  function prevPatientPage() {
-    console.log('prev pt page');
-    //clear patient list
-    clearPatientList();
-    patientRef
-      .orderBy('lastName', 'asc')
-      .endBefore(firstVisiblePatient)
-      .limitToLast(patientPageSize)
+function addExerciseToList(e) {
+  target = e.currentTarget;
+  parent = target.parentNode;
+
+  let name = parent.getAttribute('data-id');
+  let imageSrc = parent.firstChild.src;
+  // ul = listaddedExercise
+  console.table(name, imageSrc);
+
+  let li = document.createElement('li');
+  li.classList.add('list__addedExercises--item');
+
+  let img = document.createElement('img');
+  img.classList.add('list__addedExercises--image');
+  img.src = imageSrc;
+
+  let p = document.createElement('p');
+  p.classList.add('list__addedExercises--text');
+  p.textContent = name;
+
+  let div = document.createElement('div');
+  div.classList.add('list__addedExercises--details');
+
+  let btn = document.createElement('button');
+  btn.classList.add('list__removeExercise--icon');
+
+  let icon = document.createElement('i');
+  icon.setAttribute('class', 'fas fa-times list__removeExercise--iconX');
+  btn.appendChild(icon);
+
+  div.appendChild(p);
+  div.appendChild(btn);
+
+  li.appendChild(img);
+  li.appendChild(div);
+
+  listAddedExercises.appendChild(li);
+}
+//
+
+// Observer to initialize render of exercises when exercises tab is Clicked for the first time.
+// Options for the exercise content observer
+const obConfig = { attributes: true };
+
+let exercisePageSize = 8;
+let exerciseRef = db.collection('testrcises');
+let firstVisibleExercise;
+let lastVisibleExercise;
+let absoluteFirstExercise;
+
+// Callback function to execute when mutations are observed
+const callback = function (mutationsList, observer) {
+  if (exercisesContent.classList.contains('active')) {
+    // console.log('This tab is activated!');
+    exerciseRef
+      .limit(exercisePageSize)
       .get()
       .then((snapshot) => {
         snapshot.docs.forEach((doc) => {
-          renderPatientList(doc);
-          //Adds query selector and event listener after patient list is finished rendering
-          delPatientIcon = document.querySelectorAll('.fa-trash-alt');
-          delPatientIcon.forEach((icon) => {
-            icon.addEventListener('click', deletePatient);
+          renderExerciseList(doc);
+          const addIcons = document.querySelectorAll('.exercise-plus');
+          addIcons.forEach((icon) => {
+            icon.addEventListener('click', addExerciseToList);
           });
         });
-        firstVisiblePatient = snapshot.docs[0].data().lastName;
-        lastVisiblePatient = snapshot.docs[snapshot.docs.length - 1].data()
-          .lastName;
-        console.log('last Name =', lastVisiblePatient);
+        absoluteFirstExercise = snapshot.docs[0].data().name;
+        firstVisibleExercise = snapshot.docs[0].data().name;
+        lastVisibleExercise = snapshot.docs[snapshot.docs.length - 1].data()
+          .name;
+        exercisePrev.disabled = true;
+        // dont thinik needed
+        // console.log('absolute first exercise = ', absoluteFirstExercise);
+        // console.log('first exercise =', firstVisibleExercise);
+        // console.log('last exercise =', lastVisibleExercise);
 
-        patientNext.disabled = false;
-        //prettier-ignore
-        if (absoluteFirstPatient == patientList.children[0].textContent) {
-          patientPrev.disabled = true;
-        } else patientPrev.disabled = false;
+        // return {
+        //   firstVisibleExercise,
+        //   lastVisibleExercise,
+        // };
       });
+    //Stop observing after tab is clicked for the first time
+    exerciseLoadOb.disconnect();
   }
-  const patientNext = document.getElementById('patientNextPage');
-  const patientPrev = document.getElementById('patientPrevPage');
+  //optional else if condition
+  //  else if (mutation.type === 'attributes') {
+  //   console.log(
+  //     'The ' + mutation.attributeName + ' attribute was modified.'
+  // );
+};
 
-  patientNext.addEventListener('click', nextPatientPage);
-  patientPrev.addEventListener('click', prevPatientPage);
+// Create an observer instance linked to the callback function
+const exerciseLoadOb = new MutationObserver(callback);
 
-  function addExerciseToList(e) {
-    target = e.currentTarget;
-    parent = target.parentNode;
+// Start observing the target node for configured mutations
+exerciseLoadOb.observe(exercisesContent, obConfig);
 
-    let name = parent.getAttribute('data-id');
-    let imageSrc = parent.firstChild.src;
-    // ul = listaddedExercise
-    console.table(name, imageSrc);
-
-    let li = document.createElement('li');
-    li.classList.add('list__addedExercises--item');
-
-    let img = document.createElement('img');
-    img.classList.add('list__addedExercises--image');
-    img.src = imageSrc;
-
-    let p = document.createElement('p');
-    p.classList.add('list__addedExercises--text');
-    p.textContent = name;
-
-    let div = document.createElement('div');
-    div.classList.add('list__addedExercises--details');
-
-    let btn = document.createElement('button');
-    btn.classList.add('list__removeExercise--icon');
-
-    let icon = document.createElement('i');
-    icon.setAttribute('class', 'fas fa-times list__removeExercise--iconX');
-    btn.appendChild(icon);
-
-    div.appendChild(p);
-    div.appendChild(btn);
-
-    li.appendChild(img);
-    li.appendChild(div);
-
-    listAddedExercises.appendChild(li);
-  }
-  //
-
-  // Observer to initialize render of exercises when exercises tab is Clicked for the first time.
-  // Options for the exercise content observer
-  const obConfig = { attributes: true };
-
-  let exercisePageSize = 8;
-  let exerciseRef = db.collection('testrcises');
-  let firstVisibleExercise;
-  let lastVisibleExercise;
-  let absoluteFirstExercise;
-
-  // Callback function to execute when mutations are observed
-  const callback = function (mutationsList, observer) {
-    if (exercisesContent.classList.contains('active')) {
-      // console.log('This tab is activated!');
-      exerciseRef
-        .limit(exercisePageSize)
-        .get()
-        .then((snapshot) => {
-          snapshot.docs.forEach((doc) => {
-            renderExerciseList(doc);
-            const addIcons = document.querySelectorAll('.exercise-plus');
-            addIcons.forEach((icon) => {
-              icon.addEventListener('click', addExerciseToList);
-            });
-          });
-          absoluteFirstExercise = snapshot.docs[0].data().name;
-          firstVisibleExercise = snapshot.docs[0].data().name;
-          lastVisibleExercise = snapshot.docs[snapshot.docs.length - 1].data()
-            .name;
-          exercisePrev.disabled = true;
-          // dont thinik needed
-          // console.log('absolute first exercise = ', absoluteFirstExercise);
-          // console.log('first exercise =', firstVisibleExercise);
-          // console.log('last exercise =', lastVisibleExercise);
-
-          // return {
-          //   firstVisibleExercise,
-          //   lastVisibleExercise,
-          // };
-        });
-      //Stop observing after tab is clicked for the first time
-      exerciseLoadOb.disconnect();
-    }
-    //optional else if condition
-    //  else if (mutation.type === 'attributes') {
-    //   console.log(
-    //     'The ' + mutation.attributeName + ' attribute was modified.'
-    // );
-  };
-
-  // Create an observer instance linked to the callback function
-  const exerciseLoadOb = new MutationObserver(callback);
-
-  // Start observing the target node for configured mutations
-  exerciseLoadOb.observe(exercisesContent, obConfig);
-
-  function nextExercisePage() {
-    exerciseRef
-      .orderBy('name', 'asc')
-      .limit(exercisePageSize)
-      .startAfter(lastVisibleExercise)
-      .get()
-      .then((snapshot) => {
-        //Disable next button on last page,
-        //case for when length of list matches page size
-        if (snapshot.docs.length == 0) {
-          exerciseNext.disabled = true;
-          return;
-        } else {
-          clearExerciseList();
-          snapshot.docs.forEach((doc) => {
-            renderExerciseList(doc);
-            //doesnt work
-            const addIcons = document.querySelectorAll('.exercise-plus');
-            addIcons.forEach((icon) => {
-              icon.addEventListener('click', addExerciseToList);
-            });
-          });
-          firstVisibleExercise = snapshot.docs[0].data().name;
-          // console.log('first exercise =', firstVisibleExercise);
-          lastVisibleExercise = snapshot.docs[snapshot.docs.length - 1].data()
-            .name;
-          // console.log('last exercise =', lastVisibleExercise);
-          console.log('absolute first exercise = ', absoluteFirstExercise);
-          exercisePrev.disabled = false;
-          if (snapshot.docs.length < exercisePageSize) {
-            // console.log('disable exercise next');
-            exerciseNext.disabled = true;
-          } else return;
-        }
-      });
-  }
-
-  //After page 3, not querying correctly. goes back to page 1
-  function prevExercisePage() {
-    console.log('previous exercise page');
-    //clear patient list
-    clearExerciseList();
-    exerciseRef
-      .orderBy('name', 'asc')
-      .endBefore(firstVisibleExercise)
-      .limitToLast(exercisePageSize)
-      .get()
-      .then((snapshot) => {
+function nextExercisePage() {
+  exerciseRef
+    .orderBy('name', 'asc')
+    .limit(exercisePageSize)
+    .startAfter(lastVisibleExercise)
+    .get()
+    .then((snapshot) => {
+      //Disable next button on last page,
+      //case for when length of list matches page size
+      if (snapshot.docs.length == 0) {
+        exerciseNext.disabled = true;
+        return;
+      } else {
+        clearExerciseList();
         snapshot.docs.forEach((doc) => {
           renderExerciseList(doc);
           //doesnt work
@@ -654,421 +560,453 @@ if (window.location.href === 'http://127.0.0.1:5500/public/main.html') {
         lastVisibleExercise = snapshot.docs[snapshot.docs.length - 1].data()
           .name;
         // console.log('last exercise =', lastVisibleExercise);
-        exerciseNext.disabled = false;
-        //prettier-ignore
-        if (absoluteFirstExercise === exerciseList.children[0].getAttribute('data-id')        ) {
+        console.log('absolute first exercise = ', absoluteFirstExercise);
+        exercisePrev.disabled = false;
+        if (snapshot.docs.length < exercisePageSize) {
+          // console.log('disable exercise next');
+          exerciseNext.disabled = true;
+        } else return;
+      }
+    });
+}
+
+//After page 3, not querying correctly. goes back to page 1
+function prevExercisePage() {
+  console.log('previous exercise page');
+  //clear patient list
+  clearExerciseList();
+  exerciseRef
+    .orderBy('name', 'asc')
+    .endBefore(firstVisibleExercise)
+    .limitToLast(exercisePageSize)
+    .get()
+    .then((snapshot) => {
+      snapshot.docs.forEach((doc) => {
+        renderExerciseList(doc);
+        //doesnt work
+        const addIcons = document.querySelectorAll('.exercise-plus');
+        addIcons.forEach((icon) => {
+          icon.addEventListener('click', addExerciseToList);
+        });
+      });
+      firstVisibleExercise = snapshot.docs[0].data().name;
+      // console.log('first exercise =', firstVisibleExercise);
+      lastVisibleExercise = snapshot.docs[snapshot.docs.length - 1].data().name;
+      // console.log('last exercise =', lastVisibleExercise);
+      exerciseNext.disabled = false;
+      //prettier-ignore
+      if (absoluteFirstExercise === exerciseList.children[0].getAttribute('data-id')        ) {
           exercisePrev.disabled = true;
         } else exercisePrev.disabled = false;
-      });
-  }
+    });
+}
 
-  // function checkFirstExercise() {
+// function checkFirstExercise() {
 
-  // }
+// }
 
-  const exerciseNext = document.getElementById('exerciseNextPage');
-  const exercisePrev = document.getElementById('exercisePrevPage');
+const exerciseNext = document.getElementById('exerciseNextPage');
+const exercisePrev = document.getElementById('exercisePrevPage');
 
-  exerciseNext.addEventListener('click', nextExercisePage);
-  exercisePrev.addEventListener('click', prevExercisePage);
+exerciseNext.addEventListener('click', nextExercisePage);
+exercisePrev.addEventListener('click', prevExercisePage);
 
-  //Add Exercise Modal
-  function enterModalAddExercise() {
-    modalOuterPatient.style.display = 'block';
-    modalInnerExercise.style.display = 'block';
-    addExerciseFile.value = '';
-    //File reader - Preview image before sending form
-    addExerciseFile.onchange = function () {
-      let reader = new FileReader();
+//Add Exercise Modal
+function enterModalAddExercise() {
+  modalOuterPatient.style.display = 'block';
+  modalInnerExercise.style.display = 'block';
+  addExerciseFile.value = '';
+  //File reader - Preview image before sending form
+  addExerciseFile.onchange = function () {
+    let reader = new FileReader();
 
-      reader.onload = function (e) {
-        //Get loaded data, render thumbnail.
-        addExerciseImage.src = e.target.result;
-      };
-
-      //Read Image file as data URL
-      reader.readAsDataURL(this.files[0]);
+    reader.onload = function (e) {
+      //Get loaded data, render thumbnail.
+      addExerciseImage.src = e.target.result;
     };
 
-    function submitExerciseForm(e) {
-      e.preventDefault();
+    //Read Image file as data URL
+    reader.readAsDataURL(this.files[0]);
+  };
 
-      //Store the image into firestore, retrieve URL, then store THAT URL into the image location of exercise DB.
-      let storageRef = firebase.storage().ref();
+  function submitExerciseForm(e) {
+    e.preventDefault();
 
-      // Create a reference to 'exerciseName.jpg'
-      let uploadRef = storageRef.child(`${exerciseNameInput.value}.jpg`);
+    //Store the image into firestore, retrieve URL, then store THAT URL into the image location of exercise DB.
+    let storageRef = firebase.storage().ref();
 
-      // Create a reference to 'exercises/exercisesname.jpg'
-      let uploadImagesRef = storageRef.child(
-        `test/${exerciseNameInput.value}.jpg`
-      );
+    // Create a reference to 'exerciseName.jpg'
+    let uploadRef = storageRef.child(`${exerciseNameInput.value}.jpg`);
 
-      // While the file names are the same, the references point to different files
-      uploadRef.name === [exerciseNameInput.value].name; // true
-      uploadImagesRef.fullPath === [exerciseNameInput.value].fullPath; // false
+    // Create a reference to 'exercises/exercisesname.jpg'
+    let uploadImagesRef = storageRef.child(
+      `test/${exerciseNameInput.value}.jpg`
+    );
 
-      //upload image to storage
-      let file = addExerciseFile.files[0];
+    // While the file names are the same, the references point to different files
+    uploadRef.name === [exerciseNameInput.value].name; // true
+    uploadImagesRef.fullPath === [exerciseNameInput.value].fullPath; // false
 
-      uploadImagesRef.put(file).then(function (snapshot) {
-        console.log('Uploaded image!');
+    //upload image to storage
+    let file = addExerciseFile.files[0];
 
-        //After uploading, grab image url to put in firestore
-        uploadImagesRef.getDownloadURL().then(function (url) {
-          let uploadURL = url;
-          console.log(
-            exerciseNameInput.value,
-            instructionsInput.value,
-            uploadURL
-          );
+    uploadImagesRef.put(file).then(function (snapshot) {
+      console.log('Uploaded image!');
 
-          db.collection('testrcises').doc(`${exerciseNameInput.value}`).set({
-            name: exerciseNameInput.value,
-            instructions: instructionsInput.value,
-            image: uploadURL,
-          });
-          //Renders exercise to list immediately after addition
-          // .then((docRef) => {
-          //   console.log('Document successfully written!');
+      //After uploading, grab image url to put in firestore
+      uploadImagesRef.getDownloadURL().then(function (url) {
+        let uploadURL = url;
+        console.log(
+          exerciseNameInput.value,
+          instructionsInput.value,
+          uploadURL
+        );
 
-          ////Function to immediately write a copy of exercise into list
-
-          //   let newDoc = db.collection('Exercises').doc(docRef.id);
-          //   newDoc.get().then(function (doc) {
-          //     if (doc.exists) {
-          //       let li = document.createElement('li');
-          //       let editIcon = document.createElement('i');
-          //       let deleteIcon = document.createElement('i');
-
-          //       li.setAttribute('data-id', doc.id);
-
-          //       li.textContent = `${doc.data().lastName}, ${doc.data().firstName}`;
-          //       editIcon.setAttribute('class', 'fas fa-edit');
-          //       deleteIcon.setAttribute('class', 'fas fa-trash-alt');
-
-          //       li.appendChild(deleteIcon);
-          //       li.appendChild(editIcon);
-
-          //       patientList.appendChild(li);
-          //     }
-          //   });
-          // })
-          // .catch(function (error) {
-          //   console.error('Error writing document: ', error);
-          // });
+        db.collection('testrcises').doc(`${exerciseNameInput.value}`).set({
+          name: exerciseNameInput.value,
+          instructions: instructionsInput.value,
+          image: uploadURL,
         });
+        //Renders exercise to list immediately after addition
+        // .then((docRef) => {
+        //   console.log('Document successfully written!');
+
+        ////Function to immediately write a copy of exercise into list
+
+        //   let newDoc = db.collection('Exercises').doc(docRef.id);
+        //   newDoc.get().then(function (doc) {
+        //     if (doc.exists) {
+        //       let li = document.createElement('li');
+        //       let editIcon = document.createElement('i');
+        //       let deleteIcon = document.createElement('i');
+
+        //       li.setAttribute('data-id', doc.id);
+
+        //       li.textContent = `${doc.data().lastName}, ${doc.data().firstName}`;
+        //       editIcon.setAttribute('class', 'fas fa-edit');
+        //       deleteIcon.setAttribute('class', 'fas fa-trash-alt');
+
+        //       li.appendChild(deleteIcon);
+        //       li.appendChild(editIcon);
+
+        //       patientList.appendChild(li);
+        //     }
+        //   });
+        // })
+        // .catch(function (error) {
+        //   console.error('Error writing document: ', error);
+        // });
       });
+    });
 
-      //
+    //
 
-      setTimeout(exitModal, 500);
-      alert('upload complete!');
-    }
-    btnSubmitExercise.addEventListener('click', submitExerciseForm);
+    setTimeout(exitModal, 500);
+    alert('upload complete!');
   }
+  btnSubmitExercise.addEventListener('click', submitExerciseForm);
+}
 
-  btnAddExercise.addEventListener('click', enterModalAddExercise);
+btnAddExercise.addEventListener('click', enterModalAddExercise);
 
-  //Exercise search function
-  const exerciseSearchbar = document.querySelector('#exerciseSearchbar');
-  const exerciseSearchIcon = document.getElementById('exerciseSearchIcon');
+//Exercise search function
+const exerciseSearchbar = document.querySelector('#exerciseSearchbar');
+const exerciseSearchIcon = document.getElementById('exerciseSearchIcon');
 
-  function exerciseSearch() {
-    let searchInput = exerciseSearchbar.value;
-    // let searchInputLower = searchInput.toString().toLowerCase();
-    // console.log(searchInputLower);
-    let query = exerciseRef.where('name', '==', `${searchInput}`);
+function exerciseSearch() {
+  let searchInput = exerciseSearchbar.value;
+  // let searchInputLower = searchInput.toString().toLowerCase();
+  // console.log(searchInputLower);
+  let query = exerciseRef.where('name', '==', `${searchInput}`);
 
-    if (searchInput == '' || searchInput == null) {
-      clearExerciseList();
-      exerciseRef
-        .limit(exercisePageSize)
-        .get()
-        .then((snapshot) => {
-          snapshot.docs.forEach((doc) => {
-            renderExerciseList(doc);
-            const addIcons = document.querySelectorAll('.exercise-plus');
-            addIcons.forEach((icon) => {
-              icon.addEventListener('click', addExerciseToList);
-            });
+  if (searchInput == '' || searchInput == null) {
+    clearExerciseList();
+    exerciseRef
+      .limit(exercisePageSize)
+      .get()
+      .then((snapshot) => {
+        snapshot.docs.forEach((doc) => {
+          renderExerciseList(doc);
+          const addIcons = document.querySelectorAll('.exercise-plus');
+          addIcons.forEach((icon) => {
+            icon.addEventListener('click', addExerciseToList);
           });
-          absoluteFirstExercise = snapshot.docs[0].data().name;
-          firstVisibleExercise = snapshot.docs[0].data().name;
-          lastVisibleExercise = snapshot.docs[snapshot.docs.length - 1].data()
-            .name;
-          exercisePrev.disabled = true;
-          exerciseNext.disabled = false;
         });
-    } else {
-      query
-        .limit(exercisePageSize)
-        .get()
-        .then(function (querySnapshot) {
-          clearExerciseList();
-          querySnapshot.forEach(function (doc) {
-            renderExerciseList(doc);
-            const addIcons = document.querySelectorAll('.exercise-plus');
-            addIcons.forEach((icon) => {
-              icon.addEventListener('click', addExerciseToList);
-            });
-          });
-        })
-        .catch((error) => {
-          console.log(error);
-          // exerciseList.textContent =
-          // 'No item found, please try searching with different terms.';
-        });
-    }
-  }
-
-  function patientSearch() {
-    let searchInput = patientSearchbar.value;
-    // let searchInputLower = searchInput.toString().toLowerCase();
-    // console.log(searchInputLower);
-    let query = patientRef.where('lastName', '==', `${searchInput}`);
-
-    if (searchInput == '' || searchInput == null) {
-      clearPatientList();
-      patientRef
-        .limit(patientPageSize)
-        .get()
-        .then((snapshot) => {
-          snapshot.docs.forEach((doc) => {
-            renderPatientList(doc);
-            //Adds query selector and event listener after patient list is finished rendering
-            delPatientIcon = document.querySelectorAll('.fa-trash-alt');
-            delPatientIcon.forEach((icon) => {
-              icon.addEventListener('click', deletePatient);
-            });
-          });
-          absoluteFirstPatient = snapshot.docs[0].data().name;
-          firstVisiblePatient = snapshot.docs[0].data().name;
-          lastVisiblePatient = snapshot.docs[snapshot.docs.length - 1].data()
-            .name;
-          patientPrev.disabled = true;
-          patientNext.disabled = false;
-        });
-    } else {
-      query
-        .limit(patientPageSize)
-        .get()
-        .then(function (querySnapshot) {
-          clearPatientList();
-          querySnapshot.forEach(function (doc) {
-            renderPatientList(doc);
-            //Adds query selector and event listener after patient list is finished rendering
-            delPatientIcon = document.querySelectorAll('.fa-trash-alt');
-            delPatientIcon.forEach((icon) => {
-              icon.addEventListener('click', deletePatient);
-            });
-          });
-        })
-        .catch((error) => {
-          console.log(error);
-          // exerciseList.textContent =
-          // 'No item found, please try searching with different terms.';
-        });
-    }
-  }
-
-  patientSearchbar.addEventListener('keypress', function (e) {
-    if (e.key === 'Enter') {
-      patientSearch();
-    } else return;
-  });
-
-  document
-    .querySelector('.searchbar__wrapper i')
-    .addEventListener('click', patientSearch);
-
-  exerciseSearchbar.addEventListener('keypress', function (e) {
-    if (e.key === 'Enter') {
-      exerciseSearch();
-    } else return;
-  });
-
-  exerciseSearchIcon.addEventListener('click', exerciseSearch);
-
-  // View exercise
-  // https://stackoverflow.com/questions/34896106/attach-event-to-dynamic-elements-in-javascript
-  //Image is placed on top of div background. This lists a way to always use the LI text content.
-  //WIP
-  //https://stackoverflow.com/questions/23504528/dynamically-remove-items-from-list-javascript
-
-  document.body.addEventListener('click', function (e) {
-    if (
-      // e.target.classList.contains('list__removeExercise--icon') ||
-      e.target.classList.contains('list__removeExercise--iconX')
-    ) {
-      iconParent = e.target.parentNode;
-      let detailDiv = iconParent.parentNode;
-      let li = detailDiv.parentNode;
-
-      listAddedExercises.removeChild(li);
-    } else if (e.target.classList.contains('exerciseClick')) {
-      modalOuterPatient.style.display = 'block';
-      modalInnerExerciseView.style.display = 'block';
-      let target = e.target;
-      let nodeName = e.target.nodeName;
-      let dataID;
-      if (nodeName === 'IMG') {
-        headingExerciseView.textContent = target.parentNode.textContent;
-        exerciseViewImg.src = target.src;
-
-        dataID = target.parentNode.getAttribute('data-id');
-        db.collection('testrcises')
-          .where('name', '==', dataID)
-          .get()
-          .then(function (querySnapshot) {
-            querySnapshot.forEach(function (doc) {
-              // doc.data() is never undefined for query doc snapshots
-              console.log(doc.data().instructions);
-              exerciseViewText.textContent = doc.data().instructions;
-            });
-          })
-          .catch(function (error) {
-            console.log('Error getting documents: ', error);
-          });
-        //prettier-ignore
-        exerciseViewText.textContent = target.getAttribute('data-desc');
-      } else if (nodeName === 'LI') {
-        console.log(target);
-        headingExerciseView.textContent = target.textContent;
-        exerciseViewImg.src = target.children[0].src;
-        dataID = target.getAttribute('data-id');
-        db.collection('testrcises')
-          .where('name', '==', dataID)
-          .get()
-          .then(function (querySnapshot) {
-            querySnapshot.forEach(function (doc) {
-              // doc.data() is never undefined for query doc snapshots
-              console.log(doc.data().instructions);
-              exerciseViewText.textContent = doc.data().instructions;
-            });
-          });
-      }
-    }
-  });
-
-  //WIP Work in Progress TODO
-  // Print single exercise, needed still?
-
-  // listAddedExercises.addEventListener('click', function (e) {
-  //   target = e.currentTarget.children[0];
-  //   console.log(target.children[1]);
-  // });
-
-  // const printButton = document.querySelector('.button__print');
-  // printButton.addEventListener('click', function () {
-  //   let width = modalInnerExerciseView.style.width;
-  //   let height = modalInnerExerciseView.style.height;
-
-  //   modalInnerExerciseView.style.width = '100vw';
-  //   modalInnerExerciseView.style.height = '100vh';
-  //   modalInnerExerciseView.style.top = 0;
-  //   modalInnerExerciseView.style.left = 0;
-  //   printButton.style.opacity = 0;
-
-  //   // window.print();
-
-  //   // modalInnerExerciseView.style.width = width;
-  //   // modalInnerExerciseView.style.height = height;
-  //   // modalInnerExerciseView.style.top = '6%';
-  //   // modalInnerExerciseView.style.left = '25%';
-  //   // printButton.style.opacity = 1;
-  //   // modalExit.style.opacity = 1;
-  // });
-
-  const btnPrintList = document.getElementById('printAddedExercises');
-  const printModal = document.querySelector('.modal__inner--print');
-
-  btnPrintList.addEventListener('click', printExercises);
-
-  function openPrintModal() {
-    //Base values - must edit when there is a change to styling.
-    let baseWidth = '97%';
-    let baseHeight = '85%';
-
-    //Open modal
-    printModal.style.display = 'block';
-    //Expand width modal to cover everything
-
-    // Alternative to open formatted HTML in new tab
-    // var opened = window.open("");
-    // opened.document.write("<html><head><title>MyTitle</title></head><body>test</body></html>");
-  }
-
-  function closePrintModal() {
-    printModal.style.display = 'none';
-    printList.innerHTML = '';
-  }
-
-  function generatePrintItems(exerciseID, img, instructions) {
-    let li = document.createElement('li');
-    let heading = document.createElement('h3');
-    let div = document.createElement('div');
-    let image = document.createElement('img');
-    let p = document.createElement('p');
-
-    heading.classList.add('list__print--heading');
-    div.classList.add('list__print--row');
-    image.classList.add('list__print--img');
-    p.classList.add('list__print--instructions');
-
-    heading.textContent = exerciseID;
-    image.src = `${img.src}`;
-    image.alt = `${exerciseID}`;
-
-    db.collection('testrcises')
-      .where('instructions', '==', instructions)
+        absoluteFirstExercise = snapshot.docs[0].data().name;
+        firstVisibleExercise = snapshot.docs[0].data().name;
+        lastVisibleExercise = snapshot.docs[snapshot.docs.length - 1].data()
+          .name;
+        exercisePrev.disabled = true;
+        exerciseNext.disabled = false;
+      });
+  } else {
+    query
+      .limit(exercisePageSize)
       .get()
       .then(function (querySnapshot) {
+        clearExerciseList();
         querySnapshot.forEach(function (doc) {
-          p.textContent = doc.data().instructions;
+          renderExerciseList(doc);
+          const addIcons = document.querySelectorAll('.exercise-plus');
+          addIcons.forEach((icon) => {
+            icon.addEventListener('click', addExerciseToList);
+          });
         });
       })
-      .catch(function (error) {
-        console.log('Error getting documents: ', error);
+      .catch((error) => {
+        console.log(error);
+        // exerciseList.textContent =
+        // 'No item found, please try searching with different terms.';
       });
-
-    div.appendChild(image);
-    div.appendChild(p);
-    li.appendChild(heading);
-    li.appendChild(div);
-    printList.appendChild(li);
-    // console.log(exerciseID, img, instructions);
   }
+}
 
-  function printExercises() {
-    //Grab all current LIs within list of added exercises
-    list = listAddedExercises.getElementsByTagName('li');
-    for (let i = 0; i < list.length; i++) {
-      let img = list[i].children[0];
-      let exerciseID = list[i].children[1].children[0].textContent;
-      let exerciseRef = db.collection('testrcises').doc(`${exerciseID}`);
-      let instructions;
+function patientSearch() {
+  let searchInput = patientSearchbar.value;
+  // let searchInputLower = searchInput.toString().toLowerCase();
+  // console.log(searchInputLower);
+  let query = patientRef.where('lastName', '==', `${searchInput}`);
 
-      exerciseRef
+  if (searchInput == '' || searchInput == null) {
+    clearPatientList();
+    patientRef
+      .limit(patientPageSize)
+      .get()
+      .then((snapshot) => {
+        snapshot.docs.forEach((doc) => {
+          renderPatientList(doc);
+          //Adds query selector and event listener after patient list is finished rendering
+          delPatientIcon = document.querySelectorAll('.fa-trash-alt');
+          delPatientIcon.forEach((icon) => {
+            icon.addEventListener('click', deletePatient);
+          });
+        });
+        absoluteFirstPatient = snapshot.docs[0].data().name;
+        firstVisiblePatient = snapshot.docs[0].data().name;
+        lastVisiblePatient = snapshot.docs[snapshot.docs.length - 1].data()
+          .name;
+        patientPrev.disabled = true;
+        patientNext.disabled = false;
+      });
+  } else {
+    query
+      .limit(patientPageSize)
+      .get()
+      .then(function (querySnapshot) {
+        clearPatientList();
+        querySnapshot.forEach(function (doc) {
+          renderPatientList(doc);
+          //Adds query selector and event listener after patient list is finished rendering
+          delPatientIcon = document.querySelectorAll('.fa-trash-alt');
+          delPatientIcon.forEach((icon) => {
+            icon.addEventListener('click', deletePatient);
+          });
+        });
+      })
+      .catch((error) => {
+        console.log(error);
+        // exerciseList.textContent =
+        // 'No item found, please try searching with different terms.';
+      });
+  }
+}
+
+patientSearchbar.addEventListener('keypress', function (e) {
+  if (e.key === 'Enter') {
+    patientSearch();
+  } else return;
+});
+
+document
+  .querySelector('.searchbar__wrapper i')
+  .addEventListener('click', patientSearch);
+
+exerciseSearchbar.addEventListener('keypress', function (e) {
+  if (e.key === 'Enter') {
+    exerciseSearch();
+  } else return;
+});
+
+exerciseSearchIcon.addEventListener('click', exerciseSearch);
+
+// View exercise
+// https://stackoverflow.com/questions/34896106/attach-event-to-dynamic-elements-in-javascript
+//Image is placed on top of div background. This lists a way to always use the LI text content.
+//WIP
+//https://stackoverflow.com/questions/23504528/dynamically-remove-items-from-list-javascript
+
+document.body.addEventListener('click', function (e) {
+  if (
+    // e.target.classList.contains('list__removeExercise--icon') ||
+    e.target.classList.contains('list__removeExercise--iconX')
+  ) {
+    iconParent = e.target.parentNode;
+    let detailDiv = iconParent.parentNode;
+    let li = detailDiv.parentNode;
+
+    listAddedExercises.removeChild(li);
+  } else if (e.target.classList.contains('exerciseClick')) {
+    modalOuterPatient.style.display = 'block';
+    modalInnerExerciseView.style.display = 'block';
+    let target = e.target;
+    let nodeName = e.target.nodeName;
+    let dataID;
+    if (nodeName === 'IMG') {
+      headingExerciseView.textContent = target.parentNode.textContent;
+      exerciseViewImg.src = target.src;
+
+      dataID = target.parentNode.getAttribute('data-id');
+      db.collection('testrcises')
+        .where('name', '==', dataID)
         .get()
-        .then(function (doc) {
-          if (doc.exists) {
-            instructions = doc.data().instructions;
-            openPrintModal();
-
-            //Fill modal with list items
-            generatePrintItems(exerciseID, img, instructions);
-          } else {
-            // doc.data() will be undefined in this case
-            console.log('No such document!');
-          }
+        .then(function (querySnapshot) {
+          querySnapshot.forEach(function (doc) {
+            // doc.data() is never undefined for query doc snapshots
+            console.log(doc.data().instructions);
+            exerciseViewText.textContent = doc.data().instructions;
+          });
         })
         .catch(function (error) {
-          console.log('Error getting document:', error);
+          console.log('Error getting documents: ', error);
+        });
+      //prettier-ignore
+      exerciseViewText.textContent = target.getAttribute('data-desc');
+    } else if (nodeName === 'LI') {
+      console.log(target);
+      headingExerciseView.textContent = target.textContent;
+      exerciseViewImg.src = target.children[0].src;
+      dataID = target.getAttribute('data-id');
+      db.collection('testrcises')
+        .where('name', '==', dataID)
+        .get()
+        .then(function (querySnapshot) {
+          querySnapshot.forEach(function (doc) {
+            // doc.data() is never undefined for query doc snapshots
+            console.log(doc.data().instructions);
+            exerciseViewText.textContent = doc.data().instructions;
+          });
         });
     }
   }
+});
 
-  const printBack = document.getElementById('printBack');
-  printBack.addEventListener('click', closePrintModal);
+//WIP Work in Progress TODO
+// Print single exercise, needed still?
+
+// listAddedExercises.addEventListener('click', function (e) {
+//   target = e.currentTarget.children[0];
+//   console.log(target.children[1]);
+// });
+
+// const printButton = document.querySelector('.button__print');
+// printButton.addEventListener('click', function () {
+//   let width = modalInnerExerciseView.style.width;
+//   let height = modalInnerExerciseView.style.height;
+
+//   modalInnerExerciseView.style.width = '100vw';
+//   modalInnerExerciseView.style.height = '100vh';
+//   modalInnerExerciseView.style.top = 0;
+//   modalInnerExerciseView.style.left = 0;
+//   printButton.style.opacity = 0;
+
+//   // window.print();
+
+//   // modalInnerExerciseView.style.width = width;
+//   // modalInnerExerciseView.style.height = height;
+//   // modalInnerExerciseView.style.top = '6%';
+//   // modalInnerExerciseView.style.left = '25%';
+//   // printButton.style.opacity = 1;
+//   // modalExit.style.opacity = 1;
+// });
+
+const btnPrintList = document.getElementById('printAddedExercises');
+const printModal = document.querySelector('.modal__inner--print');
+
+btnPrintList.addEventListener('click', printExercises);
+
+function openPrintModal() {
+  //Base values - must edit when there is a change to styling.
+  let baseWidth = '97%';
+  let baseHeight = '85%';
+
+  //Open modal
+  printModal.style.display = 'block';
+  //Expand width modal to cover everything
+
+  // Alternative to open formatted HTML in new tab
+  // var opened = window.open("");
+  // opened.document.write("<html><head><title>MyTitle</title></head><body>test</body></html>");
 }
+
+function closePrintModal() {
+  printModal.style.display = 'none';
+  printList.innerHTML = '';
+}
+
+function generatePrintItems(exerciseID, img, instructions) {
+  let li = document.createElement('li');
+  let heading = document.createElement('h3');
+  let div = document.createElement('div');
+  let image = document.createElement('img');
+  let p = document.createElement('p');
+
+  heading.classList.add('list__print--heading');
+  div.classList.add('list__print--row');
+  image.classList.add('list__print--img');
+  p.classList.add('list__print--instructions');
+
+  heading.textContent = exerciseID;
+  image.src = `${img.src}`;
+  image.alt = `${exerciseID}`;
+
+  db.collection('testrcises')
+    .where('instructions', '==', instructions)
+    .get()
+    .then(function (querySnapshot) {
+      querySnapshot.forEach(function (doc) {
+        p.textContent = doc.data().instructions;
+      });
+    })
+    .catch(function (error) {
+      console.log('Error getting documents: ', error);
+    });
+
+  div.appendChild(image);
+  div.appendChild(p);
+  li.appendChild(heading);
+  li.appendChild(div);
+  printList.appendChild(li);
+  // console.log(exerciseID, img, instructions);
+}
+
+function printExercises() {
+  //Grab all current LIs within list of added exercises
+  list = listAddedExercises.getElementsByTagName('li');
+  for (let i = 0; i < list.length; i++) {
+    let img = list[i].children[0];
+    let exerciseID = list[i].children[1].children[0].textContent;
+    let exerciseRef = db.collection('testrcises').doc(`${exerciseID}`);
+    let instructions;
+
+    exerciseRef
+      .get()
+      .then(function (doc) {
+        if (doc.exists) {
+          instructions = doc.data().instructions;
+          openPrintModal();
+
+          //Fill modal with list items
+          generatePrintItems(exerciseID, img, instructions);
+        } else {
+          // doc.data() will be undefined in this case
+          console.log('No such document!');
+        }
+      })
+      .catch(function (error) {
+        console.log('Error getting document:', error);
+      });
+  }
+}
+
+const printBack = document.getElementById('printBack');
+printBack.addEventListener('click', closePrintModal);
