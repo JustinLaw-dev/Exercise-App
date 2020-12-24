@@ -14,43 +14,11 @@ var firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
 
-//Add real time listener, checks to see if user exists
-firebase.auth().onAuthStateChanged((firebaseUser) => {
-  //Log in valid, redirect to main.html and render welcome message
-  if (firebaseUser) {
-    let user = firebase.auth().currentUser;
-    console.log('Logged in');
-
-    //Sub this link below in, for live version
-    //https://los-alamitos-pt-exercise-app.web.app/
-    if (
-      window.location.href ===
-        'https://los-alamitos-pt-exercise-app.web.app/' ||
-      'https://los-alamitos-pt-exercise-app.web.app/index.html'
-    ) {
-      window.location.href =
-        'https://los-alamitos-pt-exercise-app.web.app/main.html';
-    } else if (
-      window.location.href ===
-      'https://los-alamitos-pt-exercise-app.web.app/main.html'
-    ) {
-      const userWelcome = document.getElementById('userWelcome');
-      userWelcome.textContent = `Welcome ${user.email}`;
-    }
-  }
-  //Log in invalid, redirect to index.html
-  else if (
-    window.location.href ===
-    'https://los-alamitos-pt-exercise-app.web.app/index.html'
-  ) {
-    console.log('made it!');
-  } else {
-    window.location.href =
-      'https://los-alamitos-pt-exercise-app.web.app/index.html';
-
-    console.log('You are not a user/ User is not logged in');
-  }
-});
+// let link = 'https://los-alamitos-pt-exercise-app.web.app/';
+// let linkIndex = 'https://los-alamitos-pt-exercise-app.web.app/index.html';
+// let linkMain = 'https://los-alamitos-pt-exercise-app.web.app/main.html';
+let linkIndex = 'http://127.0.0.1:5500/public/index.html';
+let linkMain = 'http://127.0.0.1:5500/public/main.html';
 
 const form = document.getElementById('signInForm');
 
@@ -100,6 +68,7 @@ form.addEventListener('keypress', function (e) {
     const email = textEmail.value;
     const pass = textPassword.value;
     const auth = firebase.auth();
+    console.log('clicked');
 
     const promise = auth.signInWithEmailAndPassword(email, pass);
     promise.catch((e) => {
@@ -107,5 +76,32 @@ form.addEventListener('keypress', function (e) {
 
       errorMsg.textContent = e.message;
     });
+  }
+});
+
+//Add real time listener, checks to see if user exists
+firebase.auth().onAuthStateChanged((firebaseUser) => {
+  //Log in valid, redirect to main.html and render welcome message
+  if (firebaseUser) {
+    let user = firebase.auth().currentUser;
+    console.log('Logged in');
+
+    if (window.location.href === 'http://127.0.0.1:5500/public/index.html') {
+      window.location.href = 'http://127.0.0.1:5500/public/main.html';
+    } else if (
+      window.location.href === 'http://127.0.0.1:5500/public/main.html'
+    ) {
+      const userWelcome = document.getElementById('userWelcome');
+      userWelcome.textContent = `Welcome ${user.email}`;
+    }
+  }
+
+  //Log in invalid, redirect to index.html
+  else if (window.location.href === 'http://127.0.0.1:5500/public/index.html') {
+    console.log('made it!');
+  } else {
+    window.location.href = 'http://127.0.0.1:5500/public/index.html';
+
+    console.log('User is invalid/not logged in redirected.');
   }
 });
