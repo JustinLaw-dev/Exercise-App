@@ -26,7 +26,7 @@
 
   &__top--right {
     width: 100%;
-    height: auto;
+    height: 100%;
     background: $primary-color--light;
     box-shadow: 4px 14px 18px -8px rgba(0, 0, 0, 0.49);
 
@@ -44,6 +44,7 @@
 
   &__bottom--left {
     height: 100%;
+    width: 100%;
     background: $color-white;
 
     -webkit-box-shadow: 7px 0px 11px -2px rgba(0, 0, 0, 0.56);
