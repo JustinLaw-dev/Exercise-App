@@ -112,6 +112,9 @@ const printList = document.getElementById('printList');
 const exercisePrevPage = document.getElementById('exercisePrevPage');
 const exerciseNextPage = document.getElementById('exerciseNextPage');
 
+//testrcises vs Exercises
+let exerciseRef = db.collection('Exercises');
+
 //Logout event
 btnLogOut.addEventListener('click', (e) => {
   firebase
@@ -482,7 +485,6 @@ function addExerciseToList(e) {
 const obConfig = { attributes: true };
 
 let exercisePageSize = 8;
-let exerciseRef = db.collection('testrcises');
 let firstVisibleExercise;
 let lastVisibleExercise;
 let absoluteFirstExercise;
@@ -662,7 +664,7 @@ function enterModalAddExercise() {
           uploadURL
         );
 
-        db.collection('testrcises').doc(`${exerciseNameInput.value}`).set({
+        exerciseRef.doc(`${exerciseNameInput.value}`).set({
           name: exerciseNameInput.value,
           instructions: instructionsInput.value,
           image: uploadURL,
@@ -856,7 +858,7 @@ document.body.addEventListener('click', function (e) {
       exerciseViewImg.src = target.src;
 
       dataID = target.parentNode.getAttribute('data-id');
-      db.collection('testrcises')
+      exerciseRef
         .where('name', '==', dataID)
         .get()
         .then(function (querySnapshot) {
@@ -876,7 +878,7 @@ document.body.addEventListener('click', function (e) {
       headingExerciseView.textContent = target.textContent;
       exerciseViewImg.src = target.children[0].src;
       dataID = target.getAttribute('data-id');
-      db.collection('testrcises')
+      exerciseRef
         .where('name', '==', dataID)
         .get()
         .then(function (querySnapshot) {
@@ -959,7 +961,7 @@ function generatePrintItems(exerciseID, img, instructions) {
   image.src = `${img.src}`;
   image.alt = `${exerciseID}`;
 
-  db.collection('testrcises')
+  exerciseRef
     .where('instructions', '==', instructions)
     .get()
     .then(function (querySnapshot) {
@@ -985,10 +987,10 @@ function printExercises() {
   for (let i = 0; i < list.length; i++) {
     let img = list[i].children[0];
     let exerciseID = list[i].children[1].children[0].textContent;
-    let exerciseRef = db.collection('testrcises').doc(`${exerciseID}`);
+    let exerciseDoc = exerciseRef.doc(`${exerciseID}`);
     let instructions;
 
-    exerciseRef
+    exerciseDoc
       .get()
       .then(function (doc) {
         if (doc.exists) {
