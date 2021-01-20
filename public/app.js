@@ -67,6 +67,7 @@ const btnSubmitPatient = document.getElementById('btnSubmitPatient');
 const modalExit = document.querySelectorAll('.modal__exit');
 
 const patientList = document.getElementById('patientList');
+
 let delPatientIcon;
 const delPatientText = document.getElementById('delPatient');
 const yesPatientDel = document.getElementById('yesPatientDel');
@@ -299,8 +300,6 @@ function exitDeleteModal() {
 function deletePatient(event) {
   let listItem = event.currentTarget.parentNode;
   let id = event.currentTarget.parentNode.getAttribute('data-id');
-  console.log(listItem);
-  console.log(id);
   let name = event.currentTarget.parentNode.textContent;
   // //Open Modal -- applied once on function click to fix repeating previous deletes, before logging newest delete.
   enterDeleteModal();
@@ -482,7 +481,7 @@ function addExerciseToList(e) {
 const obConfig = { attributes: true };
 
 let exercisePageSize = 8;
-let exerciseRef = db.collection('testrcises');
+let exerciseRef = db.collection('Exercises');
 let firstVisibleExercise;
 let lastVisibleExercise;
 let absoluteFirstExercise;
@@ -601,9 +600,22 @@ function prevExercisePage() {
     });
 }
 
-// function checkFirstExercise() {
-
+//Open Patient Workout Modal
+// function openPatientModal(target) {
+//   modalOuterPatient.style.display = 'block';
+//   modalPatientClicked.style.display = 'block';
+//   console.log(target);
+//   target.childNode;
+//   let patientName = target.textContent;
+//   patientModalName.textContent = patientName;
 // }
+
+// patientList.addEventListener('click', function (e) {
+//   target = e.target;
+//   if (target.tagName == 'LI') {
+//     openPatientModal(target);
+//   }
+// });
 
 const exerciseNext = document.getElementById('exerciseNextPage');
 const exercisePrev = document.getElementById('exercisePrevPage');
@@ -662,7 +674,7 @@ function enterModalAddExercise() {
           uploadURL
         );
 
-        db.collection('testrcises').doc(`${exerciseNameInput.value}`).set({
+        exerciseRef.doc(`${exerciseNameInput.value}`).set({
           name: exerciseNameInput.value,
           instructions: instructionsInput.value,
           image: uploadURL,
@@ -856,7 +868,7 @@ document.body.addEventListener('click', function (e) {
       exerciseViewImg.src = target.src;
 
       dataID = target.parentNode.getAttribute('data-id');
-      db.collection('testrcises')
+      exerciseRef
         .where('name', '==', dataID)
         .get()
         .then(function (querySnapshot) {
@@ -876,7 +888,7 @@ document.body.addEventListener('click', function (e) {
       headingExerciseView.textContent = target.textContent;
       exerciseViewImg.src = target.children[0].src;
       dataID = target.getAttribute('data-id');
-      db.collection('testrcises')
+      exerciseRef
         .where('name', '==', dataID)
         .get()
         .then(function (querySnapshot) {
@@ -920,16 +932,21 @@ document.body.addEventListener('click', function (e) {
 // });
 
 const btnPrintList = document.getElementById('printAddedExercises');
+const btnSaveList = document.getElementById('saveAddedExercises');
+const btnClearList = document.getElementById('clearAddedExercises');
+
 const printModal = document.querySelector('.modal__inner--print');
 
 btnPrintList.addEventListener('click', printExercises);
+btnSaveList.addEventListener('click', saveAddExerciseList);
+btnClearList.addEventListener('click', clearAddExerciseList);
 
 function openPrintModal() {
   //Base values - must edit when there is a change to styling.
   let baseWidth = '97%';
   let baseHeight = '85%';
 
-  //Open modal
+  //Open print modal
   printModal.style.display = 'block';
   //Expand width modal to cover everything
 
@@ -959,7 +976,7 @@ function generatePrintItems(exerciseID, img, instructions) {
   image.src = `${img.src}`;
   image.alt = `${exerciseID}`;
 
-  db.collection('testrcises')
+  exerciseRef
     .where('instructions', '==', instructions)
     .get()
     .then(function (querySnapshot) {
@@ -985,10 +1002,10 @@ function printExercises() {
   for (let i = 0; i < list.length; i++) {
     let img = list[i].children[0];
     let exerciseID = list[i].children[1].children[0].textContent;
-    let exerciseRef = db.collection('testrcises').doc(`${exerciseID}`);
+    let exerciseDoc = exerciseRef.doc(`${exerciseID}`);
     let instructions;
 
-    exerciseRef
+    exerciseDoc
       .get()
       .then(function (doc) {
         if (doc.exists) {
@@ -1006,6 +1023,14 @@ function printExercises() {
         console.log('Error getting document:', error);
       });
   }
+}
+
+function saveAddExerciseList() {
+  console.log('saved!');
+}
+
+function clearAddExerciseList() {
+  console.log('cleared!');
 }
 
 const printBack = document.getElementById('printBack');
