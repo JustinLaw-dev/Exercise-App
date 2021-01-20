@@ -113,6 +113,10 @@ const printList = document.getElementById('printList');
 const exercisePrevPage = document.getElementById('exercisePrevPage');
 const exerciseNextPage = document.getElementById('exerciseNextPage');
 
+const clearExerciseModal = document.getElementById('clearExerciseModal');
+const cancelClearList = document.getElementById('cancelClearList');
+const confirmClearList = document.getElementById('confirmClearList');
+
 //Logout event
 btnLogOut.addEventListener('click', (e) => {
   firebase
@@ -1029,8 +1033,28 @@ function saveAddExerciseList() {
   console.log('saved!');
 }
 
+function enterClearModal() {
+  modalPatientDeleteOuter.style.display = 'block';
+  clearExerciseModal.style.display = 'block';
+}
+
+function exitClearModal() {
+  modalPatientDeleteOuter.style.display = 'none';
+  clearExerciseModal.style.display = 'none';
+}
+
 function clearAddExerciseList() {
   console.log('cleared!');
+  enterClearModal();
+  confirmClearList.addEventListener(
+    'click',
+    function () {
+      listAddedExercises.innerHTML = '';
+      exitClearModal();
+    },
+    { once: true }
+  );
+  cancelClearList.addEventListener('click', exitClearModal);
 }
 
 const printBack = document.getElementById('printBack');
