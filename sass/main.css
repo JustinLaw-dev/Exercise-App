@@ -140,6 +140,28 @@ input {
   transition: all 0.1s;
 }
 
+.button--primary {
+  background-color: #005b96;
+  color: white;
+  padding: 1rem 2.75rem;
+  border-radius: 5px;
+}
+
+.button--secondary {
+  background-color: #ffffff;
+  color: #005b96;
+  padding: 1rem 2.75rem;
+  -webkit-box-shadow: 1px 2px 2px rgba(0, 0, 0, 0.2);
+          box-shadow: 1px 2px 2px rgba(0, 0, 0, 0.2);
+  border: 1px solid #b4b4b4;
+  border-radius: 5px;
+}
+
+.button--tertiary {
+  background-color: transparent;
+  color: #646464;
+}
+
 .button__round {
   border-radius: 3rem;
   padding: 1rem 4rem;
@@ -324,6 +346,15 @@ input {
 
 .button__pagination--right:disabled {
   color: #b4b4b4;
+}
+
+.button__printList {
+  padding: 1rem 3rem;
+}
+
+.button__printList--text {
+  display: inline;
+  margin-left: 1rem;
 }
 
 .exercise-plus {
@@ -702,15 +733,17 @@ input[type='file'] {
   list-style: none;
 }
 
-.list__addedExercises--button-print {
-  padding: 1rem;
-  border-radius: 5px;
+.list__addedExercises--btnContainer {
   position: relative;
   top: 3rem;
   left: 6rem;
-  background-color: #005b96;
-  color: #ffffff;
-  border-radius: 5px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  width: 20%;
 }
 
 .list__addedExercises--item {
@@ -839,6 +872,7 @@ input[type='file'] {
 .modal__inner--medium {
   display: none;
   position: absolute;
+  text-align: center;
   top: 16%;
   left: 35%;
   z-index: 2000;
