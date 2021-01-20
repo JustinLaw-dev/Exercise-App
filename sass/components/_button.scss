@@ -189,7 +189,7 @@
   }
 
   &__printList {
-    padding: 1rem 3rem;
+    padding: 1rem 2.5rem;
 
     &--text {
       display: inline;
@@ -198,9 +198,11 @@
   }
 
   &__saveList {
+    padding: 1rem 2.5rem;
   }
 
   &__clearList {
+    margin-right: 1rem;
   }
 }
 

@@ -349,12 +349,20 @@ input {
 }
 
 .button__printList {
-  padding: 1rem 3rem;
+  padding: 1rem 2.5rem;
 }
 
 .button__printList--text {
   display: inline;
   margin-left: 1rem;
+}
+
+.button__saveList {
+  padding: 1rem 2.5rem;
+}
+
+.button__clearList {
+  margin-right: 1rem;
 }
 
 .exercise-plus {
