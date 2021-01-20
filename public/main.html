@@ -147,11 +147,7 @@
             </div>
           </div>
 
-          <div class="modal__inner modal__inner--medium" id='modalPatientClicked'>
-            <h4 class="modal__patient--heading">Name</h4>
-            <ul class="modal__patient--exerciseList"></ul>
-          </div>
-
+  
           <!-- Exercise Tab -->
           <div class="tabs__panel" id="exercisesContent">
             <div class="searchbar__top">
@@ -205,7 +201,13 @@
               </form>
             </div>
 
-            <button class="list__addedExercises--button-print" id="printAddedExercises">Print Exercises</button>
+            <div class="list__addedExercises--btnContainer">
+              <div>
+                <button class="button--primary button__printList" id="printAddedExercises"><i class="fas fa-print"></i><p class="button__printList--text">Print</p></button>
+                <button class="button--secondary button__saveList" id="saveAddedExercises"><i class="far fa-save"></i><p class= "button__printList--text">Save</p></button>
+              </div>
+              <button class="button--tertiary button__clearList" id="clearAddedExercises">Clear</button>
+            </div>    
 
             <div class="list__flex">
               <div class="list__wrapper--addedExercises">
