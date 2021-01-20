@@ -117,15 +117,13 @@
     height: 100%;
     list-style: none;
 
-    &--button-print {
-      padding: 1rem;
-      border-radius: 5px;
+    &--btnContainer {
       position: relative;
       top: 3rem;
       left: 6rem;
-      background-color: $primary-color--light;
-      color: $color-white;
-      border-radius: 5px;
+      display: flex;
+      justify-content: space-between;
+      width: 20%;
     }
 
     &--item {
