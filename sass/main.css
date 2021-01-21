@@ -368,7 +368,6 @@ input {
 .exercise-plus {
   background-color: #ffffff;
   color: black;
-  padding: 1rem;
 }
 
 #patientListWrapper {
@@ -709,7 +708,6 @@ input[type='file'] {
   font-size: 1.6rem;
   height: 23rem;
   margin: 2rem;
-  text-align: center;
   cursor: pointer;
 }
 
@@ -841,6 +839,23 @@ input[type='file'] {
   font-size: 1.6rem;
   width: 45%;
   line-height: 1.5;
+}
+
+.list__exercise__container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+}
+
+.list__exercise__text {
+  width: 90%;
 }
 
 .modal__outer {
