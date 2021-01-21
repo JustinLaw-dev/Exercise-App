@@ -259,16 +259,25 @@ function renderPatientList(doc) {
   patientList.appendChild(li);
 }
 
+//Render Exercises
 function renderExerciseList(doc) {
   let li = document.createElement('li');
   let img = document.createElement('img');
+  let div = document.createElement('div');
   let p = document.createElement('p');
   let button = document.createElement('button');
   let addIcon = document.createElement('i');
 
   li.classList.add('list__exercises__item', 'exerciseClick');
   li.setAttribute('data-id', doc.id);
+
+  button.appendChild(addIcon);
+  div.appendChild(p);
+  div.appendChild(button);
+  div.classList.add('list__exercise__container');
+
   p.textContent = doc.data().name;
+  p.classList.add('list__exercise__text');
 
   img.setAttribute('src', doc.data().image);
   img.classList.add('list__exercises__img', 'exerciseClick');
@@ -276,9 +285,7 @@ function renderExerciseList(doc) {
   button.setAttribute('class', 'exercise-plus');
 
   li.appendChild(img);
-  li.appendChild(p);
-  button.appendChild(addIcon);
-  li.appendChild(button);
+  li.appendChild(div);
 
   exerciseList.appendChild(li);
 }
@@ -442,7 +449,7 @@ patientPrev.addEventListener('click', prevPatientPage);
 
 function addExerciseToList(e) {
   target = e.currentTarget;
-  parent = target.parentNode;
+  parent = target.parentNode.parentNode;
 
   let name = parent.getAttribute('data-id');
   let imageSrc = parent.firstChild.src;
@@ -478,7 +485,6 @@ function addExerciseToList(e) {
 
   listAddedExercises.appendChild(li);
 }
-//
 
 // Observer to initialize render of exercises when exercises tab is Clicked for the first time.
 // Options for the exercise content observer
