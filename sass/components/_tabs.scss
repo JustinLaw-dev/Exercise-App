@@ -11,12 +11,21 @@
     width: 3rem;
     height: 3rem;
     margin: 5px auto;
+
+    @include respond(big-desktop) {
+      height: 6rem;
+      width: 6rem;
+    }
   }
 
   &__userWelcome {
-    color:$color-white;
+    color: $color-white;
     font-size: 1.6rem;
     text-align: center;
+
+    @include respond(big-desktop) {
+      font-size: 3.5rem;
+    }
   }
 
   &__menu {
@@ -49,6 +58,11 @@
     padding-left: 2rem;
     border-radius: 5px;
     margin: 0.2rem 0.25rem;
+
+    @include respond(big-desktop) {
+      height: 10rem;
+      font-size: 3rem;
+    }
 
     & i {
       margin-right: 3rem;

@@ -4,8 +4,9 @@
   height: 100%;
   grid-template-columns: 0.24fr 1.76fr;
   grid-template-rows: 0.13fr 1.88fr;
-
-  grid-template-areas: '. .' '. .';
+  grid-template-areas:
+    '. .'
+    '. .';
 }
 
 .grid {
