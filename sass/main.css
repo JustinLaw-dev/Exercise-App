@@ -734,6 +734,22 @@ input[type='file'] {
   cursor: pointer;
 }
 
+@media only screen and (min-width: 2000px) {
+  .list__patients li {
+    height: 10%;
+    font-size: 7rem;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+}
+
 .list__flex {
   height: 76%;
   display: -webkit-box;

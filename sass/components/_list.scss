@@ -60,6 +60,14 @@
         margin-right: 2rem;
         cursor: pointer;
       }
+
+      @include respond(big-desktop) {
+        height: 10%;
+        font-size: 7rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
     }
   }
 
