@@ -79,6 +79,10 @@
     margin-top: 10rem;
     box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.25);
 
+    @include respond(big-desktop) {
+      font-size: 2.75rem;
+    }
+
     &-icon {
       margin-right: 1.2rem;
     }
@@ -125,6 +129,12 @@
     justify-content: space-evenly;
 
     transition: all 0.1s;
+
+    @include respond(big-desktop) {
+      width: 34rem;
+      height: 10rem;
+      font-size: 3.5rem;
+    }
 
     &:hover {
       transform: none;
