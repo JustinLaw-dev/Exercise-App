@@ -36,6 +36,10 @@
     &:focus-within {
       border: 3px solid $primary-color--light;
       border-radius: 30px;
+
+      @include respond(big-desktop) {
+        border-radius: 100px;
+      }
     }
   }
 

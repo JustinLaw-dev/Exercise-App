@@ -654,6 +654,12 @@ input[type='file'] {
   border-radius: 30px;
 }
 
+@media only screen and (min-width: 2000px) {
+  .searchbar__wrapper:focus-within {
+    border-radius: 100px;
+  }
+}
+
 .searchbar--patient, .searchbar--exercise {
   border: none;
   font-size: 1.6rem;
