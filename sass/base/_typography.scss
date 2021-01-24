@@ -3,6 +3,10 @@
 
 html {
   font-size: 62.5%;
+
+  @include respond(big-desktop) {
+    font-size: 75%;
+  }
 }
 
 body,
@@ -13,6 +17,7 @@ textarea {
 
 .header--primary {
   font-size: 5rem;
+
   font-weight: 400;
   width: 100%;
   text-align: center;
@@ -47,6 +52,10 @@ textarea {
     font-size: 1.7rem;
     padding-left: 1rem;
 
+    @include respond(big-desktop) {
+      font-size: 4.5rem;
+    }
+
     &--main {
       font-size: 2rem;
       color: $color-gray-500;
@@ -63,6 +72,10 @@ button,
 .button__add-text {
   font-family: 'Montserrat';
   font-size: 1.8rem;
+
+  @include respond(big-desktop) {
+    font-size: 3.5rem;
+  }
 }
 
 .modal__inner--exerciseView {
