@@ -400,6 +400,7 @@ input {
 .exercise-plus {
   background-color: #ffffff;
   color: black;
+  font-size: 4rem;
 }
 
 #patientListWrapper {
@@ -806,6 +807,14 @@ input[type='file'] {
   margin-left: 4rem;
 }
 
+@media only screen and (min-width: 2000px) {
+  .list__exercises__item {
+    width: 12.6vw;
+    height: 22.5vh;
+    font-size: 4rem;
+  }
+}
+
 .list__exercises__img {
   width: 100%;
   border-radius: 3px;
@@ -813,6 +822,12 @@ input[type='file'] {
   box-shadow: 2px 3px 5px 0px rgba(50, 50, 50, 0.75);
   height: 18rem;
   margin-bottom: 1rem;
+}
+
+@media only screen and (min-width: 2000px) {
+  .list__exercises__img {
+    height: 18vh;
+  }
 }
 
 .list__addedExercises {
@@ -943,6 +958,14 @@ input[type='file'] {
   -webkit-box-align: start;
       -ms-flex-align: start;
           align-items: flex-start;
+}
+
+@media only screen and (min-width: 2000px) {
+  .list__exercise__container {
+    -webkit-box-align: baseline;
+        -ms-flex-align: baseline;
+            align-items: baseline;
+  }
 }
 
 .list__exercise__text {

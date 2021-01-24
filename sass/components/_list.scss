@@ -104,6 +104,12 @@
       &:nth-child(4n + 1) {
         margin-left: 4rem;
       }
+
+      @include respond(big-desktop) {
+        width: 12.6vw;
+        height: 22.5vh;
+        font-size: 4rem;
+      }
     }
 
     &__img {
@@ -115,6 +121,10 @@
       box-shadow: 2px 3px 5px 0px rgba(50, 50, 50, 0.75);
       height: 18rem;
       margin-bottom: 1rem;
+
+      @include respond(big-desktop) {
+        height: 18vh;
+      }
     }
   }
 
@@ -212,6 +222,10 @@
   width: 100%;
   justify-content: space-between;
   align-items: flex-start;
+
+  @include respond(big-desktop) {
+    align-items: baseline;
+  }
 }
 
 .list__exercise__text {
