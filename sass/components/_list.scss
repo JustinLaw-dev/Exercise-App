@@ -108,7 +108,7 @@
       @include respond(big-desktop) {
         width: 12.6vw;
         height: 22.5vh;
-        font-size: 4rem;
+        font-size: 4.5rem;
         margin-top: 4vh;
         margin-left: 2%;
       }
@@ -144,10 +144,17 @@
       display: flex;
       justify-content: space-between;
       width: 20%;
+
+      @include respond(big-desktop) {
+        left: 13rem;
+      }
     }
 
     &--item {
       margin: 1rem;
+
+      @include respond(big-desktop) {
+      }
     }
 
     &--details {
@@ -155,23 +162,41 @@
       flex-direction: row;
       justify-content: space-between;
       background-color: $color-white;
+      align-items: baseline;
+
+      @include respond(big-desktop) {
+      }
     }
 
     &--image {
       width: 20rem;
       height: 14rem;
       border-radius: 5px;
+
+      @include respond(big-desktop) {
+        width: 11vw;
+        height: 13.5vh;
+      }
     }
 
     &--text {
       font-size: 1.6rem;
       width: 20rem;
       height: auto;
+
+      @include respond(big-desktop) {
+        width: 7vw;
+        font-size: 4rem;
+      }
     }
   }
 
   &__removeExercise--icon {
     background: $color-white;
+
+    @include respond(big-desktop) {
+      font-size: 4rem;
+    }
   }
 
   &__print {

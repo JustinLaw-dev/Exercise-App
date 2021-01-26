@@ -7,6 +7,15 @@
     color: white;
     padding: 1rem 2.75rem;
     border-radius: 5px;
+    transition: all 0.2s;
+
+    &:hover {
+      opacity: 0.8;
+    }
+
+    @include respond(big-desktop) {
+      padding: 2rem 3.5rem;
+    }
   }
 
   &--secondary {
@@ -42,6 +51,8 @@
     transition: all 0.2s;
 
     @include respond(big-desktop) {
+      height: 4vh;
+      width: 8vw;
     }
   }
 
@@ -170,6 +181,11 @@
     font-size: 2rem;
     margin: 0 auto;
     margin-top: 3rem;
+
+    @include respond(big-desktop) {
+      font-size: 3.5rem;
+      margin-top: 8rem;
+    }
   }
 
   &__print {
@@ -198,6 +214,13 @@
       display: flex;
       justify-content: space-evenly;
       align-items: center;
+
+      @include respond(big-desktop) {
+        width: 21.5rem;
+        height: 10rem;
+        border: 4px solid $color-gray-500;
+        border-radius: 10px;
+      }
     }
 
     &--left {
@@ -219,6 +242,21 @@
         color: $color-gray-500;
       }
     }
+
+    &--left,
+    &--right {
+      @include respond(big-desktop) {
+        font-size: 4rem;
+      }
+    }
+  }
+
+  &__printList,
+  &__saveList,
+  &__clearList {
+    @include respond(big-desktop) {
+      font-size: 3.5rem;
+    }
   }
 
   &__printList {
@@ -228,10 +266,20 @@
       display: inline;
       margin-left: 1rem;
     }
+
+    @include respond(big-desktop) {
+      padding: 2rem 4rem;
+    }
   }
 
   &__saveList {
     padding: 1rem 2.5rem;
+    margin-left: 1rem;
+
+    @include respond(big-desktop) {
+      padding: 2rem 4rem;
+      margin-left: 2rem;
+    }
   }
 
   &__clearList {
@@ -257,6 +305,10 @@
   position: absolute;
   bottom: 2rem;
   right: 3rem;
+
+  @include respond(big-desktop) {
+    right: 3vw;
+  }
 }
 
 #printAddedExercises {

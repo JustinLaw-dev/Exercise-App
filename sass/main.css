@@ -144,8 +144,20 @@ button,
   font-size: 3rem;
 }
 
+@media only screen and (min-width: 2000px) {
+  .modal__inner--exerciseView-heading {
+    font-size: 6rem;
+  }
+}
+
 .modal__inner--exerciseView-text {
   font-size: 2rem;
+}
+
+@media only screen and (min-width: 2000px) {
+  .modal__inner--exerciseView-text {
+    font-size: 4rem;
+  }
 }
 
 input {
@@ -163,6 +175,18 @@ input {
   color: white;
   padding: 1rem 2.75rem;
   border-radius: 5px;
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
+}
+
+.button--primary:hover {
+  opacity: 0.8;
+}
+
+@media only screen and (min-width: 2000px) {
+  .button--primary {
+    padding: 2rem 3.5rem;
+  }
 }
 
 .button--secondary {
@@ -198,6 +222,13 @@ input {
   -webkit-backface-visibility: hidden;
   -webkit-transition: all 0.2s;
   transition: all 0.2s;
+}
+
+@media only screen and (min-width: 2000px) {
+  .button__square {
+    height: 4vh;
+    width: 8vw;
+  }
 }
 
 .button:hover {
@@ -351,6 +382,13 @@ input {
   margin-top: 3rem;
 }
 
+@media only screen and (min-width: 2000px) {
+  .button__submit {
+    font-size: 3.5rem;
+    margin-top: 8rem;
+  }
+}
+
 .button__print {
   display: block;
   font-size: 2rem;
@@ -385,6 +423,15 @@ input {
           align-items: center;
 }
 
+@media only screen and (min-width: 2000px) {
+  .button__pagination--wrapper {
+    width: 21.5rem;
+    height: 10rem;
+    border: 4px solid #b4b4b4;
+    border-radius: 10px;
+  }
+}
+
 .button__pagination--left {
   font-size: 2rem;
   background-color: #ffffff;
@@ -405,6 +452,18 @@ input {
   color: #b4b4b4;
 }
 
+@media only screen and (min-width: 2000px) {
+  .button__pagination--left, .button__pagination--right {
+    font-size: 4rem;
+  }
+}
+
+@media only screen and (min-width: 2000px) {
+  .button__printList, .button__saveList, .button__clearList {
+    font-size: 3.5rem;
+  }
+}
+
 .button__printList {
   padding: 1rem 2.5rem;
 }
@@ -414,8 +473,22 @@ input {
   margin-left: 1rem;
 }
 
+@media only screen and (min-width: 2000px) {
+  .button__printList {
+    padding: 2rem 4rem;
+  }
+}
+
 .button__saveList {
   padding: 1rem 2.5rem;
+  margin-left: 1rem;
+}
+
+@media only screen and (min-width: 2000px) {
+  .button__saveList {
+    padding: 2rem 4rem;
+    margin-left: 2rem;
+  }
 }
 
 .button__clearList {
@@ -441,6 +514,12 @@ input {
   position: absolute;
   bottom: 2rem;
   right: 3rem;
+}
+
+@media only screen and (min-width: 2000px) {
+  #patientPages {
+    right: 3vw;
+  }
 }
 
 #printAddedExercises {
@@ -494,6 +573,12 @@ input:focus {
   resize: none;
 }
 
+@media only screen and (min-width: 2000px) {
+  .input--textarea {
+    font-size: 4rem;
+  }
+}
+
 input[type='file'] {
   border: none;
 }
@@ -515,6 +600,7 @@ input[type='file'] {
 
 .form__addPatient, .form__addExercise {
   width: 40%;
+  height: 100%;
   margin: 0 auto;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -534,6 +620,7 @@ input[type='file'] {
 @media only screen and (min-width: 2000px) {
   .form__addPatient input, .form__addExercise input {
     font-size: 4rem;
+    width: 13vw;
   }
 }
 
@@ -867,7 +954,7 @@ input[type='file'] {
   .list__exercises__item {
     width: 12.6vw;
     height: 22.5vh;
-    font-size: 4rem;
+    font-size: 4.5rem;
     margin-top: 4vh;
     margin-left: 2%;
   }
@@ -916,6 +1003,12 @@ input[type='file'] {
   width: 20%;
 }
 
+@media only screen and (min-width: 2000px) {
+  .list__addedExercises--btnContainer {
+    left: 13rem;
+  }
+}
+
 .list__addedExercises--item {
   margin: 1rem;
 }
@@ -932,6 +1025,9 @@ input[type='file'] {
       -ms-flex-pack: justify;
           justify-content: space-between;
   background-color: #ffffff;
+  -webkit-box-align: baseline;
+      -ms-flex-align: baseline;
+          align-items: baseline;
 }
 
 .list__addedExercises--image {
@@ -940,14 +1036,34 @@ input[type='file'] {
   border-radius: 5px;
 }
 
+@media only screen and (min-width: 2000px) {
+  .list__addedExercises--image {
+    width: 11vw;
+    height: 13.5vh;
+  }
+}
+
 .list__addedExercises--text {
   font-size: 1.6rem;
   width: 20rem;
   height: auto;
 }
 
+@media only screen and (min-width: 2000px) {
+  .list__addedExercises--text {
+    width: 7vw;
+    font-size: 4rem;
+  }
+}
+
 .list__removeExercise--icon {
   background: #ffffff;
+}
+
+@media only screen and (min-width: 2000px) {
+  .list__removeExercise--icon {
+    font-size: 4rem;
+  }
 }
 
 .list__print {
@@ -1058,10 +1174,10 @@ input[type='file'] {
 
 @media only screen and (min-width: 2000px) {
   .modal__inner {
-    width: 50vw;
+    width: 30vw;
     height: 50vh;
     top: 20vh;
-    left: 30vw;
+    left: 40vw;
   }
 }
 
@@ -1099,6 +1215,13 @@ input[type='file'] {
 @media only screen and (min-width: 2000px) {
   .modal__inner--small {
     width: 20vw;
+  }
+}
+
+@media only screen and (min-width: 2000px) {
+  .modal__inner--exerciseView {
+    width: 40vw;
+    height: 50vh;
   }
 }
 
@@ -1146,12 +1269,25 @@ input[type='file'] {
   margin: 0 auto;
 }
 
+@media only screen and (min-width: 2000px) {
+  .modal__inner--exercise {
+    width: 40vw;
+    height: 60vh;
+  }
+}
+
 .modal__exit {
   position: absolute;
   font-size: 3rem;
-  top: 3rem;
-  right: 7rem;
+  top: 1.5vh;
+  right: 2vw;
   cursor: pointer;
+}
+
+@media only screen and (min-width: 2000px) {
+  .modal__exit {
+    font-size: 5rem;
+  }
 }
 
 .modal__delete--heading {
@@ -1187,6 +1323,12 @@ input[type='file'] {
   text-align: center;
   margin: 0 auto;
   margin-top: 6rem;
+}
+
+@media only screen and (min-width: 2000px) {
+  .modal__header {
+    font-size: 7rem;
+  }
 }
 
 .container__form {
