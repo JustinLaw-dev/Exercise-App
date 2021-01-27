@@ -489,6 +489,7 @@ function addExerciseToList(e) {
 // Options for the exercise content observer
 const obConfig = { attributes: true };
 
+let exerciseRef = db.collection('Exercises');
 let exercisePageSize = 8;
 let firstVisibleExercise;
 let lastVisibleExercise;
