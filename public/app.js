@@ -490,7 +490,6 @@ function addExerciseToList(e) {
 const obConfig = { attributes: true };
 
 let exercisePageSize = 8;
-let exerciseRef = db.collection('Exercises');
 let firstVisibleExercise;
 let lastVisibleExercise;
 let absoluteFirstExercise;
@@ -652,6 +651,8 @@ function enterModalAddExercise() {
 
   function submitExerciseForm(e) {
     e.preventDefault();
+    const str = exerciseNameInput.value;
+    const splitStr = str.split(' ');
 
     //Store the image into firestore, retrieve URL, then store THAT URL into the image location of exercise DB.
     let storageRef = firebase.storage().ref();
@@ -680,13 +681,15 @@ function enterModalAddExercise() {
         console.log(
           exerciseNameInput.value,
           instructionsInput.value,
-          uploadURL
+          uploadURL,
+          splitStr
         );
 
         exerciseRef.doc(`${exerciseNameInput.value}`).set({
           name: exerciseNameInput.value,
           instructions: instructionsInput.value,
           image: uploadURL,
+          searchExerciseArray: splitStr,
         });
         //Renders exercise to list immediately after addition
         // .then((docRef) => {
