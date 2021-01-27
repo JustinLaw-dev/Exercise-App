@@ -60,6 +60,14 @@
         margin-right: 2rem;
         cursor: pointer;
       }
+
+      @include respond(big-desktop) {
+        height: 10%;
+        font-size: 7rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
     }
   }
 
@@ -89,12 +97,20 @@
       height: 23rem;
       margin: 2rem;
       // background: $secondary-color;
-      text-align: center;
+      // text-align: center;
       cursor: pointer;
 
       //1st one of every row of 4.. (1, 5, 9, etc)
       &:nth-child(4n + 1) {
         margin-left: 4rem;
+      }
+
+      @include respond(big-desktop) {
+        width: 12.6vw;
+        height: 22.5vh;
+        font-size: 4.5rem;
+        margin-top: 4vh;
+        margin-left: 2%;
       }
     }
 
@@ -107,6 +123,10 @@
       box-shadow: 2px 3px 5px 0px rgba(50, 50, 50, 0.75);
       height: 18rem;
       margin-bottom: 1rem;
+
+      @include respond(big-desktop) {
+        height: 18vh;
+      }
     }
   }
 
@@ -117,19 +137,24 @@
     height: 100%;
     list-style: none;
 
-    &--button-print {
-      padding: 1rem;
-      border-radius: 5px;
+    &--btnContainer {
       position: relative;
       top: 3rem;
       left: 6rem;
-      background-color: $primary-color--light;
-      color: $color-white;
-      border-radius: 5px;
+      display: flex;
+      justify-content: space-between;
+      width: 20%;
+
+      @include respond(big-desktop) {
+        left: 13rem;
+      }
     }
 
     &--item {
       margin: 1rem;
+
+      @include respond(big-desktop) {
+      }
     }
 
     &--details {
@@ -137,23 +162,41 @@
       flex-direction: row;
       justify-content: space-between;
       background-color: $color-white;
+      align-items: baseline;
+
+      @include respond(big-desktop) {
+      }
     }
 
     &--image {
       width: 20rem;
       height: 14rem;
       border-radius: 5px;
+
+      @include respond(big-desktop) {
+        width: 11vw;
+        height: 13.5vh;
+      }
     }
 
     &--text {
       font-size: 1.6rem;
       width: 20rem;
       height: auto;
+
+      @include respond(big-desktop) {
+        width: 7vw;
+        font-size: 4rem;
+      }
     }
   }
 
   &__removeExercise--icon {
     background: $color-white;
+
+    @include respond(big-desktop) {
+      font-size: 4rem;
+    }
   }
 
   &__print {
@@ -186,17 +229,41 @@
 
     &--heading {
       font-size: 3rem;
+
+      @include respond(big-desktop) {
+        font-size: 7rem;
+      }
     }
 
     &--img {
       width: 25rem;
       height: 15rem;
+
+      @include respond(big-desktop) {
+        width: 18vw;
+        height: 22vh;
+      }
     }
 
     &--instructions {
       font-size: 1.6rem;
       width: 45%;
       line-height: 1.5;
+
+      @include respond(big-desktop) {
+        font-size: 4rem;
+      }
     }
   }
+}
+
+.list__exercise__container {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.list__exercise__text {
+  width: 90%;
 }

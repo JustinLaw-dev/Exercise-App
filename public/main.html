@@ -129,7 +129,7 @@
                 id="emailForm"
               />
               <button
-                class="button__square button__submit"
+                class="button__submit button--primary"
                 id="btnSubmitPatient"
               >
                 Add Patient
@@ -147,7 +147,7 @@
             </div>
           </div>
 
-
+  
           <!-- Exercise Tab -->
           <div class="tabs__panel" id="exercisesContent">
             <div class="searchbar__top">
@@ -194,14 +194,20 @@
                   <img class="form__addExercise--image" id="addExerciseImage" src=""/>
                 </div>
                 <button
-                  class="button__square button__submit"
+                  class="button__square button__submit button--primary"
                   id="btnSubmitExercise">
                   Add Exercise
                 </button>
               </form>
             </div>
 
-            <button class="list__addedExercises--button-print" id="printAddedExercises">Print Exercises</button>
+            <div class="list__addedExercises--btnContainer">
+              <div>
+                <button class="button--primary button__printList" id="printAddedExercises"><i class="fas fa-print"></i><p class="button__printList--text">Print</p></button>
+                <button class="button--secondary button__saveList" id="saveAddedExercises"><i class="far fa-save"></i><p class= "button__printList--text">Save</p></button>
+              </div>
+              <button class="button--tertiary button__clearList" id="clearAddedExercises">Clear</button>
+            </div>    
 
             <div class="list__flex">
               <div class="list__wrapper--addedExercises">
@@ -228,6 +234,16 @@
               </div>
             </div>
 
+            <div class="modal__outer" id="modalOuterSmall"></div>
+            <div class="modal__inner--small" id="clearExerciseModal">
+              <h4 class="modal__delete--heading">Clear Exercise List</h4>
+              <p class="modal__delete--text" id="clearListText">Are you sure you want to clear the exercise list?</p>
+              <div class="button__delete--background">
+                <button class="button__delete--secondary" id="cancelClearList">Cancel</button>
+                <button class="button__delete--primary" id="confirmClearList">Confirm</button>
+              </div>
+            </div>
+
             <div class="modal__inner modal__inner--exerciseView">
               <i class="modal__exit fas fa-times"></i>
               <h3 class="modal__header" id="heading--exerciseView"></h3>
@@ -240,11 +256,11 @@
               </div>
               
               <!-- Print within exercise view -->
-              <button
+              <!-- <button
                 class="button__square button__print"
                 id="">
                 Print
-              </button>
+              </button> -->
             </div>
 
             <div class="modal__inner modal__inner--print">

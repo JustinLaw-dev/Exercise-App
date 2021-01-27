@@ -66,6 +66,12 @@ html {
   font-size: 62.5%;
 }
 
+@media only screen and (min-width: 2000px) {
+  html {
+    font-size: 75%;
+  }
+}
+
 body,
 textarea {
   font-family: 'Barlow', sans-serif;
@@ -77,6 +83,12 @@ textarea {
   font-weight: 400;
   width: 100%;
   text-align: center;
+}
+
+@media only screen and (min-width: 2000px) {
+  .header--primary {
+    font-size: 15rem;
+  }
 }
 
 .header--secondary {
@@ -94,6 +106,12 @@ textarea {
   padding-top: 2rem;
 }
 
+@media only screen and (min-width: 2000px) {
+  .header--secondary {
+    font-size: 15rem;
+  }
+}
+
 .text__forgot {
   margin-top: 3rem;
   font-size: 2rem;
@@ -104,6 +122,12 @@ textarea {
   color: #03396c;
   font-size: 1.7rem;
   padding-left: 1rem;
+}
+
+@media only screen and (min-width: 2000px) {
+  .grid__heading {
+    font-size: 4.5rem;
+  }
 }
 
 .grid__heading--main {
@@ -122,12 +146,30 @@ button,
   font-size: 1.8rem;
 }
 
+@media only screen and (min-width: 2000px) {
+  .button__add-text {
+    font-size: 3.5rem;
+  }
+}
+
 .modal__inner--exerciseView-heading {
   font-size: 3rem;
 }
 
+@media only screen and (min-width: 2000px) {
+  .modal__inner--exerciseView-heading {
+    font-size: 6rem;
+  }
+}
+
 .modal__inner--exerciseView-text {
   font-size: 2rem;
+}
+
+@media only screen and (min-width: 2000px) {
+  .modal__inner--exerciseView-text {
+    font-size: 4rem;
+  }
 }
 
 input {
@@ -140,12 +182,52 @@ input {
   transition: all 0.1s;
 }
 
+.button--primary {
+  background-color: #005b96;
+  color: white;
+  padding: 1rem 2.75rem;
+  border-radius: 5px;
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
+}
+
+.button--primary:hover {
+  opacity: 0.8;
+}
+
+@media only screen and (min-width: 2000px) {
+  .button--primary {
+    padding: 2rem 3.5rem;
+  }
+}
+
+.button--secondary {
+  background-color: #ffffff;
+  color: #005b96;
+  padding: 1rem 2.75rem;
+  -webkit-box-shadow: 1px 2px 2px rgba(0, 0, 0, 0.2);
+          box-shadow: 1px 2px 2px rgba(0, 0, 0, 0.2);
+  border: 1px solid #b4b4b4;
+  border-radius: 5px;
+}
+
+.button--tertiary {
+  background-color: transparent;
+  color: #646464;
+}
+
 .button__round {
   border-radius: 3rem;
   padding: 1rem 4rem;
   width: 40%;
   -webkit-box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.4);
           box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.4);
+}
+
+@media only screen and (min-width: 2000px) {
+  .button__round {
+    padding: 2rem 4rem;
+  }
 }
 
 .button__square {
@@ -158,6 +240,13 @@ input {
   -webkit-backface-visibility: hidden;
   -webkit-transition: all 0.2s;
   transition: all 0.2s;
+}
+
+@media only screen and (min-width: 2000px) {
+  .button__square {
+    height: 4vh;
+    width: 8vw;
+  }
 }
 
 .button:hover {
@@ -175,19 +264,23 @@ input {
 }
 
 .button--login {
-  color: #03396c;
-  border: 1px solid lightblue;
-  background-color: lightblue;
-  margin: 3rem auto;
+  border: 1px solid #03396c;
+  color: white;
+  background-color: #03396c;
   font-size: 2rem;
 }
 
 .button--signup {
-  border: 1px solid #03396c;
-  color: white;
-  background-color: #03396c;
-  margin: 0 auto;
+  color: #03396c;
+  border: 1px solid lightblue;
+  background-color: lightblue;
   font-size: 2rem;
+}
+
+@media only screen and (min-width: 2000px) {
+  .button--login, .button--signup {
+    font-size: 5rem;
+  }
 }
 
 .button--logout {
@@ -201,6 +294,12 @@ input {
   margin-top: 10rem;
   -webkit-box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.25);
           box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.25);
+}
+
+@media only screen and (min-width: 2000px) {
+  .button--logout {
+    font-size: 2.75rem;
+  }
 }
 
 .button--logout-icon {
@@ -220,10 +319,28 @@ input {
   border-radius: 0 0 5px 5px;
 }
 
+@media only screen and (min-width: 2000px) {
+  .button__delete--background {
+    padding: 4rem;
+  }
+}
+
+@media only screen and (min-width: 2000px) {
+  .button__delete--secondary, .button__delete--primary {
+    font-size: 3.5rem;
+  }
+}
+
 .button__delete--secondary {
   background-color: #f5f7fa;
   color: #646464;
   margin-right: 2rem;
+}
+
+@media only screen and (min-width: 2000px) {
+  .button__delete--secondary {
+    margin-right: 3.5rem;
+  }
 }
 
 .button__delete--primary {
@@ -232,6 +349,13 @@ input {
   padding: 1rem 1.5rem;
   margin: 0 1rem;
   border-radius: 5px;
+}
+
+@media only screen and (min-width: 2000px) {
+  .button__delete--primary {
+    padding: 2rem 3rem;
+    border-radius: 12px;
+  }
 }
 
 .button__add {
@@ -258,6 +382,14 @@ input {
   transition: all 0.1s;
 }
 
+@media only screen and (min-width: 2000px) {
+  .button__add {
+    width: 34rem;
+    height: 10rem;
+    font-size: 3.5rem;
+  }
+}
+
 .button__add:hover {
   -webkit-transform: none;
           transform: none;
@@ -270,6 +402,13 @@ input {
   font-size: 2rem;
   margin: 0 auto;
   margin-top: 3rem;
+}
+
+@media only screen and (min-width: 2000px) {
+  .button__submit {
+    font-size: 3.5rem;
+    margin-top: 8rem;
+  }
 }
 
 .button__print {
@@ -306,6 +445,15 @@ input {
           align-items: center;
 }
 
+@media only screen and (min-width: 2000px) {
+  .button__pagination--wrapper {
+    width: 21.5rem;
+    height: 10rem;
+    border: 4px solid #b4b4b4;
+    border-radius: 10px;
+  }
+}
+
 .button__pagination--left {
   font-size: 2rem;
   background-color: #ffffff;
@@ -326,10 +474,58 @@ input {
   color: #b4b4b4;
 }
 
+@media only screen and (min-width: 2000px) {
+  .button__pagination--left, .button__pagination--right {
+    font-size: 4rem;
+  }
+}
+
+@media only screen and (min-width: 2000px) {
+  .button__printList, .button__saveList, .button__clearList {
+    font-size: 3.5rem;
+  }
+}
+
+.button__printList {
+  padding: 1rem 2.5rem;
+}
+
+.button__printList--text {
+  display: inline;
+  margin-left: 1rem;
+}
+
+@media only screen and (min-width: 2000px) {
+  .button__printList {
+    padding: 2rem 4rem;
+  }
+}
+
+.button__saveList {
+  padding: 1rem 2.5rem;
+  margin-left: 1rem;
+}
+
+@media only screen and (min-width: 2000px) {
+  .button__saveList {
+    padding: 2rem 4rem;
+    margin-left: 2rem;
+  }
+}
+
+.button__clearList {
+  margin-right: 1rem;
+}
+
 .exercise-plus {
   background-color: #ffffff;
   color: black;
-  padding: 1rem;
+}
+
+@media only screen and (min-width: 2000px) {
+  .exercise-plus {
+    font-size: 4rem;
+  }
 }
 
 #patientListWrapper {
@@ -340,6 +536,12 @@ input {
   position: absolute;
   bottom: 2rem;
   right: 3rem;
+}
+
+@media only screen and (min-width: 2000px) {
+  #patientPages {
+    right: 3vw;
+  }
 }
 
 #printAddedExercises {
@@ -354,6 +556,14 @@ input {
 .label {
   font-size: 1.8rem;
   margin-top: 2rem;
+  font-family: 'Montserrat';
+}
+
+@media only screen and (min-width: 2000px) {
+  .label {
+    font-size: 5rem;
+    margin-top: 5vh;
+  }
 }
 
 input {
@@ -368,15 +578,43 @@ input:focus {
   border-radius: 5px;
 }
 
+@media only screen and (min-width: 2000px) {
+  input {
+    border: 4px solid #646464;
+  }
+  input:focus {
+    border: 5px solid #5190ee;
+  }
+}
+
 .input {
   font-size: 2rem;
   margin-top: 0.5rem;
   padding: 1rem;
 }
 
+@media only screen and (min-width: 2000px) {
+  .input {
+    font-size: 4rem;
+    padding: 2rem;
+  }
+}
+
+@media only screen and (min-width: 2000px) {
+  .input__signUp {
+    font-size: 6rem;
+  }
+}
+
 .input--textarea {
   font-size: 1.8rem;
   resize: none;
+}
+
+@media only screen and (min-width: 2000px) {
+  .input--textarea {
+    font-size: 4rem;
+  }
 }
 
 input[type='file'] {
@@ -400,6 +638,7 @@ input[type='file'] {
 
 .form__addPatient, .form__addExercise {
   width: 40%;
+  height: 100%;
   margin: 0 auto;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -414,6 +653,20 @@ input[type='file'] {
 
 .form__addPatient input, .form__addExercise input {
   font-size: 1.6rem;
+}
+
+@media only screen and (min-width: 2000px) {
+  .form__addPatient input {
+    font-size: 4rem;
+    width: 13vw;
+  }
+}
+
+@media only screen and (min-width: 2000px) {
+  .form__addExercise input {
+    font-size: 4rem;
+    width: 16vw;
+  }
 }
 
 .form__addExercise--image[src=''] {
@@ -432,6 +685,12 @@ input[type='file'] {
   margin-top: 6rem;
 }
 
+@media only screen and (min-width: 2000px) {
+  .form__header {
+    font-size: 7rem;
+  }
+}
+
 .tabs__img {
   display: block;
   width: 3rem;
@@ -439,10 +698,23 @@ input[type='file'] {
   margin: 5px auto;
 }
 
+@media only screen and (min-width: 2000px) {
+  .tabs__img {
+    height: 6rem;
+    width: 6rem;
+  }
+}
+
 .tabs__userWelcome {
   color: #ffffff;
   font-size: 1.6rem;
   text-align: center;
+}
+
+@media only screen and (min-width: 2000px) {
+  .tabs__userWelcome {
+    font-size: 3.5rem;
+  }
 }
 
 .tabs__menu {
@@ -485,6 +757,13 @@ input[type='file'] {
   padding-left: 2rem;
   border-radius: 5px;
   margin: 0.2rem 0.25rem;
+}
+
+@media only screen and (min-width: 2000px) {
+  .tabs__link {
+    height: 10rem;
+    font-size: 3rem;
+  }
 }
 
 .tabs__link i {
@@ -546,6 +825,15 @@ input[type='file'] {
           align-items: center;
 }
 
+@media only screen and (min-width: 2000px) {
+  .searchbar__wrapper {
+    width: 20vw;
+    height: 5vh;
+    border-radius: 100px;
+    font-size: 4.5rem;
+  }
+}
+
 .searchbar__wrapper-1 {
   padding-left: 1rem;
 }
@@ -555,11 +843,25 @@ input[type='file'] {
   border-radius: 30px;
 }
 
+@media only screen and (min-width: 2000px) {
+  .searchbar__wrapper:focus-within {
+    border-radius: 100px;
+  }
+}
+
 .searchbar--patient, .searchbar--exercise {
   border: none;
   font-size: 1.6rem;
   width: 30rem;
   padding-left: 1rem;
+}
+
+@media only screen and (min-width: 2000px) {
+  .searchbar--patient, .searchbar--exercise {
+    width: 17vw;
+    font-size: 3.5rem;
+    padding-left: 3rem;
+  }
 }
 
 .searchbar--patient:focus, .searchbar--exercise:focus {
@@ -627,6 +929,22 @@ input[type='file'] {
   cursor: pointer;
 }
 
+@media only screen and (min-width: 2000px) {
+  .list__patients li {
+    height: 10%;
+    font-size: 7rem;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+}
+
 .list__flex {
   height: 76%;
   display: -webkit-box;
@@ -670,12 +988,21 @@ input[type='file'] {
   font-size: 1.6rem;
   height: 23rem;
   margin: 2rem;
-  text-align: center;
   cursor: pointer;
 }
 
 .list__exercises__item:nth-child(4n + 1) {
   margin-left: 4rem;
+}
+
+@media only screen and (min-width: 2000px) {
+  .list__exercises__item {
+    width: 12.6vw;
+    height: 22.5vh;
+    font-size: 4.5rem;
+    margin-top: 4vh;
+    margin-left: 2%;
+  }
 }
 
 .list__exercises__img {
@@ -685,6 +1012,12 @@ input[type='file'] {
   box-shadow: 2px 3px 5px 0px rgba(50, 50, 50, 0.75);
   height: 18rem;
   margin-bottom: 1rem;
+}
+
+@media only screen and (min-width: 2000px) {
+  .list__exercises__img {
+    height: 18vh;
+  }
 }
 
 .list__addedExercises {
@@ -702,15 +1035,23 @@ input[type='file'] {
   list-style: none;
 }
 
-.list__addedExercises--button-print {
-  padding: 1rem;
-  border-radius: 5px;
+.list__addedExercises--btnContainer {
   position: relative;
   top: 3rem;
   left: 6rem;
-  background-color: #005b96;
-  color: #ffffff;
-  border-radius: 5px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  width: 20%;
+}
+
+@media only screen and (min-width: 2000px) {
+  .list__addedExercises--btnContainer {
+    left: 13rem;
+  }
 }
 
 .list__addedExercises--item {
@@ -729,6 +1070,9 @@ input[type='file'] {
       -ms-flex-pack: justify;
           justify-content: space-between;
   background-color: #ffffff;
+  -webkit-box-align: baseline;
+      -ms-flex-align: baseline;
+          align-items: baseline;
 }
 
 .list__addedExercises--image {
@@ -737,14 +1081,34 @@ input[type='file'] {
   border-radius: 5px;
 }
 
+@media only screen and (min-width: 2000px) {
+  .list__addedExercises--image {
+    width: 11vw;
+    height: 13.5vh;
+  }
+}
+
 .list__addedExercises--text {
   font-size: 1.6rem;
   width: 20rem;
   height: auto;
 }
 
+@media only screen and (min-width: 2000px) {
+  .list__addedExercises--text {
+    width: 7vw;
+    font-size: 4rem;
+  }
+}
+
 .list__removeExercise--icon {
   background: #ffffff;
+}
+
+@media only screen and (min-width: 2000px) {
+  .list__removeExercise--icon {
+    font-size: 4rem;
+  }
 }
 
 .list__print {
@@ -791,15 +1155,51 @@ input[type='file'] {
   font-size: 3rem;
 }
 
+@media only screen and (min-width: 2000px) {
+  .list__print--heading {
+    font-size: 7rem;
+  }
+}
+
 .list__print--img {
   width: 25rem;
   height: 15rem;
+}
+
+@media only screen and (min-width: 2000px) {
+  .list__print--img {
+    width: 18vw;
+    height: 22vh;
+  }
 }
 
 .list__print--instructions {
   font-size: 1.6rem;
   width: 45%;
   line-height: 1.5;
+}
+
+@media only screen and (min-width: 2000px) {
+  .list__print--instructions {
+    font-size: 4rem;
+  }
+}
+
+.list__exercise__container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: baseline;
+      -ms-flex-align: baseline;
+          align-items: baseline;
+}
+
+.list__exercise__text {
+  width: 90%;
 }
 
 .modal__outer {
@@ -836,6 +1236,31 @@ input[type='file'] {
   margin: 0 auto;
 }
 
+@media only screen and (min-width: 2000px) {
+  .modal__inner {
+    width: 30vw;
+    height: 50vh;
+    top: 20vh;
+    left: 40vw;
+  }
+}
+
+.modal__inner--medium {
+  display: none;
+  position: absolute;
+  text-align: center;
+  top: 16%;
+  left: 35%;
+  z-index: 2000;
+  width: 70rem;
+  height: 60vh;
+  background: #ffffff;
+  border-radius: 5px;
+  -webkit-box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+          box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  margin: 0 auto;
+}
+
 .modal__inner--small {
   display: none;
   position: absolute;
@@ -849,6 +1274,19 @@ input[type='file'] {
   border-radius: 5px;
   -webkit-box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
           box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+@media only screen and (min-width: 2000px) {
+  .modal__inner--small {
+    width: 20vw;
+  }
+}
+
+@media only screen and (min-width: 2000px) {
+  .modal__inner--exerciseView {
+    width: 40vw;
+    height: 50vh;
+  }
 }
 
 .modal__inner--exerciseView-ItemContainer {
@@ -875,6 +1313,12 @@ input[type='file'] {
   width: 40rem;
 }
 
+@media only screen and (min-width: 2000px) {
+  .modal__inner--exerciseView-details {
+    width: 40%;
+  }
+}
+
 .modal__inner--exerciseView-text {
   width: 100%;
 }
@@ -895,12 +1339,25 @@ input[type='file'] {
   margin: 0 auto;
 }
 
+@media only screen and (min-width: 2000px) {
+  .modal__inner--exercise {
+    width: 40vw;
+    height: 60vh;
+  }
+}
+
 .modal__exit {
   position: absolute;
   font-size: 3rem;
-  top: 3rem;
-  right: 7rem;
+  top: 1.5vh;
+  right: 2vw;
   cursor: pointer;
+}
+
+@media only screen and (min-width: 2000px) {
+  .modal__exit {
+    font-size: 5rem;
+  }
 }
 
 .modal__delete--heading {
@@ -908,9 +1365,27 @@ input[type='file'] {
   padding: 1.5rem;
 }
 
+@media only screen and (min-width: 2000px) {
+  .modal__delete--heading {
+    font-size: 5rem;
+  }
+}
+
 .modal__delete--text {
   font-size: 1.5rem;
   padding: 1.5rem;
+}
+
+@media only screen and (min-width: 2000px) {
+  .modal__delete--text {
+    font-size: 4rem;
+  }
+}
+
+@media only screen and (min-width: 2000px) {
+  .modal__delete--heading, .modal__delete--text {
+    padding: 3rem;
+  }
 }
 
 .modal__header {
@@ -918,6 +1393,12 @@ input[type='file'] {
   text-align: center;
   margin: 0 auto;
   margin-top: 6rem;
+}
+
+@media only screen and (min-width: 2000px) {
+  .modal__header {
+    font-size: 7rem;
+  }
 }
 
 .container__form {
@@ -945,7 +1426,7 @@ input[type='file'] {
       grid-template-columns: 0.24fr 1.76fr;
   -ms-grid-rows: 0.13fr 1.88fr;
       grid-template-rows: 0.13fr 1.88fr;
-      grid-template-areas: '. .' '. .';
+      grid-template-areas: '. .' '. .';
 }
 
 .grid__top--left {
@@ -1037,15 +1518,44 @@ input[type='file'] {
   border-radius: 5px;
 }
 
+@media only screen and (min-width: 2000px) {
+  .container__error {
+    padding: 3.5rem 1rem;
+  }
+}
+
 .container__error--icon {
   display: inline-block;
   font-size: 1.6rem;
   padding-left: 1rem;
 }
 
+@media only screen and (min-width: 2000px) {
+  .container__error--icon {
+    font-size: 4.5rem;
+  }
+}
+
 .container__error--text {
   display: inline-block;
   font-size: 1.6rem;
   padding-left: 1rem;
+}
+
+@media only screen and (min-width: 2000px) {
+  .container__error--text {
+    font-size: 4.5rem;
+  }
+}
+
+.signup__container {
+  width: 100%;
+  height: auto;
+  margin-top: 5vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
 }
 /*# sourceMappingURL=main.css.map */

@@ -14,7 +14,6 @@ var firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
 
-// let link = 'https://los-alamitos-pt-exercise-app.web.app/';
 // let linkIndex = 'https://los-alamitos-pt-exercise-app.web.app/index.html';
 // let linkMain = 'https://los-alamitos-pt-exercise-app.web.app/main.html';
 let linkIndex = 'http://127.0.0.1:5500/public/index.html';
@@ -67,6 +66,7 @@ const btnSubmitPatient = document.getElementById('btnSubmitPatient');
 const modalExit = document.querySelectorAll('.modal__exit');
 
 const patientList = document.getElementById('patientList');
+
 let delPatientIcon;
 const delPatientText = document.getElementById('delPatient');
 const yesPatientDel = document.getElementById('yesPatientDel');
@@ -112,8 +112,9 @@ const printList = document.getElementById('printList');
 const exercisePrevPage = document.getElementById('exercisePrevPage');
 const exerciseNextPage = document.getElementById('exerciseNextPage');
 
-//testrcises vs Exercises
-let exerciseRef = db.collection('Exercises');
+const clearExerciseModal = document.getElementById('clearExerciseModal');
+const cancelClearList = document.getElementById('cancelClearList');
+const confirmClearList = document.getElementById('confirmClearList');
 
 //Logout event
 btnLogOut.addEventListener('click', (e) => {
@@ -257,16 +258,25 @@ function renderPatientList(doc) {
   patientList.appendChild(li);
 }
 
+//Render Exercises
 function renderExerciseList(doc) {
   let li = document.createElement('li');
   let img = document.createElement('img');
+  let div = document.createElement('div');
   let p = document.createElement('p');
   let button = document.createElement('button');
   let addIcon = document.createElement('i');
 
   li.classList.add('list__exercises__item', 'exerciseClick');
   li.setAttribute('data-id', doc.id);
+
+  button.appendChild(addIcon);
+  div.appendChild(p);
+  div.appendChild(button);
+  div.classList.add('list__exercise__container');
+
   p.textContent = doc.data().name;
+  p.classList.add('list__exercise__text');
 
   img.setAttribute('src', doc.data().image);
   img.classList.add('list__exercises__img', 'exerciseClick');
@@ -274,9 +284,7 @@ function renderExerciseList(doc) {
   button.setAttribute('class', 'exercise-plus');
 
   li.appendChild(img);
-  li.appendChild(p);
-  button.appendChild(addIcon);
-  li.appendChild(button);
+  li.appendChild(div);
 
   exerciseList.appendChild(li);
 }
@@ -302,8 +310,6 @@ function exitDeleteModal() {
 function deletePatient(event) {
   let listItem = event.currentTarget.parentNode;
   let id = event.currentTarget.parentNode.getAttribute('data-id');
-  console.log(listItem);
-  console.log(id);
   let name = event.currentTarget.parentNode.textContent;
   // //Open Modal -- applied once on function click to fix repeating previous deletes, before logging newest delete.
   enterDeleteModal();
@@ -442,7 +448,7 @@ patientPrev.addEventListener('click', prevPatientPage);
 
 function addExerciseToList(e) {
   target = e.currentTarget;
-  parent = target.parentNode;
+  parent = target.parentNode.parentNode;
 
   let name = parent.getAttribute('data-id');
   let imageSrc = parent.firstChild.src;
@@ -478,7 +484,6 @@ function addExerciseToList(e) {
 
   listAddedExercises.appendChild(li);
 }
-//
 
 // Observer to initialize render of exercises when exercises tab is Clicked for the first time.
 // Options for the exercise content observer
@@ -603,9 +608,22 @@ function prevExercisePage() {
     });
 }
 
-// function checkFirstExercise() {
-
+//Open Patient Workout Modal
+// function openPatientModal(target) {
+//   modalOuterPatient.style.display = 'block';
+//   modalPatientClicked.style.display = 'block';
+//   console.log(target);
+//   target.childNode;
+//   let patientName = target.textContent;
+//   patientModalName.textContent = patientName;
 // }
+
+// patientList.addEventListener('click', function (e) {
+//   target = e.target;
+//   if (target.tagName == 'LI') {
+//     openPatientModal(target);
+//   }
+// });
 
 const exerciseNext = document.getElementById('exerciseNextPage');
 const exercisePrev = document.getElementById('exercisePrevPage');
@@ -926,16 +944,21 @@ document.body.addEventListener('click', function (e) {
 // });
 
 const btnPrintList = document.getElementById('printAddedExercises');
+const btnSaveList = document.getElementById('saveAddedExercises');
+const btnClearList = document.getElementById('clearAddedExercises');
+
 const printModal = document.querySelector('.modal__inner--print');
 
 btnPrintList.addEventListener('click', printExercises);
+btnSaveList.addEventListener('click', saveAddExerciseList);
+btnClearList.addEventListener('click', clearAddExerciseList);
 
 function openPrintModal() {
   //Base values - must edit when there is a change to styling.
   let baseWidth = '97%';
   let baseHeight = '85%';
 
-  //Open modal
+  //Open print modal
   printModal.style.display = 'block';
   //Expand width modal to cover everything
 
@@ -1012,6 +1035,34 @@ function printExercises() {
         console.log('Error getting document:', error);
       });
   }
+}
+
+function saveAddExerciseList() {
+  console.log('saved!');
+}
+
+function enterClearModal() {
+  modalPatientDeleteOuter.style.display = 'block';
+  clearExerciseModal.style.display = 'block';
+}
+
+function exitClearModal() {
+  modalPatientDeleteOuter.style.display = 'none';
+  clearExerciseModal.style.display = 'none';
+}
+
+function clearAddExerciseList() {
+  console.log('cleared!');
+  enterClearModal();
+  confirmClearList.addEventListener(
+    'click',
+    function () {
+      listAddedExercises.innerHTML = '';
+      exitClearModal();
+    },
+    { once: true }
+  );
+  cancelClearList.addEventListener('click', exitClearModal);
 }
 
 const printBack = document.getElementById('printBack');

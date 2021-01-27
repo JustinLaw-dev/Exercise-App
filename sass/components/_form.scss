@@ -1,6 +1,12 @@
 .label {
   font-size: 1.8rem;
   margin-top: 2rem;
+  font-family: 'Montserrat';
+
+  @include respond(big-desktop) {
+    font-size: 5rem;
+    margin-top: 5vh;
+  }
 }
 
 input {
@@ -12,6 +18,14 @@ input {
     box-shadow: 0 0 5px rgba(81, 203, 238, 1);
     border-radius: 5px;
   }
+
+  @include respond(big-desktop) {
+    border: 4px solid $color-gray-700;
+
+    &:focus {
+      border: 5px solid $color-focus;
+    }
+  }
 }
 
 .input {
@@ -19,12 +33,24 @@ input {
   margin-top: 0.5rem;
   padding: 1rem;
 
+  @include respond(big-desktop) {
+    font-size: 4rem;
+    padding: 2rem;
+  }
+
   &__signUp {
+    @include respond(big-desktop) {
+      font-size: 6rem;
+    }
   }
 
   &--textarea {
     font-size: 1.8rem;
     resize: none;
+
+    @include respond(big-desktop) {
+      font-size: 4rem;
+    }
   }
 }
 
@@ -44,6 +70,7 @@ input[type='file'] {
   &__addPatient,
   &__addExercise {
     width: 40%;
+    height: 100%;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
@@ -51,6 +78,20 @@ input[type='file'] {
 
     & input {
       font-size: 1.6rem;
+    }
+  }
+
+  &__addPatient input {
+    @include respond(big-desktop) {
+      font-size: 4rem;
+      width: 13vw;
+    }
+  }
+
+  &__addExercise input {
+    @include respond(big-desktop) {
+      font-size: 4rem;
+      width: 16vw;
     }
   }
 
@@ -70,5 +111,9 @@ input[type='file'] {
     text-align: center;
     margin: 0 auto;
     margin-top: 6rem;
+
+    @include respond(big-desktop) {
+      font-size: 7rem;
+    }
   }
 }
