@@ -38,6 +38,10 @@
     padding: 1rem 4rem;
     width: 40%;
     box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.4);
+
+    @include respond(big-desktop) {
+      padding: 2rem 4rem;
+    }
   }
 
   &__square {
@@ -67,19 +71,26 @@
   }
 
   &--login {
-    color: $primary-color;
-    border: 1px solid lightblue;
-    background-color: lightblue;
-    margin: 3rem auto;
+    border: 1px solid $primary-color;
+    color: white;
+    background-color: $primary-color;
+    // margin: 3rem auto;
     font-size: 2rem;
   }
 
   &--signup {
-    border: 1px solid $primary-color;
-    color: white;
-    background-color: $primary-color;
-    margin: 0 auto;
+    color: $primary-color;
+    border: 1px solid lightblue;
+    background-color: lightblue;
+    // margin: 0 auto;
     font-size: 2rem;
+  }
+
+  &--login,
+  &--signup {
+    @include respond(big-desktop) {
+      font-size: 5rem;
+    }
   }
 
   &--logout {

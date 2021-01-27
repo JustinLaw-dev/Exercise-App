@@ -229,17 +229,30 @@
 
     &--heading {
       font-size: 3rem;
+
+      @include respond(big-desktop) {
+        font-size: 7rem;
+      }
     }
 
     &--img {
       width: 25rem;
       height: 15rem;
+
+      @include respond(big-desktop) {
+        width: 18vw;
+        height: 22vh;
+      }
     }
 
     &--instructions {
       font-size: 1.6rem;
       width: 45%;
       line-height: 1.5;
+
+      @include respond(big-desktop) {
+        font-size: 4rem;
+      }
     }
   }
 }

@@ -24,16 +24,38 @@
     color: $color-white;
     border-radius: 5px;
 
+    @include respond(big-desktop) {
+      padding: 3.5rem 1rem;
+    }
+
     &--icon {
       display: inline-block;
       font-size: 1.6rem;
       padding-left: 1rem;
+
+      @include respond(big-desktop) {
+        font-size: 4.5rem;
+      }
     }
 
     &--text {
       display: inline-block;
       font-size: 1.6rem;
       padding-left: 1rem;
+
+      @include respond(big-desktop) {
+        font-size: 4.5rem;
+      }
     }
+  }
+}
+
+.signup {
+  &__container {
+    width: 100%;
+    height: auto;
+    margin-top: 5vh;
+    display: flex;
+    justify-content: space-around;
   }
 }

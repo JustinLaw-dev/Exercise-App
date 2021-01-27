@@ -85,6 +85,12 @@ textarea {
   text-align: center;
 }
 
+@media only screen and (min-width: 2000px) {
+  .header--primary {
+    font-size: 15rem;
+  }
+}
+
 .header--secondary {
   font-size: 4.5rem;
   font-weight: 700;
@@ -98,6 +104,12 @@ textarea {
 .header--secondary--login {
   padding-right: 6rem;
   padding-top: 2rem;
+}
+
+@media only screen and (min-width: 2000px) {
+  .header--secondary {
+    font-size: 15rem;
+  }
 }
 
 .text__forgot {
@@ -212,6 +224,12 @@ input {
           box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.4);
 }
 
+@media only screen and (min-width: 2000px) {
+  .button__round {
+    padding: 2rem 4rem;
+  }
+}
+
 .button__square {
   width: 18rem;
   height: 5rem;
@@ -246,19 +264,23 @@ input {
 }
 
 .button--login {
-  color: #03396c;
-  border: 1px solid lightblue;
-  background-color: lightblue;
-  margin: 3rem auto;
+  border: 1px solid #03396c;
+  color: white;
+  background-color: #03396c;
   font-size: 2rem;
 }
 
 .button--signup {
-  border: 1px solid #03396c;
-  color: white;
-  background-color: #03396c;
-  margin: 0 auto;
+  color: #03396c;
+  border: 1px solid lightblue;
+  background-color: lightblue;
   font-size: 2rem;
+}
+
+@media only screen and (min-width: 2000px) {
+  .button--login, .button--signup {
+    font-size: 5rem;
+  }
 }
 
 .button--logout {
@@ -534,12 +556,13 @@ input {
 .label {
   font-size: 1.8rem;
   margin-top: 2rem;
+  font-family: 'Montserrat';
 }
 
 @media only screen and (min-width: 2000px) {
   .label {
-    font-size: 3.5rem;
-    margin-top: 6rem;
+    font-size: 5rem;
+    margin-top: 5vh;
   }
 }
 
@@ -555,6 +578,15 @@ input:focus {
   border-radius: 5px;
 }
 
+@media only screen and (min-width: 2000px) {
+  input {
+    border: 4px solid #646464;
+  }
+  input:focus {
+    border: 5px solid #5190ee;
+  }
+}
+
 .input {
   font-size: 2rem;
   margin-top: 0.5rem;
@@ -565,6 +597,12 @@ input:focus {
   .input {
     font-size: 4rem;
     padding: 2rem;
+  }
+}
+
+@media only screen and (min-width: 2000px) {
+  .input__signUp {
+    font-size: 6rem;
   }
 }
 
@@ -618,9 +656,16 @@ input[type='file'] {
 }
 
 @media only screen and (min-width: 2000px) {
-  .form__addPatient input, .form__addExercise input {
+  .form__addPatient input {
     font-size: 4rem;
     width: 13vw;
+  }
+}
+
+@media only screen and (min-width: 2000px) {
+  .form__addExercise input {
+    font-size: 4rem;
+    width: 16vw;
   }
 }
 
@@ -1110,15 +1155,34 @@ input[type='file'] {
   font-size: 3rem;
 }
 
+@media only screen and (min-width: 2000px) {
+  .list__print--heading {
+    font-size: 7rem;
+  }
+}
+
 .list__print--img {
   width: 25rem;
   height: 15rem;
+}
+
+@media only screen and (min-width: 2000px) {
+  .list__print--img {
+    width: 18vw;
+    height: 22vh;
+  }
 }
 
 .list__print--instructions {
   font-size: 1.6rem;
   width: 45%;
   line-height: 1.5;
+}
+
+@media only screen and (min-width: 2000px) {
+  .list__print--instructions {
+    font-size: 4rem;
+  }
 }
 
 .list__exercise__container {
@@ -1247,6 +1311,12 @@ input[type='file'] {
 
 .modal__inner--exerciseView-details {
   width: 40rem;
+}
+
+@media only screen and (min-width: 2000px) {
+  .modal__inner--exerciseView-details {
+    width: 40%;
+  }
 }
 
 .modal__inner--exerciseView-text {
@@ -1448,15 +1518,44 @@ input[type='file'] {
   border-radius: 5px;
 }
 
+@media only screen and (min-width: 2000px) {
+  .container__error {
+    padding: 3.5rem 1rem;
+  }
+}
+
 .container__error--icon {
   display: inline-block;
   font-size: 1.6rem;
   padding-left: 1rem;
 }
 
+@media only screen and (min-width: 2000px) {
+  .container__error--icon {
+    font-size: 4.5rem;
+  }
+}
+
 .container__error--text {
   display: inline-block;
   font-size: 1.6rem;
   padding-left: 1rem;
+}
+
+@media only screen and (min-width: 2000px) {
+  .container__error--text {
+    font-size: 4.5rem;
+  }
+}
+
+.signup__container {
+  width: 100%;
+  height: auto;
+  margin-top: 5vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
 }
 /*# sourceMappingURL=main.css.map */

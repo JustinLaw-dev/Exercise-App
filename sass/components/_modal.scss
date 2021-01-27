@@ -85,6 +85,10 @@
 
     &-details {
       width: 40rem;
+
+      @include respond(big-desktop) {
+        width: 40%;
+      }
     }
 
     &-text {
