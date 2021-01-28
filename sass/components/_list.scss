@@ -89,6 +89,7 @@
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: flex-start;
+    overflow: hidden;
 
     &__item {
       display: inline-block;
