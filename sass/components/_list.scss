@@ -90,6 +90,7 @@
     flex-wrap: wrap;
     justify-content: flex-start;
     overflow: hidden;
+    scrollbar-width: thin;
 
     &__item {
       display: inline-block;
