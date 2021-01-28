@@ -116,6 +116,8 @@ const clearExerciseModal = document.getElementById('clearExerciseModal');
 const cancelClearList = document.getElementById('cancelClearList');
 const confirmClearList = document.getElementById('confirmClearList');
 
+const exercisePageButtons = document.getElementById('exercisePages');
+const patientPageButtons = document.getElementById('patientPages');
 //Logout event
 btnLogOut.addEventListener('click', (e) => {
   firebase
@@ -345,11 +347,10 @@ let lastVisiblePatient;
 let absolutePatient;
 const patientRef = db.collection('Patients');
 
-///Initialize Patient List on startup
+//Render Patient List on startup
 patientRef
   .orderBy('lastName', 'asc')
   .limit(patientPageSize)
-
   .get()
   .then((snapshot) => {
     snapshot.docs.forEach((doc) => {
@@ -734,18 +735,48 @@ function enterModalAddExercise() {
 
 btnAddExercise.addEventListener('click', enterModalAddExercise);
 
+let addScroll = function (section) {
+  if (section === 'exercise') {
+    //hide pagination
+    exercisePageButtons.style.visibility = 'hidden';
+    exerciseList.style.overflowY = 'scroll';
+  } else if (section === 'patient') {
+    patientPageButtons.style.visibility = 'hidden';
+    patientList.style.overflowY = 'scroll';
+  } else return;
+};
+
+let removeScroll = function (section) {
+  if (section === 'exercise') {
+    //show pagination
+    exercisePageButtons.style.visibility = 'visible';
+    exerciseList.style.overflowY = 'hidden';
+  } else if (section === 'patient') {
+    patientPageButtons.style.visibility = 'visible';
+    patientList.style.overflowY = 'hidden';
+  } else return;
+};
+
 //Exercise search function
 const exerciseSearchbar = document.querySelector('#exerciseSearchbar');
 const exerciseSearchIcon = document.getElementById('exerciseSearchIcon');
+
+//Search limit
+const searchLimit = 25;
 
 function exerciseSearch() {
   let searchInput = exerciseSearchbar.value;
   // let searchInputLower = searchInput.toString().toLowerCase();
   // console.log(searchInputLower);
-  let query = exerciseRef.where('name', '==', `${searchInput}`);
+  let query = exerciseRef.where(
+    'searchExerciseArray',
+    'array-contains',
+    `${searchInput}`
+  );
 
   if (searchInput == '' || searchInput == null) {
     clearExerciseList();
+    removeScroll('exercise');
     exerciseRef
       .limit(exercisePageSize)
       .get()
@@ -765,8 +796,9 @@ function exerciseSearch() {
         exerciseNext.disabled = false;
       });
   } else {
+    addScroll('exercise');
     query
-      .limit(exercisePageSize)
+      .limit(searchLimit)
       .get()
       .then(function (querySnapshot) {
         clearExerciseList();
@@ -794,7 +826,9 @@ function patientSearch() {
 
   if (searchInput == '' || searchInput == null) {
     clearPatientList();
+    removeScroll('patient');
     patientRef
+      .orderBy('lastName', 'asc')
       .limit(patientPageSize)
       .get()
       .then((snapshot) => {
@@ -814,8 +848,10 @@ function patientSearch() {
         patientNext.disabled = false;
       });
   } else {
+    addScroll('patient');
     query
-      .limit(patientPageSize)
+      .orderBy('lastName', 'asc')
+      .limit(searchLimit)
       .get()
       .then(function (querySnapshot) {
         clearPatientList();
