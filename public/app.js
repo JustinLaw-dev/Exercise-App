@@ -55,11 +55,13 @@ const tabPanels = document.querySelectorAll('.tabs__panel');
 
 const patientsLink = document.getElementById('patientsLink');
 const exercisesLink = document.getElementById('exercisesLink');
-const accountLink = document.getElementById('accountLink');
+// const accountLink = document.getElementById('accountLink');
+const workoutLink = document.getElementById('workoutLink');
 
 const patientsContent = document.getElementById('patientsContent');
 const exercisesContent = document.getElementById('exercisesContent');
-const accountContent = document.getElementById('accountContent');
+// const accountContent = document.getElementById('accountContent');
+const workoutContent = document.getElementById('workoutContent');
 
 const btnAddPatient = document.getElementById('btnAddPatient');
 const btnSubmitPatient = document.getElementById('btnSubmitPatient');
@@ -156,9 +158,9 @@ function openTab(tabName) {
       exercisesLink.classList.add('tabs__link--active');
       // mainHeading.textContent = 'Exercises';
       break;
-    case 'accountTab':
-      accountContent.classList.add('active');
-      accountLink.classList.add('tabs__link--active');
+    case 'workoutTab':
+      workoutContent.classList.add('active');
+      workoutLink.classList.add('tabs__link--active');
       // mainHeading.textContent = 'Account';
       break;
   }
