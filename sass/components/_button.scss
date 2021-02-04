@@ -322,6 +322,16 @@
   }
 }
 
+#workoutPages {
+  position: absolute;
+  bottom: 7vh;
+  right: 3rem;
+
+  @include respond(big-desktop) {
+    right: 3vw;
+  }
+}
+
 #printAddedExercises {
   transition: all 0.1s;
 
