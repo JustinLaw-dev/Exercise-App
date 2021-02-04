@@ -254,7 +254,7 @@ function renderPatientList(doc) {
   li.setAttribute('data-id', doc.id);
   li.textContent = `${doc.data().lastName}, ${doc.data().firstName}`;
   // editIcon.setAttribute('class', 'fas fa-edit');
-  deleteIcon.setAttribute('class', 'fas fa-trash-alt');
+  deleteIcon.setAttribute('class', 'fas fa-trash-alt pt-delete');
 
   li.appendChild(deleteIcon);
   // li.appendChild(editIcon);
@@ -358,7 +358,7 @@ patientRef
     snapshot.docs.forEach((doc) => {
       renderPatientList(doc);
       //Adds query selector and event listener after patient list is finished rendering
-      delPatientIcon = document.querySelectorAll('.fa-trash-alt');
+      delPatientIcon = document.querySelectorAll('.pt-delete');
       delPatientIcon.forEach((icon) => {
         icon.addEventListener('click', deletePatient);
       });
@@ -394,7 +394,7 @@ function nextPatientPage() {
         snapshot.docs.forEach((doc) => {
           renderPatientList(doc);
           //Adds query selector and event listener after patient list is finished rendering
-          delPatientIcon = document.querySelectorAll('.fa-trash-alt');
+          delPatientIcon = document.querySelectorAll('.pt-delete');
           delPatientIcon.forEach((icon) => {
             icon.addEventListener('click', deletePatient);
           });
@@ -426,7 +426,7 @@ function prevPatientPage() {
       snapshot.docs.forEach((doc) => {
         renderPatientList(doc);
         //Adds query selector and event listener after patient list is finished rendering
-        delPatientIcon = document.querySelectorAll('.fa-trash-alt');
+        delPatientIcon = document.querySelectorAll('.pt-delete');
         delPatientIcon.forEach((icon) => {
           icon.addEventListener('click', deletePatient);
         });
@@ -837,7 +837,7 @@ function patientSearch() {
         snapshot.docs.forEach((doc) => {
           renderPatientList(doc);
           //Adds query selector and event listener after patient list is finished rendering
-          delPatientIcon = document.querySelectorAll('.fa-trash-alt');
+          delPatientIcon = document.querySelectorAll('.pt-delete');
           delPatientIcon.forEach((icon) => {
             icon.addEventListener('click', deletePatient);
           });
@@ -860,7 +860,7 @@ function patientSearch() {
         querySnapshot.forEach(function (doc) {
           renderPatientList(doc);
           //Adds query selector and event listener after patient list is finished rendering
-          delPatientIcon = document.querySelectorAll('.fa-trash-alt');
+          delPatientIcon = document.querySelectorAll('.pt-delete');
           delPatientIcon.forEach((icon) => {
             icon.addEventListener('click', deletePatient);
           });
@@ -1106,3 +1106,21 @@ function clearAddExerciseList() {
 
 const printBack = document.getElementById('printBack');
 printBack.addEventListener('click', closePrintModal);
+
+//Workouts//
+// function renderWorkoutList(doc) {
+//   let li = document.createElement('li');
+//   let editIcon = document.createElement('i');
+//   let deleteIcon = document.createElement('i');
+//   li.classList.add('patientLI');
+
+//   li.setAttribute('data-id', doc.id);
+//   li.textContent = `${doc.data().lastName}, ${doc.data().firstName}`;
+//   // editIcon.setAttribute('class', 'fas fa-edit');
+//   deleteIcon.setAttribute('class', 'fas fa-trash-alt');
+
+//   li.appendChild(deleteIcon);
+//   // li.appendChild(editIcon);
+
+//   patientList.appendChild(li);
+// }
