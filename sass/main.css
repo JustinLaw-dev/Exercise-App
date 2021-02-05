@@ -231,9 +231,8 @@ input {
 }
 
 .button__square {
-  width: 18rem;
+  width: 20rem;
   height: 5rem;
-  border: 3px solid #b4b4b4;
   -webkit-box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
           box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   backface-visibility: hidden;
@@ -547,7 +546,7 @@ input {
 #workoutPages {
   position: absolute;
   bottom: 7vh;
-  right: 3rem;
+  right: 5vw;
 }
 
 @media only screen and (min-width: 2000px) {
@@ -648,7 +647,7 @@ input[type='file'] {
   height: auto;
 }
 
-.form__addPatient, .form__addExercise {
+.form__addPatient, .form__addExercise, .form__saveWorkout {
   width: 40%;
   height: 100%;
   margin: 0 auto;
@@ -663,7 +662,7 @@ input[type='file'] {
       flex-wrap: wrap;
 }
 
-.form__addPatient input, .form__addExercise input {
+.form__addPatient input, .form__addExercise input, .form__saveWorkout input {
   font-size: 1.6rem;
 }
 
@@ -892,7 +891,6 @@ input[type='file'] {
   width: 97%;
   height: 85%;
   margin: 2rem auto;
-  overflow-y: scroll;
 }
 
 .list__wrapper--exercise {
@@ -1356,7 +1354,7 @@ input[type='file'] {
 @media only screen and (min-width: 2000px) {
   .modal__inner--exercise {
     width: 40vw;
-    height: 60vh;
+    height: 70vh;
   }
 }
 
@@ -1571,5 +1569,19 @@ input[type='file'] {
   display: flex;
   -ms-flex-pack: distribute;
       justify-content: space-around;
+}
+
+.workouts__top {
+  height: 6vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.workouts__header {
+  font-size: 5rem;
 }
 /*# sourceMappingURL=main.css.map */
