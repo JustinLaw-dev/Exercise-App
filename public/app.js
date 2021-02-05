@@ -120,6 +120,10 @@ const confirmClearList = document.getElementById('confirmClearList');
 
 const exercisePageButtons = document.getElementById('exercisePages');
 const patientPageButtons = document.getElementById('patientPages');
+
+const saveWorkoutModal = document.getElementById('saveWorkoutModal');
+const saveWorkoutForm = document.getElementById('saveWorkoutForm');
+
 //Logout event
 btnLogOut.addEventListener('click', (e) => {
   firebase
@@ -201,6 +205,9 @@ function exitModal() {
   modalInnerExerciseView.style.display = 'none';
   addExerciseForm.reset();
   addExerciseImage.src = '';
+
+  saveWorkoutModal.style.display = 'none';
+  saveWorkoutForm.reset();
 }
 
 //Add Patient to collection
@@ -1076,10 +1083,6 @@ function printExercises() {
   }
 }
 
-function saveAddExerciseList() {
-  console.log('saved!');
-}
-
 function enterClearModal() {
   modalPatientDeleteOuter.style.display = 'block';
   clearExerciseModal.style.display = 'block';
@@ -1091,7 +1094,6 @@ function exitClearModal() {
 }
 
 function clearAddExerciseList() {
-  console.log('cleared!');
   enterClearModal();
   confirmClearList.addEventListener(
     'click',
@@ -1106,6 +1108,24 @@ function clearAddExerciseList() {
 
 const printBack = document.getElementById('printBack');
 printBack.addEventListener('click', closePrintModal);
+
+function enterSaveWorkoutModal() {
+  modalOuterPatient.style.display = 'block';
+  saveWorkoutModal.style.display = 'block';
+}
+
+function copyAddedExercisesList() {}
+
+function submitSaveWorkout() {}
+
+function saveAddExerciseList() {
+  enterSaveWorkoutModal();
+
+  //Copy exercises from added to modal
+  copyAddedExercisesList();
+
+  //
+}
 
 //Workouts//
 // function renderWorkoutList(doc) {
