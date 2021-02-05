@@ -1,0 +1,11 @@
+.workouts {
+  &__top {
+    height: 6vh;
+    display: flex;
+    justify-content: center;
+  }
+
+  &__header {
+    font-size: 5rem;
+  }
+}
