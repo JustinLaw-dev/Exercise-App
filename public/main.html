@@ -277,11 +277,43 @@
                 </li> -->
               </ul>
             </div>
+
+            <div class="modal__inner modal__inner--save" id="saveWorkoutModal">
+              <i class="modal__exit fas fa-times"></i>
+              <form class="form__saveWorkout" id="saveWorkoutForm">
+                <h3 class="form__header">Save Workout</h3>
+                <label class="label" for="workoutName">Workout Name</label>
+                <input
+                  class="input"
+                  placeholder="Exercise Name"
+                  type="text"
+                  name="workoutName"
+                  id="workoutName"
+                  required
+                />
+                <ul class="list__workout">
+                  <li class="list__workout--display"></li>
+                  <li class="list__workout--display"></li>
+                  <li class="list__workout--display"></li>
+                  <li class="list__workout--display"></li>
+                  <li class="list__workout--display"></li>
+                  <li class="list__workout--display"></li>
+                </ul>
+                <button
+                  class="button__square button__submit button--primary"
+                  id="btnSaveWorkout">
+                  Save
+                </button>
+              </form>
+            </div>
             <!-- end of exercise tab -->
          </div>
         
           <!-- Workout Tab -->
            <div class="tabs__panel" id="workoutContent">
+            <div class="searchbar__top workouts__top">
+              <h1 class="workouts__header">Workouts</h1>
+            </div>
             <div class="list__wrapper" id="workoutListWrapper">
               <ul class="list__patients" id="workoutList">
                 <li class="patientLI">Workout 1</li>
