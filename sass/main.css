@@ -1214,6 +1214,51 @@ input[type='file'] {
   width: 90%;
 }
 
+.list__workout {
+  list-style: none;
+  border: 2px solid #e7e7e7;
+  background-color: #e7e7e7;
+  margin-top: 3rem;
+  height: 50vh;
+  border-radius: 5px;
+  overflow: auto;
+}
+
+.list__workout--item {
+  height: 7vh;
+  width: 37rem;
+  margin: 1rem;
+  border-radius: 10px;
+  background-color: white;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+@media only screen and (min-width: 2000px) {
+  .list__workout--item {
+    width: 12vw;
+  }
+}
+
+.list__workout--image {
+  height: 100%;
+  width: auto;
+  border-radius: 10px;
+}
+
+.list__workout--text {
+  font-size: 1.6rem;
+  max-height: 100%;
+  width: 50%;
+}
+
 .modal__outer {
   display: none;
   /* Hidden by default */
