@@ -123,6 +123,7 @@ const patientPageButtons = document.getElementById('patientPages');
 
 const saveWorkoutModal = document.getElementById('saveWorkoutModal');
 const saveWorkoutForm = document.getElementById('saveWorkoutForm');
+const saveWorkoutList = document.getElementById('saveWorkoutList');
 
 //Logout event
 btnLogOut.addEventListener('click', (e) => {
@@ -1114,7 +1115,38 @@ function enterSaveWorkoutModal() {
   saveWorkoutModal.style.display = 'block';
 }
 
-function copyAddedExercisesList() {}
+function copyAddedExercisesList() {
+  //Clears workout list upon entering, to allow for new render.
+  saveWorkoutList.innerHTML = '';
+  let copyChildren = listAddedExercises.children;
+  // console.log(copyChildren);
+  for (let i = 0; i < copyChildren.length; i++) {
+    //returns actual node
+    // console.log(copyChildren[i]);
+
+    //make copy
+    let copyIMG = copyChildren[i].children[0].src;
+    let copyName = copyChildren[i].textContent;
+
+    //create new list item
+    let li = document.createElement('li');
+    let img = document.createElement('img');
+    let name = document.createElement('p');
+
+    img.src = copyIMG;
+    img.classList.add('list__workout--image');
+    name.textContent = copyName;
+    name.classList.add('list__workout--text');
+    li.appendChild(img);
+    li.appendChild(name);
+
+    li.classList.add('list__workout--item');
+    //display copied list in modal
+    saveWorkoutList.appendChild(li);
+  }
+  // let copy = listAddedExercises.cloneNode();
+  // console.log(copy);
+}
 
 function submitSaveWorkout() {}
 
