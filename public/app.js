@@ -1177,10 +1177,11 @@ function submitSaveWorkout(e) {
   //look at this https://stackoverflow.com/questions/50012956/firestore-how-to-store-reference-to-document-how-to-retrieve-it
 }
 
+btnSaveWorkout.addEventListener('click', submitSaveWorkout);
+
 function saveAddExerciseList() {
   enterSaveWorkoutModal();
   copyAddedExercisesList();
-  btnSaveWorkout.addEventListener('click', submitSaveWorkout);
 }
 
 //Workouts//
