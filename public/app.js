@@ -124,6 +124,8 @@ const patientPageButtons = document.getElementById('patientPages');
 const saveWorkoutModal = document.getElementById('saveWorkoutModal');
 const saveWorkoutForm = document.getElementById('saveWorkoutForm');
 const saveWorkoutList = document.getElementById('saveWorkoutList');
+const btnSaveWorkout = document.getElementById('btnSaveWorkout');
+const workoutNameInput = document.getElementById('workoutNameInput');
 
 //Logout event
 btnLogOut.addEventListener('click', (e) => {
@@ -1148,15 +1150,37 @@ function copyAddedExercisesList() {
   // console.log(copy);
 }
 
-function submitSaveWorkout() {}
+workoutRef = db.collection('Workouts');
+
+function submitSaveWorkout(e) {
+  e.preventDefault();
+  //Get workout name
+  let workoutName = workoutNameInput.value;
+  let workoutArray = [];
+  //save doc ref of execise name
+  let saveItems = listAddedExercises.children;
+  for (let i = 0; i < saveItems.length; i++) {
+    let exerciseName = saveItems[i].children[1].children[0].textContent;
+    workoutArray.push(exerciseName);
+  }
+  console.log('This workout is called: ' + workoutName);
+  console.table(workoutArray);
+
+  workoutRef.doc(`${workoutName}`).set({
+    name: workoutName,
+    exerciseList: workoutArray,
+  });
+
+  setTimeout(exitModal, 1000);
+  alert('upload complete!');
+
+  //look at this https://stackoverflow.com/questions/50012956/firestore-how-to-store-reference-to-document-how-to-retrieve-it
+}
 
 function saveAddExerciseList() {
   enterSaveWorkoutModal();
-
-  //Copy exercises from added to modal
   copyAddedExercisesList();
-
-  //
+  btnSaveWorkout.addEventListener('click', submitSaveWorkout);
 }
 
 //Workouts//
