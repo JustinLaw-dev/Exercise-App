@@ -78,7 +78,7 @@ const modalOuterPatient = document.querySelector('.modal__outer--patient');
 const modalInnerPatient = document.querySelector('.modal__inner--patient');
 
 const modalPatientDeleteOuter = document.getElementById('modalOuterSmall');
-const modalPatientDelete = document.querySelector('.modal__inner--small');
+const modalPatientDelete = document.getElementById('modalPatientDelInner');
 
 const exerciseList = document.getElementById('exerciseList');
 
@@ -125,8 +125,13 @@ const saveWorkoutModal = document.getElementById('saveWorkoutModal');
 const saveWorkoutForm = document.getElementById('saveWorkoutForm');
 const saveWorkoutList = document.getElementById('saveWorkoutList');
 const btnSaveWorkout = document.getElementById('btnSaveWorkout');
-const workoutNameInput = document.getElementById('workoutNameInput');
 
+const workoutNameInput = document.getElementById('workoutNameInput');
+const delWorkoutText = document.getElementById('delWorkout');
+const yesWorkoutDel = document.getElementById('yesWorkoutDel');
+const noWorkoutDel = document.getElementById('noWorkoutDel');
+
+const modalWorkoutDelete = document.getElementById('modalWorkoutDelInner');
 //Logout event
 btnLogOut.addEventListener('click', (e) => {
   firebase
@@ -309,6 +314,10 @@ function clearPatientList() {
 
 function clearExerciseList() {
   exerciseList.innerHTML = '';
+}
+
+function clearWorkoutList() {
+  workoutList.innerHTML = '';
 }
 
 function enterDeleteModal() {
@@ -1150,7 +1159,7 @@ function copyAddedExercisesList() {
   // console.log(copy);
 }
 
-workoutRef = db.collection('Workouts');
+let workoutRef = db.collection('Workouts');
 
 function submitSaveWorkout(e) {
   e.preventDefault();
@@ -1184,20 +1193,180 @@ function saveAddExerciseList() {
   copyAddedExercisesList();
 }
 
+function renderWorkoutList(doc) {
+  let li = document.createElement('li');
+  let editIcon = document.createElement('i');
+  let deleteIcon = document.createElement('i');
+  li.classList.add('patientLI');
+
+  li.setAttribute('data-id', doc.id);
+  li.textContent = `${doc.data().name}`;
+  // editIcon.setAttribute('class', 'fas fa-edit');
+  deleteIcon.setAttribute('class', 'fas fa-trash-alt workout-delete');
+
+  li.appendChild(deleteIcon);
+  // li.appendChild(editIcon);
+
+  workoutList.appendChild(li);
+}
+
 //Workouts//
-// function renderWorkoutList(doc) {
-//   let li = document.createElement('li');
-//   let editIcon = document.createElement('i');
-//   let deleteIcon = document.createElement('i');
-//   li.classList.add('patientLI');
+function enterDeleteWorkoutModal() {
+  modalPatientDeleteOuter.style.display = 'block';
+  modalWorkoutDelete.style.display = 'block';
+}
 
-//   li.setAttribute('data-id', doc.id);
-//   li.textContent = `${doc.data().lastName}, ${doc.data().firstName}`;
-//   // editIcon.setAttribute('class', 'fas fa-edit');
-//   deleteIcon.setAttribute('class', 'fas fa-trash-alt');
+function exitDeleteWorkoutModal() {
+  modalPatientDeleteOuter.style.display = 'none';
+  modalWorkoutDelete.style.display = 'none';
+}
 
-//   li.appendChild(deleteIcon);
-//   // li.appendChild(editIcon);
+function deleteWorkout(event) {
+  let listItem = event.currentTarget.parentNode;
+  let id = event.currentTarget.parentNode.getAttribute('data-id');
+  console.log(id);
+  // let name = event.currentTarget.parentNode.textContent;
+  // //Open Modal -- applied once on function click to fix repeating previous deletes, before logging newest delete.
+  enterDeleteWorkoutModal();
 
-//   patientList.appendChild(li);
-// }
+  // //Display "Are you sure you want to remove xxxx, xxx?" Delete Cancel
+  delWorkoutText.textContent = `Are you sure you want to delete ${id}? If deleted, the workout will be removed and can not be reversed.`;
+
+  //Confirm delete
+  yesWorkoutDel.addEventListener(
+    'click',
+    function () {
+      db.collection('Workouts')
+        .doc(id)
+        .delete()
+        .then(function () {
+          console.log('Workout successfully deleted!');
+        })
+        .catch(function (error) {
+          console.error('Error removing workout: ', error);
+        });
+      workoutList.removeChild(listItem);
+      exitDeleteWorkoutModal();
+    },
+    { once: true }
+  );
+  //Exit Modal on "No"
+  noWorkoutDel.addEventListener('click', exitDeleteWorkoutModal);
+}
+let firstVisibleWorkout;
+let lastVisibleWorkout;
+let absoluteFirstWorkout;
+
+// Callback function to execute when mutations are observed
+const workoutCallback = function (mutationsList, observer) {
+  if (workoutContent.classList.contains('active')) {
+    // console.log('This tab is activated!');
+    workoutRef
+      .orderBy('name', 'asc')
+      .limit(patientPageSize)
+      .get()
+      .then((snapshot) => {
+        snapshot.docs.forEach((doc) => {
+          renderWorkoutList(doc);
+          //Adds query selector and event listener after patient list is finished rendering
+          delWorkoutIcon = document.querySelectorAll('.workout-delete');
+          delWorkoutIcon.forEach((icon) => {
+            icon.addEventListener('click', deleteWorkout);
+          });
+        });
+        absoluteFirstWorkout = snapshot.docs[0].data().name;
+        firstVisibleWorkout = snapshot.docs[0].data().name;
+        lastVisibleWorkout = snapshot.docs[snapshot.docs.length - 1].data()
+          .name;
+        workoutPrev.disabled = true;
+      });
+    //Stop observing after tab is clicked for the first time
+    workoutLoadOb.disconnect();
+  }
+  //optional else if condition
+  //  else if (mutation.type === 'attributes') {
+  //   console.log(
+  //     'The ' + mutation.attributeName + ' attribute was modified.'
+  // );
+};
+
+// Create an observer instance linked to the callback function
+const workoutLoadOb = new MutationObserver(workoutCallback);
+
+// Start observing the target node for configured mutations
+workoutLoadOb.observe(workoutContent, obConfig);
+
+function nextWorkoutPage() {
+  console.log('next workout page');
+  //clear patient list
+  workoutRef
+    .orderBy('name', 'asc')
+    .limit(patientPageSize)
+    .startAfter(lastVisibleWorkout)
+    .get()
+    .then((snapshot) => {
+      //Disable next button on last page,
+      //case for when length of list matches page size
+      //TODO -- query for pageSize + 1, display pageSize # of items only.
+      // if length of query list < pageSize + 1, disable fwd button
+      if (snapshot.docs.length == 0) {
+        workoutNext.disabled = true;
+        return;
+      } else {
+        clearWorkoutList();
+        snapshot.docs.forEach((doc) => {
+          renderWorkoutList(doc);
+          //Adds query selector and event listener after patient list is finished rendering
+          delWorkoutIcon = document.querySelectorAll('.workout-delete');
+          delWorkoutIcon.forEach((icon) => {
+            icon.addEventListener('click', deleteWorkout);
+          });
+        });
+        firstVisibleWorkout = snapshot.docs[0].data().name;
+        // }
+        lastVisibleWorkout = snapshot.docs[snapshot.docs.length - 1].data()
+          .name;
+        workoutPrev.disabled = false;
+        //disable if query render list is any less than maximum page # allowed.
+        if (snapshot.docs.length < patientPageSize) {
+          workoutNext.disabled = true;
+        } else return;
+      }
+    })
+    .catch((error) => {});
+}
+
+function prevWorkoutPage() {
+  console.log('prev pt page');
+  //clear patient list
+  clearWorkoutList();
+  workoutRef
+    .orderBy('name', 'asc')
+    .endBefore(firstVisibleWorkout)
+    .limitToLast(patientPageSize)
+    .get()
+    .then((snapshot) => {
+      snapshot.docs.forEach((doc) => {
+        renderWorkoutList(doc);
+        //Adds query selector and event listener after patient list is finished rendering
+        delWorkoutIcon = document.querySelectorAll('.workout-delete');
+        delWorkoutIcon.forEach((icon) => {
+          icon.addEventListener('click', deleteWorkout);
+        });
+      });
+      firstVisibleWorkout = snapshot.docs[0].data().name;
+      lastVisibleWorkout = snapshot.docs[snapshot.docs.length - 1].data().name;
+      console.log('last workout =', lastVisibleWorkout);
+
+      workoutNext.disabled = false;
+      //prettier-ignore
+      if (absoluteFirstWorkout == workoutList.children[0].textContent) {
+          workoutPrev.disabled = true;
+        } else workoutPrev.disabled = false;
+    });
+}
+const workoutNext = document.getElementById('workoutNextPage');
+const workoutPrev = document.getElementById('workoutPrevPage');
+
+workoutNext.addEventListener('click', nextWorkoutPage);
+workoutPrev.addEventListener('click', prevWorkoutPage);

@@ -138,7 +138,7 @@
           </div>
 
           <div class="modal__outer" id="modalOuterSmall"></div>
-          <div class="modal__inner--small">
+          <div class="modal__inner--small" id='modalPatientDelInner'>
             <h4 class="modal__delete--heading">Delete Patient</h4>
             <p class="modal__delete--text" id="delPatient"></p>
             <div class="button__delete--background">
@@ -318,19 +318,29 @@
             </div>
             <div class="list__wrapper" id="workoutListWrapper">
               <ul class="list__patients" id="workoutList">
-                <li class="patientLI">Workout 1</li>
+                <!-- <li class="patientLI">Workout 1</li>
                 <li class="patientLI">Workout 2</li>
                 <li class="patientLI">Workout 3</li>
                 <li class="patientLI">Workout 4</li>
                 <li class="patientLI">Workout 5</li>
                 <li class="patientLI">Workout 6</li>
-                <li class="patientLI">Workout 7</li>  
+                <li class="patientLI">Workout 7</li>   -->
               </ul>
                <!-- Workout page turn  -->
                 <div class="button__pagination--wrapper" id="workoutPages"> 
                   <button class="button__pagination--left" id="workoutPrevPage"><i class="fas fa-chevron-left"></i></button> 
                   <button class="button__pagination--right" id="workoutNextPage"><i class="fas fa-chevron-right"></i></button>
                </div>
+            </div>
+          </div>
+
+          <div class="modal__outer" id="modalOuterSmall"></div>
+          <div class="modal__inner--small" id='modalWorkoutDelInner'>
+            <h4 class="modal__delete--heading">Delete Workout</h4>
+            <p class="modal__delete--text" id="delWorkout"></p>
+            <div class="button__delete--background">
+              <button class="button__delete--secondary" id="noWorkoutDel">Cancel</button>
+              <button class="button__delete--primary" id="yesWorkoutDel">Delete</button>
             </div>
           </div>
 
