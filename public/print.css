@@ -2,6 +2,7 @@ html,
 body {
   height: auto;
   margin: 0;
+  margin-bottom: 0;
   padding: 0;
 }
 
@@ -9,8 +10,16 @@ body {
 .grid__top--right,
 .grid__bottom--left,
 .modal__exit,
+.modal__inner--workoutView,
 .list__exercises,
 .list__print--back,
+.list__workout,
+.workouts__top,
+.workouts__header,
+.modal__outer,
+.modal__outer--patient,
+#workoutListWrapper,
+#workoutContent,
 .fas,
 .fa-times,
 .modal__exit::before,
@@ -19,7 +28,8 @@ body {
   display: none;
 }
 
-.modal__inner {
+.modal__inner,
+.modal__inner--print {
   width: 100%;
   min-height: 100%;
   height: auto;
@@ -34,6 +44,10 @@ li {
 .list__print {
   width: 90%;
   gap: 3rem;
+}
+
+.list__printWorkout li {
+  height: 50%;
 }
 
 .list__print--heading {
@@ -53,6 +67,10 @@ li {
 .list__print--instructions {
   font-size: 1.2rem;
   width: 45%;
+}
+
+.list__printWorkout li p {
+  font-size: 1.6rem;
 }
 
 /*
