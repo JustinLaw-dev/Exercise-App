@@ -3,7 +3,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="../sass/main.css" />
-    <link rel="stylesheet" media="print" href="./print.css"/>
+    <link rel="stylesheet" media="print" href="./print.css" />
     <script
       src="https://kit.fontawesome.com/1b93ecf5f2.js"
       crossorigin="anonymous"
@@ -17,31 +17,33 @@
     <div class="container--grid">
       <div class="grid__top--left">
         <div class="tabs__img-Container">
-          <img class="tabs__img" src="./img/favicon.png" alt="Los Alamitos PT">
+          <img
+            class="tabs__img"
+            src="./img/favicon.png"
+            alt="Los Alamitos PT"
+          />
         </div>
         <h1 class="grid__heading">Los Alamitos PT</h1>
       </div>
 
       <div class="grid__top--right">
         <div class="grid__top--right-Container">
-        <!-- <h2 class="grid__heading--main" id="mainHeading">Patients</h2> -->
-        <div class="tabs__userInfo">
-          <p class="tabs__userWelcome" id="userWelcome"></p>
-        </div>
+          <!-- <h2 class="grid__heading--main" id="mainHeading">Patients</h2> -->
+          <div class="tabs__userInfo">
+            <p class="tabs__userWelcome" id="userWelcome"></p>
+          </div>
         </div>
       </div>
 
       <!-- Tab buttons -->
       <div class="grid__bottom--left">
-        
-
         <div class="tabs__menu">
           <button
             class="tabs__link tabs__link--active"
             id="patientsLink"
             onclick="openTab('patientsTab')"
-            >
-          <i class="fas fa-user-friends"></i>Patients
+          >
+            <i class="fas fa-user-friends"></i>Patients
           </button>
           <button
             class="tabs__link"
@@ -55,19 +57,20 @@
             id="workoutLink"
             onclick="openTab('workoutTab')"
           >
-          <i class="fas fa-list-ul"></i>Workouts
+            <i class="fas fa-list-ul"></i>Workouts
           </button>
-          
-          <button class="button button--logout" id="btnLogOut"><i class="fas fa-sign-out-alt button--logout-icon"></i>Log Out</button>
+
+          <button class="button button--logout" id="btnLogOut">
+            <i class="fas fa-sign-out-alt button--logout-icon"></i>Log Out
+          </button>
         </div>
-        
       </div>
 
       <!-- Tab Content -->
       <div class="grid__bottom--right">
         <div class="tabs__wrapper">
           <!-- Patient Tab -->
-          <div class="tabs__panel  active" id="patientsContent">
+          <div class="tabs__panel active" id="patientsContent">
             <div class="searchbar__top">
               <div class="searchbar__wrapper searchbar__wrapper-1">
                 <input
@@ -86,13 +89,16 @@
             </div>
 
             <div class="list__wrapper" id="patientListWrapper">
-              <ul class="list__patients" id="patientList">
-              </ul>
-               <!-- Patient page turn -->
-               <div class="button__pagination--wrapper" id="patientPages"> 
-                  <button class="button__pagination--left" id="patientPrevPage"><i class="fas fa-chevron-left"></i></button>
-                  <button class="button__pagination--right" id="patientNextPage"><i class="fas fa-chevron-right"></i></button>
-               </div>
+              <ul class="list__patients" id="patientList"></ul>
+              <!-- Patient page turn -->
+              <div class="button__pagination--wrapper" id="patientPages">
+                <button class="button__pagination--left" id="patientPrevPage">
+                  <i class="fas fa-chevron-left"></i>
+                </button>
+                <button class="button__pagination--right" id="patientNextPage">
+                  <i class="fas fa-chevron-right"></i>
+                </button>
+              </div>
             </div>
           </div>
 
@@ -138,16 +144,19 @@
           </div>
 
           <div class="modal__outer" id="modalOuterSmall"></div>
-          <div class="modal__inner--small" id='modalPatientDelInner'>
+          <div class="modal__inner--small" id="modalPatientDelInner">
             <h4 class="modal__delete--heading">Delete Patient</h4>
             <p class="modal__delete--text" id="delPatient"></p>
             <div class="button__delete--background">
-              <button class="button__delete--secondary" id="noPatientDel">Cancel</button>
-              <button class="button__delete--primary" id="yesPatientDel">Delete</button>
+              <button class="button__delete--secondary" id="noPatientDel">
+                Cancel
+              </button>
+              <button class="button__delete--primary" id="yesPatientDel">
+                Delete
+              </button>
             </div>
           </div>
 
-  
           <!-- Exercise Tab -->
           <div class="tabs__panel" id="exercisesContent">
             <div class="searchbar__top">
@@ -159,7 +168,10 @@
                   id="exerciseSearchbar"
                   placeholder="Search by Exercise"
                 />
-                <i class="fas fa-search searchbar--icon" id="exerciseSearchIcon"></i>
+                <i
+                  class="fas fa-search searchbar--icon"
+                  id="exerciseSearchIcon"
+                ></i>
               </div>
 
               <div class="button button__add" id="btnAddExercise">
@@ -182,20 +194,27 @@
                   required
                 />
                 <label class="label" for="instructions">Instructions</label>
-                <textarea  class="input input--textarea"
-                placeholder="Write Instructions Here"
-                name="instructions"
-                id="instructionsInput"
-                required
-                rows="10"></textarea>
+                <textarea
+                  class="input input--textarea"
+                  placeholder="Write Instructions Here"
+                  name="instructions"
+                  id="instructionsInput"
+                  required
+                  rows="10"
+                ></textarea>
                 <label class="label" for="addExerciseFile">Upload Image</label>
                 <div class="imageTest">
-                  <input type="file" id="addExerciseFile"/>
-                  <img class="form__addExercise--image" id="addExerciseImage" src=""/>
+                  <input type="file" id="addExerciseFile" />
+                  <img
+                    class="form__addExercise--image"
+                    id="addExerciseImage"
+                    src=""
+                  />
                 </div>
                 <button
                   class="button__square button__submit button--primary"
-                  id="btnSubmitExercise">
+                  id="btnSubmitExercise"
+                >
                   Add Exercise
                 </button>
               </form>
@@ -203,11 +222,28 @@
 
             <div class="list__addedExercises--btnContainer">
               <div>
-                <button class="button--primary button__printList" id="printAddedExercises"><i class="fas fa-print"></i><p class="button__printList--text">Print</p></button>
-                <button class="button--secondary button__saveList" id="saveAddedExercises"><i class="far fa-save"></i><p class= "button__printList--text">Save</p></button>
+                <button
+                  class="button--primary button__printList"
+                  id="printAddedExercises"
+                >
+                  <i class="fas fa-print"></i>
+                  <p class="button__printList--text">Print</p>
+                </button>
+                <button
+                  class="button--secondary button__saveList"
+                  id="saveAddedExercises"
+                >
+                  <i class="far fa-save"></i>
+                  <p class="button__printList--text">Save</p>
+                </button>
               </div>
-              <button class="button--tertiary button__clearList" id="clearAddedExercises">Clear</button>
-            </div>    
+              <button
+                class="button--tertiary button__clearList"
+                id="clearAddedExercises"
+              >
+                Clear
+              </button>
+            </div>
 
             <div class="list__flex">
               <div class="list__wrapper--addedExercises">
@@ -222,14 +258,26 @@
                 </ul>
               </div>
 
-              <div class="list__wrapper--exercise button__pagination--positioner">
+              <div
+                class="list__wrapper--exercise button__pagination--positioner"
+              >
                 <ul class="list__exercises" id="exerciseList">
                   <!-- <li class="list__exercises__item exerciseClick"><img src="/Exercises/9090 Doorway - 1.JPG" alt="" class="list__exercises__img exerciseClick" data-desc="Stand facing a corner with your elbows bent at 90 degrees up at shoulder level.">9090 Doorway - 1<i class="fas fa-plus"></i></li> -->
                   <!-- <li class="list__exercises__item exerciseClick"><img src="/Exercises/AA Eccentric Shoulder Flexion - 1.JPG" alt="" class="list__exercises__img exerciseClick" data-desc="Move Shoulder">AA Eccentric Shoulder Flexion - 1<i class="fas fa-plus"></i></li> -->
                 </ul>
-                <div class="button__pagination--wrapper" id="exercisePages"> 
-                  <button class="button__pagination--left" id="exercisePrevPage"><i class="fas fa-chevron-left"></i></button>
-                  <button class="button__pagination--right" id="exerciseNextPage"><i class="fas fa-chevron-right"></i></button>
+                <div class="button__pagination--wrapper" id="exercisePages">
+                  <button
+                    class="button__pagination--left"
+                    id="exercisePrevPage"
+                  >
+                    <i class="fas fa-chevron-left"></i>
+                  </button>
+                  <button
+                    class="button__pagination--right"
+                    id="exerciseNextPage"
+                  >
+                    <i class="fas fa-chevron-right"></i>
+                  </button>
                 </div>
               </div>
             </div>
@@ -237,10 +285,16 @@
             <div class="modal__outer" id="modalOuterSmall"></div>
             <div class="modal__inner--small" id="clearExerciseModal">
               <h4 class="modal__delete--heading">Clear Exercise List</h4>
-              <p class="modal__delete--text" id="clearListText">Are you sure you want to clear the exercise list?</p>
+              <p class="modal__delete--text" id="clearListText">
+                Are you sure you want to clear the exercise list?
+              </p>
               <div class="button__delete--background">
-                <button class="button__delete--secondary" id="cancelClearList">Cancel</button>
-                <button class="button__delete--primary" id="confirmClearList">Confirm</button>
+                <button class="button__delete--secondary" id="cancelClearList">
+                  Cancel
+                </button>
+                <button class="button__delete--primary" id="confirmClearList">
+                  Confirm
+                </button>
               </div>
             </div>
 
@@ -248,13 +302,20 @@
               <i class="modal__exit fas fa-times"></i>
               <h3 class="modal__header" id="heading--exerciseView"></h3>
               <div class="modal__inner--exerciseView-ItemContainer">
-                <img src="" class="modal__inner--exerciseView-image" id ="exerciseViewImg" alt="">
+                <img
+                  src=""
+                  class="modal__inner--exerciseView-image"
+                  id="exerciseViewImg"
+                  alt=""
+                />
                 <div class="modal__inner--exerciseView-details">
-                  <h4 class="modal__inner--exerciseView-heading">Instructions</h4>
+                  <h4 class="modal__inner--exerciseView-heading">
+                    Instructions
+                  </h4>
                   <p class="modal__inner--exerciseView-text"></p>
                 </div>
               </div>
-              
+
               <!-- Print within exercise view -->
               <!-- <button
                 class="button__square button__print"
@@ -264,7 +325,9 @@
             </div>
 
             <div class="modal__inner modal__inner--print">
-              <button class="list__print--back" id="printBack"><i class="fas fa-chevron-left"></i> Back</button>
+              <button class="list__print--back" id="printBack">
+                <i class="fas fa-chevron-left"></i> Back
+              </button>
               <ul class="list__print" id="printList">
                 <!-- <li>
                   <h3 class="list__print--heading">Exercise 1</h3>
@@ -303,16 +366,17 @@
                 </ul>
                 <button
                   class="button__square button__submit button--primary"
-                  id="btnSaveWorkout">
+                  id="btnSaveWorkout"
+                >
                   Save
                 </button>
               </form>
             </div>
             <!-- end of exercise tab -->
-         </div>
-        
+          </div>
+
           <!-- Workout Tab -->
-           <div class="tabs__panel" id="workoutContent">
+          <div class="tabs__panel" id="workoutContent">
             <div class="searchbar__top workouts__top">
               <h1 class="workouts__header">Workouts</h1>
             </div>
@@ -326,24 +390,74 @@
                 <li class="patientLI">Workout 6</li>
                 <li class="patientLI">Workout 7</li>   -->
               </ul>
-               <!-- Workout page turn  -->
-                <div class="button__pagination--wrapper" id="workoutPages"> 
-                  <button class="button__pagination--left" id="workoutPrevPage"><i class="fas fa-chevron-left"></i></button> 
-                  <button class="button__pagination--right" id="workoutNextPage"><i class="fas fa-chevron-right"></i></button>
-               </div>
+              <!-- Workout page turn  -->
+              <div class="button__pagination--wrapper" id="workoutPages">
+                <button class="button__pagination--left" id="workoutPrevPage">
+                  <i class="fas fa-chevron-left"></i>
+                </button>
+                <button class="button__pagination--right" id="workoutNextPage">
+                  <i class="fas fa-chevron-right"></i>
+                </button>
+              </div>
             </div>
           </div>
 
           <div class="modal__outer" id="modalOuterSmall"></div>
-          <div class="modal__inner--small" id='modalWorkoutDelInner'>
+          <div class="modal__inner--small" id="modalWorkoutDelInner">
             <h4 class="modal__delete--heading">Delete Workout</h4>
             <p class="modal__delete--text" id="delWorkout"></p>
             <div class="button__delete--background">
-              <button class="button__delete--secondary" id="noWorkoutDel">Cancel</button>
-              <button class="button__delete--primary" id="yesWorkoutDel">Delete</button>
+              <button class="button__delete--secondary" id="noWorkoutDel">
+                Cancel
+              </button>
+              <button class="button__delete--primary" id="yesWorkoutDel">
+                Delete
+              </button>
             </div>
           </div>
 
+          <div
+            class="modal__inner modal__inner--workoutView"
+            id="workoutViewModal"
+          >
+            <i class="modal__exit fas fa-times"></i>
+            <h3 class="modal__header" id="headingWorkoutView"></h3>
+            <ul class="list__workout list__workout--view" id="workoutListView">
+              <!-- <li class="list__workout--item">
+                <img
+                  class="list__workout--image"
+                  src="https://picsum.photos/100/50"
+                  alt=""
+                />
+                <p class="list__workout--text">Exercise</p>
+              </li>
+              <li class="list__workout--item">
+                <img
+                  class="list__workout--image"
+                  src="https://picsum.photos/100/50"
+                  alt=""
+                />
+                <p class="list__workout--text">Exercise</p>
+              </li> -->
+            </ul>
+            <button
+              class="button__square button__print button--primary"
+              id="btnPrintWorkout"
+            >
+              Print Workout
+            </button>
+          </div>
+
+          <div class="modal__inner modal__inner--print" id="printWorkoutModal">
+            <button class="list__print--back" id="printWorkoutBack">
+              <i class="fas fa-chevron-left"></i> Back
+            </button>
+            <ul
+              class="list__print list__printWorkout"
+              id="printWorkoutList"
+            ></ul>
+          </div>
+        </div>
       </div>
     </div>
 
