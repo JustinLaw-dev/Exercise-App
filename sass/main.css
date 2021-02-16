@@ -564,6 +564,10 @@ input {
   opacity: 0.8;
 }
 
+#btnPrintWorkout {
+  margin: 0 auto;
+}
+
 .label {
   font-size: 1.8rem;
   margin-top: 2rem;
@@ -796,6 +800,10 @@ input[type='file'] {
   height: 100%;
 }
 
+.fa-list-ul {
+  width: 20px;
+}
+
 .searchbar__top {
   width: 93%;
   height: auto;
@@ -927,6 +935,7 @@ input[type='file'] {
   padding: 2rem 1rem;
   font-size: 2.1rem;
   border-bottom: 1px solid #e7e7e7;
+  cursor: pointer;
 }
 
 .list__patients li:nth-child(even) {
@@ -1259,6 +1268,23 @@ input[type='file'] {
   width: 50%;
 }
 
+.list__workout--view {
+  width: 50%;
+  margin: 3rem auto;
+  text-align: center;
+  overflow: auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
 .modal__outer {
   display: none;
   /* Hidden by default */
@@ -1340,13 +1366,13 @@ input[type='file'] {
 }
 
 @media only screen and (min-width: 2000px) {
-  .modal__inner--exerciseView {
+  .modal__inner--exerciseView, .modal__inner--workoutView {
     width: 40vw;
     height: 50vh;
   }
 }
 
-.modal__inner--exerciseView-ItemContainer {
+.modal__inner--exerciseView-ItemContainer, .modal__inner--workoutView-ItemContainer {
   width: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1361,22 +1387,22 @@ input[type='file'] {
   margin-top: 4rem;
 }
 
-.modal__inner--exerciseView-image {
+.modal__inner--exerciseView-image, .modal__inner--workoutView-image {
   width: 40rem;
   height: auto;
 }
 
-.modal__inner--exerciseView-details {
+.modal__inner--exerciseView-details, .modal__inner--workoutView-details {
   width: 40rem;
 }
 
 @media only screen and (min-width: 2000px) {
-  .modal__inner--exerciseView-details {
+  .modal__inner--exerciseView-details, .modal__inner--workoutView-details {
     width: 40%;
   }
 }
 
-.modal__inner--exerciseView-text {
+.modal__inner--exerciseView-text, .modal__inner--workoutView-text {
   width: 100%;
 }
 
