@@ -132,6 +132,10 @@ const yesWorkoutDel = document.getElementById('yesWorkoutDel');
 const noWorkoutDel = document.getElementById('noWorkoutDel');
 
 const modalWorkoutDelete = document.getElementById('modalWorkoutDelInner');
+const workoutViewModal = document.getElementById('workoutViewModal');
+const workoutListView = document.getElementById('workoutListView');
+const headingWorkoutView = document.getElementById('headingWorkoutView');
+
 //Logout event
 btnLogOut.addEventListener('click', (e) => {
   firebase
@@ -216,6 +220,9 @@ function exitModal() {
 
   saveWorkoutModal.style.display = 'none';
   saveWorkoutForm.reset();
+
+  workoutViewModal.style.display = 'none';
+  workoutListView.innerHTML = '';
 }
 
 //Add Patient to collection
@@ -1198,6 +1205,7 @@ function renderWorkoutList(doc) {
   let editIcon = document.createElement('i');
   let deleteIcon = document.createElement('i');
   li.classList.add('patientLI');
+  li.classList.add('workout-li');
 
   li.setAttribute('data-id', doc.id);
   li.textContent = `${doc.data().name}`;
@@ -1224,7 +1232,6 @@ function exitDeleteWorkoutModal() {
 function deleteWorkout(event) {
   let listItem = event.currentTarget.parentNode;
   let id = event.currentTarget.parentNode.getAttribute('data-id');
-  console.log(id);
   // let name = event.currentTarget.parentNode.textContent;
   // //Open Modal -- applied once on function click to fix repeating previous deletes, before logging newest delete.
   enterDeleteWorkoutModal();
@@ -1370,3 +1377,73 @@ const workoutPrev = document.getElementById('workoutPrevPage');
 
 workoutNext.addEventListener('click', nextWorkoutPage);
 workoutPrev.addEventListener('click', prevWorkoutPage);
+
+function enterWorkoutModal() {
+  modalOuterPatient.style.display = 'block';
+  workoutViewModal.style.display = 'block';
+}
+
+function openWorkoutModal(e) {
+  let target = e.target;
+  if (target.classList.contains('workout-li')) {
+    enterWorkoutModal();
+    let id = e.target.getAttribute('data-id');
+    console.log(id);
+    headingWorkoutView.textContent = id;
+    //get array from db
+    let docRef = db.collection('Workouts').doc(id);
+    docRef
+      .get()
+      .then((doc) => {
+        if (doc.exists) {
+          // console.log('Document data:', doc.data().exerciseList);
+          let exerciseArr = doc.data().exerciseList;
+          console.log(exerciseArr);
+          for (let i = 0; i < exerciseArr.length; i++) {
+            let id = exerciseArr[i];
+            console.log(`Exercise #${i + 1} is ${id}`);
+            exerciseRef
+              .doc(id)
+              .get()
+              .then(function (doc) {
+                if (doc.exists) {
+                  let li = document.createElement('li');
+                  let name = document.createElement('p');
+                  let img = document.createElement('img');
+
+                  let exerName = doc.data().name;
+                  let exerImg = doc.data().image;
+
+                  li.classList.add('list__workout--item');
+                  img.classList.add('list__workout--image');
+                  img.setAttribute('src', exerImg);
+                  img.alt = exerName;
+                  name.classList.add('list__workout--text');
+                  name.textContent = exerName;
+
+                  li.appendChild(img);
+                  li.appendChild(name);
+                  workoutListView.appendChild(li);
+                } else {
+                  // doc.data() will be undefined in this case
+                  console.log('No such document!');
+                }
+              })
+              .catch(function (error) {
+                console.log('Error getting document:', error);
+              });
+          }
+        } else {
+          console.log('No such document!');
+        }
+      })
+      .catch((error) => {
+        console.log('Error getting document:', error);
+      });
+
+    //Loop through array, using name/id as docref.
+    //Read and use img and name to generate list items.
+  } else return;
+}
+
+workoutList.addEventListener('click', openWorkoutModal);
