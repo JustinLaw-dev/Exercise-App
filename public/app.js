@@ -135,6 +135,7 @@ const modalWorkoutDelete = document.getElementById('modalWorkoutDelInner');
 const workoutViewModal = document.getElementById('workoutViewModal');
 const workoutListView = document.getElementById('workoutListView');
 const headingWorkoutView = document.getElementById('headingWorkoutView');
+const btnPrintWorkout = document.getElementById('btnPrintWorkout');
 
 //Logout event
 btnLogOut.addEventListener('click', (e) => {
