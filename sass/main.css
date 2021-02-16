@@ -804,6 +804,12 @@ input[type='file'] {
   width: 20px;
 }
 
+@media only screen and (min-width: 2000px) {
+  .fa-list-ul {
+    width: 45px;
+  }
+}
+
 .searchbar__top {
   width: 93%;
   height: auto;

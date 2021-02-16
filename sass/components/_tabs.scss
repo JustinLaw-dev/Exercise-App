@@ -91,4 +91,8 @@
 
 .fa-list-ul {
   width: 20px;
+
+  @include respond(big-desktop) {
+    width: 45px;
+  }
 }
