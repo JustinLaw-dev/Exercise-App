@@ -64,7 +64,8 @@
     }
   }
 
-  &--exerciseView {
+  &--exerciseView,
+  &--workoutView {
     @include respond(big-desktop) {
       width: 40vw;
       height: 50vh;
