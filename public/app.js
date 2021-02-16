@@ -1014,7 +1014,7 @@ const btnSaveList = document.getElementById('saveAddedExercises');
 const btnClearList = document.getElementById('clearAddedExercises');
 
 const printModal = document.querySelector('.modal__inner--print');
-
+const printWorkoutModal = document.getElementById('printWorkoutModal');
 btnPrintList.addEventListener('click', printExercises);
 btnSaveList.addEventListener('click', saveAddExerciseList);
 btnClearList.addEventListener('click', clearAddExerciseList);
@@ -1033,9 +1033,21 @@ function openPrintModal() {
   // opened.document.write("<html><head><title>MyTitle</title></head><body>test</body></html>");
 }
 
+function openPrintWorkoutModal() {
+  printWorkoutModal.style.display = 'block';
+  const printWorkoutBack = document.getElementById('printWorkoutBack');
+  printWorkoutBack.addEventListener('click', closePrintWorkoutModal);
+}
+
 function closePrintModal() {
   printModal.style.display = 'none';
   printList.innerHTML = '';
+}
+
+function closePrintWorkoutModal() {
+  printWorkoutBack.removeEventListener('click', closePrintWorkoutModal);
+  printWorkoutModal.style.display = 'none';
+  printWorkoutList.innerHTML = '';
 }
 
 function generatePrintItems(exerciseID, img, instructions) {
@@ -1071,6 +1083,42 @@ function generatePrintItems(exerciseID, img, instructions) {
   li.appendChild(heading);
   li.appendChild(div);
   printList.appendChild(li);
+  // console.log(exerciseID, img, instructions);
+}
+
+function generatePrintWorkoutItems(exerciseID, img, instructions) {
+  let li = document.createElement('li');
+  let heading = document.createElement('h3');
+  let div = document.createElement('div');
+  let image = document.createElement('img');
+  let p = document.createElement('p');
+
+  heading.classList.add('list__print--heading');
+  div.classList.add('list__print--row');
+  image.classList.add('list__print--img');
+  p.classList.add('list__print--instructions');
+
+  heading.textContent = exerciseID;
+  image.src = `${img.src}`;
+  image.alt = `${exerciseID}`;
+
+  exerciseRef
+    .where('instructions', '==', instructions)
+    .get()
+    .then(function (querySnapshot) {
+      querySnapshot.forEach(function (doc) {
+        p.textContent = doc.data().instructions;
+      });
+    })
+    .catch(function (error) {
+      console.log('Error getting documents: ', error);
+    });
+
+  div.appendChild(image);
+  div.appendChild(p);
+  li.appendChild(heading);
+  li.appendChild(div);
+  printWorkoutList.appendChild(li);
   // console.log(exerciseID, img, instructions);
 }
 
@@ -1127,6 +1175,7 @@ function clearAddExerciseList() {
 }
 
 const printBack = document.getElementById('printBack');
+
 printBack.addEventListener('click', closePrintModal);
 
 function enterSaveWorkoutModal() {
@@ -1399,10 +1448,10 @@ function openWorkoutModal(e) {
         if (doc.exists) {
           // console.log('Document data:', doc.data().exerciseList);
           let exerciseArr = doc.data().exerciseList;
-          console.log(exerciseArr);
+          // console.log(exerciseArr);
           for (let i = 0; i < exerciseArr.length; i++) {
             let id = exerciseArr[i];
-            console.log(`Exercise #${i + 1} is ${id}`);
+            // console.log(`Exercise #${i + 1} is ${id}`);
             exerciseRef
               .doc(id)
               .get()
@@ -1448,3 +1497,32 @@ function openWorkoutModal(e) {
 }
 
 workoutList.addEventListener('click', openWorkoutModal);
+
+btnPrintWorkout.addEventListener('click', function () {
+  list = workoutListView.getElementsByTagName('li');
+  for (let i = 0; i < list.length; i++) {
+    let img = list[i].children[0];
+    let exerciseID = list[i].children[1].textContent;
+    console.log(exerciseID);
+    let exerciseDoc = exerciseRef.doc(`${exerciseID}`);
+    let instructions;
+
+    exerciseDoc
+      .get()
+      .then(function (doc) {
+        if (doc.exists) {
+          instructions = doc.data().instructions;
+          openPrintWorkoutModal();
+
+          //Fill modal with list items
+          generatePrintWorkoutItems(exerciseID, img, instructions);
+        } else {
+          // doc.data() will be undefined in this case
+          console.log('No such document!');
+        }
+      })
+      .catch(function (error) {
+        console.log('Error getting document:', error);
+      });
+  }
+});
