@@ -879,7 +879,6 @@ function patientSearch() {
   } else {
     addScroll('patient');
     query
-      .orderBy('lastName', 'asc')
       .limit(searchLimit)
       .get()
       .then(function (querySnapshot) {
