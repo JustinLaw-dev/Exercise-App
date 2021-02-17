@@ -47,7 +47,7 @@ li {
 }
 
 .list__printWorkout li {
-  height: 50%;
+  height: 40vh;
 }
 
 .list__print--heading {
