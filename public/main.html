@@ -13,7 +13,6 @@
   </head>
 
   <body>
-    <!-- Begins on patient tab -->
     <div class="container--grid">
       <div class="grid__top--left">
         <div class="tabs__img-Container">
@@ -141,6 +140,26 @@
                 Add Patient
               </button>
             </form>
+          </div>
+
+          <!-- Patient Workout Modal -->
+          <div class="modal__inner" id="modalPatientClicked">
+            <h3 class="modal__header" id="patientModalName">Heading</h3>
+            <div class="modal__row">
+              <ul
+                class="list__workout list__workout--view"
+                id="modalPatientWorkouts"
+              >
+                <!-- <li class="list__workout--item">Hope</li> -->
+              </ul>
+              <ul
+                class="list__workout list__workout--view"
+                id="modalPatientExercises"
+              >
+                <!-- <li class="list__workout--item">hope2</li> -->
+              </ul>
+            </div>
+            <i class="modal__exit fas fa-times"></i>
           </div>
 
           <div class="modal__outer" id="modalOuterSmall"></div>
@@ -457,6 +476,8 @@
               id="printWorkoutList"
             ></ul>
           </div>
+
+          <!-- end tab content -->
         </div>
       </div>
     </div>
