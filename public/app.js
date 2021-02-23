@@ -80,6 +80,10 @@ const modalInnerPatient = document.querySelector('.modal__inner--patient');
 const modalPatientDeleteOuter = document.getElementById('modalOuterSmall');
 const modalPatientDelete = document.getElementById('modalPatientDelInner');
 
+const patientModalName = document.getElementById('patientModalName');
+const modalPatientWorkouts = document.getElementById('modalPatientWorkouts');
+const modalPatientExercises = document.getElementById('modalPatientExercises');
+
 const exerciseList = document.getElementById('exerciseList');
 
 const addPatientForm = document.querySelector('.form__addPatient');
@@ -212,6 +216,12 @@ function exitModal() {
   modalOuterPatient.style.display = 'none';
   modalInnerPatient.style.display = 'none';
   addPatientForm.reset();
+
+  modalPatientClicked.style.display = 'none';
+  //Clear patient workout upon exiting modal
+  modalPatientWorkouts.innerHTML = '';
+  modalPatientExercises.innerHTML = '';
+  backPatientExercises();
 
   //Exit and reset exercise form
   modalInnerExercise.style.display = 'none';
@@ -639,22 +649,103 @@ function prevExercisePage() {
     });
 }
 
-//Open Patient Workout Modal
-// function openPatientModal(target) {
-//   modalOuterPatient.style.display = 'block';
-//   modalPatientClicked.style.display = 'block';
-//   console.log(target);
-//   target.childNode;
-//   let patientName = target.textContent;
-//   patientModalName.textContent = patientName;
-// }
+function renderPatientWorkouts(id) {
+  let docRef = patientRef.doc(id);
+  docRef
+    .get()
+    .then((doc) => {
+      if (doc.exists) {
+        let patientWorkouts = doc.data().workouts;
+        for (i = 0; i < patientWorkouts.length; i++) {
+          let li = document.createElement('li');
+          let p = document.createElement('p');
+          p.textContent = patientWorkouts[i];
+          p.classList.add('list__workout--text');
+          li.appendChild(p);
+          li.classList.add('list__workout--item');
+          modalPatientWorkouts.appendChild(li);
+        }
+      } else {
+        // doc.data() will be undefined in this case
+        console.log('No such patient document!');
+      }
+    })
+    .catch((error) => {
+      console.log('Error getting patient workouts:', error);
+    });
+}
 
-// patientList.addEventListener('click', function (e) {
-//   target = e.target;
-//   if (target.tagName == 'LI') {
-//     openPatientModal(target);
-//   }
-// });
+//Open Patient Workout Modal
+function openPatientModal(target) {
+  modalOuterPatient.style.display = 'block';
+  modalPatientClicked.style.display = 'block';
+  // console.log(target);
+  let id = target.getAttribute('data-id');
+  renderPatientWorkouts(id);
+  // target.childNode;
+  let patientName = target.textContent;
+  patientModalName.textContent = `Workouts for ${patientName}`;
+}
+
+patientList.addEventListener('click', function (e) {
+  target = e.target;
+  if (target.tagName == 'LI') {
+    openPatientModal(target);
+  }
+});
+
+function openPatientExercises() {
+  modalPatientWorkouts.style.opacity = '0';
+  modalPatientWorkouts.style.visibility = 'hidden';
+
+  modalPatientExercises.style.opacity = '1';
+  modalPatientExercises.style.visibility = 'visible';
+  modalPatientExercises.style.transform = 'translate(0)';
+}
+
+function backPatientExercises() {
+  modalPatientWorkouts.style.opacity = '1';
+  modalPatientWorkouts.style.visibility = 'visible';
+
+  modalPatientExercises.style.opacity = '0';
+  modalPatientExercises.style.visibility = 'hidden';
+  modalPatientExercises.style.transform = 'translate(2vw)';
+}
+
+function renderPatientExercises(workoutID) {
+  let docRef = workoutRef.doc(workoutID);
+  docRef
+    .get()
+    .then((doc) => {
+      if (doc.exists) {
+        let patientExercises = doc.data().exerciseList;
+        for (i = 0; i < patientExercises.length; i++) {
+          let li = document.createElement('li');
+          let p = document.createElement('p');
+          p.textContent = patientExercises[i];
+          p.classList.add('list__workout--text');
+          li.appendChild(p);
+          li.classList.add('list__workout--item');
+          modalPatientExercises.appendChild(li);
+        }
+      } else {
+        // doc.data() will be undefined in this case
+        console.log('No such patient document!');
+      }
+    })
+    .catch((error) => {
+      console.log('Error getting patient exercises:', error);
+    });
+}
+
+modalPatientWorkouts.addEventListener('click', function (e) {
+  target = e.target;
+  if (target.tagName == 'LI') {
+    let workoutID = target.textContent;
+    openPatientExercises();
+    renderPatientExercises(workoutID);
+  }
+});
 
 const exerciseNext = document.getElementById('exerciseNextPage');
 const exercisePrev = document.getElementById('exercisePrevPage');
