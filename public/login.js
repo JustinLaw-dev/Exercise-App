@@ -15,10 +15,10 @@ firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
 
 // let link = 'https://los-alamitos-pt-exercise-app.web.app/';
-// let linkIndex = 'https://los-alamitos-pt-exercise-app.web.app/index.html';
-// let linkMain = 'https://los-alamitos-pt-exercise-app.web.app/main.html';
-let linkIndex = 'http://127.0.0.1:5500/public/index.html';
-let linkMain = 'http://127.0.0.1:5500/public/main.html';
+let linkIndex = 'https://los-alamitos-pt-exercise-app.web.app/index.html';
+let linkMain = 'https://los-alamitos-pt-exercise-app.web.app/main.html';
+// let linkIndex = 'http://127.0.0.1:5500/public/index.html';
+// let linkMain = 'http://127.0.0.1:5500/public/main.html';
 
 const form = document.getElementById('signInForm');
 
@@ -86,21 +86,19 @@ firebase.auth().onAuthStateChanged((firebaseUser) => {
     let user = firebase.auth().currentUser;
     console.log('Logged in');
 
-    if (window.location.href === 'http://127.0.0.1:5500/public/index.html') {
-      window.location.href = 'http://127.0.0.1:5500/public/main.html';
-    } else if (
-      window.location.href === 'http://127.0.0.1:5500/public/main.html'
-    ) {
+    if (window.location.href === linkIndex) {
+      window.location.href = linkMain;
+    } else if (window.location.href === linkMain) {
       const userWelcome = document.getElementById('userWelcome');
       userWelcome.textContent = `Welcome ${user.email}`;
     }
   }
 
   //Log in invalid, redirect to index.html
-  else if (window.location.href === 'http://127.0.0.1:5500/public/index.html') {
+  else if (window.location.href === linkIndex) {
     console.log('made it!');
   } else {
-    window.location.href = 'http://127.0.0.1:5500/public/index.html';
+    window.location.href = linkIndex;
 
     console.log('User is invalid/not logged in redirected.');
   }
