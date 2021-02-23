@@ -47,7 +47,7 @@ li {
 }
 
 .list__printWorkout li {
-  height: 40vh;
+  height: 30vh;
 }
 
 .list__print--heading {
@@ -69,8 +69,41 @@ li {
   width: 45%;
 }
 
+/* Print Workout styling */
+.list__printWorkout {
+  gap: 0;
+}
+
+.list__printWorkout li {
+  height: 41.6vh;
+  /* border: 1px solid blue; */
+}
+
+.list__printWorkout .list__print--heading {
+  font-size: 3rem;
+  padding-bottom: 0;
+}
+
+.list__printWorkout li:nth-child(3n + 1) .list__print--heading {
+  /* color: red; */
+}
+
+/* .list__printWorkout .list__print--heading:nth-child(1) {
+  color: red;
+} */
+
 .list__printWorkout li p {
   font-size: 1.6rem;
+}
+
+.list__printWorkout li img {
+  border: 2px solid black;
+}
+
+.list__printWorkout .list__print--row {
+  height: 80%;
+  display: flex;
+  align-items: center;
 }
 
 /*
