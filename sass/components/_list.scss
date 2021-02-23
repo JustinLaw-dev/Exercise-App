@@ -20,7 +20,7 @@
       border-radius: 1rem;
       width: 20%;
       padding-top: 2rem;
-      overflow-y: scroll;
+      overflow-y: auto;
       scrollbar-width: thin;
     }
   }
@@ -82,7 +82,8 @@
 
   &__exercises {
     width: 100%;
-    height: 100%;
+    height: 90%;
+    margin-top: 3vh;
     font-size: 2.5rem;
     list-style: none;
     display: flex;
@@ -91,6 +92,10 @@
     justify-content: flex-start;
     overflow: hidden;
     scrollbar-width: thin;
+
+    @include respond(big-desktop) {
+      margin-top: 2vh;
+    }
 
     &__item {
       display: inline-block;
@@ -128,6 +133,8 @@
 
       @include respond(big-desktop) {
         height: 18vh;
+        border-radius: 15px;
+        box-shadow: 8px 10px 15px 0px rgba(50, 50, 50, 0.75);
       }
     }
   }
@@ -153,10 +160,7 @@
     }
 
     &--item {
-      margin: 1rem;
-
-      @include respond(big-desktop) {
-      }
+      margin: 1.5vh;
     }
 
     &--details {
@@ -165,6 +169,8 @@
       justify-content: space-between;
       background-color: $color-white;
       align-items: baseline;
+      margin-top: 1rem;
+      margin-bottom: 1.5rem;
 
       @include respond(big-desktop) {
       }
@@ -174,6 +180,7 @@
       width: 20rem;
       height: 14rem;
       border-radius: 5px;
+      box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.75);
 
       @include respond(big-desktop) {
         width: 11vw;
@@ -183,7 +190,7 @@
 
     &--text {
       font-size: 1.6rem;
-      width: 20rem;
+      width: 16rem;
       height: auto;
 
       @include respond(big-desktop) {
@@ -202,7 +209,7 @@
   }
 
   &__print {
-    width: 70%;
+    width: 50%;
     margin: 0 auto;
     list-style: none;
     display: flex;
@@ -231,6 +238,7 @@
 
     &--heading {
       font-size: 3rem;
+      padding-bottom: 3rem;
 
       @include respond(big-desktop) {
         font-size: 7rem;
