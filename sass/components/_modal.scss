@@ -165,8 +165,46 @@
   text-align: center;
   margin: 0 auto;
   margin-top: 6rem;
+  width: 75%;
 
   @include respond(big-desktop) {
     font-size: 7rem;
   }
+}
+
+.modal__row {
+  display: flex;
+  flex: row;
+  height: 50vh;
+  width: 100%;
+  position: relative;
+  overflow: auto;
+
+  @include respond(big-desktop) {
+    height: 30vh;
+  }
+}
+
+#modalPatientWorkouts {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 1;
+  visibility: visible;
+
+  transition: all 0.5s;
+
+  & li {
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}
+
+#modalPatientExercises {
+  transform: translateX(2vw);
+  visibility: hidden;
+  opacity: 0;
+
+  transition: all 0.5s;
 }

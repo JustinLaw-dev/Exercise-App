@@ -920,7 +920,7 @@ input[type='file'] {
   border-radius: 1rem;
   width: 20%;
   padding-top: 2rem;
-  overflow-y: scroll;
+  overflow-y: auto;
   scrollbar-width: thin;
 }
 
@@ -990,7 +990,8 @@ input[type='file'] {
 
 .list__exercises {
   width: 100%;
-  height: 100%;
+  height: 90%;
+  margin-top: 3vh;
   font-size: 2.5rem;
   list-style: none;
   display: -webkit-box;
@@ -1007,6 +1008,12 @@ input[type='file'] {
           justify-content: flex-start;
   overflow: hidden;
   scrollbar-width: thin;
+}
+
+@media only screen and (min-width: 2000px) {
+  .list__exercises {
+    margin-top: 2vh;
+  }
 }
 
 .list__exercises__item {
@@ -1044,6 +1051,9 @@ input[type='file'] {
 @media only screen and (min-width: 2000px) {
   .list__exercises__img {
     height: 18vh;
+    border-radius: 15px;
+    -webkit-box-shadow: 8px 10px 15px 0px rgba(50, 50, 50, 0.75);
+            box-shadow: 8px 10px 15px 0px rgba(50, 50, 50, 0.75);
   }
 }
 
@@ -1082,7 +1092,7 @@ input[type='file'] {
 }
 
 .list__addedExercises--item {
-  margin: 1rem;
+  margin: 1.5vh;
 }
 
 .list__addedExercises--details {
@@ -1100,12 +1110,16 @@ input[type='file'] {
   -webkit-box-align: baseline;
       -ms-flex-align: baseline;
           align-items: baseline;
+  margin-top: 1rem;
+  margin-bottom: 1.5rem;
 }
 
 .list__addedExercises--image {
   width: 20rem;
   height: 14rem;
   border-radius: 5px;
+  -webkit-box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.75);
+          box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.75);
 }
 
 @media only screen and (min-width: 2000px) {
@@ -1117,7 +1131,7 @@ input[type='file'] {
 
 .list__addedExercises--text {
   font-size: 1.6rem;
-  width: 20rem;
+  width: 16rem;
   height: auto;
 }
 
@@ -1139,7 +1153,7 @@ input[type='file'] {
 }
 
 .list__print {
-  width: 70%;
+  width: 50%;
   margin: 0 auto;
   list-style: none;
   display: -webkit-box;
@@ -1180,6 +1194,7 @@ input[type='file'] {
 
 .list__print--heading {
   font-size: 3rem;
+  padding-bottom: 3rem;
 }
 
 @media only screen and (min-width: 2000px) {
@@ -1482,12 +1497,56 @@ input[type='file'] {
   text-align: center;
   margin: 0 auto;
   margin-top: 6rem;
+  width: 75%;
 }
 
 @media only screen and (min-width: 2000px) {
   .modal__header {
     font-size: 7rem;
   }
+}
+
+.modal__row {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-flex: row;
+      -ms-flex: row;
+          flex: row;
+  height: 50vh;
+  width: 100%;
+  position: relative;
+  overflow: auto;
+}
+
+@media only screen and (min-width: 2000px) {
+  .modal__row {
+    height: 30vh;
+  }
+}
+
+#modalPatientWorkouts {
+  position: absolute;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  opacity: 1;
+  visibility: visible;
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+}
+
+#modalPatientWorkouts li:hover {
+  cursor: pointer;
+}
+
+#modalPatientExercises {
+  -webkit-transform: translateX(2vw);
+          transform: translateX(2vw);
+  visibility: hidden;
+  opacity: 0;
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
 }
 
 .container__form {
