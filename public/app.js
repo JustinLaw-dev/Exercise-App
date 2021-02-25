@@ -740,7 +740,11 @@ function renderPatientExercises(workoutID) {
 
 modalPatientWorkouts.addEventListener('click', function (e) {
   target = e.target;
-  if (target.tagName == 'LI') {
+  console.log(target);
+  if (
+    target.tagName == 'LI' ||
+    target.classList.contains('list__workout--text')
+  ) {
     let workoutID = target.textContent;
     openPatientExercises();
     renderPatientExercises(workoutID);
