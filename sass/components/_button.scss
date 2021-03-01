@@ -26,6 +26,11 @@
     box-shadow: 1px 2px 2px rgba(0, 0, 0, 0.2);
     border: 1px solid $color-gray-500;
     border-radius: 5px;
+    transition: all 0.2s;
+
+    &:hover {
+      background-color: $color-gray-100;
+    }
   }
 
   &--tertiary {
@@ -296,6 +301,26 @@
   &__clearList {
     margin-right: 1rem;
   }
+
+  &__patient {
+    &--addWorkout {
+      display: block;
+      margin: 2rem auto;
+      font-size: 2rem;
+    }
+  }
+
+  &__row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin-top: 2rem;
+  }
+
+  &__submitSave {
+    font-size: 1.6rem;
+    // margin: 0 auto;
+  }
 }
 
 .exercise-plus {
@@ -342,4 +367,23 @@
 
 #btnPrintWorkout {
   margin: 0 auto;
+}
+
+#btnSaveWorkoutPatient {
+  display: none;
+}
+
+.modal {
+  &__button {
+    &--back {
+      background-color: $color-white;
+      font-size: 1.8rem;
+      position: absolute;
+      top: 5vh;
+      left: 5vw;
+      display: none;
+
+      transition: all 0.2s;
+    }
+  }
 }

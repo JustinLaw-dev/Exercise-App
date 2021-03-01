@@ -83,6 +83,10 @@ const modalPatientDelete = document.getElementById('modalPatientDelInner');
 const patientModalName = document.getElementById('patientModalName');
 const modalPatientWorkouts = document.getElementById('modalPatientWorkouts');
 const modalPatientExercises = document.getElementById('modalPatientExercises');
+const btnPtAddWorkout = document.getElementById('btnPtAddWorkout');
+const ptExerciseBack = document.getElementById('ptExerciseBack');
+let patientIDAddWorkout;
+let patientNameAddWorkout;
 
 const exerciseList = document.getElementById('exerciseList');
 
@@ -129,6 +133,7 @@ const saveWorkoutModal = document.getElementById('saveWorkoutModal');
 const saveWorkoutForm = document.getElementById('saveWorkoutForm');
 const saveWorkoutList = document.getElementById('saveWorkoutList');
 const btnSaveWorkout = document.getElementById('btnSaveWorkout');
+const btnSaveWorkoutPatient = document.getElementById('btnSaveWorkoutPatient');
 
 const workoutNameInput = document.getElementById('workoutNameInput');
 const delWorkoutText = document.getElementById('delWorkout');
@@ -650,28 +655,24 @@ function prevExercisePage() {
 }
 
 function renderPatientWorkouts(id) {
-  let docRef = patientRef.doc(id);
-  docRef
+  patientRef
+    .doc(id)
+    .collection('workouts')
     .get()
-    .then((doc) => {
-      if (doc.exists) {
-        let patientWorkouts = doc.data().workouts;
-        for (i = 0; i < patientWorkouts.length; i++) {
-          let li = document.createElement('li');
-          let p = document.createElement('p');
-          p.textContent = patientWorkouts[i];
-          p.classList.add('list__workout--text');
-          li.appendChild(p);
-          li.classList.add('list__workout--item');
-          modalPatientWorkouts.appendChild(li);
-        }
-      } else {
-        // doc.data() will be undefined in this case
-        console.log('No such patient document!');
-      }
+    .then((snapshot) => {
+      snapshot.forEach((doc) => {
+        let patientWorkoutName = doc.data().name;
+        let li = document.createElement('li');
+        let p = document.createElement('p');
+        p.textContent = patientWorkoutName;
+        p.classList.add('list__workout--text');
+        li.appendChild(p);
+        li.classList.add('list__workout--item');
+        modalPatientWorkouts.appendChild(li);
+      });
     })
-    .catch((error) => {
-      console.log('Error getting patient workouts:', error);
+    .catch((err) => {
+      console.log('Error getting documents', err);
     });
 }
 
@@ -679,8 +680,11 @@ function renderPatientWorkouts(id) {
 function openPatientModal(target) {
   modalOuterPatient.style.display = 'block';
   modalPatientClicked.style.display = 'block';
-  // console.log(target);
+
   let id = target.getAttribute('data-id');
+  patientNameAddWorkout = target.textContent;
+  patientIDAddWorkout = id;
+
   renderPatientWorkouts(id);
   // target.childNode;
   let patientName = target.textContent;
@@ -710,10 +714,14 @@ function backPatientExercises() {
   modalPatientExercises.style.opacity = '0';
   modalPatientExercises.style.visibility = 'hidden';
   modalPatientExercises.style.transform = 'translate(2vw)';
+  ptExerciseBack.style.display = 'none';
 }
 
 function renderPatientExercises(workoutID) {
-  let docRef = workoutRef.doc(workoutID);
+  let docRef = patientRef
+    .doc(patientIDAddWorkout)
+    .collection('workouts')
+    .doc(workoutID);
   docRef
     .get()
     .then((doc) => {
@@ -740,12 +748,29 @@ function renderPatientExercises(workoutID) {
 
 modalPatientWorkouts.addEventListener('click', function (e) {
   target = e.target;
-  if (target.tagName == 'LI') {
+  console.log(target);
+  if (
+    target.tagName == 'LI' ||
+    target.classList.contains('list__workout--text')
+  ) {
     let workoutID = target.textContent;
     openPatientExercises();
+    ptExerciseBack.style.display = 'block';
     renderPatientExercises(workoutID);
   }
 });
+
+function moveToExercisePage() {
+  console.log('clicked');
+  exitModal();
+  ptExerciseBack.style.display = 'none';
+  openTab('exercisesTab');
+  btnSaveWorkoutPatient.style.display = 'block';
+  btnSaveWorkoutPatient.textContent = `Save to ${patientNameAddWorkout}`;
+}
+
+btnPtAddWorkout.addEventListener('click', moveToExercisePage);
+ptExerciseBack.addEventListener('click', backPatientExercises);
 
 const exerciseNext = document.getElementById('exerciseNextPage');
 const exercisePrev = document.getElementById('exercisePrevPage');
@@ -1333,7 +1358,40 @@ function submitSaveWorkout(e) {
   //look at this https://stackoverflow.com/questions/50012956/firestore-how-to-store-reference-to-document-how-to-retrieve-it
 }
 
+function submitSaveWorkoutPatient(e) {
+  e.preventDefault();
+  if (workoutNameInput.value == '') {
+    return;
+  } else {
+    let workoutName = workoutNameInput.value;
+    let workoutArray = [];
+    //save doc ref of execise name
+    let saveItems = listAddedExercises.children;
+    for (let i = 0; i < saveItems.length; i++) {
+      let exerciseName = saveItems[i].children[1].children[0].textContent;
+      workoutArray.push(exerciseName);
+    }
+    console.log('This workout is called: ' + workoutName);
+    console.table(workoutArray);
+
+    patientRef
+      .doc(patientIDAddWorkout)
+      .collection('workouts')
+      .doc(`${workoutName}`)
+      .set({
+        name: workoutName,
+        exerciseList: workoutArray,
+      });
+
+    setTimeout(exitModal, 1000);
+    alert('upload complete!');
+    btnSaveWorkoutPatient.style.display = 'none';
+  }
+  //
+}
+
 btnSaveWorkout.addEventListener('click', submitSaveWorkout);
+btnSaveWorkoutPatient.addEventListener('click', submitSaveWorkoutPatient);
 
 function saveAddExerciseList() {
   enterSaveWorkoutModal();
