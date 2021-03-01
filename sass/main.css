@@ -601,6 +601,17 @@ input {
   display: none;
 }
 
+.modal__button--back {
+  background-color: #ffffff;
+  font-size: 1.8rem;
+  position: absolute;
+  top: 5vh;
+  left: 5vw;
+  display: none;
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
+}
+
 .label {
   font-size: 1.8rem;
   margin-top: 2rem;

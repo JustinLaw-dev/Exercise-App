@@ -84,6 +84,7 @@ const patientModalName = document.getElementById('patientModalName');
 const modalPatientWorkouts = document.getElementById('modalPatientWorkouts');
 const modalPatientExercises = document.getElementById('modalPatientExercises');
 const btnPtAddWorkout = document.getElementById('btnPtAddWorkout');
+const ptExerciseBack = document.getElementById('ptExerciseBack');
 let patientIDAddWorkout;
 let patientNameAddWorkout;
 
@@ -713,6 +714,7 @@ function backPatientExercises() {
   modalPatientExercises.style.opacity = '0';
   modalPatientExercises.style.visibility = 'hidden';
   modalPatientExercises.style.transform = 'translate(2vw)';
+  ptExerciseBack.style.display = 'none';
 }
 
 function renderPatientExercises(workoutID) {
@@ -753,6 +755,7 @@ modalPatientWorkouts.addEventListener('click', function (e) {
   ) {
     let workoutID = target.textContent;
     openPatientExercises();
+    ptExerciseBack.style.display = 'block';
     renderPatientExercises(workoutID);
   }
 });
@@ -760,12 +763,14 @@ modalPatientWorkouts.addEventListener('click', function (e) {
 function moveToExercisePage() {
   console.log('clicked');
   exitModal();
+  ptExerciseBack.style.display = 'none';
   openTab('exercisesTab');
   btnSaveWorkoutPatient.style.display = 'block';
   btnSaveWorkoutPatient.textContent = `Save to ${patientNameAddWorkout}`;
 }
 
 btnPtAddWorkout.addEventListener('click', moveToExercisePage);
+ptExerciseBack.addEventListener('click', backPatientExercises);
 
 const exerciseNext = document.getElementById('exerciseNextPage');
 const exercisePrev = document.getElementById('exercisePrevPage');

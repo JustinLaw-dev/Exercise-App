@@ -372,3 +372,18 @@
 #btnSaveWorkoutPatient {
   display: none;
 }
+
+.modal {
+  &__button {
+    &--back {
+      background-color: $color-white;
+      font-size: 1.8rem;
+      position: absolute;
+      top: 5vh;
+      left: 5vw;
+      display: none;
+
+      transition: all 0.2s;
+    }
+  }
+}
