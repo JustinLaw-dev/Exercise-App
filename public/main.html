@@ -144,7 +144,7 @@
 
           <!-- Patient Workout Modal -->
           <div class="modal__inner" id="modalPatientClicked">
-            <h3 class="modal__header" id="patientModalName">Heading</h3>
+            <h3 class="modal__header" id="patientModalName"></h3>
             <div class="modal__row">
               <ul
                 class="list__workout list__workout--view"
@@ -160,6 +160,12 @@
               </ul>
             </div>
             <i class="modal__exit fas fa-times"></i>
+            <button
+              class="button--primary button__patient--addWorkout"
+              id="btnPtAddWorkout"
+            >
+              Create New Workout
+            </button>
           </div>
 
           <div class="modal__outer" id="modalOuterSmall"></div>
@@ -383,12 +389,18 @@
                   <li class="list__workout--item"><img class="list__workout--image"src="https://picsum.photos/100/50" alt=""><p class="list__workout--text">Exercise</p></li>
                   <li class="list__workout--item"><img class="list__workout--image"src="https://picsum.photos/100/50" alt=""><p class="list__workout--text">Exercise</p></li> -->
                 </ul>
-                <button
-                  class="button__square button__submit button--primary"
-                  id="btnSaveWorkout"
-                >
-                  Save
-                </button>
+                <div class="button__row">
+                  <button
+                    class="button__submitSave button--primary"
+                    id="btnSaveWorkout"
+                  >
+                    Save to Workouts
+                  </button>
+                  <button
+                    class="button__submitSave button--secondary"
+                    id="btnSaveWorkoutPatient"
+                  ></button>
+                </div>
               </form>
             </div>
             <!-- end of exercise tab -->
