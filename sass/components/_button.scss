@@ -29,7 +29,7 @@
     transition: all 0.2s;
 
     &:hover {
-      background-color: $color-gray-100;
+      background-color: $color-gray-200;
     }
   }
 
@@ -120,7 +120,7 @@
 
   &__delete {
     &--background {
-      background-color: $color-gray-100;
+      background-color: $color-gray-200;
       width: 100%;
       display: flex;
       justify-content: flex-end;
@@ -140,7 +140,7 @@
     }
 
     &--secondary {
-      background-color: $color-gray-100;
+      background-color: $color-gray-200;
       color: $color-gray-700;
       margin-right: 2rem;
 
