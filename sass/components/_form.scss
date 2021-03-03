@@ -9,7 +9,7 @@
   }
 }
 
-input {
+input, textarea{
   border: 1px solid $color-gray-700;
   border-radius: 5px;
 
@@ -27,6 +27,7 @@ input {
     }
   }
 }
+
 
 .input {
   font-size: 2rem;
