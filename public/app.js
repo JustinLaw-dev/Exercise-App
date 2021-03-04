@@ -705,6 +705,8 @@ function openPatientExercises() {
   modalPatientExercises.style.opacity = '1';
   modalPatientExercises.style.visibility = 'visible';
   modalPatientExercises.style.transform = 'translate(0)';
+  btnPtAddWorkout.style.display = 'none';
+  btnPrintPtWorkout.style.display = 'block';
 }
 
 function backPatientExercises() {
@@ -715,6 +717,8 @@ function backPatientExercises() {
   modalPatientExercises.style.visibility = 'hidden';
   modalPatientExercises.style.transform = 'translate(2vw)';
   ptExerciseBack.style.display = 'none';
+  btnPtAddWorkout.style.display = 'block';
+  btnPrintPtWorkout.style.display = 'none';
 }
 
 function renderPatientExercises(workoutID) {
@@ -748,12 +752,12 @@ function renderPatientExercises(workoutID) {
 
 modalPatientWorkouts.addEventListener('click', function (e) {
   target = e.target;
-  console.log(target);
   if (
     target.tagName == 'LI' ||
     target.classList.contains('list__workout--text')
   ) {
     let workoutID = target.textContent;
+    
     openPatientExercises();
     ptExerciseBack.style.display = 'block';
     renderPatientExercises(workoutID);
@@ -769,8 +773,17 @@ function moveToExercisePage() {
   btnSaveWorkoutPatient.textContent = `Save to ${patientNameAddWorkout}`;
 }
 
+function printPtWorkout(e) {
+  console.log(modalPatientExercises);
+  //loop through list, grabbing name
+  //query for exercise name, instructions, and image
+  //display in printable list.
+  }
+
 btnPtAddWorkout.addEventListener('click', moveToExercisePage);
 ptExerciseBack.addEventListener('click', backPatientExercises);
+btnPrintPtWorkout.addEventListener('click', printPtWorkout);
+
 
 const exerciseNext = document.getElementById('exerciseNextPage');
 const exercisePrev = document.getElementById('exercisePrevPage');
