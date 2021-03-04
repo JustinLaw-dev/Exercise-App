@@ -522,10 +522,16 @@ input {
   margin-right: 1rem;
 }
 
-.button__patient--addWorkout {
+.button__patient--addWorkout, .button__patient--printPtWorkout {
   display: block;
   margin: 2rem auto;
   font-size: 2rem;
+}
+
+.button__patient--printPtWorkout {
+  display: none;
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
 }
 
 .button__row {

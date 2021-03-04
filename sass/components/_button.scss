@@ -303,10 +303,15 @@
   }
 
   &__patient {
-    &--addWorkout {
+    &--addWorkout,&--printPtWorkout {
       display: block;
       margin: 2rem auto;
       font-size: 2rem;
+    }
+
+    &--printPtWorkout {
+      display: none;
+      transition: all 0.2s;
     }
   }
 
