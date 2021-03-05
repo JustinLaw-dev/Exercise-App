@@ -778,11 +778,35 @@ function printPtWorkout(e) {
   let items = modalPatientExercises.children;
   for(i=0; i< items.length; i++){
     let exerciseName = items[i].children[0].textContent;
-    // exerciseRef.doc(exerciseName).get().data()
+    console.log(exerciseName);
+    let exerciseDoc = exerciseRef.doc(`${exerciseName}`);
+    
+
+    exerciseDoc
+      .get()
+      .then(function (doc) {
+        if (doc.exists) {
+          let exerciseID = doc.data().name;
+          let instructions = doc.data().instructions;
+          let img = doc.data().image;
+          console.log('error');
+
+          //Fill modal with list items
+          // generatePtExercises(exerciseID, img, instructions);
+        } else {
+          // doc.data() will be undefined in this case
+          console.log('No such document!');
+        }
+      })
+      .catch(function (error) {
+        console.log('Error getting document:', error);
+      });
   }
+}
+  
   //query for exercise name, instructions, and image
   //display in printable list.
-  }
+  
 
 btnPtAddWorkout.addEventListener('click', moveToExercisePage);
 ptExerciseBack.addEventListener('click', backPatientExercises);
@@ -1252,6 +1276,32 @@ function generatePrintWorkoutItems(exerciseID, img, instructions) {
   li.appendChild(div);
   printWorkoutList.appendChild(li);
   // console.log(exerciseID, img, instructions);
+}
+
+function generatePtExercises(exerciseID, img, instructions){
+  let li = document.createElement('li');
+  let heading = document.createElement('h3');
+  let div = document.createElement('div');
+  let image = document.createElement('img');
+  let p = document.createElement('p');
+
+  heading.classList.add('list__print--heading');
+  div.classList.add('list__print--row');
+  image.classList.add('list__print--img');
+  p.classList.add('list__print--instructions');
+
+  heading.textContent = exerciseID;
+  image.src = img;
+  image.alt = `${exerciseID}`;
+  p = instructions;
+
+  div.appendChild(image);
+  div.appendChild(p);
+  li.appendChild(heading);
+  li.appendChild(div);
+  console.log(li);
+  // printList.appendChild(li);
+
 }
 
 function printExercises() {
