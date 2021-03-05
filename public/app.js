@@ -774,8 +774,12 @@ function moveToExercisePage() {
 }
 
 function printPtWorkout(e) {
-  console.log(modalPatientExercises);
   //loop through list, grabbing name
+  let items = modalPatientExercises.children;
+  for(i=0; i< items.length; i++){
+    let exerciseName = items[i].children[0].textContent;
+    // exerciseRef.doc(exerciseName).get().data()
+  }
   //query for exercise name, instructions, and image
   //display in printable list.
   }
