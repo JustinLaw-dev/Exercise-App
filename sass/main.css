@@ -222,20 +222,6 @@ input {
   color: #646464;
 }
 
-.button__round {
-  border-radius: 3rem;
-  padding: 1rem 4rem;
-  width: 40%;
-  -webkit-box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.4);
-          box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.4);
-}
-
-@media only screen and (min-width: 2000px) {
-  .button__round {
-    padding: 2rem 4rem;
-  }
-}
-
 .button__square {
   width: 20rem;
   height: 5rem;
@@ -268,24 +254,27 @@ input {
           box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
 }
 
-.button--login {
-  border: 1px solid #03396c;
-  color: white;
-  background-color: #03396c;
-  font-size: 2rem;
+.button--login, .button--signup {
+  border-radius: 3rem;
+  padding: 1rem 4rem;
+  width: 40%;
+  -webkit-box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.4);
+          box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.4);
 }
 
-.button--signup {
-  color: #03396c;
-  border: 1px solid lightblue;
-  background-color: lightblue;
+.button--login {
   font-size: 2rem;
 }
 
 @media only screen and (min-width: 2000px) {
-  .button--login, .button--signup {
+  .button--login {
     font-size: 5rem;
+    padding: 2rem 4rem;
   }
+}
+
+.button--signup {
+  font-size: 1.6rem;
 }
 
 .button--logout {

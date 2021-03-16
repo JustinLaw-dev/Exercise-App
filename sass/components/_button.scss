@@ -39,14 +39,6 @@
   }
 
   &__round {
-    border-radius: 3rem;
-    padding: 1rem 4rem;
-    width: 40%;
-    box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.4);
-
-    @include respond(big-desktop) {
-      padding: 2rem 4rem;
-    }
   }
 
   &__square {
@@ -75,27 +67,25 @@
     box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
   }
 
-  &--login {
-    border: 1px solid $primary-color;
-    color: white;
-    background-color: $primary-color;
-    // margin: 3rem auto;
-    font-size: 2rem;
+  &--login, &--signup {
+    border-radius: 3rem;
+    padding: 1rem 4rem;
+    width: 40%;
+    box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.4);
   }
 
-  &--signup {
-    color: $primary-color;
-    border: 1px solid lightblue;
-    background-color: lightblue;
-    // margin: 0 auto;
+  &--login{
     font-size: 2rem;
-  }
 
-  &--login,
-  &--signup {
     @include respond(big-desktop) {
       font-size: 5rem;
+      
+      padding: 2rem 4rem;
     }
+  }
+
+  &--signup {
+    font-size: 1.6rem;
   }
 
   &--logout {
