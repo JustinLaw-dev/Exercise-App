@@ -50,6 +50,11 @@
   }
 }
 
+#signupError {
+  width: 20vw;
+  margin: 1rem auto;
+}
+
 .signup {
   &__container {
     width: 100%;
@@ -57,5 +62,18 @@
     margin-top: 5vh;
     display: flex;
     justify-content: space-around;
+  }
+
+  &__modal {
+    display: none;
+    background-color: $color-white;
+    width: 30vw;
+    height: 40vh;
+    border-radius: 5px;
+    position: absolute;
+    top: 25%;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2000;
   }
 }

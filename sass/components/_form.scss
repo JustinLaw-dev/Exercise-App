@@ -7,11 +7,19 @@
     font-size: 5rem;
     margin-top: 5vh;
   }
+
+  &--signUp {
+    font-size: 1.6rem;
+    margin-top: 2rem;
+    font-family: 'Montserrat';
+  }
 }
 
-input, textarea{
-  border: 1px solid $color-gray-700;
+input,
+textarea {
+  border: 2px solid $color-gray-500;
   border-radius: 5px;
+  transition: all 0.1s;
 
   &:focus {
     border: 2px solid $color-focus;
@@ -28,7 +36,6 @@ input, textarea{
   }
 }
 
-
 .input {
   font-size: 2rem;
   margin-top: 0.5rem;
@@ -39,6 +46,12 @@ input, textarea{
     padding: 2rem;
   }
 
+  &__signUp {
+    font-size: 1.6rem;
+    width: 20vw;
+  }
+
+  &__signIn,
   &__signUp {
     @include respond(big-desktop) {
       font-size: 6rem;

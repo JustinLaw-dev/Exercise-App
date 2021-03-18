@@ -33,10 +33,10 @@
         </div>
 
         <form id="signInForm">
-          <div class="container__form">
+          <div class="form__container">
             <label class="label" for="email">Email</label>
             <input
-              class="input input__signUp"
+              class="input input__signIn"
               placeholder="Email"
               type="email"
               name="email"
@@ -46,12 +46,12 @@
 
             <label class="label" for="password">Password</label>
             <input
-              class="input input__signUp"
-              placeholder="8-20 Characters"
+              class="input input__signIn"
+              placeholder="Password"
               type="password"
               name="password"
               id="password"
-              minlength="8"
+              minlength="6"
               maxlength="20"
               required
             />
@@ -73,7 +73,42 @@
             </div>
           </div>
         </form>
-        <!-- <p class="text__forgot">Forgot Password?</p> -->
+        <p class="text__forgot">Forgot Password? Click here</p>
+      </div>
+
+      <div class="modal__outer modal__outer--signup" id="modalOuterSignup"></div>
+      <div class="signup__modal" id="signupModal">
+        <i class="modal__exit fas fa-times" id="modalExitSignup"></i>
+        <h3 class="heading--tertiary">Create Account</h3>
+        
+        <div class="container__error" id="signupError">
+          <i class="far fa-times-circle container__error--icon"></i>
+          <p class="container__error--text" id="signupErrorText">Error</p>
+        </div>
+        <form id="signUpForm">
+          <div class="form__container form__container--signup">
+            <label class="label--signUp" for="emailSignup">Email</label>
+            <input
+              class="input input__signUp"
+              placeholder="Email"
+              type="email"
+              name="emailSignup"
+              id="emailSignup"
+              required
+            />
+
+            <label class="label--signUp" for="passwordSignup">Password</label>
+            <input
+              class="input input__signUp"
+              placeholder="6-20 Characters"
+              type="password"
+              name="passwordSignup"
+              id="passwordSignup"
+              minlength="6"
+              maxlength="20"
+              required
+            />
+            <button class="button__submit--signUp button--primary margin--top-med" id="btnSubmitSignup">Create Account</button>
       </div>
     </div>
     <!-- The core Firebase JS SDK is always required and must be listed first -->

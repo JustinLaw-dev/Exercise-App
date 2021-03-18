@@ -1,8 +1,14 @@
-.container__form {
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  width: 25vw;
-  height: 25%;
+.form {
+  &__container {
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 25vw;
+    height: 25%;
+
+    &--signup {
+      width: 20vw;
+    }
+  }
 }

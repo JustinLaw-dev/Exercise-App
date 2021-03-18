@@ -1,4 +1,5 @@
-.modal__outer {
+.modal__outer,
+.modal__outer--signup {
   display: none; /* Hidden by default */
   position: fixed; /* Stay in place */
   z-index: 1900; /* Sit on top */
