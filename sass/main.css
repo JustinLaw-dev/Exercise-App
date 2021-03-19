@@ -1113,6 +1113,7 @@ input[type='file'] {
   border-radius: 3px;
   -webkit-box-shadow: 2px 3px 5px 0px rgba(50, 50, 50, 0.75);
   box-shadow: 2px 3px 5px 0px rgba(50, 50, 50, 0.75);
+  border: 1px solid #646464;
   height: 18rem;
   margin-bottom: 1rem;
 }
@@ -1123,6 +1124,7 @@ input[type='file'] {
     border-radius: 15px;
     -webkit-box-shadow: 8px 10px 15px 0px rgba(50, 50, 50, 0.75);
             box-shadow: 8px 10px 15px 0px rgba(50, 50, 50, 0.75);
+    border: 3px solid #646464;
   }
 }
 
@@ -1275,12 +1277,14 @@ input[type='file'] {
 .list__print--img {
   width: 25rem;
   height: 15rem;
+  border: 1px solid gray;
 }
 
 @media only screen and (min-width: 2000px) {
   .list__print--img {
     width: 18vw;
     height: 22vh;
+    border: 3px solid gray;
   }
 }
 
