@@ -87,6 +87,8 @@ const btnPtAddWorkout = document.getElementById('btnPtAddWorkout');
 const ptExerciseBack = document.getElementById('ptExerciseBack');
 let patientIDAddWorkout;
 let patientNameAddWorkout;
+const ptPrintModal = document.getElementById('ptPrintModal');
+const ptPrintList = document.getElementById('ptPrintList');
 
 const exerciseList = document.getElementById('exerciseList');
 
@@ -757,7 +759,7 @@ modalPatientWorkouts.addEventListener('click', function (e) {
     target.classList.contains('list__workout--text')
   ) {
     let workoutID = target.textContent;
-    
+
     openPatientExercises();
     ptExerciseBack.style.display = 'block';
     renderPatientExercises(workoutID);
@@ -773,14 +775,24 @@ function moveToExercisePage() {
   btnSaveWorkoutPatient.textContent = `Save to ${patientNameAddWorkout}`;
 }
 
+function openPtPrintModal() {
+  ptPrintModal.style.display = 'block';
+  ptPrintList.innerHTML = '';
+}
+
+function closePtPrintModal() {
+  ptPrintModal.style.display = 'none';
+  ptPrintList.innerHTML = '';
+}
+
 function printPtWorkout(e) {
   //loop through list, grabbing name
   let items = modalPatientExercises.children;
-  for(i=0; i< items.length; i++){
+  openPtPrintModal();
+  for (i = 0; i < items.length; i++) {
     let exerciseName = items[i].children[0].textContent;
     console.log(exerciseName);
     let exerciseDoc = exerciseRef.doc(`${exerciseName}`);
-    
 
     exerciseDoc
       .get()
@@ -789,10 +801,10 @@ function printPtWorkout(e) {
           let exerciseID = doc.data().name;
           let instructions = doc.data().instructions;
           let img = doc.data().image;
-          console.log('error');
+          console.log(exerciseID, instructions, img);
 
           //Fill modal with list items
-          // generatePtExercises(exerciseID, img, instructions);
+          generatePtExercises(exerciseID, img, instructions);
         } else {
           // doc.data() will be undefined in this case
           console.log('No such document!');
@@ -803,15 +815,13 @@ function printPtWorkout(e) {
       });
   }
 }
-  
-  //query for exercise name, instructions, and image
-  //display in printable list.
-  
+
+//query for exercise name, instructions, and image
+//display in printable list.
 
 btnPtAddWorkout.addEventListener('click', moveToExercisePage);
 ptExerciseBack.addEventListener('click', backPatientExercises);
 btnPrintPtWorkout.addEventListener('click', printPtWorkout);
-
 
 const exerciseNext = document.getElementById('exerciseNextPage');
 const exercisePrev = document.getElementById('exercisePrevPage');
@@ -1169,7 +1179,7 @@ const btnPrintList = document.getElementById('printAddedExercises');
 const btnSaveList = document.getElementById('saveAddedExercises');
 const btnClearList = document.getElementById('clearAddedExercises');
 
-const printModal = document.querySelector('.modal__inner--print');
+const printModal = document.getElementById('workoutPrintModal');
 const printWorkoutModal = document.getElementById('printWorkoutModal');
 btnPrintList.addEventListener('click', printExercises);
 btnSaveList.addEventListener('click', saveAddExerciseList);
@@ -1177,16 +1187,11 @@ btnClearList.addEventListener('click', clearAddExerciseList);
 
 function openPrintModal() {
   //Base values - must edit when there is a change to styling.
-  let baseWidth = '97%';
-  let baseHeight = '85%';
+  // let baseWidth = '97%';
+  // let baseHeight = '85%';
 
   //Open print modal
   printModal.style.display = 'block';
-  //Expand width modal to cover everything
-
-  // Alternative to open formatted HTML in new tab
-  // var opened = window.open("");
-  // opened.document.write("<html><head><title>MyTitle</title></head><body>test</body></html>");
 }
 
 function openPrintWorkoutModal() {
@@ -1234,8 +1239,8 @@ function generatePrintItems(exerciseID, img, instructions) {
       console.log('Error getting documents: ', error);
     });
 
-  div.appendChild(image);
   div.appendChild(p);
+  div.appendChild(image);
   li.appendChild(heading);
   li.appendChild(div);
   printList.appendChild(li);
@@ -1270,15 +1275,15 @@ function generatePrintWorkoutItems(exerciseID, img, instructions) {
       console.log('Error getting documents: ', error);
     });
 
-  div.appendChild(image);
   div.appendChild(p);
+  div.appendChild(image);
   li.appendChild(heading);
   li.appendChild(div);
   printWorkoutList.appendChild(li);
   // console.log(exerciseID, img, instructions);
 }
 
-function generatePtExercises(exerciseID, img, instructions){
+function generatePtExercises(exerciseID, img, instructions) {
   let li = document.createElement('li');
   let heading = document.createElement('h3');
   let div = document.createElement('div');
@@ -1293,15 +1298,14 @@ function generatePtExercises(exerciseID, img, instructions){
   heading.textContent = exerciseID;
   image.src = img;
   image.alt = `${exerciseID}`;
-  p = instructions;
+  p.textContent = instructions;
 
-  div.appendChild(image);
   div.appendChild(p);
+  div.appendChild(image);
   li.appendChild(heading);
   li.appendChild(div);
   console.log(li);
-  // printList.appendChild(li);
-
+  ptPrintList.appendChild(li);
 }
 
 function printExercises() {
@@ -1332,6 +1336,8 @@ function printExercises() {
       });
   }
 }
+
+ptPrintBack.addEventListener('click', closePtPrintModal);
 
 function enterClearModal() {
   modalPatientDeleteOuter.style.display = 'block';
