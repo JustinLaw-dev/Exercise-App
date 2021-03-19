@@ -226,7 +226,8 @@
       font-size: 2rem;
     }
 
-    &--item {
+    & li {
+      border-bottom: 1px solid black;
     }
 
     &--row {
@@ -234,7 +235,6 @@
       flex-direction: row;
       justify-content: space-between;
       align-items: flex-start;
-      border-bottom: 1px solid black;
       padding-bottom: 4rem;
     }
 
@@ -267,6 +267,14 @@
       @include respond(big-desktop) {
         font-size: 4rem;
       }
+    }
+
+    &--textArea {
+      resize: none;
+      width: 45%;
+      font-size: 1.6rem;
+      margin-bottom: 2rem;
+      padding-top: 1rem;
     }
   }
 }

@@ -71,6 +71,12 @@ body {
   width: 45%;
 }
 
+.list__print--textArea {
+  border: none;
+  transform: translateY(-10vh);
+  padding-top: 0;
+}
+
 /* Print Workout styling */
 .list__printWorkout {
   gap: 0;
@@ -84,6 +90,8 @@ body {
 .list__printWorkout .list__print--heading {
   font-size: 3rem;
   padding-bottom: 0;
+  padding-top: 5vh;
+  /* margin-top: 1rem; */
 }
 
 .list__printWorkout li p {
@@ -113,6 +121,7 @@ body {
 #ptPrintList .list__print--heading {
   font-size: 2.5rem;
   padding-bottom: 0;
+  padding-top: 5vh;
 }
 
 #ptPrintList .list__print--row {

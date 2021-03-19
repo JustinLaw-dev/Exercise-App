@@ -1245,6 +1245,10 @@ input[type='file'] {
   font-size: 2rem;
 }
 
+.list__print li {
+  border-bottom: 1px solid black;
+}
+
 .list__print--row {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1259,7 +1263,6 @@ input[type='file'] {
   -webkit-box-align: start;
       -ms-flex-align: start;
           align-items: flex-start;
-  border-bottom: 1px solid black;
   padding-bottom: 4rem;
 }
 
@@ -1298,6 +1301,14 @@ input[type='file'] {
   .list__print--instructions {
     font-size: 4rem;
   }
+}
+
+.list__print--textArea {
+  resize: none;
+  width: 45%;
+  font-size: 1.6rem;
+  margin-bottom: 2rem;
+  padding-top: 1rem;
 }
 
 .list__exercise__container {

@@ -1211,12 +1211,19 @@ function closePrintWorkoutModal() {
   printWorkoutList.innerHTML = '';
 }
 
+//For Exercise Tab
 function generatePrintItems(exerciseID, img, instructions) {
   let li = document.createElement('li');
   let heading = document.createElement('h3');
   let div = document.createElement('div');
   let image = document.createElement('img');
   let p = document.createElement('p');
+  let textArea = document.createElement('textarea');
+  let emptyText = document.createTextNode('sets  reps  seconds');
+
+  textArea.classList.add('list__print--textArea');
+  textArea.maxLength = 40;
+  textArea.appendChild(emptyText);
 
   heading.classList.add('list__print--heading');
   div.classList.add('list__print--row');
@@ -1243,16 +1250,24 @@ function generatePrintItems(exerciseID, img, instructions) {
   div.appendChild(image);
   li.appendChild(heading);
   li.appendChild(div);
+  li.appendChild(textArea);
   printList.appendChild(li);
   // console.log(exerciseID, img, instructions);
 }
 
+//For Workout Tab
 function generatePrintWorkoutItems(exerciseID, img, instructions) {
   let li = document.createElement('li');
   let heading = document.createElement('h3');
   let div = document.createElement('div');
   let image = document.createElement('img');
   let p = document.createElement('p');
+  let textArea = document.createElement('textarea');
+  let emptyText = document.createTextNode('sets  reps  seconds');
+
+  textArea.classList.add('list__print--textArea');
+  textArea.maxLength = 40;
+  textArea.appendChild(emptyText);
 
   heading.classList.add('list__print--heading');
   div.classList.add('list__print--row');
@@ -1279,16 +1294,24 @@ function generatePrintWorkoutItems(exerciseID, img, instructions) {
   div.appendChild(image);
   li.appendChild(heading);
   li.appendChild(div);
+  li.appendChild(textArea);
   printWorkoutList.appendChild(li);
   // console.log(exerciseID, img, instructions);
 }
 
+//For Patient Tab
 function generatePtExercises(exerciseID, img, instructions) {
   let li = document.createElement('li');
   let heading = document.createElement('h3');
   let div = document.createElement('div');
   let image = document.createElement('img');
   let p = document.createElement('p');
+  let textArea = document.createElement('textarea');
+  let emptyText = document.createTextNode('sets  reps  seconds');
+
+  textArea.classList.add('list__print--textArea');
+  textArea.maxLength = 40;
+  textArea.appendChild(emptyText);
 
   heading.classList.add('list__print--heading');
   div.classList.add('list__print--row');
@@ -1304,6 +1327,7 @@ function generatePtExercises(exerciseID, img, instructions) {
   div.appendChild(image);
   li.appendChild(heading);
   li.appendChild(div);
+  li.appendChild(textArea);
   console.log(li);
   ptPrintList.appendChild(li);
 }
