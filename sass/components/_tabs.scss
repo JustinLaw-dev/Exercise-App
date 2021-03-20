@@ -19,7 +19,10 @@
   }
 
   &__userWelcome {
-    color: $color-white;
+    color: $primary-color;
+    background-color: $color-white;
+    border-radius: 0.5rem;
+    padding: 1rem 2rem;
     font-size: 1.6rem;
     text-align: center;
 

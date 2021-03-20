@@ -30,7 +30,7 @@ firebase.auth().onAuthStateChanged((firebaseUser) => {
       window.location.href = linkMain;
     } else if (window.location.href === linkMain) {
       const userWelcome = document.getElementById('userWelcome');
-      userWelcome.textContent = `Welcome ${user.email}`;
+      userWelcome.textContent = `Welcome, ${user.email}`;
       return;
     }
   }
