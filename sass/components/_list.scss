@@ -3,6 +3,8 @@
     width: 97%;
     height: 85%;
     margin: 2rem auto;
+    border: 2px solid #b4b4b4;
+    border-radius: 1rem;
     // overflow-y: scroll;
 
     &--exercise {
@@ -41,7 +43,7 @@
       width: 93%;
       padding: 2rem 1rem;
       font-size: 2.1rem;
-      border-bottom: 1px solid $color-gray-300;
+      border-bottom: 2px solid $color-gray-300;
       cursor: pointer;
       // &:not(:first-child) {
       //   // margin: 0 auto;

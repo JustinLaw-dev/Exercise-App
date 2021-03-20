@@ -580,7 +580,7 @@ input {
 
 #workoutPages {
   position: absolute;
-  bottom: 7vh;
+  bottom: 11vh;
   right: 5vw;
 }
 
@@ -788,7 +788,10 @@ input[type='file'] {
 }
 
 .tabs__userWelcome {
-  color: #ffffff;
+  color: #03396c;
+  background-color: #ffffff;
+  border-radius: 0.5rem;
+  padding: 1rem 2rem;
   font-size: 1.6rem;
   text-align: center;
 }
@@ -974,6 +977,8 @@ input[type='file'] {
   width: 97%;
   height: 85%;
   margin: 2rem auto;
+  border: 2px solid #b4b4b4;
+  border-radius: 1rem;
 }
 
 .list__wrapper--exercise {
@@ -1009,7 +1014,7 @@ input[type='file'] {
   width: 93%;
   padding: 2rem 1rem;
   font-size: 2.1rem;
-  border-bottom: 1px solid #e7e7e7;
+  border-bottom: 2px solid #e7e7e7;
   cursor: pointer;
 }
 
