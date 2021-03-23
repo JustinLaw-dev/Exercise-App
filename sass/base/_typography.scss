@@ -16,11 +16,11 @@ textarea {
 }
 
 .header--primary {
-  font-size: 5rem;
-
+  font-family: 'Montserrat';
+  font-size: 3rem;
   font-weight: 400;
-  width: 100%;
-  text-align: center;
+  width: 25vw;
+  margin: 4rem auto;
 
   @include respond(big-desktop) {
     font-size: 15rem;

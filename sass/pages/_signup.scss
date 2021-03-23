@@ -12,6 +12,7 @@
   &__right {
     width: 70vw;
     height: 100vh;
+    padding-top:15vh;
   }
 
   &__error {
@@ -61,7 +62,7 @@
     height: auto;
     margin-top: 5vh;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
   }
 
   &__modal {

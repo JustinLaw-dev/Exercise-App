@@ -79,10 +79,11 @@ textarea {
 }
 
 .header--primary {
-  font-size: 5rem;
+  font-family: 'Montserrat';
+  font-size: 3rem;
   font-weight: 400;
-  width: 100%;
-  text-align: center;
+  width: 25vw;
+  margin: 4rem auto;
 }
 
 @media only screen and (min-width: 2000px) {
@@ -1747,6 +1748,7 @@ input[type='file'] {
 .container__right {
   width: 70vw;
   height: 100vh;
+  padding-top: 15vh;
 }
 
 .container__error {
@@ -1802,8 +1804,9 @@ input[type='file'] {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
 }
 
 .signup__modal {
