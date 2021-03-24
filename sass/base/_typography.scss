@@ -18,9 +18,10 @@ textarea {
 .header--primary {
   font-family: 'Montserrat';
   font-size: 3rem;
-  font-weight: 400;
+  font-weight: 700;
   width: 25vw;
   margin: 4rem auto;
+  color: $primary-color;
 
   @include respond(big-desktop) {
     font-size: 15rem;
