@@ -721,6 +721,9 @@ function backPatientExercises() {
   ptExerciseBack.style.display = 'none';
   btnPtAddWorkout.style.display = 'block';
   btnPrintPtWorkout.style.display = 'none';
+
+  //Clears list to remove double print
+  modalPatientExercises.innerHTML = '';
 }
 
 function renderPatientExercises(workoutID) {
