@@ -781,7 +781,7 @@ function moveToExercisePage() {
   btnSaveWorkoutPatient.textContent = `Save to ${patientNameAddWorkout}`;
 }
 
-function copyWorkout() {
+function openCopyWorkout() {
 
 }
 
@@ -830,7 +830,7 @@ function printPtWorkout(e) {
 //display in printable list.
 
 btnPtAddWorkout.addEventListener('click', moveToExercisePage);
-btnPtCopyWorkout.addEventListener('click', copyWorkout);
+btnPtCopyWorkout.addEventListener('click', openCopyWorkout);
 
 ptExerciseBack.addEventListener('click', backPatientExercises);
 btnPrintPtWorkout.addEventListener('click', printPtWorkout);
