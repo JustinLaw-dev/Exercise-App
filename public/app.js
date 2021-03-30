@@ -773,7 +773,6 @@ modalPatientWorkouts.addEventListener('click', function (e) {
 });
 
 function moveToExercisePage() {
-  console.log('clicked');
   exitModal();
   ptExerciseBack.style.display = 'none';
   openTab('exercisesTab');
@@ -782,7 +781,15 @@ function moveToExercisePage() {
 }
 
 function openCopyWorkout() {
-
+  modalPatientWorkouts.style.opacity = '0';
+  modalPatientWorkouts.style.visibility = 'hidden';
+  
+  // modalPatientExercises.style.opacity = '1';
+  // modalPatientExercises.style.visibility = 'visible';
+  // modalPatientExercises.style.transform = 'translate(0)';
+  // btnPtAddWorkout.style.display = 'none';
+  // btnPtCopyWorkout.style.display = 'none';
+  // btnPrintPtWorkout.style.display = 'block';
 }
 
 function openPtPrintModal() {
