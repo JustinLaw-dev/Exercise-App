@@ -84,6 +84,7 @@ const patientModalName = document.getElementById('patientModalName');
 const modalPatientWorkouts = document.getElementById('modalPatientWorkouts');
 const modalPatientExercises = document.getElementById('modalPatientExercises');
 const btnPtAddWorkout = document.getElementById('btnPtAddWorkout');
+const btnPtCopyWorkout = document.getElementById('btnPtCopyWorkout');
 const ptExerciseBack = document.getElementById('ptExerciseBack');
 let patientIDAddWorkout;
 let patientNameAddWorkout;
@@ -708,6 +709,7 @@ function openPatientExercises() {
   modalPatientExercises.style.visibility = 'visible';
   modalPatientExercises.style.transform = 'translate(0)';
   btnPtAddWorkout.style.display = 'none';
+  btnPtCopyWorkout.style.display = 'none';
   btnPrintPtWorkout.style.display = 'block';
 }
 
@@ -720,6 +722,7 @@ function backPatientExercises() {
   modalPatientExercises.style.transform = 'translate(2vw)';
   ptExerciseBack.style.display = 'none';
   btnPtAddWorkout.style.display = 'block';
+  btnPtCopyWorkout.style.display = 'block';
   btnPrintPtWorkout.style.display = 'none';
 
   //Clears list to remove double print
@@ -778,6 +781,10 @@ function moveToExercisePage() {
   btnSaveWorkoutPatient.textContent = `Save to ${patientNameAddWorkout}`;
 }
 
+function copyWorkout() {
+
+}
+
 function openPtPrintModal() {
   ptPrintModal.style.display = 'block';
   ptPrintList.innerHTML = '';
@@ -823,6 +830,8 @@ function printPtWorkout(e) {
 //display in printable list.
 
 btnPtAddWorkout.addEventListener('click', moveToExercisePage);
+btnPtCopyWorkout.addEventListener('click', copyWorkout);
+
 ptExerciseBack.addEventListener('click', backPatientExercises);
 btnPrintPtWorkout.addEventListener('click', printPtWorkout);
 
