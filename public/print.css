@@ -75,6 +75,7 @@ body {
   border: none;
   transform: translateY(-10vh);
   padding-top: 0;
+  font-size: 1.2rem;
 }
 
 /* Print Workout styling */
