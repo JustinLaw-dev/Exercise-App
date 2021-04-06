@@ -346,7 +346,8 @@
     font-size: 1.6rem;
     display: flex;
     align-items: center;
-    justify-content: space-around;
+    justify-content: space-between;
+    padding: 0rem 2rem;
 
     &:hover {
       cursor: pointer;
