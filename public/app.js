@@ -247,6 +247,7 @@ function exitModal() {
 
   modalCopyWorkout.style.opacity = '0';
   modalCopyWorkout.style.visibility = 'hidden';
+  modalCopyWorkout.innerHTML = '';
 }
 
 //Add Patient to collection
@@ -712,6 +713,7 @@ function backPatientExercises() {
   modalCopyWorkout.style.visibility = 'hidden';
   //Clears list to remove double print
   modalPatientExercises.innerHTML = '';
+  modalCopyWorkout.innerHTML = '';
 }
 
 function renderPatientWorkouts(id) {
@@ -796,24 +798,64 @@ function openCopyWorkout() {
   ptExerciseBack.style.display = 'block';
   btnPtAddWorkout.style.display = 'none';
   btnPtCopyWorkout.style.display = 'none';
+
+  workoutRef
+    .orderBy('name', 'asc')
+    .limit(patientPageSize)
+    .get()
+    .then((snapshot) => {
+      snapshot.docs.forEach((doc) => {
+        renderCopyWorkout(doc);
+        //Adds query selector and event listener after patient list is finished rendering
+        // delWorkoutIcon = document.querySelectorAll('.workout-delete');
+        // delWorkoutIcon.forEach((icon) => {
+        //   icon.addEventListener('click', deleteWorkout);
+      });
+    });
 }
 
-//function renderCopyWorkout(){
-//
-{
+function renderCopyWorkout(doc) {
+  let li = document.createElement('li');
+  let label = document.createElement('label');
+  let input = document.createElement('input');
+  let workoutName = doc.data().name;
+  let workoutId = doc.id;
+
+  li.classList.add('list__workout--item');
+  label.classList.add('list__workout--label');
+  input.classList.add('list__workout--input');
+
+  label.setAttribute('for', workoutName);
+  // input.setAttribute('type', 'checkbox');
+  // input.setAttribute('name', workoutName);
+  // input.id = workoutName;
+
+  label.innerHTML = `<input
+    class="list__workout--input"
+    type="checkbox"
+    id="${workoutName}"
+    name="${workoutName}"
+  />${workoutName}`;
+
+  li.appendChild(label);
+  modalCopyWorkout.appendChild(li);
+  //
+
+  // li.setAttribute('data-id', doc.id);
+  //   li.textContent = `${doc.data().name}`;
+
   /* <li class="list__workout--item">
-  <label class="list__workout--label" for="scales">
-    <input
-      class="list__workout--input"
-      type="checkbox"
-      id="scales"
-      name="scales"
-    />
-    Scales
-  </label>
-</li>; */
+      <label class="list__workout--label" for="scales">
+        <input
+          class="list__workout--input"
+          type="checkbox"
+          id="scales"
+          name="scales"
+        />
+        Scales
+      </label>
+    </li>; */
 }
-// }
 
 function openPtPrintModal() {
   ptPrintModal.style.display = 'block';
