@@ -172,6 +172,7 @@ button,
 
 .modal__inner--exerciseView-text {
   font-size: 2rem;
+  line-height: 1.6;
 }
 
 @media only screen and (min-width: 2000px) {
@@ -1309,6 +1310,7 @@ input[type='file'] {
   font-size: 1.6rem;
   margin-bottom: 2rem;
   padding-top: 1rem;
+  border: 1px solid #b4b4b4;
 }
 
 .list__exercise__container {
@@ -1388,6 +1390,24 @@ input[type='file'] {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+}
+
+.list__workout--label {
+  width: 100%;
+  height: 100%;
+  font-size: 1.6rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+}
+
+.list__workout--label:hover {
+  cursor: pointer;
 }
 
 .modal__outer,
@@ -1626,10 +1646,19 @@ input[type='file'] {
 }
 
 #modalPatientExercises {
-  -webkit-transform: translateX(2vw);
-          transform: translateX(2vw);
+  -webkit-transform: translateX(40%);
+          transform: translateX(40%);
   visibility: hidden;
   opacity: 0;
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+}
+
+#modalCopyWorkout {
+  opacity: 0;
+  visibility: hidden;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
   -webkit-transition: all 0.5s;
   transition: all 0.5s;
 }

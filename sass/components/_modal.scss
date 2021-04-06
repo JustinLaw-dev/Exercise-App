@@ -203,9 +203,17 @@
 }
 
 #modalPatientExercises {
-  transform: translateX(2vw);
+  transform: translateX(40%);
   visibility: hidden;
   opacity: 0;
+
+  transition: all 0.5s;
+}
+
+#modalCopyWorkout {
+  opacity: 0;
+  visibility: hidden;
+  transform: translateX(-50%);
 
   transition: all 0.5s;
 }
