@@ -604,6 +604,10 @@ input {
   display: none;
 }
 
+#btnSubmitCopyWorkout {
+  display: none;
+}
+
 .modal__button--back {
   background-color: #ffffff;
   font-size: 1.8rem;

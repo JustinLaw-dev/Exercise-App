@@ -87,6 +87,7 @@ const modalCopyWorkout = document.getElementById('modalCopyWorkout');
 
 const btnPtAddWorkout = document.getElementById('btnPtAddWorkout');
 const btnPtCopyWorkout = document.getElementById('btnPtCopyWorkout');
+const btnSubmitCopyWorkout = document.getElementById('btnSubmitCopyWorkout');
 const ptExerciseBack = document.getElementById('ptExerciseBack');
 let patientIDAddWorkout;
 let patientNameAddWorkout;
@@ -248,6 +249,7 @@ function exitModal() {
   modalCopyWorkout.style.opacity = '0';
   modalCopyWorkout.style.visibility = 'hidden';
   modalCopyWorkout.innerHTML = '';
+  btnSubmitCopyWorkout.style.display = 'none';
 }
 
 //Add Patient to collection
@@ -714,6 +716,7 @@ function backPatientExercises() {
   //Clears list to remove double print
   modalPatientExercises.innerHTML = '';
   modalCopyWorkout.innerHTML = '';
+  btnSubmitCopyWorkout.style.display = 'none';
 }
 
 function renderPatientWorkouts(id) {
@@ -798,6 +801,7 @@ function openCopyWorkout() {
   ptExerciseBack.style.display = 'block';
   btnPtAddWorkout.style.display = 'none';
   btnPtCopyWorkout.style.display = 'none';
+  btnSubmitCopyWorkout.style.display = 'block';
 
   workoutRef
     .orderBy('name', 'asc')
@@ -839,10 +843,6 @@ function renderCopyWorkout(doc) {
 
   li.appendChild(label);
   modalCopyWorkout.appendChild(li);
-  //
-
-  // li.setAttribute('data-id', doc.id);
-  //   li.textContent = `${doc.data().name}`;
 
   /* <li class="list__workout--item">
       <label class="list__workout--label" for="scales">
@@ -856,6 +856,13 @@ function renderCopyWorkout(doc) {
       </label>
     </li>; */
 }
+
+function submitCopyWorkout() {
+  //read through list
+  console.log('submit copy');
+}
+
+btnSubmitCopyWorkout.addEventListener('click', submitCopyWorkout);
 
 function openPtPrintModal() {
   ptPrintModal.style.display = 'block';
