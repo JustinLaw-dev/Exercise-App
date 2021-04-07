@@ -857,9 +857,55 @@ function renderCopyWorkout(doc) {
     </li>; */
 }
 
+function copyWorkout(id, exerciseList) {
+  patientRef
+    .doc(patientIDAddWorkout)
+    .collection('workouts')
+    .doc(id)
+    .set({
+      name: id,
+      exerciseList: exerciseList,
+    })
+    .then(() => {
+      console.log(`${id} successfully copied!`);
+    })
+    .catch((error) => {
+      console.error('Error copying workout: ', error);
+    });
+}
+
 function submitCopyWorkout() {
   //read through list
-  console.log('submit copy');
+  const workouts = Array.from(modalCopyWorkout.children);
+
+  workouts.forEach((workout) => {
+    let input = workout.children[0].children[0];
+    if (input.checked == true) {
+      //get workout name
+      let id = input.name;
+      //query workout list
+      let docRef = workoutRef.doc(id);
+
+      //Copy over workouts from main workout list to patient workout
+      docRef
+        .get()
+        .then((doc) => {
+          if (doc.exists) {
+            let exerciseList = doc.data().exerciseList;
+            copyWorkout(id, exerciseList);
+          } else {
+            console.log('No such document!');
+          }
+        })
+        .catch((error) => {
+          console.log('Error getting document:', error);
+        });
+
+      //write new document in patient collection workouts, id= name, name=name, workoutlist = workout array
+    } else return;
+  });
+
+  console.log('submit successful');
 }
 
 btnSubmitCopyWorkout.addEventListener('click', submitCopyWorkout);
