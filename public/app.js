@@ -91,6 +91,7 @@ const btnSubmitCopyWorkout = document.getElementById('btnSubmitCopyWorkout');
 const ptExerciseBack = document.getElementById('ptExerciseBack');
 let patientIDAddWorkout;
 let patientNameAddWorkout;
+
 const ptPrintModal = document.getElementById('ptPrintModal');
 const ptPrintList = document.getElementById('ptPrintList');
 
