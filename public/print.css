@@ -67,7 +67,7 @@ body {
 }
 
 .list__print--instructions {
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   width: 45%;
 }
 
@@ -75,7 +75,7 @@ body {
   border: none;
   transform: translateY(-10vh);
   padding-top: 0;
-  font-size: 1.2rem;
+  font-size: 1.4rem;
 }
 
 /* Print Workout styling */
@@ -111,8 +111,8 @@ body {
   display: flex;
 }
 
-#ptPrintList {
-}
+/* #ptPrintList {
+} */
 
 #ptPrintList li {
   /* border: 1px blue solid; */
@@ -137,8 +137,19 @@ body {
   height: 80%;
 }
 
-#ptPrintList p {
+#ptPrintList .list__print--instructions,
+#ptPrintList .list__print--textArea {
   font-size: 1.8rem;
+}
+
+#workoutPrintModal .list__print--heading {
+  padding-top: 3rem;
+  padding-bottom: 0;
+}
+
+#printWorkoutList .list__print--instructions,
+#printWorkoutList .list__print--textArea {
+  font-size: 1.7rem;
 }
 
 /*
