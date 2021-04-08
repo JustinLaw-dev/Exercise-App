@@ -1,5 +1,5 @@
-@import url("https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;700&display=swap");
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;700&display=swap"');
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;1,300&display=swap");
 .margin--top-big {
   margin-top: 6rem;
 }
@@ -74,7 +74,7 @@ html {
 
 body,
 textarea {
-  font-family: 'Barlow', sans-serif;
+  font-family: 'Roboto', sans-serif;
   color: #0c0c0d;
 }
 
@@ -89,7 +89,7 @@ textarea {
 
 @media only screen and (min-width: 2000px) {
   .header--primary {
-    font-size: 15rem;
+    font-size: 8rem;
   }
 }
 
@@ -118,6 +118,14 @@ textarea {
   font-size: 2.2rem;
   text-align: center;
   margin-top: 2rem;
+}
+
+@media only screen and (min-width: 2000px) {
+  .heading--tertiary {
+    font-size: 4.2rem;
+    text-align: center;
+    margin-top: 10rem;
+  }
 }
 
 .text__forgot {
@@ -269,21 +277,14 @@ input {
   width: 40%;
   -webkit-box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.4);
           box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.4);
-}
-
-.button--login {
   font-size: 2rem;
 }
 
 @media only screen and (min-width: 2000px) {
-  .button--login {
+  .button--login, .button--signup {
     font-size: 5rem;
     padding: 2rem 4rem;
   }
-}
-
-.button--signup {
-  font-size: 1.6rem;
 }
 
 .button--logout {
@@ -407,12 +408,22 @@ input {
   .button__submit {
     font-size: 3.5rem;
     margin-top: 8rem;
+    width: 100%;
+    padding: 3rem;
   }
 }
 
 .button__submit--signUp {
   width: 10vw;
   margin: 3rem auto;
+}
+
+@media only screen and (min-width: 2000px) {
+  .button__submit--signUp {
+    width: 100%;
+    margin: 10rem auto;
+    font-size: 4rem;
+  }
 }
 
 .button__print {
@@ -528,6 +539,14 @@ input {
   width: 30%;
 }
 
+@media only screen and (min-width: 2000px) {
+  .button__patient--addWorkout, .button__patient--printPtWorkout {
+    font-size: 3.8rem;
+    width: 38%;
+    height: 8%;
+  }
+}
+
 .button__patient--printPtWorkout {
   display: none;
   -webkit-transition: all 0.2s;
@@ -545,6 +564,19 @@ input {
   -ms-flex-pack: distribute;
       justify-content: space-around;
   margin-top: 2rem;
+}
+
+@media only screen and (min-width: 2000px) {
+  .button__row {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    height: 15vh;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
 }
 
 .button__submitSave {
@@ -603,8 +635,32 @@ input {
   margin: 0 auto;
 }
 
+@media only screen and (min-width: 2000px) {
+  #btnPrintWorkout {
+    font-size: 3.8rem;
+    width: 38%;
+    height: 8%;
+  }
+}
+
+@media only screen and (min-width: 2000px) {
+  #btnSaveWorkout {
+    font-size: 3.8rem;
+    width: 60%;
+    height: 5vh;
+  }
+}
+
 #btnSaveWorkoutPatient {
   display: none;
+}
+
+@media only screen and (min-width: 2000px) {
+  #btnSaveWorkoutPatient {
+    font-size: 3.8rem;
+    width: 60%;
+    height: 5vh;
+  }
 }
 
 #btnSubmitCopyWorkout {
@@ -622,6 +678,14 @@ input {
   transition: all 0.2s;
 }
 
+@media only screen and (min-width: 2000px) {
+  .modal__button--back {
+    font-size: 5rem;
+    top: 5%;
+    left: 5%;
+  }
+}
+
 .label {
   font-size: 1.8rem;
   margin-top: 2rem;
@@ -630,8 +694,9 @@ input {
 
 @media only screen and (min-width: 2000px) {
   .label {
-    font-size: 5rem;
-    margin-top: 5vh;
+    font-size: 4rem;
+    margin-top: 3vh;
+    margin-bottom: 1vh;
   }
 }
 
@@ -639,6 +704,12 @@ input {
   font-size: 1.6rem;
   margin-top: 2rem;
   font-family: 'Montserrat';
+}
+
+@media only screen and (min-width: 2000px) {
+  .label--signUp {
+    font-size: 4rem;
+  }
 }
 
 input,
@@ -668,6 +739,19 @@ textarea:focus {
   }
 }
 
+@media only screen and (min-width: 2000px) {
+  input[type='checkbox'] {
+    /* Double-sized Checkboxes */
+    /* IE */
+    /* FF */
+    -webkit-transform: scale(3);
+    /* Safari and Chrome */
+    /* Opera */
+    transform: scale(3);
+    padding: 10px;
+  }
+}
+
 .input {
   font-size: 2rem;
   margin-top: 0.5rem;
@@ -688,7 +772,7 @@ textarea:focus {
 
 @media only screen and (min-width: 2000px) {
   .input__signIn, .input__signUp {
-    font-size: 6rem;
+    font-size: 5rem;
   }
 }
 
@@ -803,6 +887,7 @@ input[type='file'] {
 @media only screen and (min-width: 2000px) {
   .tabs__userWelcome {
     font-size: 3.5rem;
+    padding: 3rem 4rem;
   }
 }
 
@@ -849,8 +934,8 @@ input[type='file'] {
 
 @media only screen and (min-width: 2000px) {
   .tabs__link {
-    height: 10rem;
-    font-size: 3rem;
+    height: 15rem;
+    font-size: 4rem;
   }
 }
 
@@ -879,7 +964,7 @@ input[type='file'] {
 
 @media only screen and (min-width: 2000px) {
   .fa-list-ul {
-    width: 45px;
+    width: 60px;
   }
 }
 
@@ -1034,7 +1119,7 @@ input[type='file'] {
 @media only screen and (min-width: 2000px) {
   .list__patients li {
     height: 10%;
-    font-size: 7rem;
+    font-size: 5.5rem;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -1253,6 +1338,12 @@ input[type='file'] {
   font-size: 2rem;
 }
 
+@media only screen and (min-width: 2000px) {
+  .list__print--back {
+    font-size: 7rem;
+  }
+}
+
 .list__print li {
   border-bottom: 1px solid black;
 }
@@ -1307,7 +1398,7 @@ input[type='file'] {
 
 @media only screen and (min-width: 2000px) {
   .list__print--instructions {
-    font-size: 4rem;
+    font-size: 5rem;
   }
 }
 
@@ -1318,6 +1409,12 @@ input[type='file'] {
   margin-bottom: 2rem;
   padding-top: 1rem;
   border: 1px solid #b4b4b4;
+}
+
+@media only screen and (min-width: 2000px) {
+  .list__print--textArea {
+    font-size: 4rem;
+  }
 }
 
 .list__exercise__container {
@@ -1417,6 +1514,43 @@ input[type='file'] {
 
 .list__workout--label:hover {
   cursor: pointer;
+}
+
+@media only screen and (min-width: 2000px) {
+  .list__workout--label {
+    font-size: 4rem;
+  }
+}
+
+@media only screen and (min-width: 2000px) {
+  #saveWorkoutForm {
+    font-size: 4rem;
+    width: 50%;
+  }
+}
+
+@media only screen and (min-width: 2000px) {
+  #saveWorkoutForm input {
+    font-size: 4rem;
+  }
+}
+
+@media only screen and (min-width: 2000px) {
+  #saveWorkoutList {
+    width: 100%;
+  }
+}
+
+@media only screen and (min-width: 2000px) {
+  #saveWorkoutList .list__workout--item {
+    width: 95%;
+  }
+}
+
+@media only screen and (min-width: 2000px) {
+  #saveWorkoutList .list__workout--text {
+    font-size: 4rem;
+  }
 }
 
 .modal__outer,
@@ -1607,7 +1741,7 @@ input[type='file'] {
 }
 
 .modal__header {
-  font-size: 4rem;
+  font-size: 3rem;
   text-align: center;
   margin: 0 auto;
   margin-top: 6rem;
@@ -1617,6 +1751,7 @@ input[type='file'] {
 @media only screen and (min-width: 2000px) {
   .modal__header {
     font-size: 7rem;
+    width: 50%;
   }
 }
 
@@ -1670,6 +1805,61 @@ input[type='file'] {
           transform: translateX(-50%);
   -webkit-transition: all 0.5s;
   transition: all 0.5s;
+}
+
+@media only screen and (min-width: 2000px) {
+  #modalPatientClicked {
+    width: 40vw;
+    height: 60vh;
+    top: 20vh;
+    left: 32vw;
+  }
+}
+
+@media only screen and (min-width: 2000px) {
+  #modalPatientClicked .list__workout--item {
+    width: 16vw;
+  }
+}
+
+@media only screen and (min-width: 2000px) {
+  #modalPatientClicked .list__workout--text {
+    font-size: 4rem;
+    width: 90%;
+  }
+}
+
+@media only screen and (min-width: 2000px) {
+  #saveWorkoutModal {
+    width: 35vw;
+    height: 70vh;
+  }
+}
+
+#saveWorkoutModal .list__workout {
+  height: 35vh;
+}
+
+@media only screen and (min-width: 2000px) {
+  #workoutViewModal {
+    width: 40vw;
+    height: 60vh;
+    top: 20vh;
+    left: 32vw;
+  }
+}
+
+@media only screen and (min-width: 2000px) {
+  #workoutViewModal .list__workout--item {
+    width: 16vw;
+  }
+}
+
+@media only screen and (min-width: 2000px) {
+  #workoutViewModal .list__workout--text {
+    font-size: 4rem;
+    width: 90%;
+  }
 }
 
 .form__container {
@@ -1866,7 +2056,19 @@ input[type='file'] {
 }
 
 .workouts__header {
-  font-size: 5rem;
+  font-size: 3rem;
   margin-top: 2rem;
+}
+
+@media only screen and (min-width: 2000px) {
+  .workouts__header {
+    font-size: 7rem;
+  }
+}
+
+@media only screen and (min-width: 2000px) {
+  #workoutListView {
+    height: 50%;
+  }
 }
 /*# sourceMappingURL=main.css.map */

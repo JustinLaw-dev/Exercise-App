@@ -162,7 +162,7 @@
 }
 
 .modal__header {
-  font-size: 4rem;
+  font-size: 3rem;
   text-align: center;
   margin: 0 auto;
   margin-top: 6rem;
@@ -170,6 +170,7 @@
 
   @include respond(big-desktop) {
     font-size: 7rem;
+    width: 50%;
   }
 }
 
@@ -216,4 +217,59 @@
   transform: translateX(-50%);
 
   transition: all 0.5s;
+}
+
+#modalPatientClicked {
+  @include respond(big-desktop) {
+    width: 40vw;
+    height: 60vh;
+    top: 20vh;
+    left: 32vw;
+  }
+
+  & .list__workout--item {
+    @include respond(big-desktop) {
+      width: 16vw;
+    }
+  }
+
+  & .list__workout--text {
+    @include respond(big-desktop) {
+      font-size: 4rem;
+      width: 90%;
+    }
+  }
+}
+
+#saveWorkoutModal {
+  @include respond(big-desktop) {
+    width: 35vw;
+    height: 70vh;
+  }
+
+  & .list__workout {
+    height: 35vh;
+  }
+}
+
+#workoutViewModal {
+  @include respond(big-desktop) {
+    width: 40vw;
+    height: 60vh;
+    top: 20vh;
+    left: 32vw;
+  }
+
+  & .list__workout--item {
+    @include respond(big-desktop) {
+      width: 16vw;
+    }
+  }
+
+  & .list__workout--text {
+    @include respond(big-desktop) {
+      font-size: 4rem;
+      width: 90%;
+    }
+  }
 }

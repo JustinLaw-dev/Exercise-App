@@ -6,8 +6,18 @@
   }
 
   &__header {
-    font-size: 5rem;
-    
+    font-size: 3rem;
+
     margin-top: 2rem;
+
+    @include respond(big-desktop) {
+      font-size: 7rem;
+    }
+  }
+}
+
+#workoutListView {
+  @include respond(big-desktop) {
+    height: 50%;
   }
 }

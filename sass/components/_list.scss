@@ -65,7 +65,7 @@
 
       @include respond(big-desktop) {
         height: 10%;
-        font-size: 7rem;
+        font-size: 5.5rem;
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -226,6 +226,10 @@
       left: 2rem;
       background-color: $color-white;
       font-size: 2rem;
+
+      @include respond(big-desktop) {
+        font-size: 7rem;
+      }
     }
 
     & li {
@@ -267,7 +271,7 @@
       line-height: 1.5;
 
       @include respond(big-desktop) {
-        font-size: 4rem;
+        font-size: 5rem;
       }
     }
 
@@ -278,6 +282,10 @@
       margin-bottom: 2rem;
       padding-top: 1rem;
       border: 1px solid $color-gray-500;
+
+      @include respond(big-desktop) {
+        font-size: 4rem;
+      }
     }
   }
 }
@@ -332,6 +340,7 @@
 
   &--view {
     width: 50%;
+
     margin: 3rem auto;
     text-align: center;
     overflow: auto;
@@ -351,6 +360,41 @@
 
     &:hover {
       cursor: pointer;
+    }
+
+    @include respond(big-desktop) {
+      font-size: 4rem;
+    }
+  }
+}
+
+#saveWorkoutForm {
+  @include respond(big-desktop) {
+    font-size: 4rem;
+    width: 50%;
+  }
+
+  & input {
+    @include respond(big-desktop) {
+      font-size: 4rem;
+    }
+  }
+}
+
+#saveWorkoutList {
+  @include respond(big-desktop) {
+    width: 100%;
+  }
+
+  & .list__workout--item {
+    @include respond(big-desktop) {
+      width: 95%;
+    }
+  }
+
+  & .list__workout--text {
+    @include respond(big-desktop) {
+      font-size: 4rem;
     }
   }
 }

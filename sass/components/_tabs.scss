@@ -1,11 +1,11 @@
 .tabs {
   &__img {
-    &-Container {
-      // background: $color-white;
-      // width: 4rem;
-      // height: 4rem;
-      // border-radius: 50%;
-    }
+    // &-Container {
+    //   // background: $color-white;
+    //   // width: 4rem;
+    //   // height: 4rem;
+    //   // border-radius: 50%;
+    // }
 
     display: block;
     width: 3rem;
@@ -28,6 +28,7 @@
 
     @include respond(big-desktop) {
       font-size: 3.5rem;
+      padding: 3rem 4rem;
     }
   }
 
@@ -63,8 +64,8 @@
     margin: 0.2rem 0.25rem;
 
     @include respond(big-desktop) {
-      height: 10rem;
-      font-size: 3rem;
+      height: 15rem;
+      font-size: 4rem;
     }
 
     & i {
@@ -96,6 +97,6 @@
   width: 20px;
 
   @include respond(big-desktop) {
-    width: 45px;
+    width: 60px;
   }
 }
