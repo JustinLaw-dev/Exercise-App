@@ -718,6 +718,8 @@ function backPatientExercises() {
   modalPatientExercises.innerHTML = '';
   modalCopyWorkout.innerHTML = '';
   btnSubmitCopyWorkout.style.display = 'none';
+
+  patientModalName.textContent = patientNameAddWorkout;
 }
 
 function renderPatientWorkouts(id) {
@@ -780,6 +782,7 @@ modalPatientWorkouts.addEventListener('click', function (e) {
     let workoutID = target.textContent;
 
     openPatientExercises();
+    patientModalName.textContent = `${patientNameAddWorkout}: ${workoutID}`;
     ptExerciseBack.style.display = 'block';
     renderPatientExercises(workoutID);
   }
@@ -869,9 +872,12 @@ function copyWorkout(id, exerciseList) {
     })
     .then(() => {
       console.log(`${id} successfully copied!`);
+      window.alert(`${id} successfully copied!`);
+      exitModal();
     })
     .catch((error) => {
       console.error('Error copying workout: ', error);
+      window.alert(`${id} successfully copied!`);
     });
 }
 
