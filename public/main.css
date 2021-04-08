@@ -1,5 +1,5 @@
-@import url("https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;700&display=swap");
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;700&display=swap"');
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;1,300&display=swap");
 .margin--top-big {
   margin-top: 6rem;
 }
@@ -74,20 +74,22 @@ html {
 
 body,
 textarea {
-  font-family: 'Barlow', sans-serif;
+  font-family: 'Roboto', sans-serif;
   color: #0c0c0d;
 }
 
 .header--primary {
-  font-size: 5rem;
-  font-weight: 400;
-  width: 100%;
-  text-align: center;
+  font-family: 'Montserrat';
+  font-size: 3rem;
+  font-weight: 700;
+  width: 25vw;
+  margin: 4rem auto;
+  color: #03396c;
 }
 
 @media only screen and (min-width: 2000px) {
   .header--primary {
-    font-size: 15rem;
+    font-size: 8rem;
   }
 }
 
@@ -112,9 +114,23 @@ textarea {
   }
 }
 
+.heading--tertiary {
+  font-size: 2.2rem;
+  text-align: center;
+  margin-top: 2rem;
+}
+
+@media only screen and (min-width: 2000px) {
+  .heading--tertiary {
+    font-size: 4.2rem;
+    text-align: center;
+    margin-top: 10rem;
+  }
+}
+
 .text__forgot {
   margin-top: 3rem;
-  font-size: 2rem;
+  font-size: 1.6rem;
   text-align: center;
 }
 
@@ -164,6 +180,7 @@ button,
 
 .modal__inner--exerciseView-text {
   font-size: 2rem;
+  line-height: 1.6;
 }
 
 @media only screen and (min-width: 2000px) {
@@ -209,25 +226,17 @@ input {
           box-shadow: 1px 2px 2px rgba(0, 0, 0, 0.2);
   border: 1px solid #b4b4b4;
   border-radius: 5px;
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
+}
+
+.button--secondary:hover {
+  background-color: #f0f0f0;
 }
 
 .button--tertiary {
   background-color: transparent;
   color: #646464;
-}
-
-.button__round {
-  border-radius: 3rem;
-  padding: 1rem 4rem;
-  width: 40%;
-  -webkit-box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.4);
-          box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.4);
-}
-
-@media only screen and (min-width: 2000px) {
-  .button__round {
-    padding: 2rem 4rem;
-  }
 }
 
 .button__square {
@@ -262,35 +271,25 @@ input {
           box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
 }
 
-.button--login {
-  border: 1px solid #03396c;
-  color: white;
-  background-color: #03396c;
-  font-size: 2rem;
-}
-
-.button--signup {
-  color: #03396c;
-  border: 1px solid lightblue;
-  background-color: lightblue;
+.button--login, .button--signup {
+  border-radius: 5px;
+  padding: 1rem 4rem;
+  width: 40%;
+  -webkit-box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.4);
+          box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.4);
   font-size: 2rem;
 }
 
 @media only screen and (min-width: 2000px) {
   .button--login, .button--signup {
     font-size: 5rem;
+    padding: 2rem 4rem;
   }
 }
 
 .button--logout {
-  background-color: #ffffff;
-  color: #03396c;
-  width: auto;
-  height: auto;
-  padding: 2rem 4rem;
-  border: 2px solid #03396c;
-  border-radius: 5px;
-  margin-top: 10rem;
+  width: 17rem;
+  height: 5rem;
   -webkit-box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.25);
           box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.25);
 }
@@ -298,6 +297,8 @@ input {
 @media only screen and (min-width: 2000px) {
   .button--logout {
     font-size: 2.75rem;
+    width: 60%;
+    height: 7%;
   }
 }
 
@@ -306,7 +307,7 @@ input {
 }
 
 .button__delete--background {
-  background-color: #f5f7fa;
+  background-color: #f0f0f0;
   width: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -331,7 +332,7 @@ input {
 }
 
 .button__delete--secondary {
-  background-color: #f5f7fa;
+  background-color: #f0f0f0;
   color: #646464;
   margin-right: 2rem;
 }
@@ -407,6 +408,21 @@ input {
   .button__submit {
     font-size: 3.5rem;
     margin-top: 8rem;
+    width: 100%;
+    padding: 3rem;
+  }
+}
+
+.button__submit--signUp {
+  width: 10vw;
+  margin: 3rem auto;
+}
+
+@media only screen and (min-width: 2000px) {
+  .button__submit--signUp {
+    width: 100%;
+    margin: 10rem auto;
+    font-size: 4rem;
   }
 }
 
@@ -516,6 +532,57 @@ input {
   margin-right: 1rem;
 }
 
+.button__patient--addWorkout, .button__patient--printPtWorkout {
+  display: block;
+  margin: 2rem auto;
+  font-size: 1.8rem;
+  width: 30%;
+}
+
+@media only screen and (min-width: 2000px) {
+  .button__patient--addWorkout, .button__patient--printPtWorkout {
+    font-size: 3.8rem;
+    width: 38%;
+    height: 8%;
+  }
+}
+
+.button__patient--printPtWorkout {
+  display: none;
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
+}
+
+.button__row {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  margin-top: 2rem;
+}
+
+@media only screen and (min-width: 2000px) {
+  .button__row {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    height: 15vh;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+}
+
+.button__submitSave {
+  font-size: 1.6rem;
+}
+
 .exercise-plus {
   background-color: #ffffff;
   color: black;
@@ -545,7 +612,7 @@ input {
 
 #workoutPages {
   position: absolute;
-  bottom: 7vh;
+  bottom: 11vh;
   right: 5vw;
 }
 
@@ -568,6 +635,57 @@ input {
   margin: 0 auto;
 }
 
+@media only screen and (min-width: 2000px) {
+  #btnPrintWorkout {
+    font-size: 3.8rem;
+    width: 38%;
+    height: 8%;
+  }
+}
+
+@media only screen and (min-width: 2000px) {
+  #btnSaveWorkout {
+    font-size: 3.8rem;
+    width: 60%;
+    height: 5vh;
+  }
+}
+
+#btnSaveWorkoutPatient {
+  display: none;
+}
+
+@media only screen and (min-width: 2000px) {
+  #btnSaveWorkoutPatient {
+    font-size: 3.8rem;
+    width: 60%;
+    height: 5vh;
+  }
+}
+
+#btnSubmitCopyWorkout {
+  display: none;
+}
+
+.modal__button--back {
+  background-color: #ffffff;
+  font-size: 1.8rem;
+  position: absolute;
+  top: 5vh;
+  left: 5vw;
+  display: none;
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
+}
+
+@media only screen and (min-width: 2000px) {
+  .modal__button--back {
+    font-size: 5rem;
+    top: 5%;
+    left: 5%;
+  }
+}
+
 .label {
   font-size: 1.8rem;
   margin-top: 2rem;
@@ -576,17 +694,34 @@ input {
 
 @media only screen and (min-width: 2000px) {
   .label {
-    font-size: 5rem;
-    margin-top: 5vh;
+    font-size: 4rem;
+    margin-top: 3vh;
+    margin-bottom: 1vh;
   }
 }
 
-input {
-  border: 1px solid #646464;
-  border-radius: 5px;
+.label--signUp {
+  font-size: 1.6rem;
+  margin-top: 2rem;
+  font-family: 'Montserrat';
 }
 
-input:focus {
+@media only screen and (min-width: 2000px) {
+  .label--signUp {
+    font-size: 4rem;
+  }
+}
+
+input,
+textarea {
+  border: 2px solid #b4b4b4;
+  border-radius: 5px;
+  -webkit-transition: all 0.1s;
+  transition: all 0.1s;
+}
+
+input:focus,
+textarea:focus {
   border: 2px solid #5190ee;
   -webkit-box-shadow: 0 0 5px #51cbee;
           box-shadow: 0 0 5px #51cbee;
@@ -594,11 +729,26 @@ input:focus {
 }
 
 @media only screen and (min-width: 2000px) {
-  input {
+  input,
+  textarea {
     border: 4px solid #646464;
   }
-  input:focus {
+  input:focus,
+  textarea:focus {
     border: 5px solid #5190ee;
+  }
+}
+
+@media only screen and (min-width: 2000px) {
+  input[type='checkbox'] {
+    /* Double-sized Checkboxes */
+    /* IE */
+    /* FF */
+    -webkit-transform: scale(3);
+    /* Safari and Chrome */
+    /* Opera */
+    transform: scale(3);
+    padding: 10px;
   }
 }
 
@@ -615,9 +765,14 @@ input:focus {
   }
 }
 
+.input__signUp {
+  font-size: 1.6rem;
+  width: 20vw;
+}
+
 @media only screen and (min-width: 2000px) {
-  .input__signUp {
-    font-size: 6rem;
+  .input__signIn, .input__signUp {
+    font-size: 5rem;
   }
 }
 
@@ -697,7 +852,7 @@ input[type='file'] {
   font-size: 4rem;
   text-align: center;
   margin: 0 auto;
-  margin-top: 6rem;
+  margin-top: 5rem;
 }
 
 @media only screen and (min-width: 2000px) {
@@ -721,7 +876,10 @@ input[type='file'] {
 }
 
 .tabs__userWelcome {
-  color: #ffffff;
+  color: #03396c;
+  background-color: #ffffff;
+  border-radius: 0.5rem;
+  padding: 1rem 2rem;
   font-size: 1.6rem;
   text-align: center;
 }
@@ -729,6 +887,7 @@ input[type='file'] {
 @media only screen and (min-width: 2000px) {
   .tabs__userWelcome {
     font-size: 3.5rem;
+    padding: 3rem 4rem;
   }
 }
 
@@ -736,7 +895,7 @@ input[type='file'] {
   margin: 0;
   margin-top: 10rem;
   width: 100%;
-  height: 50%;
+  height: 70%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -744,9 +903,8 @@ input[type='file'] {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -776,8 +934,8 @@ input[type='file'] {
 
 @media only screen and (min-width: 2000px) {
   .tabs__link {
-    height: 10rem;
-    font-size: 3rem;
+    height: 15rem;
+    font-size: 4rem;
   }
 }
 
@@ -806,7 +964,7 @@ input[type='file'] {
 
 @media only screen and (min-width: 2000px) {
   .fa-list-ul {
-    width: 45px;
+    width: 60px;
   }
 }
 
@@ -864,8 +1022,10 @@ input[type='file'] {
 }
 
 .searchbar__wrapper:focus-within {
-  border: 3px solid #005b96;
-  border-radius: 30px;
+  border: 2px solid #5190ee;
+  -webkit-box-shadow: 0 0 5px #51cbee;
+          box-shadow: 0 0 5px #51cbee;
+  border-radius: 100px;
 }
 
 @media only screen and (min-width: 2000px) {
@@ -905,6 +1065,8 @@ input[type='file'] {
   width: 97%;
   height: 85%;
   margin: 2rem auto;
+  border: 2px solid #b4b4b4;
+  border-radius: 1rem;
 }
 
 .list__wrapper--exercise {
@@ -940,7 +1102,7 @@ input[type='file'] {
   width: 93%;
   padding: 2rem 1rem;
   font-size: 2.1rem;
-  border-bottom: 1px solid #e7e7e7;
+  border-bottom: 2px solid #e7e7e7;
   cursor: pointer;
 }
 
@@ -957,7 +1119,7 @@ input[type='file'] {
 @media only screen and (min-width: 2000px) {
   .list__patients li {
     height: 10%;
-    font-size: 7rem;
+    font-size: 5.5rem;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -1044,6 +1206,7 @@ input[type='file'] {
   border-radius: 3px;
   -webkit-box-shadow: 2px 3px 5px 0px rgba(50, 50, 50, 0.75);
   box-shadow: 2px 3px 5px 0px rgba(50, 50, 50, 0.75);
+  border: 1px solid #646464;
   height: 18rem;
   margin-bottom: 1rem;
 }
@@ -1054,6 +1217,7 @@ input[type='file'] {
     border-radius: 15px;
     -webkit-box-shadow: 8px 10px 15px 0px rgba(50, 50, 50, 0.75);
             box-shadow: 8px 10px 15px 0px rgba(50, 50, 50, 0.75);
+    border: 3px solid #646464;
   }
 }
 
@@ -1174,6 +1338,16 @@ input[type='file'] {
   font-size: 2rem;
 }
 
+@media only screen and (min-width: 2000px) {
+  .list__print--back {
+    font-size: 7rem;
+  }
+}
+
+.list__print li {
+  border-bottom: 1px solid black;
+}
+
 .list__print--row {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1188,7 +1362,6 @@ input[type='file'] {
   -webkit-box-align: start;
       -ms-flex-align: start;
           align-items: flex-start;
-  border-bottom: 1px solid black;
   padding-bottom: 4rem;
 }
 
@@ -1206,12 +1379,14 @@ input[type='file'] {
 .list__print--img {
   width: 25rem;
   height: 15rem;
+  border: 1px solid gray;
 }
 
 @media only screen and (min-width: 2000px) {
   .list__print--img {
     width: 18vw;
     height: 22vh;
+    border: 3px solid gray;
   }
 }
 
@@ -1223,6 +1398,21 @@ input[type='file'] {
 
 @media only screen and (min-width: 2000px) {
   .list__print--instructions {
+    font-size: 5rem;
+  }
+}
+
+.list__print--textArea {
+  resize: none;
+  width: 45%;
+  font-size: 1.6rem;
+  margin-bottom: 2rem;
+  padding-top: 1rem;
+  border: 1px solid #b4b4b4;
+}
+
+@media only screen and (min-width: 2000px) {
+  .list__print--textArea {
     font-size: 4rem;
   }
 }
@@ -1306,7 +1496,65 @@ input[type='file'] {
           align-items: center;
 }
 
-.modal__outer {
+.list__workout--label {
+  width: 100%;
+  height: 100%;
+  font-size: 1.6rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding: 0rem 2rem;
+}
+
+.list__workout--label:hover {
+  cursor: pointer;
+}
+
+@media only screen and (min-width: 2000px) {
+  .list__workout--label {
+    font-size: 4rem;
+  }
+}
+
+@media only screen and (min-width: 2000px) {
+  #saveWorkoutForm {
+    font-size: 4rem;
+    width: 50%;
+  }
+}
+
+@media only screen and (min-width: 2000px) {
+  #saveWorkoutForm input {
+    font-size: 4rem;
+  }
+}
+
+@media only screen and (min-width: 2000px) {
+  #saveWorkoutList {
+    width: 100%;
+  }
+}
+
+@media only screen and (min-width: 2000px) {
+  #saveWorkoutList .list__workout--item {
+    width: 95%;
+  }
+}
+
+@media only screen and (min-width: 2000px) {
+  #saveWorkoutList .list__workout--text {
+    font-size: 4rem;
+  }
+}
+
+.modal__outer,
+.modal__outer--signup {
   display: none;
   /* Hidden by default */
   position: fixed;
@@ -1493,7 +1741,7 @@ input[type='file'] {
 }
 
 .modal__header {
-  font-size: 4rem;
+  font-size: 3rem;
   text-align: center;
   margin: 0 auto;
   margin-top: 6rem;
@@ -1503,6 +1751,7 @@ input[type='file'] {
 @media only screen and (min-width: 2000px) {
   .modal__header {
     font-size: 7rem;
+    width: 50%;
   }
 }
 
@@ -1541,15 +1790,79 @@ input[type='file'] {
 }
 
 #modalPatientExercises {
-  -webkit-transform: translateX(2vw);
-          transform: translateX(2vw);
+  -webkit-transform: translateX(40%);
+          transform: translateX(40%);
   visibility: hidden;
   opacity: 0;
   -webkit-transition: all 0.5s;
   transition: all 0.5s;
 }
 
-.container__form {
+#modalCopyWorkout {
+  opacity: 0;
+  visibility: hidden;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+}
+
+@media only screen and (min-width: 2000px) {
+  #modalPatientClicked {
+    width: 40vw;
+    height: 60vh;
+    top: 20vh;
+    left: 32vw;
+  }
+}
+
+@media only screen and (min-width: 2000px) {
+  #modalPatientClicked .list__workout--item {
+    width: 16vw;
+  }
+}
+
+@media only screen and (min-width: 2000px) {
+  #modalPatientClicked .list__workout--text {
+    font-size: 4rem;
+    width: 90%;
+  }
+}
+
+@media only screen and (min-width: 2000px) {
+  #saveWorkoutModal {
+    width: 35vw;
+    height: 70vh;
+  }
+}
+
+#saveWorkoutModal .list__workout {
+  height: 35vh;
+}
+
+@media only screen and (min-width: 2000px) {
+  #workoutViewModal {
+    width: 40vw;
+    height: 60vh;
+    top: 20vh;
+    left: 32vw;
+  }
+}
+
+@media only screen and (min-width: 2000px) {
+  #workoutViewModal .list__workout--item {
+    width: 16vw;
+  }
+}
+
+@media only screen and (min-width: 2000px) {
+  #workoutViewModal .list__workout--text {
+    font-size: 4rem;
+    width: 90%;
+  }
+}
+
+.form__container {
   margin: 0 auto;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1563,6 +1876,10 @@ input[type='file'] {
           justify-content: center;
   width: 25vw;
   height: 25%;
+}
+
+.form__container--signup {
+  width: 20vw;
 }
 
 .container--grid {
@@ -1653,6 +1970,7 @@ input[type='file'] {
 .container__right {
   width: 70vw;
   height: 100vh;
+  padding-top: 15vh;
 }
 
 .container__error {
@@ -1696,6 +2014,11 @@ input[type='file'] {
   }
 }
 
+#signupError {
+  width: 20vw;
+  margin: 1rem auto;
+}
+
 .signup__container {
   width: 100%;
   height: auto;
@@ -1703,8 +2026,23 @@ input[type='file'] {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.signup__modal {
+  display: none;
+  background-color: #ffffff;
+  width: 30vw;
+  height: 40vh;
+  border-radius: 5px;
+  position: absolute;
+  top: 25%;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  z-index: 2000;
 }
 
 .workouts__top {
@@ -1718,7 +2056,19 @@ input[type='file'] {
 }
 
 .workouts__header {
-  font-size: 5rem;
+  font-size: 3rem;
   margin-top: 2rem;
+}
+
+@media only screen and (min-width: 2000px) {
+  .workouts__header {
+    font-size: 7rem;
+  }
+}
+
+@media only screen and (min-width: 2000px) {
+  #workoutListView {
+    height: 50%;
+  }
 }
 /*# sourceMappingURL=main.css.map */
