@@ -194,6 +194,7 @@
   opacity: 1;
   visibility: visible;
 
+  -webkit-transition: all 0.5s;
   transition: all 0.5s;
 
   & li {
@@ -208,6 +209,7 @@
   visibility: hidden;
   opacity: 0;
 
+  -webkit-transition: all 0.5s;
   transition: all 0.5s;
 }
 
