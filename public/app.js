@@ -30,7 +30,7 @@ firebase.auth().onAuthStateChanged((firebaseUser) => {
       window.location.href = linkMain;
     } else if (window.location.href === linkMain) {
       const userWelcome = document.getElementById('userWelcome');
-      userWelcome.textContent = `Welcome ${user.email}`;
+      userWelcome.textContent = `Welcome, ${user.email}`;
       return;
     }
   }
@@ -83,10 +83,17 @@ const modalPatientDelete = document.getElementById('modalPatientDelInner');
 const patientModalName = document.getElementById('patientModalName');
 const modalPatientWorkouts = document.getElementById('modalPatientWorkouts');
 const modalPatientExercises = document.getElementById('modalPatientExercises');
+const modalCopyWorkout = document.getElementById('modalCopyWorkout');
+
 const btnPtAddWorkout = document.getElementById('btnPtAddWorkout');
+const btnPtCopyWorkout = document.getElementById('btnPtCopyWorkout');
+const btnSubmitCopyWorkout = document.getElementById('btnSubmitCopyWorkout');
 const ptExerciseBack = document.getElementById('ptExerciseBack');
 let patientIDAddWorkout;
 let patientNameAddWorkout;
+
+const ptPrintModal = document.getElementById('ptPrintModal');
+const ptPrintList = document.getElementById('ptPrintList');
 
 const exerciseList = document.getElementById('exerciseList');
 
@@ -239,6 +246,11 @@ function exitModal() {
 
   workoutViewModal.style.display = 'none';
   workoutListView.innerHTML = '';
+
+  modalCopyWorkout.style.opacity = '0';
+  modalCopyWorkout.style.visibility = 'hidden';
+  modalCopyWorkout.innerHTML = '';
+  btnSubmitCopyWorkout.style.display = 'none';
 }
 
 //Add Patient to collection
@@ -654,28 +666,6 @@ function prevExercisePage() {
     });
 }
 
-function renderPatientWorkouts(id) {
-  patientRef
-    .doc(id)
-    .collection('workouts')
-    .get()
-    .then((snapshot) => {
-      snapshot.forEach((doc) => {
-        let patientWorkoutName = doc.data().name;
-        let li = document.createElement('li');
-        let p = document.createElement('p');
-        p.textContent = patientWorkoutName;
-        p.classList.add('list__workout--text');
-        li.appendChild(p);
-        li.classList.add('list__workout--item');
-        modalPatientWorkouts.appendChild(li);
-      });
-    })
-    .catch((err) => {
-      console.log('Error getting documents', err);
-    });
-}
-
 //Open Patient Workout Modal
 function openPatientModal(target) {
   modalOuterPatient.style.display = 'block';
@@ -704,7 +694,10 @@ function openPatientExercises() {
 
   modalPatientExercises.style.opacity = '1';
   modalPatientExercises.style.visibility = 'visible';
-  modalPatientExercises.style.transform = 'translate(0)';
+  modalPatientExercises.style.transform = 'translate(50%)';
+  btnPtAddWorkout.style.display = 'none';
+  btnPtCopyWorkout.style.display = 'none';
+  btnPrintPtWorkout.style.display = 'block';
 }
 
 function backPatientExercises() {
@@ -713,8 +706,42 @@ function backPatientExercises() {
 
   modalPatientExercises.style.opacity = '0';
   modalPatientExercises.style.visibility = 'hidden';
-  modalPatientExercises.style.transform = 'translate(2vw)';
+  modalPatientExercises.style.transform = 'translate(40%)';
   ptExerciseBack.style.display = 'none';
+  btnPtAddWorkout.style.display = 'block';
+  btnPtCopyWorkout.style.display = 'block';
+  btnPrintPtWorkout.style.display = 'none';
+
+  modalCopyWorkout.style.opacity = '0';
+  modalCopyWorkout.style.visibility = 'hidden';
+  //Clears list to remove double print
+  modalPatientExercises.innerHTML = '';
+  modalCopyWorkout.innerHTML = '';
+  btnSubmitCopyWorkout.style.display = 'none';
+
+  patientModalName.textContent = patientNameAddWorkout;
+}
+
+function renderPatientWorkouts(id) {
+  patientRef
+    .doc(id)
+    .collection('workouts')
+    .get()
+    .then((snapshot) => {
+      snapshot.forEach((doc) => {
+        let patientWorkoutName = doc.data().name;
+        let li = document.createElement('li');
+        let p = document.createElement('p');
+        p.textContent = patientWorkoutName;
+        p.classList.add('list__workout--text');
+        li.appendChild(p);
+        li.classList.add('list__workout--item');
+        modalPatientWorkouts.appendChild(li);
+      });
+    })
+    .catch((err) => {
+      console.log('Error getting documents', err);
+    });
 }
 
 function renderPatientExercises(workoutID) {
@@ -748,20 +775,20 @@ function renderPatientExercises(workoutID) {
 
 modalPatientWorkouts.addEventListener('click', function (e) {
   target = e.target;
-  console.log(target);
   if (
     target.tagName == 'LI' ||
     target.classList.contains('list__workout--text')
   ) {
     let workoutID = target.textContent;
+
     openPatientExercises();
+    patientModalName.textContent = `${patientNameAddWorkout}: ${workoutID}`;
     ptExerciseBack.style.display = 'block';
     renderPatientExercises(workoutID);
   }
 });
 
 function moveToExercisePage() {
-  console.log('clicked');
   exitModal();
   ptExerciseBack.style.display = 'none';
   openTab('exercisesTab');
@@ -769,8 +796,176 @@ function moveToExercisePage() {
   btnSaveWorkoutPatient.textContent = `Save to ${patientNameAddWorkout}`;
 }
 
+//TODO
+function openCopyWorkout() {
+  modalPatientWorkouts.style.opacity = '0';
+  modalPatientWorkouts.style.visibility = 'hidden';
+  modalCopyWorkout.style.opacity = '1';
+  modalCopyWorkout.style.visibility = 'visible';
+  ptExerciseBack.style.display = 'block';
+  btnPtAddWorkout.style.display = 'none';
+  btnPtCopyWorkout.style.display = 'none';
+  btnSubmitCopyWorkout.style.display = 'block';
+
+  workoutRef
+    .orderBy('name', 'asc')
+    .limit(patientPageSize)
+    .get()
+    .then((snapshot) => {
+      snapshot.docs.forEach((doc) => {
+        renderCopyWorkout(doc);
+        //Adds query selector and event listener after patient list is finished rendering
+        // delWorkoutIcon = document.querySelectorAll('.workout-delete');
+        // delWorkoutIcon.forEach((icon) => {
+        //   icon.addEventListener('click', deleteWorkout);
+      });
+    });
+}
+
+function renderCopyWorkout(doc) {
+  let li = document.createElement('li');
+  let label = document.createElement('label');
+  let input = document.createElement('input');
+  let workoutName = doc.data().name;
+  let workoutId = doc.id;
+
+  li.classList.add('list__workout--item');
+  label.classList.add('list__workout--label');
+  input.classList.add('list__workout--input');
+
+  label.setAttribute('for', workoutName);
+  // input.setAttribute('type', 'checkbox');
+  // input.setAttribute('name', workoutName);
+  // input.id = workoutName;
+
+  label.innerHTML = `<input
+    class="list__workout--input"
+    type="checkbox"
+    id="${workoutName}"
+    name="${workoutName}"
+  />${workoutName}`;
+
+  li.appendChild(label);
+  modalCopyWorkout.appendChild(li);
+
+  /* <li class="list__workout--item">
+      <label class="list__workout--label" for="scales">
+        <input
+          class="list__workout--input"
+          type="checkbox"
+          id="scales"
+          name="scales"
+        />
+        Scales
+      </label>
+    </li>; */
+}
+
+function copyWorkout(id, exerciseList) {
+  patientRef
+    .doc(patientIDAddWorkout)
+    .collection('workouts')
+    .doc(id)
+    .set({
+      name: id,
+      exerciseList: exerciseList,
+    })
+    .then(() => {
+      console.log(`${id} successfully copied!`);
+      window.alert(`${id} successfully copied!`);
+      exitModal();
+    })
+    .catch((error) => {
+      console.error('Error copying workout: ', error);
+      window.alert(`${id} successfully copied!`);
+    });
+}
+
+function submitCopyWorkout() {
+  //read through list
+  const workouts = Array.from(modalCopyWorkout.children);
+
+  workouts.forEach((workout) => {
+    let input = workout.children[0].children[0];
+    if (input.checked == true) {
+      //get workout name
+      let id = input.name;
+      //query workout list
+      let docRef = workoutRef.doc(id);
+
+      //Copy over workouts from main workout list to patient workout
+      docRef
+        .get()
+        .then((doc) => {
+          if (doc.exists) {
+            let exerciseList = doc.data().exerciseList;
+            copyWorkout(id, exerciseList);
+          } else {
+            console.log('No such document!');
+          }
+        })
+        .catch((error) => {
+          console.log('Error getting document:', error);
+        });
+
+      //write new document in patient collection workouts, id= name, name=name, workoutlist = workout array
+    } else return;
+  });
+
+  console.log('submit successful');
+}
+
+btnSubmitCopyWorkout.addEventListener('click', submitCopyWorkout);
+
+function openPtPrintModal() {
+  ptPrintModal.style.display = 'block';
+  ptPrintList.innerHTML = '';
+}
+
+function closePtPrintModal() {
+  ptPrintModal.style.display = 'none';
+  ptPrintList.innerHTML = '';
+}
+
+function printPtWorkout(e) {
+  //loop through list, grabbing name
+  let items = modalPatientExercises.children;
+  openPtPrintModal();
+  for (i = 0; i < items.length; i++) {
+    let exerciseName = items[i].children[0].textContent;
+    console.log(exerciseName);
+    let exerciseDoc = exerciseRef.doc(`${exerciseName}`);
+
+    exerciseDoc
+      .get()
+      .then(function (doc) {
+        if (doc.exists) {
+          let exerciseID = doc.data().name;
+          let instructions = doc.data().instructions;
+          let img = doc.data().image;
+          console.log(exerciseID, instructions, img);
+
+          //Fill modal with list items
+          generatePtExercises(exerciseID, img, instructions);
+        } else {
+          // doc.data() will be undefined in this case
+          console.log('No such document!');
+        }
+      })
+      .catch(function (error) {
+        console.log('Error getting document:', error);
+      });
+  }
+}
+
+//query for exercise name, instructions, and image
+//display in printable list.
+
 btnPtAddWorkout.addEventListener('click', moveToExercisePage);
+btnPtCopyWorkout.addEventListener('click', openCopyWorkout);
+
 ptExerciseBack.addEventListener('click', backPatientExercises);
+btnPrintPtWorkout.addEventListener('click', printPtWorkout);
 
 const exerciseNext = document.getElementById('exerciseNextPage');
 const exercisePrev = document.getElementById('exercisePrevPage');
@@ -1095,7 +1290,6 @@ document.body.addEventListener('click', function (e) {
   }
 });
 
-//WIP Work in Progress TODO
 // Print single exercise, needed still?
 
 // listAddedExercises.addEventListener('click', function (e) {
@@ -1128,7 +1322,7 @@ const btnPrintList = document.getElementById('printAddedExercises');
 const btnSaveList = document.getElementById('saveAddedExercises');
 const btnClearList = document.getElementById('clearAddedExercises');
 
-const printModal = document.querySelector('.modal__inner--print');
+const printModal = document.getElementById('workoutPrintModal');
 const printWorkoutModal = document.getElementById('printWorkoutModal');
 btnPrintList.addEventListener('click', printExercises);
 btnSaveList.addEventListener('click', saveAddExerciseList);
@@ -1136,16 +1330,11 @@ btnClearList.addEventListener('click', clearAddExerciseList);
 
 function openPrintModal() {
   //Base values - must edit when there is a change to styling.
-  let baseWidth = '97%';
-  let baseHeight = '85%';
+  // let baseWidth = '97%';
+  // let baseHeight = '85%';
 
   //Open print modal
   printModal.style.display = 'block';
-  //Expand width modal to cover everything
-
-  // Alternative to open formatted HTML in new tab
-  // var opened = window.open("");
-  // opened.document.write("<html><head><title>MyTitle</title></head><body>test</body></html>");
 }
 
 function openPrintWorkoutModal() {
@@ -1165,12 +1354,19 @@ function closePrintWorkoutModal() {
   printWorkoutList.innerHTML = '';
 }
 
+//For Exercise Tab
 function generatePrintItems(exerciseID, img, instructions) {
   let li = document.createElement('li');
   let heading = document.createElement('h3');
   let div = document.createElement('div');
   let image = document.createElement('img');
   let p = document.createElement('p');
+  let textArea = document.createElement('textarea');
+  let emptyText = document.createTextNode('sets  reps  seconds');
+
+  textArea.classList.add('list__print--textArea');
+  textArea.maxLength = 40;
+  textArea.appendChild(emptyText);
 
   heading.classList.add('list__print--heading');
   div.classList.add('list__print--row');
@@ -1193,20 +1389,28 @@ function generatePrintItems(exerciseID, img, instructions) {
       console.log('Error getting documents: ', error);
     });
 
-  div.appendChild(image);
   div.appendChild(p);
+  div.appendChild(image);
   li.appendChild(heading);
   li.appendChild(div);
+  li.appendChild(textArea);
   printList.appendChild(li);
   // console.log(exerciseID, img, instructions);
 }
 
+//For Workout Tab
 function generatePrintWorkoutItems(exerciseID, img, instructions) {
   let li = document.createElement('li');
   let heading = document.createElement('h3');
   let div = document.createElement('div');
   let image = document.createElement('img');
   let p = document.createElement('p');
+  let textArea = document.createElement('textarea');
+  let emptyText = document.createTextNode('sets  reps  seconds');
+
+  textArea.classList.add('list__print--textArea');
+  textArea.maxLength = 40;
+  textArea.appendChild(emptyText);
 
   heading.classList.add('list__print--heading');
   div.classList.add('list__print--row');
@@ -1229,12 +1433,46 @@ function generatePrintWorkoutItems(exerciseID, img, instructions) {
       console.log('Error getting documents: ', error);
     });
 
-  div.appendChild(image);
   div.appendChild(p);
+  div.appendChild(image);
   li.appendChild(heading);
   li.appendChild(div);
+  li.appendChild(textArea);
   printWorkoutList.appendChild(li);
   // console.log(exerciseID, img, instructions);
+}
+
+//For Patient Tab
+function generatePtExercises(exerciseID, img, instructions) {
+  let li = document.createElement('li');
+  let heading = document.createElement('h3');
+  let div = document.createElement('div');
+  let image = document.createElement('img');
+  let p = document.createElement('p');
+  let textArea = document.createElement('textarea');
+  let emptyText = document.createTextNode('sets  reps  seconds');
+
+  textArea.classList.add('list__print--textArea');
+  textArea.maxLength = 40;
+  textArea.appendChild(emptyText);
+
+  heading.classList.add('list__print--heading');
+  div.classList.add('list__print--row');
+  image.classList.add('list__print--img');
+  p.classList.add('list__print--instructions');
+
+  heading.textContent = exerciseID;
+  image.src = img;
+  image.alt = `${exerciseID}`;
+  p.textContent = instructions;
+
+  div.appendChild(p);
+  div.appendChild(image);
+  li.appendChild(heading);
+  li.appendChild(div);
+  li.appendChild(textArea);
+  console.log(li);
+  ptPrintList.appendChild(li);
 }
 
 function printExercises() {
@@ -1265,6 +1503,8 @@ function printExercises() {
       });
   }
 }
+
+ptPrintBack.addEventListener('click', closePtPrintModal);
 
 function enterClearModal() {
   modalPatientDeleteOuter.style.display = 'block';
@@ -1335,27 +1575,32 @@ let workoutRef = db.collection('Workouts');
 
 function submitSaveWorkout(e) {
   e.preventDefault();
-  //Get workout name
-  let workoutName = workoutNameInput.value;
-  let workoutArray = [];
-  //save doc ref of execise name
-  let saveItems = listAddedExercises.children;
-  for (let i = 0; i < saveItems.length; i++) {
-    let exerciseName = saveItems[i].children[1].children[0].textContent;
-    workoutArray.push(exerciseName);
-  }
-  console.log('This workout is called: ' + workoutName);
-  console.table(workoutArray);
+  if (workoutNameInput.value != '' && listAddedExercises.children.length > 0) {
+    //Get workout name
+    let workoutName = workoutNameInput.value;
+    let workoutArray = [];
+    //save doc ref of execise name
+    let saveItems = listAddedExercises.children;
+    for (let i = 0; i < saveItems.length; i++) {
+      let exerciseName = saveItems[i].children[1].children[0].textContent;
+      workoutArray.push(exerciseName);
+    }
+    console.log('This workout is called: ' + workoutName);
+    console.table(workoutArray);
 
-  workoutRef.doc(`${workoutName}`).set({
-    name: workoutName,
-    exerciseList: workoutArray,
-  });
+    workoutRef.doc(`${workoutName}`).set({
+      name: workoutName,
+      exerciseList: workoutArray,
+    });
 
-  setTimeout(exitModal, 1000);
-  alert('upload complete!');
+    setTimeout(exitModal, 1000);
+    alert('upload complete!');
 
-  //look at this https://stackoverflow.com/questions/50012956/firestore-how-to-store-reference-to-document-how-to-retrieve-it
+    //look at this https://stackoverflow.com/questions/50012956/firestore-how-to-store-reference-to-document-how-to-retrieve-it
+  } else
+    window.alert(
+      'Please enter a name for the workout, or add exercises to the list before attempting to save.'
+    );
 }
 
 function submitSaveWorkoutPatient(e) {

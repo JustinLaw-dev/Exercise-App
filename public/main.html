@@ -37,29 +37,33 @@
       <!-- Tab buttons -->
       <div class="grid__bottom--left">
         <div class="tabs__menu">
+          <div>
+            <button
+              class="tabs__link tabs__link--active"
+              id="patientsLink"
+              onclick="openTab('patientsTab')"
+            >
+              <i class="fas fa-user-friends"></i>Patients
+            </button>
+            <button
+              class="tabs__link"
+              id="exercisesLink"
+              onclick="openTab('exercisesTab')"
+            >
+              <i class="fas fa-dumbbell"></i>Exercises
+            </button>
+            <button
+              class="tabs__link"
+              id="workoutLink"
+              onclick="openTab('workoutTab')"
+            >
+              <i class="fas fa-list-ul"></i>Workouts
+            </button>
+          </div>
           <button
-            class="tabs__link tabs__link--active"
-            id="patientsLink"
-            onclick="openTab('patientsTab')"
+            class="button button--secondary button--logout"
+            id="btnLogOut"
           >
-            <i class="fas fa-user-friends"></i>Patients
-          </button>
-          <button
-            class="tabs__link"
-            id="exercisesLink"
-            onclick="openTab('exercisesTab')"
-          >
-            <i class="fas fa-dumbbell"></i>Exercises
-          </button>
-          <button
-            class="tabs__link"
-            id="workoutLink"
-            onclick="openTab('workoutTab')"
-          >
-            <i class="fas fa-list-ul"></i>Workouts
-          </button>
-
-          <button class="button button--logout" id="btnLogOut">
             <i class="fas fa-sign-out-alt button--logout-icon"></i>Log Out
           </button>
         </div>
@@ -152,15 +156,15 @@
               <ul
                 class="list__workout list__workout--view"
                 id="modalPatientWorkouts"
-              >
-                <!-- <li class="list__workout--item">Hope</li> -->
-              </ul>
+              ></ul>
               <ul
                 class="list__workout list__workout--view"
                 id="modalPatientExercises"
-              >
-                <!-- <li class="list__workout--item">hope2</li> -->
-              </ul>
+              ></ul>
+              <ul
+                class="list__workout list__workout--view"
+                id="modalCopyWorkout"
+              ></ul>
             </div>
             <i class="modal__exit fas fa-times"></i>
             <button
@@ -169,6 +173,31 @@
             >
               Create New Workout
             </button>
+            <button
+              class="button--secondary button__patient--addWorkout"
+              id="btnPtCopyWorkout"
+            >
+              Copy Existing Workout(s)
+            </button>
+            <button
+              class="button--primary button__patient--addWorkout"
+              id="btnSubmitCopyWorkout"
+            >
+              Copy Workout(s)
+            </button>
+            <button
+              class="button--primary button__patient--printPtWorkout"
+              id="btnPrintPtWorkout"
+            >
+              Print Workout
+            </button>
+          </div>
+
+          <div class="modal__inner modal__inner--print" id="ptPrintModal">
+            <button class="list__print--back" id="ptPrintBack">
+              <i class="fas fa-chevron-left"></i> Back
+            </button>
+            <ul class="list__print" id="ptPrintList"></ul>
           </div>
 
           <div class="modal__outer" id="modalOuterSmall"></div>
@@ -352,7 +381,10 @@
               </button> -->
             </div>
 
-            <div class="modal__inner modal__inner--print">
+            <div
+              class="modal__inner modal__inner--print"
+              id="workoutPrintModal"
+            >
               <button class="list__print--back" id="printBack">
                 <i class="fas fa-chevron-left"></i> Back
               </button>

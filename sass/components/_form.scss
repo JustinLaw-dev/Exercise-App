@@ -4,14 +4,27 @@
   font-family: 'Montserrat';
 
   @include respond(big-desktop) {
-    font-size: 5rem;
-    margin-top: 5vh;
+    font-size: 4rem;
+    margin-top: 3vh;
+    margin-bottom: 1vh;
+  }
+
+  &--signUp {
+    font-size: 1.6rem;
+    margin-top: 2rem;
+    font-family: 'Montserrat';
+
+    @include respond(big-desktop) {
+      font-size: 4rem;
+    }
   }
 }
 
-input {
-  border: 1px solid $color-gray-700;
+input,
+textarea {
+  border: 2px solid $color-gray-500;
   border-radius: 5px;
+  transition: all 0.1s;
 
   &:focus {
     border: 2px solid $color-focus;
@@ -28,6 +41,18 @@ input {
   }
 }
 
+input[type='checkbox'] {
+  @include respond(big-desktop) {
+    /* Double-sized Checkboxes */
+    -ms-transform: scale(3); /* IE */
+    -moz-transform: scale(3); /* FF */
+    -webkit-transform: scale(3); /* Safari and Chrome */
+    -o-transform: scale(3); /* Opera */
+    transform: scale(3);
+    padding: 10px;
+  }
+}
+
 .input {
   font-size: 2rem;
   margin-top: 0.5rem;
@@ -39,8 +64,14 @@ input {
   }
 
   &__signUp {
+    font-size: 1.6rem;
+    width: 20vw;
+  }
+
+  &__signIn,
+  &__signUp {
     @include respond(big-desktop) {
-      font-size: 6rem;
+      font-size: 5rem;
     }
   }
 

@@ -25,11 +25,22 @@ const form = document.getElementById('signInForm');
 const textEmail = document.getElementById('email');
 const textPassword = document.getElementById('password');
 
+const emailSignup = document.getElementById('emailSignup');
+const passwordSignup = document.getElementById('passwordSignup');
+
 const btnLogin = document.getElementById('btnLogin');
 const btnSignUp = document.getElementById('btnSignUp');
 
 const errorWrapper = document.querySelector('.container__error');
 const errorMsg = document.querySelector('.container__error--text');
+const signupError = document.getElementById('signupError');
+const signupErrorText = document.getElementById('signupErrorText');
+
+const modalOuterSignup = document.getElementById('modalOuterSignup');
+const signupModal = document.getElementById('signupModal');
+const btnSignup = document.getElementById('btnSignup');
+const modalExitSignup = document.getElementById('modalExitSignup');
+const btnSubmitSignup = document.getElementById('btnSubmitSignup');
 
 btnLogin.addEventListener('click', (e) => {
   //get email and pass
@@ -42,26 +53,32 @@ btnLogin.addEventListener('click', (e) => {
   const promise = auth.signInWithEmailAndPassword(email, pass);
   promise.catch((e) => {
     errorWrapper.style.display = 'block';
-
     errorMsg.textContent = e.message;
   });
 });
 
 //sign up event
-btnSignUp.addEventListener('click', (e) => {
+function submitSignup(e) {
+  e.preventDefault();
   //get email and pass
   //TODO: Check for real email address
-  const email = textEmail.value;
-  const pass = textPassword.value;
+  const email = emailSignup.value;
+  const pass = passwordSignup.value;
   const auth = firebase.auth();
 
   //Sign in
   const promise = auth.createUserWithEmailAndPassword(email, pass);
-  promise.catch((e) => {
-    errorWrapper.style.display = 'block';
-    errorMsg.textContent = e.message;
-  });
-});
+
+  promise
+    .then(function () {
+      window.alert('Account created successfully!');
+      closeSignupModal();
+    })
+    .catch((e) => {
+      signupError.style.display = 'block';
+      signupErrorText.textContent = e.message;
+    });
+}
 
 form.addEventListener('keypress', function (e) {
   if (e.key === 'Enter') {
@@ -73,11 +90,24 @@ form.addEventListener('keypress', function (e) {
     const promise = auth.signInWithEmailAndPassword(email, pass);
     promise.catch((e) => {
       errorWrapper.style.display = 'block';
-
       errorMsg.textContent = e.message;
     });
   }
 });
+
+function openSignupModal() {
+  modalOuterSignup.style.display = 'block';
+  signupModal.style.display = 'block';
+}
+
+function closeSignupModal() {
+  modalOuterSignup.style.display = 'none';
+  signupModal.style.display = 'none';
+}
+
+btnSignUp.addEventListener('click', openSignupModal);
+modalExitSignup.addEventListener('click', closeSignupModal);
+btnSubmitSignup.addEventListener('click', submitSignup);
 
 //Add real time listener, checks to see if user exists
 firebase.auth().onAuthStateChanged((firebaseUser) => {
