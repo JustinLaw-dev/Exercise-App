@@ -38,9 +38,6 @@
     color: $color-gray-700;
   }
 
-  &__round {
-  }
-
   &__square {
     width: 20rem;
     height: 5rem;
@@ -73,9 +70,7 @@
     padding: 1rem 4rem;
     width: 40%;
     box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.4);
-  }
 
-  &--login {
     font-size: 2rem;
 
     @include respond(big-desktop) {
@@ -83,10 +78,6 @@
 
       padding: 2rem 4rem;
     }
-  }
-
-  &--signup {
-    font-size: 1.6rem;
   }
 
   &--logout {
@@ -97,7 +88,7 @@
     @include respond(big-desktop) {
       font-size: 2.75rem;
       width: 60%;
-    height: 7%;
+      height: 7%;
     }
 
     &-icon {
@@ -188,11 +179,19 @@
     @include respond(big-desktop) {
       font-size: 3.5rem;
       margin-top: 8rem;
+      width: 100%;
+      padding: 3rem;
     }
 
     &--signUp {
       width: 10vw;
       margin: 3rem auto;
+
+      @include respond(big-desktop) {
+        width: 100%;
+        margin: 10rem auto;
+        font-size: 4rem;
+      }
     }
   }
 
@@ -300,7 +299,13 @@
       display: block;
       margin: 2rem auto;
       font-size: 1.8rem;
-      width:30%;
+      width: 30%;
+
+      @include respond(big-desktop) {
+        font-size: 3.8rem;
+        width: 38%;
+        height: 8%;
+      }
     }
 
     &--printPtWorkout {
@@ -314,6 +319,12 @@
     flex-direction: row;
     justify-content: space-around;
     margin-top: 2rem;
+
+    @include respond(big-desktop) {
+      flex-direction: column;
+      height: 15vh;
+      align-items: center;
+    }
   }
 
   &__submitSave {
@@ -366,10 +377,31 @@
 
 #btnPrintWorkout {
   margin: 0 auto;
+
+  @include respond(big-desktop) {
+    font-size: 3.8rem;
+    width: 38%;
+    height: 8%;
+  }
+}
+
+//From exercise tab
+#btnSaveWorkout {
+  @include respond(big-desktop) {
+    font-size: 3.8rem;
+    width: 60%;
+    height: 5vh;
+  }
 }
 
 #btnSaveWorkoutPatient {
   display: none;
+
+  @include respond(big-desktop) {
+    font-size: 3.8rem;
+    width: 60%;
+    height: 5vh;
+  }
 }
 
 #btnSubmitCopyWorkout {
@@ -387,6 +419,12 @@
       display: none;
 
       transition: all 0.2s;
+
+      @include respond(big-desktop) {
+        font-size: 5rem;
+        top: 5%;
+        left: 5%;
+      }
     }
   }
 }
