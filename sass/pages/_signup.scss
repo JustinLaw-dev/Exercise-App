@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: row;
 
-  @include respond(phone) {
+  @include respond(tab-port) {
     flex-direction: column;
   }
 
@@ -11,6 +11,11 @@
     height: 100vh;
     background: $gradient-primary;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
+    @include respond(tab-port) {
+      width: 100vw;
+      height: 10vh;
+    }
 
     @include respond(phone) {
       width: 100vw;
@@ -22,6 +27,12 @@
     width: 70vw;
     height: 100vh;
     padding-top:15vh;
+
+    @include respond(tab-port) {
+      width: 100vw;
+      height: 90vh;
+      padding-top: 0;
+    }
 
     @include respond(phone) {
       width: 100vw;
@@ -42,6 +53,10 @@
 
     @include respond(big-desktop) {
       padding: 3.5rem 1rem;
+    }
+
+    @include respond(tab-port) {
+      width: 80%;
     }
 
     @include respond(phone) {
@@ -89,6 +104,12 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+
+    @include respond(tab-port) {
+      flex-direction: column;
+      align-items: center;
+      height: 20rem;
+    }
 
     @include respond(phone) {
       flex-direction: column;

@@ -22,15 +22,24 @@ textarea {
   width: 25vw;
   margin: 4rem auto;
   color: $primary-color;
+  text-align: start;
 
   @include respond(big-desktop) {
     font-size: 8rem;
   }
 
+  @include respond(tab-land) {
+    width: 60%;
+  }
+
+  @include respond(tab-port){
+    font-size: 2.5rem;
+    width: 50%;
+  }
+
   @include respond(phone) {
     font-size: 2.5rem;
     width: 80%;
-    text-align: start;
   }
 }
 
@@ -46,6 +55,17 @@ textarea {
   &--login {
     padding-right: 6rem;
     padding-top: 2rem;
+
+
+
+    @include respond(tab-port) {
+      
+      padding: 0;
+      text-align: center;
+      position: relative;
+      top:50%;
+      transform: translateY(-50%);
+    }
 
     @include respond(phone) {
       padding: 0;

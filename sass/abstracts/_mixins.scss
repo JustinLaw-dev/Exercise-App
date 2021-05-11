@@ -2,17 +2,17 @@
 
 @mixin respond($breakpoint) {
   @if $breakpoint == phone {
-    @media only screen and (max-width: 375px) {
+    @media only screen and (max-width: 375px) and (orientation: portrait){
       @content;
     }
   }
   @if $breakpoint == tab-port {
-    @media only screen and (max-width: 768px) {
+    @media only screen and (max-width: 768px) and (orientation: portrait){
       @content;
     }
   }
   @if $breakpoint == tab-land {
-    @media only screen and (max-width: 1280px) {
+    @media only screen and (max-width: 1280px) and (orientation: landscape){
       @content;
     }
   }
