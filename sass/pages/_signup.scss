@@ -2,17 +2,32 @@
   display: flex;
   flex-direction: row;
 
+  @include respond(phone) {
+    flex-direction: column;
+  }
+
   &__left {
     width: 30vw;
     height: 100vh;
     background: $gradient-primary;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
+    @include respond(phone) {
+      width: 100vw;
+      height: 10vh;
+    }
   }
 
   &__right {
     width: 70vw;
     height: 100vh;
     padding-top:15vh;
+
+    @include respond(phone) {
+      width: 100vw;
+      height: 90vh;
+      padding-top: 0;
+    }
   }
 
   &__error {
@@ -27,6 +42,10 @@
 
     @include respond(big-desktop) {
       padding: 3.5rem 1rem;
+    }
+
+    @include respond(phone) {
+      width: 80%;
     }
 
     &--icon {
@@ -47,6 +66,10 @@
       @include respond(big-desktop) {
         font-size: 4.5rem;
       }
+      
+  @include respond(phone) {
+    font-size: 1.4rem;
+  }
     }
   }
 }
@@ -54,6 +77,8 @@
 #signupError {
   width: 20vw;
   margin: 1rem auto;
+  
+
 }
 
 .signup {
@@ -62,7 +87,14 @@
     height: auto;
     margin-top: 5vh;
     display: flex;
+    flex-direction: row;
     justify-content: space-between;
+
+    @include respond(phone) {
+      flex-direction: column;
+      align-items: center;
+      height: 12rem;
+    }
   }
 
   &__modal {

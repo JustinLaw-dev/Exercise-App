@@ -7,6 +7,10 @@
     width: 25vw;
     height: 25%;
 
+    @include respond(phone) {
+      width: 80%;
+    }
+
     &--signup {
       width: 20vw;
     }

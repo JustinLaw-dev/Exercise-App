@@ -15,10 +15,10 @@ firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
 
 // let link = 'https://los-alamitos-pt-exercise-app.web.app/';
-let linkIndex = 'https://los-alamitos-pt-exercise-app.web.app/index.html';
-let linkMain = 'https://los-alamitos-pt-exercise-app.web.app/main.html';
-// let linkIndex = 'http://127.0.0.1:5500/public/index.html';
-// let linkMain = 'http://127.0.0.1:5500/public/main.html';
+// let linkIndex = 'https://los-alamitos-pt-exercise-app.web.app/index.html';
+// let linkMain = 'https://los-alamitos-pt-exercise-app.web.app/main.html';
+let linkIndex = 'http://127.0.0.1:5500/public/index.html';
+let linkMain = 'http://127.0.0.1:5500/public/main.html';
 
 const form = document.getElementById('signInForm');
 

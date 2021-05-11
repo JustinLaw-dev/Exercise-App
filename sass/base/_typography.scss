@@ -26,6 +26,12 @@ textarea {
   @include respond(big-desktop) {
     font-size: 8rem;
   }
+
+  @include respond(phone) {
+    font-size: 2.5rem;
+    width: 80%;
+    text-align: start;
+  }
 }
 
 .header--secondary {
@@ -40,10 +46,22 @@ textarea {
   &--login {
     padding-right: 6rem;
     padding-top: 2rem;
+
+    @include respond(phone) {
+      padding: 0;
+      text-align: center;
+      position: relative;
+      top:50%;
+      transform: translateY(-50%);
+    }
   }
 
   @include respond(big-desktop) {
     font-size: 15rem;
+  }
+
+  @include respond(phone) {
+    font-size: 3rem;
   }
 }
 

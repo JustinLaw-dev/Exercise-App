@@ -93,6 +93,14 @@ textarea {
   }
 }
 
+@media only screen and (max-width: 375px) {
+  .header--primary {
+    font-size: 2.5rem;
+    width: 80%;
+    text-align: start;
+  }
+}
+
 .header--secondary {
   font-size: 4.5rem;
   font-weight: 700;
@@ -108,9 +116,26 @@ textarea {
   padding-top: 2rem;
 }
 
+@media only screen and (max-width: 375px) {
+  .header--secondary--login {
+    padding: 0;
+    text-align: center;
+    position: relative;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+            transform: translateY(-50%);
+  }
+}
+
 @media only screen and (min-width: 2000px) {
   .header--secondary {
     font-size: 15rem;
+  }
+}
+
+@media only screen and (max-width: 375px) {
+  .header--secondary {
+    font-size: 3rem;
   }
 }
 
@@ -284,6 +309,12 @@ input {
   .button--login, .button--signup {
     font-size: 5rem;
     padding: 2rem 4rem;
+  }
+}
+
+@media only screen and (max-width: 375px) {
+  .button--login, .button--signup {
+    width: 70%;
   }
 }
 
@@ -1878,6 +1909,12 @@ input[type='file'] {
   height: 25%;
 }
 
+@media only screen and (max-width: 375px) {
+  .form__container {
+    width: 80%;
+  }
+}
+
 .form__container--signup {
   width: 20vw;
 }
@@ -1958,6 +1995,15 @@ input[type='file'] {
           flex-direction: row;
 }
 
+@media only screen and (max-width: 375px) {
+  .container {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+}
+
 .container__left {
   width: 30vw;
   height: 100vh;
@@ -1967,10 +2013,25 @@ input[type='file'] {
           box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
+@media only screen and (max-width: 375px) {
+  .container__left {
+    width: 100vw;
+    height: 10vh;
+  }
+}
+
 .container__right {
   width: 70vw;
   height: 100vh;
   padding-top: 15vh;
+}
+
+@media only screen and (max-width: 375px) {
+  .container__right {
+    width: 100vw;
+    height: 90vh;
+    padding-top: 0;
+  }
 }
 
 .container__error {
@@ -1987,6 +2048,12 @@ input[type='file'] {
 @media only screen and (min-width: 2000px) {
   .container__error {
     padding: 3.5rem 1rem;
+  }
+}
+
+@media only screen and (max-width: 375px) {
+  .container__error {
+    width: 80%;
   }
 }
 
@@ -2014,6 +2081,12 @@ input[type='file'] {
   }
 }
 
+@media only screen and (max-width: 375px) {
+  .container__error--text {
+    font-size: 1.4rem;
+  }
+}
+
 #signupError {
   width: 20vw;
   margin: 1rem auto;
@@ -2026,9 +2099,26 @@ input[type='file'] {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+}
+
+@media only screen and (max-width: 375px) {
+  .signup__container {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    height: 12rem;
+  }
 }
 
 .signup__modal {
